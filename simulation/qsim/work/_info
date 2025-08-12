@@ -1,0 +1,139 @@
+m255
+K4
+z2
+Z0 !s12c _opt1
+Z1 !s99 nomlopt
+R0
+R1
+R0
+R1
+R0
+R1
+Z2 !s12c _opt
+R1
+R2
+R1
+!s11e vcom 2023.3 2023.07, Jul 17 2023
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z3 d/home/mac/Code/FPGACode/simulation/qsim
+T_opt
+!s110 1754955798
+Vcd>V3b17onY_U1QFTE]?J1
+Z4 04 20 13 work fpgacode_vhd_vec_tst fpgacode_arch 1
+=1-000ae431a4f1-689a8016-3861e-32229
+R1
+Z5 !s12b OEM100
+Z6 !s124 OEM10U2 
+o-quiet -auto_acc_if_foreign -work work -L cycloneive -L altera -L altera_mf -L 220model -L sgate -L altera_lnsim
+Z7 tCvgOpt 0
+n@_opt
+Z8 OL;O;2023.3;77
+R3
+T_opt1
+!s110 1754958760
+VbA0UAf9koeQOU4=WUSYlI3
+R4
+=1-000ae431a4f1-689a8ba8-66da2-33e5b
+R1
+R5
+R6
+o-quiet -auto_acc_if_foreign -work work -L cycloneive -L altera -L altera_mf -L 220model -L sgate -L altera_lnsim -suppress 12110 +acc
+R7
+n@_opt1
+R8
+R3
+Efpgacode
+Z9 w1754959000
+Z10 DPx4 ieee 16 vital_primitives 0 22 Y]H?Y_]z4@VoaWAGJ=36m1
+Z11 DPx10 cycloneive 20 cycloneive_atom_pack 0 22 JFD354ZMY?;ZG1UUQ_P^@1
+Z12 DPx4 ieee 12 vital_timing 0 22 6STbz=m1W[80IE06h_el^0
+Z13 DPx3 std 6 textio 0 22 LS[?81n5ZHWBI9JkBZTV<2
+Z14 DPx4 ieee 14 std_logic_1164 0 22 6<US`=mgl_dFdCEFF7J=m1
+Z15 DPx10 cycloneive 21 cycloneive_components 0 22 :CA=Yg0R^TdJ3>^OGfeMR2
+!i122 34
+R3
+Z16 8FPGACode.vho
+Z17 FFPGACode.vho
+l0
+L35 1
+VPnKMEZ8Tc9U57d6P>n8082
+!s100 3LLHYzLfPE6moF`@=8NQj0
+Z18 OL;C;2023.3;77
+32
+Z19 !s110 1754959002
+!i10b 1
+Z20 !s108 1754959001.000000
+Z21 !s90 -work|work|FPGACode.vho|
+Z22 !s107 FPGACode.vho|
+!i113 0
+Z23 o-work work
+Z24 tExplicit 1 CvgOpt 0
+Astructure
+R10
+R11
+R12
+R13
+R14
+R15
+DEx4 work 8 fpgacode 0 22 PnKMEZ8Tc9U57d6P>n8082
+!i122 34
+l93
+L55 250
+V>2[Paa65E?dcY6`Rl4na93
+!s100 W2J[a31R;hkC1j2oAQ`d_3
+R18
+32
+R19
+!i10b 1
+R20
+R21
+R22
+!i113 0
+R23
+R24
+Efpgacode_vhd_vec_tst
+Z25 w1754958999
+R13
+R14
+!i122 35
+R3
+Z26 8Test_PLL_20M.vwf.vht
+Z27 FTest_PLL_20M.vwf.vht
+l0
+L32 1
+VCGF][858X3L5E<d21fMXV1
+!s100 :<4ZXLZSfK4Q03B3@3>ES0
+R18
+32
+R19
+!i10b 1
+Z28 !s108 1754959002.000000
+Z29 !s90 -work|work|Test_PLL_20M.vwf.vht|
+Z30 !s107 Test_PLL_20M.vwf.vht|
+!i113 0
+R23
+R24
+Afpgacode_arch
+R13
+R14
+Z31 DEx4 work 20 fpgacode_vhd_vec_tst 0 22 CGF][858X3L5E<d21fMXV1
+!i122 35
+l53
+Z32 L34 71
+Z33 VKjg>>mdh4=d?Ca]dcD]KX0
+Z34 !s100 6aiNED4@Ra9j0UY^Qih4^2
+R18
+32
+R19
+!i10b 1
+R28
+R29
+R30
+!i113 0
+R23
+R24

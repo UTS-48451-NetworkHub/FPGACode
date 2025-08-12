@@ -1,0 +1,21 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "TEST_DIFF_OUT",
+					"strict" : false
+				},
+				{
+					"name" : "ETH0_RX_P",
+					"strict" : false
+				},
+				{
+					"name" : "ETH0_RX_N",
+					"strict" : false
+				}
+			]
+		}
+	]
+}
