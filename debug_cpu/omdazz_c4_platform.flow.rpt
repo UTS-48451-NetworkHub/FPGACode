@@ -1,0 +1,118 @@
+Flow report for omdazz_c4_platform
+Sat Aug 16 14:30:43 2025
+Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Flow Summary
+  3. Flow Settings
+  4. Flow Non-Default Global Settings
+  5. Flow Elapsed Time
+  6. Flow OS Summary
+  7. Flow Log
+  8. Flow Messages
+  9. Flow Suppressed Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2025  Altera Corporation. All rights reserved.
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, the Altera Quartus Prime License Agreement,
+the Altera IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Altera and sold by Altera or its authorized distributors.  Please
+refer to the Altera Software License Subscription Agreements 
+on the Quartus Prime software download page.
+
+
+
++--------------------------------------------------------------------------------------+
+; Flow Summary                                                                         ;
++------------------------------------+-------------------------------------------------+
+; Flow Status                        ; Successful - Sat Aug 16 14:30:14 2025           ;
+; Quartus Prime Version              ; 24.1std.0 Build 1077 03/04/2025 SC Lite Edition ;
+; Revision Name                      ; omdazz_c4_platform                              ;
+; Top-level Entity Name              ; omdazz_c4_platform                              ;
+; Family                             ; Cyclone IV E                                    ;
+; Device                             ; EP4CE6E22C8                                     ;
+; Timing Models                      ; Final                                           ;
+; Total logic elements               ; 3,577 / 6,272 ( 57 % )                          ;
+;     Total combinational functions  ; 2,763 / 6,272 ( 44 % )                          ;
+;     Dedicated logic registers      ; 2,084 / 6,272 ( 33 % )                          ;
+; Total registers                    ; 2084                                            ;
+; Total pins                         ; 20 / 92 ( 22 % )                                ;
+; Total virtual pins                 ; 0                                               ;
+; Total memory bits                  ; 209,408 / 276,480 ( 76 % )                      ;
+; Embedded Multiplier 9-bit elements ; 0 / 30 ( 0 % )                                  ;
+; Total PLLs                         ; 0 / 2 ( 0 % )                                   ;
++------------------------------------+-------------------------------------------------+
+
+
++-----------------------------------------+
+; Flow Settings                           ;
++-------------------+---------------------+
+; Option            ; Setting             ;
++-------------------+---------------------+
+; Start date & time ; 08/16/2025 14:29:15 ;
+; Main task         ; Compilation         ;
+; Revision Name     ; omdazz_c4_platform  ;
++-------------------+---------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Flow Non-Default Global Settings                                                                                                                            ;
++-----------------------+------------------------------------------------------------------------------------------+---------------+-------------+------------+
+; Assignment Name       ; Value                                                                                    ; Default Value ; Entity Name ; Section Id ;
++-----------------------+------------------------------------------------------------------------------------------+---------------+-------------+------------+
+; COMPILER_SIGNATURE_ID ; 2259695059283.175531855523168                                                            ; --            ; --          ; --         ;
+; SEARCH_PATH           ; G:/FPGA_Projects/Ethernet_Switch/SOC/pythondata-cpu-serv/pythondata_cpu_serv/verilog/rtl ; --            ; --          ; --         ;
++-----------------------+------------------------------------------------------------------------------------------+---------------+-------------+------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------+
+; Flow Elapsed Time                                                                                                        ;
++----------------------+--------------+-------------------------+---------------------+------------------------------------+
+; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
++----------------------+--------------+-------------------------+---------------------+------------------------------------+
+; Analysis & Synthesis ; 00:00:28     ; 1.0                     ; 4890 MB             ; 00:00:12                           ;
+; Fitter               ; 00:00:26     ; 1.3                     ; 6562 MB             ; 00:00:48                           ;
+; Assembler            ; 00:00:01     ; 1.0                     ; 4712 MB             ; 00:00:01                           ;
+; Timing Analyzer      ; 00:00:27     ; 1.1                     ; 4982 MB             ; 00:00:03                           ;
+; Total                ; 00:01:22     ; --                      ; --                  ; 00:01:04                           ;
++----------------------+--------------+-------------------------+---------------------+------------------------------------+
+
+
++------------------------------------------------------------------------------------+
+; Flow OS Summary                                                                    ;
++----------------------+------------------+------------+------------+----------------+
+; Module Name          ; Machine Hostname ; OS Name    ; OS Version ; Processor type ;
++----------------------+------------------+------------+------------+----------------+
+; Analysis & Synthesis ; WIN-UQQF09ASK8R  ; Windows 10 ; 10.0       ; x86_64         ;
+; Fitter               ; WIN-UQQF09ASK8R  ; Windows 10 ; 10.0       ; x86_64         ;
+; Assembler            ; WIN-UQQF09ASK8R  ; Windows 10 ; 10.0       ; x86_64         ;
+; Timing Analyzer      ; WIN-UQQF09ASK8R  ; Windows 10 ; 10.0       ; x86_64         ;
++----------------------+------------------+------------+------------+----------------+
+
+
+------------
+; Flow Log ;
+------------
+quartus_map --read_settings_files=on --write_settings_files=off omdazz_c4_platform -c omdazz_c4_platform
+quartus_fit --read_settings_files=off --write_settings_files=off omdazz_c4_platform -c omdazz_c4_platform
+quartus_asm --read_settings_files=off --write_settings_files=off omdazz_c4_platform -c omdazz_c4_platform
+quartus_sta omdazz_c4_platform -c omdazz_c4_platform
+
+
+

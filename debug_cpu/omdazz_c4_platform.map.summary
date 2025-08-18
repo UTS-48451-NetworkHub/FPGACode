@@ -1,0 +1,14 @@
+Analysis & Synthesis Status : Successful - Sat Aug 16 14:29:43 2025
+Quartus Prime Version : 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
+Revision Name : omdazz_c4_platform
+Top-level Entity Name : omdazz_c4_platform
+Family : Cyclone IV E
+Total logic elements : 4,280
+    Total combinational functions : 2,762
+    Dedicated logic registers : 2,084
+Total registers : 2084
+Total pins : 20
+Total virtual pins : 0
+Total memory bits : 209,408
+Embedded Multiplier 9-bit elements : 0
+Total PLLs : 0

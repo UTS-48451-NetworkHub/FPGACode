@@ -1,0 +1,16 @@
+Fitter Status : Successful - Sat Aug 16 14:30:10 2025
+Quartus Prime Version : 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
+Revision Name : omdazz_c4_platform
+Top-level Entity Name : omdazz_c4_platform
+Family : Cyclone IV E
+Device : EP4CE6E22C8
+Timing Models : Final
+Total logic elements : 3,577 / 6,272 ( 57 % )
+    Total combinational functions : 2,763 / 6,272 ( 44 % )
+    Dedicated logic registers : 2,084 / 6,272 ( 33 % )
+Total registers : 2084
+Total pins : 20 / 92 ( 22 % )
+Total virtual pins : 0
+Total memory bits : 209,408 / 276,480 ( 76 % )
+Embedded Multiplier 9-bit elements : 0 / 30 ( 0 % )
+Total PLLs : 0 / 2 ( 0 % )

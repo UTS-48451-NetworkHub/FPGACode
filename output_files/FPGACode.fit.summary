@@ -1,16 +1,16 @@
-Fitter Status : Successful - Tue Aug 12 10:36:13 2025
-Quartus Prime Version : 23.1std.0 Build 991 11/28/2023 SC Lite Edition
+Fitter Status : Successful - Sat Aug 16 14:34:38 2025
+Quartus Prime Version : 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
 Revision Name : FPGACode
 Top-level Entity Name : FPGACode
 Family : Cyclone IV E
 Device : EP4CE6E22C8
 Timing Models : Final
-Total logic elements : 1 / 6,272 ( < 1 % )
-    Total combinational functions : 1 / 6,272 ( < 1 % )
-    Dedicated logic registers : 0 / 6,272 ( 0 % )
-Total registers : 0
-Total pins : 6 / 92 ( 7 % )
+Total logic elements : 3,510 / 6,272 ( 56 % )
+    Total combinational functions : 2,741 / 6,272 ( 44 % )
+    Dedicated logic registers : 2,066 / 6,272 ( 33 % )
+Total registers : 2066
+Total pins : 9 / 92 ( 10 % )
 Total virtual pins : 0
-Total memory bits : 0 / 276,480 ( 0 % )
+Total memory bits : 209,408 / 276,480 ( 76 % )
 Embedded Multiplier 9-bit elements : 0 / 30 ( 0 % )
 Total PLLs : 1 / 2 ( 50 % )

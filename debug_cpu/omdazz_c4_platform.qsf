@@ -1,0 +1,62 @@
+set_global_assignment -name DEVICE EP4CE6E22C8
+set_global_assignment -name SYSTEMVERILOG_FILE G:/FPGA_Projects/Ethernet_Switch/SOC/pythondata-cpu-serv/pythondata_cpu_serv/verilog/rtl/serv_aligner.v -library work
+set_global_assignment -name SYSTEMVERILOG_FILE G:/FPGA_Projects/Ethernet_Switch/SOC/pythondata-cpu-serv/pythondata_cpu_serv/verilog/rtl/serv_alu.v -library work
+set_global_assignment -name SYSTEMVERILOG_FILE G:/FPGA_Projects/Ethernet_Switch/SOC/pythondata-cpu-serv/pythondata_cpu_serv/verilog/rtl/serv_bufreg.v -library work
+set_global_assignment -name SYSTEMVERILOG_FILE G:/FPGA_Projects/Ethernet_Switch/SOC/pythondata-cpu-serv/pythondata_cpu_serv/verilog/rtl/serv_bufreg2.v -library work
+set_global_assignment -name SYSTEMVERILOG_FILE G:/FPGA_Projects/Ethernet_Switch/SOC/pythondata-cpu-serv/pythondata_cpu_serv/verilog/rtl/serv_compdec.v -library work
+set_global_assignment -name SYSTEMVERILOG_FILE G:/FPGA_Projects/Ethernet_Switch/SOC/pythondata-cpu-serv/pythondata_cpu_serv/verilog/rtl/serv_csr.v -library work
+set_global_assignment -name SYSTEMVERILOG_FILE G:/FPGA_Projects/Ethernet_Switch/SOC/pythondata-cpu-serv/pythondata_cpu_serv/verilog/rtl/serv_ctrl.v -library work
+set_global_assignment -name SYSTEMVERILOG_FILE G:/FPGA_Projects/Ethernet_Switch/SOC/pythondata-cpu-serv/pythondata_cpu_serv/verilog/rtl/serv_decode.v -library work
+set_global_assignment -name SYSTEMVERILOG_FILE G:/FPGA_Projects/Ethernet_Switch/SOC/pythondata-cpu-serv/pythondata_cpu_serv/verilog/rtl/serv_immdec.v -library work
+set_global_assignment -name SYSTEMVERILOG_FILE G:/FPGA_Projects/Ethernet_Switch/SOC/pythondata-cpu-serv/pythondata_cpu_serv/verilog/rtl/serv_mem_if.v -library work
+set_global_assignment -name SYSTEMVERILOG_FILE G:/FPGA_Projects/Ethernet_Switch/SOC/pythondata-cpu-serv/pythondata_cpu_serv/verilog/rtl/serv_rf_if.v -library work
+set_global_assignment -name SYSTEMVERILOG_FILE G:/FPGA_Projects/Ethernet_Switch/SOC/pythondata-cpu-serv/pythondata_cpu_serv/verilog/rtl/serv_rf_ram.v -library work
+set_global_assignment -name SYSTEMVERILOG_FILE G:/FPGA_Projects/Ethernet_Switch/SOC/pythondata-cpu-serv/pythondata_cpu_serv/verilog/rtl/serv_rf_ram_if.v -library work
+set_global_assignment -name SYSTEMVERILOG_FILE G:/FPGA_Projects/Ethernet_Switch/SOC/pythondata-cpu-serv/pythondata_cpu_serv/verilog/rtl/serv_rf_top.v -library work
+set_global_assignment -name SYSTEMVERILOG_FILE G:/FPGA_Projects/Ethernet_Switch/SOC/pythondata-cpu-serv/pythondata_cpu_serv/verilog/rtl/serv_state.v -library work
+set_global_assignment -name SYSTEMVERILOG_FILE G:/FPGA_Projects/Ethernet_Switch/SOC/pythondata-cpu-serv/pythondata_cpu_serv/verilog/rtl/serv_synth_wrapper.v -library work
+set_global_assignment -name SYSTEMVERILOG_FILE G:/FPGA_Projects/Ethernet_Switch/SOC/pythondata-cpu-serv/pythondata_cpu_serv/verilog/rtl/serv_top.v -library work
+set_global_assignment -name SYSTEMVERILOG_FILE G:/FPGA_Projects/Ethernet_Switch/SOC/custom/build/omdazz_c4_platform/gateware/omdazz_c4_platform.v -library work
+set_global_assignment -name SEARCH_PATH G:/FPGA_Projects/Ethernet_Switch/SOC/pythondata-cpu-serv/pythondata_cpu_serv/verilog/rtl
+set_global_assignment -name top_level_entity omdazz_c4_platform
+set_location_assignment -comment "clk50:0" -to clk50 Pin_23
+set_instance_assignment -name io_standard -comment "clk50:0" "3.3-V LVTTL" -to clk50
+set_location_assignment -comment "reset:0" -to reset Pin_25
+set_instance_assignment -name io_standard -comment "reset:0" "3.3-V LVTTL" -to reset
+set_location_assignment -comment "gpio_in:0.gpio_in0" -to gpio_in_gpio_in0 Pin_42
+set_instance_assignment -name io_standard -comment "gpio_in:0.gpio_in0" "3.3-V LVTTL" -to gpio_in_gpio_in0
+set_location_assignment -comment "gpio_in:0.gpio_in1" -to gpio_in_gpio_in1 Pin_43
+set_instance_assignment -name io_standard -comment "gpio_in:0.gpio_in1" "3.3-V LVTTL" -to gpio_in_gpio_in1
+set_location_assignment -comment "gpio_in:0.gpio_in2" -to gpio_in_gpio_in2 Pin_44
+set_instance_assignment -name io_standard -comment "gpio_in:0.gpio_in2" "3.3-V LVTTL" -to gpio_in_gpio_in2
+set_location_assignment -comment "gpio_in:0.gpio_in3" -to gpio_in_gpio_in3 Pin_46
+set_instance_assignment -name io_standard -comment "gpio_in:0.gpio_in3" "3.3-V LVTTL" -to gpio_in_gpio_in3
+set_location_assignment -comment "gpio_in:0.gpio_in4" -to gpio_in_gpio_in4 Pin_49
+set_instance_assignment -name io_standard -comment "gpio_in:0.gpio_in4" "3.3-V LVTTL" -to gpio_in_gpio_in4
+set_location_assignment -comment "gpio_in:0.gpio_in5" -to gpio_in_gpio_in5 Pin_50
+set_instance_assignment -name io_standard -comment "gpio_in:0.gpio_in5" "3.3-V LVTTL" -to gpio_in_gpio_in5
+set_location_assignment -comment "gpio_in:0.gpio_in6" -to gpio_in_gpio_in6 Pin_51
+set_instance_assignment -name io_standard -comment "gpio_in:0.gpio_in6" "3.3-V LVTTL" -to gpio_in_gpio_in6
+set_location_assignment -comment "gpio_in:0.gpio_in7" -to gpio_in_gpio_in7 Pin_52
+set_instance_assignment -name io_standard -comment "gpio_in:0.gpio_in7" "3.3-V LVTTL" -to gpio_in_gpio_in7
+set_location_assignment -comment "gpio_out:0.gpio_out0" -to gpio_out_gpio_out0 Pin_53
+set_instance_assignment -name io_standard -comment "gpio_out:0.gpio_out0" "3.3-V LVTTL" -to gpio_out_gpio_out0
+set_location_assignment -comment "gpio_out:0.gpio_out1" -to gpio_out_gpio_out1 Pin_54
+set_instance_assignment -name io_standard -comment "gpio_out:0.gpio_out1" "3.3-V LVTTL" -to gpio_out_gpio_out1
+set_location_assignment -comment "gpio_out:0.gpio_out2" -to gpio_out_gpio_out2 Pin_55
+set_instance_assignment -name io_standard -comment "gpio_out:0.gpio_out2" "3.3-V LVTTL" -to gpio_out_gpio_out2
+set_location_assignment -comment "gpio_out:0.gpio_out3" -to gpio_out_gpio_out3 Pin_58
+set_instance_assignment -name io_standard -comment "gpio_out:0.gpio_out3" "3.3-V LVTTL" -to gpio_out_gpio_out3
+set_location_assignment -comment "gpio_out:0.gpio_out4" -to gpio_out_gpio_out4 Pin_59
+set_instance_assignment -name io_standard -comment "gpio_out:0.gpio_out4" "3.3-V LVTTL" -to gpio_out_gpio_out4
+set_location_assignment -comment "gpio_out:0.gpio_out5" -to gpio_out_gpio_out5 Pin_60
+set_instance_assignment -name io_standard -comment "gpio_out:0.gpio_out5" "3.3-V LVTTL" -to gpio_out_gpio_out5
+set_location_assignment -comment "gpio_out:0.gpio_out6" -to gpio_out_gpio_out6 Pin_64
+set_instance_assignment -name io_standard -comment "gpio_out:0.gpio_out6" "3.3-V LVTTL" -to gpio_out_gpio_out6
+set_location_assignment -comment "gpio_out:0.gpio_out7" -to gpio_out_gpio_out7 Pin_65
+set_instance_assignment -name io_standard -comment "gpio_out:0.gpio_out7" "3.3-V LVTTL" -to gpio_out_gpio_out7
+set_location_assignment -comment "serial:0.tx" -to serial_tx Pin_114
+set_instance_assignment -name io_standard -comment "serial:0.tx" "3.3-V LVTTL" -to serial_tx
+set_location_assignment -comment "serial:0.rx" -to serial_rx Pin_115
+set_instance_assignment -name io_standard -comment "serial:0.rx" "3.3-V LVTTL" -to serial_rx
+set_global_assignment -name SDC_FILE omdazz_c4_platform.sdc

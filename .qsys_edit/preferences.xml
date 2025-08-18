@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<preferences>
+ <debug showDebugMenu="0" />
+ <systemtable filter="All Interfaces">
+  <columns>
+   <connections preferredWidth="95" />
+   <irq preferredWidth="34" />
+   <name preferredWidth="225" />
+   <description preferredWidth="396" />
+   <inputclock preferredWidth="229" />
+  </columns>
+ </systemtable>
+ <library
+   expandedCategories="Library/Basic Functions/Simulation; Debug and Verification,Library/Basic Functions,Library,Library/Processors and Peripherals/Co-Processors/Nios II Custom Instructions,Project,Library/Processors and Peripherals,Library/Processors and Peripherals/Co-Processors,Library/Processors and Peripherals/Embedded Processors,Library/Basic Functions/Simulation; Debug and Verification/Simulation" />
+ <window width="3840" height="2100" x="0" y="0" />
+ <generation synthesis="VHDL" />
+ <hdlexample language="VHDL" />
+</preferences>

@@ -1,0 +1,41 @@
+
+State Machine - |omdazz_c4_platform|uartbone_state
+Name uartbone_state.110 uartbone_state.101 uartbone_state.100 uartbone_state.011 uartbone_state.010 uartbone_state.001 uartbone_state.000 
+uartbone_state.000 0 0 0 0 0 0 0 
+uartbone_state.001 0 0 0 0 0 1 1 
+uartbone_state.010 0 0 0 0 1 0 1 
+uartbone_state.011 0 0 0 1 0 0 1 
+uartbone_state.100 0 0 1 0 0 0 1 
+uartbone_state.101 0 1 0 0 0 0 1 
+uartbone_state.110 1 0 0 0 0 0 1 
+
+State Machine - |omdazz_c4_platform|grant
+Name grant.00 grant.10 grant.01 
+grant.00 0 0 0 
+grant.01 1 0 1 
+grant.10 1 1 0 
+
+State Machine - |omdazz_c4_platform|resetinserter_state
+Name resetinserter_state.00 resetinserter_state.10 resetinserter_state.01 
+resetinserter_state.00 0 0 0 
+resetinserter_state.01 1 0 1 
+resetinserter_state.10 1 1 0 
+
+State Machine - |omdazz_c4_platform|alterajtag_state
+Name alterajtag_state.1111 alterajtag_state.1110 alterajtag_state.1101 alterajtag_state.1100 alterajtag_state.1011 alterajtag_state.1010 alterajtag_state.1001 alterajtag_state.1000 alterajtag_state.0111 alterajtag_state.0110 alterajtag_state.0101 alterajtag_state.0100 alterajtag_state.0011 alterajtag_state.0010 alterajtag_state.0001 alterajtag_state.0000 
+alterajtag_state.0000 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+alterajtag_state.0001 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 
+alterajtag_state.0010 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 
+alterajtag_state.0011 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 
+alterajtag_state.0100 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 
+alterajtag_state.0101 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 1 
+alterajtag_state.0110 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 
+alterajtag_state.0111 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 1 
+alterajtag_state.1000 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 
+alterajtag_state.1001 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1 
+alterajtag_state.1010 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 1 
+alterajtag_state.1011 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 
+alterajtag_state.1100 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 
+alterajtag_state.1101 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1 
+alterajtag_state.1110 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+alterajtag_state.1111 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 

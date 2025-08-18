@@ -1,0 +1,73 @@
+IP Upgrade report for FPGACode
+Wed Aug 13 22:26:09 2025
+Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. IP Upgrade Summary
+  3. Successfully Upgraded IP Components
+  4. IP Upgrade Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2025  Altera Corporation. All rights reserved.
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, the Altera Quartus Prime License Agreement,
+the Altera IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Altera and sold by Altera or its authorized distributors.  Please
+refer to the Altera Software License Subscription Agreements 
+on the Quartus Prime software download page.
+
+
+
++--------------------------------------------------------------------------------+
+; IP Upgrade Summary                                                             ;
++------------------------------+-------------------------------------------------+
+; IP Components Upgrade Status ; Passed - Wed Aug 13 22:26:09 2025               ;
+; Quartus Prime Version        ; 24.1std.0 Build 1077 03/04/2025 SC Lite Edition ;
+; Revision Name                ; FPGACode                                        ;
+; Top-level Entity Name        ; FPGACode                                        ;
+; Family                       ; Cyclone IV E                                    ;
++------------------------------+-------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------+
+; Successfully Upgraded IP Components                                                                                      ;
++-----------------+----------------+---------+----------------------+----------------------+---------------------+---------+
+; Entity Name     ; Component Name ; Version ; Original Source File ; Generation File Path ; New Source File     ; Message ;
++-----------------+----------------+---------+----------------------+----------------------+---------------------+---------+
+; PLL20           ; ALTPLL         ; 23.1    ; PLL20.qip            ; PLL20.vhd            ; PLL20.qip           ;         ;
+; FIFO_ETH_PACKET ; FIFO           ; 23.1    ; FIFO_ETH_PACKET.qip  ; FIFO_ETH_PACKET.vhd  ; FIFO_ETH_PACKET.qip ;         ;
++-----------------+----------------+---------+----------------------+----------------------+---------------------+---------+
+
+
++---------------------+
+; IP Upgrade Messages ;
++---------------------+
+Info (11902): Backing up file "PLL20.vhd" to "PLL20.BAK.vhd"
+Info (11837): Started upgrading IP component ALTPLL with file "PLL20.vhd"
+Info (11902): Backing up file "FIFO_ETH_PACKET.vhd" to "FIFO_ETH_PACKET.BAK.vhd"
+Info (11837): Started upgrading IP component FIFO with file "FIFO_ETH_PACKET.vhd"
+Info (11131): Completed upgrading IP component ALTPLL with file "PLL20.vhd"
+Info (11131): Completed upgrading IP component FIFO with file "FIFO_ETH_PACKET.vhd"
+Info (23030): Evaluation of Tcl script c:/intelfpga_lite/24.1std/quartus/common/tcl/internal/ip_regen/ip_regen.tcl was successful
+Info: Quartus Prime Shell was successful. 0 errors, 0 warnings
+    Info: Peak virtual memory: 4881 megabytes
+    Info: Processing ended: Wed Aug 13 22:26:09 2025
+    Info: Elapsed time: 00:00:07
+    Info: Total CPU time (on all processors): 00:00:15
+
+
