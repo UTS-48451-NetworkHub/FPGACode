@@ -3,13 +3,17 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity TEN_BASE_TX is
 	port (
-		TDp : out std_logic;
-		TDn : out std_logic
+		i_CLK       : in std_logic; -- 20 MHz
+		i_ETH_BIT_S : in std_logic;
+		o_MNC_BIT_S : out std_logic
 		);
 end TEN_BASE_TX;
 
-architecture of TEN_BASE_TX is begin
-begin
-	
+architecture arch of TEN_BASE_TX is
 
-end
+	-- Data Last Bit
+	signal r_ETH_LAST_BIT : std_logic := '0';
+
+begin
+
+end architecture arch;

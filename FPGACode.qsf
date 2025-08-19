@@ -39,7 +39,7 @@
 
 set_global_assignment -name FAMILY "Cyclone IV E"
 set_global_assignment -name DEVICE EP4CE6E22C8
-set_global_assignment -name TOP_LEVEL_ENTITY FPGACode
+set_global_assignment -name TOP_LEVEL_ENTITY BUFF_OUTPUT_DIFF
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 23.1STD.0
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "10:48:32  AUGUST 05, 2025"
 set_global_assignment -name LAST_QUARTUS_VERSION "24.1std.0 Lite Edition"
@@ -112,15 +112,11 @@ set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_RO
 set_global_assignment -name PARTITION_COLOR 16764057 -entity EthernetSwitch -section_id Top
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
-set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
-set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
-set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_location_assignment PIN_114 -to UART_TX
 set_location_assignment PIN_115 -to UART_RX
-set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to UART_TX
-set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to UART_RX
 set_location_assignment PIN_25 -to RESET
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to RESET
+set_location_assignment PIN_84 -to LED1
+set_global_assignment -name VHDL_FILE BUFF_OUTPUT_DIFF.vhd
 set_global_assignment -name VERILOG_FILE debug_cpu/serv_top.v
 set_global_assignment -name VERILOG_FILE debug_cpu/serv_synth_wrapper.v
 set_global_assignment -name VERILOG_FILE debug_cpu/serv_state.v
@@ -142,9 +138,13 @@ set_global_assignment -name VERILOG_FILE debug_cpu/omdazz_c4_platform.v
 set_global_assignment -name QIP_FILE PLL20.qip
 set_global_assignment -name VHDL_FILE 10Base_TX.vhd
 set_global_assignment -name BDF_FILE FPGACode.bdf
-set_global_assignment -name VECTOR_WAVEFORM_FILE Test_PLL_20M.vwf
 set_global_assignment -name VHDL_FILE BUFF_INPUT_DIFF.vhd
 set_global_assignment -name QIP_FILE FIFO_ETH_PACKET.qip
-set_location_assignment PIN_84 -to LED1
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to UART_TX
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to UART_RX
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to RESET
 set_instance_assignment -name IO_STANDARD "3.0-V LVTTL" -to LED1
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

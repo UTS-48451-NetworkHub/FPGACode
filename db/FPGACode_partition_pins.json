@@ -4,31 +4,15 @@
 			"name" : "Top",
 			"pins" : [
 				{
-					"name" : "UART_TX",
+					"name" : "O_p",
 					"strict" : false
 				},
 				{
-					"name" : "LED1",
+					"name" : "O_n",
 					"strict" : false
 				},
 				{
-					"name" : "MAIN_CLK",
-					"strict" : false
-				},
-				{
-					"name" : "RESET",
-					"strict" : false
-				},
-				{
-					"name" : "ETH0_RX_P",
-					"strict" : false
-				},
-				{
-					"name" : "ETH0_RX_N",
-					"strict" : false
-				},
-				{
-					"name" : "UART_RX",
+					"name" : "I",
 					"strict" : false
 				}
 			]

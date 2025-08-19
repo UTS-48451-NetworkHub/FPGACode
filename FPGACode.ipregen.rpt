@@ -1,5 +1,5 @@
 IP Upgrade report for FPGACode
-Wed Aug 13 22:26:09 2025
+Tue Aug 19 10:26:10 2025
 Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
 
 
@@ -8,8 +8,7 @@ Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
 ---------------------
   1. Legal Notice
   2. IP Upgrade Summary
-  3. Successfully Upgraded IP Components
-  4. IP Upgrade Messages
+  3. IP Upgrade Messages
 
 
 
@@ -36,7 +35,7 @@ on the Quartus Prime software download page.
 +--------------------------------------------------------------------------------+
 ; IP Upgrade Summary                                                             ;
 +------------------------------+-------------------------------------------------+
-; IP Components Upgrade Status ; Passed - Wed Aug 13 22:26:09 2025               ;
+; IP Components Upgrade Status ; Failed - Tue Aug 19 10:26:10 2025               ;
 ; Quartus Prime Version        ; 24.1std.0 Build 1077 03/04/2025 SC Lite Edition ;
 ; Revision Name                ; FPGACode                                        ;
 ; Top-level Entity Name        ; FPGACode                                        ;
@@ -44,30 +43,14 @@ on the Quartus Prime software download page.
 +------------------------------+-------------------------------------------------+
 
 
-+--------------------------------------------------------------------------------------------------------------------------+
-; Successfully Upgraded IP Components                                                                                      ;
-+-----------------+----------------+---------+----------------------+----------------------+---------------------+---------+
-; Entity Name     ; Component Name ; Version ; Original Source File ; Generation File Path ; New Source File     ; Message ;
-+-----------------+----------------+---------+----------------------+----------------------+---------------------+---------+
-; PLL20           ; ALTPLL         ; 23.1    ; PLL20.qip            ; PLL20.vhd            ; PLL20.qip           ;         ;
-; FIFO_ETH_PACKET ; FIFO           ; 23.1    ; FIFO_ETH_PACKET.qip  ; FIFO_ETH_PACKET.vhd  ; FIFO_ETH_PACKET.qip ;         ;
-+-----------------+----------------+---------+----------------------+----------------------+---------------------+---------+
-
-
 +---------------------+
 ; IP Upgrade Messages ;
 +---------------------+
-Info (11902): Backing up file "PLL20.vhd" to "PLL20.BAK.vhd"
-Info (11837): Started upgrading IP component ALTPLL with file "PLL20.vhd"
-Info (11902): Backing up file "FIFO_ETH_PACKET.vhd" to "FIFO_ETH_PACKET.BAK.vhd"
-Info (11837): Started upgrading IP component FIFO with file "FIFO_ETH_PACKET.vhd"
-Info (11131): Completed upgrading IP component ALTPLL with file "PLL20.vhd"
-Info (11131): Completed upgrading IP component FIFO with file "FIFO_ETH_PACKET.vhd"
-Info (23030): Evaluation of Tcl script c:/intelfpga_lite/24.1std/quartus/common/tcl/internal/ip_regen/ip_regen.tcl was successful
+Info (23030): Evaluation of Tcl script /home/mac/Software/intelFPGA_lite/24.1std/quartus/common/tcl/internal/ip_regen/ip_regen.tcl was successful
 Info: Quartus Prime Shell was successful. 0 errors, 0 warnings
-    Info: Peak virtual memory: 4881 megabytes
-    Info: Processing ended: Wed Aug 13 22:26:09 2025
-    Info: Elapsed time: 00:00:07
-    Info: Total CPU time (on all processors): 00:00:15
+    Info: Peak virtual memory: 603 megabytes
+    Info: Processing ended: Tue Aug 19 10:26:10 2025
+    Info: Elapsed time: 00:00:09
+    Info: Total CPU time (on all processors): 00:00:25
 
 

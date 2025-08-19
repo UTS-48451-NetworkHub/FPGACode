@@ -1,14 +1,14 @@
-Analysis & Synthesis Status : Successful - Sat Aug 16 14:34:29 2025
+Analysis & Synthesis Status : Successful - Tue Aug 19 11:02:56 2025
 Quartus Prime Version : 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
 Revision Name : FPGACode
-Top-level Entity Name : FPGACode
+Top-level Entity Name : BUFF_OUTPUT_DIFF
 Family : Cyclone IV E
-Total logic elements : 4,245
-    Total combinational functions : 2,740
-    Dedicated logic registers : 2,066
-Total registers : 2066
-Total pins : 9
+Total logic elements : 0
+    Total combinational functions : 0
+    Dedicated logic registers : 0
+Total registers : 0
+Total pins : 3
 Total virtual pins : 0
-Total memory bits : 209,408
+Total memory bits : 0
 Embedded Multiplier 9-bit elements : 0
-Total PLLs : 1
+Total PLLs : 0
