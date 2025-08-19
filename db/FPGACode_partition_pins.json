@@ -4,15 +4,19 @@
 			"name" : "Top",
 			"pins" : [
 				{
-					"name" : "O_p",
+					"name" : "ETH0_TX_N",
 					"strict" : false
 				},
 				{
-					"name" : "O_n",
+					"name" : "ETH0_TX_P",
 					"strict" : false
 				},
 				{
-					"name" : "I",
+					"name" : "LED1",
+					"strict" : false
+				},
+				{
+					"name" : "KEY1",
 					"strict" : false
 				}
 			]

@@ -39,7 +39,7 @@
 
 set_global_assignment -name FAMILY "Cyclone IV E"
 set_global_assignment -name DEVICE EP4CE6E22C8
-set_global_assignment -name TOP_LEVEL_ENTITY BUFF_OUTPUT_DIFF
+set_global_assignment -name TOP_LEVEL_ENTITY FPGACode
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 23.1STD.0
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "10:48:32  AUGUST 05, 2025"
 set_global_assignment -name LAST_QUARTUS_VERSION "24.1std.0 Lite Edition"
@@ -56,26 +56,26 @@ set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_
 set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_signal_integrity
 set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_boundary_scan
 set_location_assignment PIN_23 -to MAIN_CLK
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH1_TX_P -entity EthernetSwitch
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH1_TX_N -entity EthernetSwitch
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH1_RX_P -entity EthernetSwitch
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH1_RX_N -entity EthernetSwitch
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH0_TX_P -entity EthernetSwitch
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH0_TX_N -entity EthernetSwitch
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH0_RX_P -entity EthernetSwitch
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH0_RX_N -entity EthernetSwitch
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH2_RX_N -entity EthernetSwitch
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH2_RX_P -entity EthernetSwitch
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH2_TX_N -entity EthernetSwitch
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH2_TX_P -entity EthernetSwitch
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH3_RX_N -entity EthernetSwitch
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH3_RX_P -entity EthernetSwitch
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH3_TX_N -entity EthernetSwitch
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH3_TX_P -entity EthernetSwitch
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH4_RX_N -entity EthernetSwitch
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH4_RX_P -entity EthernetSwitch
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH4_TX_N -entity EthernetSwitch
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH4_TX_P -entity EthernetSwitch
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH1_TX_P
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH1_TX_N
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH1_RX_P
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH1_RX_N
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH0_TX_P
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH0_TX_N
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH0_RX_P
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH0_RX_N
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH2_RX_N
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH2_RX_P
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH2_TX_N
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH2_TX_P
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH3_RX_N
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH3_RX_P
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH3_TX_N
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH3_TX_P
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH4_RX_N
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH4_RX_P
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH4_TX_N
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH4_TX_P
 set_location_assignment PIN_83 -to ETH0_LED_YEL
 set_location_assignment PIN_80 -to ETH0_RX_N
 set_location_assignment PIN_77 -to ETH0_RX_P
@@ -106,16 +106,31 @@ set_location_assignment PIN_46 -to ETH4_RX_P
 set_location_assignment PIN_44 -to ETH4_TX_N
 set_location_assignment PIN_43 -to ETH4_TX_P
 set_location_assignment PIN_42 -to ETH4_LED_GRN
-set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -entity EthernetSwitch -section_id Top
-set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -entity EthernetSwitch -section_id Top
-set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -entity EthernetSwitch -section_id Top
-set_global_assignment -name PARTITION_COLOR 16764057 -entity EthernetSwitch -section_id Top
+set_location_assignment PIN_88 -to KEY1
+set_location_assignment PIN_89 -to KEY2
+set_location_assignment PIN_90 -to KEY3
+set_location_assignment PIN_91 -to KEY4
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
 set_location_assignment PIN_114 -to UART_TX
 set_location_assignment PIN_115 -to UART_RX
 set_location_assignment PIN_25 -to RESET
 set_location_assignment PIN_84 -to LED1
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to UART_TX
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to UART_RX
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to RESET
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LED1
+set_global_assignment -name IOBANK_VCCIO 3.3V -section_id 5
+set_instance_assignment -name CURRENT_STRENGTH_NEW 2MA -to UART_TX
+set_instance_assignment -name CURRENT_STRENGTH_NEW 8MA -to ETH0_TX_N
+set_instance_assignment -name CURRENT_STRENGTH_NEW 8MA -to ETH0_TX_P
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to KEY1
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to MAIN_CLK
+set_instance_assignment -name CURRENT_STRENGTH_NEW 8MA -to MAIN_CLK
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_instance_assignment -name ENABLE_STRICT_PRESERVATION OFF -to KEY1 -section_id FPGACode
 set_global_assignment -name VHDL_FILE BUFF_OUTPUT_DIFF.vhd
 set_global_assignment -name VERILOG_FILE debug_cpu/serv_top.v
 set_global_assignment -name VERILOG_FILE debug_cpu/serv_synth_wrapper.v
@@ -140,11 +155,5 @@ set_global_assignment -name VHDL_FILE 10Base_TX.vhd
 set_global_assignment -name BDF_FILE FPGACode.bdf
 set_global_assignment -name VHDL_FILE BUFF_INPUT_DIFF.vhd
 set_global_assignment -name QIP_FILE FIFO_ETH_PACKET.qip
-set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
-set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
-set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
-set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to UART_TX
-set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to UART_RX
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to RESET
-set_instance_assignment -name IO_STANDARD "3.0-V LVTTL" -to LED1
+set_global_assignment -name VECTOR_WAVEFORM_FILE simulation/TB_BUF_DP_OUT.vwf
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

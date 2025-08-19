@@ -21,9 +21,9 @@ on the Quartus Prime software download page.
 */
 (header "symbol" (version "1.1"))
 (symbol
-	(rect 16 16 136 96)
+	(rect 16 16 152 128)
 	(text "BUFF_OUTPUT_DIFF" (rect 5 0 101 12)(font "Arial" ))
-	(text "inst" (rect 8 64 20 76)(font "Arial" ))
+	(text "inst" (rect 8 96 20 108)(font "Arial" ))
 	(port
 		(pt 0 32)
 		(input)
@@ -32,20 +32,27 @@ on the Quartus Prime software download page.
 		(line (pt 0 32)(pt 16 32)(line_width 1))
 	)
 	(port
-		(pt 120 32)
+		(pt 136 32)
 		(output)
 		(text "O_p" (rect 0 0 17 12)(font "Arial" ))
-		(text "O_p" (rect 82 27 99 39)(font "Arial" ))
-		(line (pt 120 32)(pt 104 32)(line_width 1))
+		(text "O_p" (rect 98 27 115 39)(font "Arial" ))
+		(line (pt 136 32)(pt 120 32)(line_width 1))
 	)
 	(port
-		(pt 120 48)
+		(pt 136 48)
 		(output)
 		(text "O_n" (rect 0 0 17 12)(font "Arial" ))
-		(text "O_n" (rect 82 43 99 55)(font "Arial" ))
-		(line (pt 120 48)(pt 104 48)(line_width 1))
+		(text "O_n" (rect 98 43 115 55)(font "Arial" ))
+		(line (pt 136 48)(pt 120 48)(line_width 1))
+	)
+	(port
+		(pt 136 64)
+		(output)
+		(text "debug_I" (rect 0 0 31 12)(font "Arial" ))
+		(text "debug_I" (rect 84 59 115 71)(font "Arial" ))
+		(line (pt 136 64)(pt 120 64)(line_width 1))
 	)
 	(drawing
-		(rectangle (rect 16 16 104 64)(line_width 1))
+		(rectangle (rect 16 16 120 96)(line_width 1))
 	)
 )

@@ -17,7 +17,7 @@
 -- PROGRAM "Quartus Prime"
 -- VERSION "Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition"
 
--- DATE "08/19/2025 11:03:11"
+-- DATE "08/19/2025 17:36:32"
 
 -- 
 -- Device: Altera EP4CE6E22C8 Package TQFP144
@@ -32,64 +32,35 @@ LIBRARY IEEE;
 USE CYCLONEIVE.CYCLONEIVE_COMPONENTS.ALL;
 USE IEEE.STD_LOGIC_1164.ALL;
 
-ENTITY 	hard_block IS
+ENTITY 	FPGACode IS
     PORT (
-	devoe : IN std_logic;
-	devclrn : IN std_logic;
-	devpor : IN std_logic
+	CLK_20M : OUT std_logic;
+	MAIN_CLK : IN std_logic;
+	CLK_LOCKED : OUT std_logic;
+	ETH0_TX_N : OUT std_logic;
+	KEY1 : IN std_logic;
+	ETH0_TX_P : OUT std_logic;
+	LED1 : OUT std_logic;
+	ETH0_RX_P : IN std_logic;
+	ETH0_RX_N : IN std_logic;
+	RESET : IN std_logic
 	);
-END hard_block;
+END FPGACode;
 
 -- Design Ports Information
--- ~ALTERA_ASDO_DATA1~	=>  Location: PIN_6,	 I/O Standard: 2.5 V,	 Current Strength: Default
--- ~ALTERA_FLASH_nCE_nCSO~	=>  Location: PIN_8,	 I/O Standard: 2.5 V,	 Current Strength: Default
--- ~ALTERA_DCLK~	=>  Location: PIN_12,	 I/O Standard: 2.5 V,	 Current Strength: Default
--- ~ALTERA_DATA0~	=>  Location: PIN_13,	 I/O Standard: 2.5 V,	 Current Strength: Default
--- ~ALTERA_nCEO~	=>  Location: PIN_101,	 I/O Standard: 2.5 V,	 Current Strength: 8mA
+-- CLK_20M	=>  Location: PIN_43,	 I/O Standard: 2.5 V,	 Current Strength: Default
+-- CLK_LOCKED	=>  Location: PIN_39,	 I/O Standard: 2.5 V,	 Current Strength: Default
+-- ETH0_TX_N	=>  Location: PIN_76,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 8mA
+-- ETH0_TX_P	=>  Location: PIN_75,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 8mA
+-- LED1	=>  Location: PIN_84,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 8mA
+-- ETH0_RX_P	=>  Location: PIN_77,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+-- ETH0_RX_N	=>  Location: PIN_80,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+-- RESET	=>  Location: PIN_25,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+-- KEY1	=>  Location: PIN_88,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+-- MAIN_CLK	=>  Location: PIN_23,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
 
 
-ARCHITECTURE structure OF hard_block IS
-SIGNAL gnd : std_logic := '0';
-SIGNAL vcc : std_logic := '1';
-SIGNAL unknown : std_logic := 'X';
-SIGNAL ww_devoe : std_logic;
-SIGNAL ww_devclrn : std_logic;
-SIGNAL ww_devpor : std_logic;
-SIGNAL \~ALTERA_ASDO_DATA1~~padout\ : std_logic;
-SIGNAL \~ALTERA_FLASH_nCE_nCSO~~padout\ : std_logic;
-SIGNAL \~ALTERA_DATA0~~padout\ : std_logic;
-SIGNAL \~ALTERA_ASDO_DATA1~~ibuf_o\ : std_logic;
-SIGNAL \~ALTERA_FLASH_nCE_nCSO~~ibuf_o\ : std_logic;
-SIGNAL \~ALTERA_DATA0~~ibuf_o\ : std_logic;
-
-BEGIN
-
-ww_devoe <= devoe;
-ww_devclrn <= devclrn;
-ww_devpor <= devpor;
-END structure;
-
-
-LIBRARY CYCLONEIVE;
-LIBRARY IEEE;
-USE CYCLONEIVE.CYCLONEIVE_COMPONENTS.ALL;
-USE IEEE.STD_LOGIC_1164.ALL;
-
-ENTITY 	BUFF_OUTPUT_DIFF IS
-    PORT (
-	I : IN std_logic;
-	O_p : OUT std_logic;
-	O_n : OUT std_logic
-	);
-END BUFF_OUTPUT_DIFF;
-
--- Design Ports Information
--- O_p	=>  Location: PIN_137,	 I/O Standard: 2.5 V,	 Current Strength: Default
--- O_n	=>  Location: PIN_138,	 I/O Standard: 2.5 V,	 Current Strength: Default
--- I	=>  Location: PIN_141,	 I/O Standard: 2.5 V,	 Current Strength: Default
-
-
-ARCHITECTURE structure OF BUFF_OUTPUT_DIFF IS
+ARCHITECTURE structure OF FPGACode IS
 SIGNAL gnd : std_logic := '0';
 SIGNAL vcc : std_logic := '1';
 SIGNAL unknown : std_logic := 'X';
@@ -99,74 +70,287 @@ SIGNAL devpor : std_logic := '1';
 SIGNAL ww_devoe : std_logic;
 SIGNAL ww_devclrn : std_logic;
 SIGNAL ww_devpor : std_logic;
-SIGNAL ww_I : std_logic;
-SIGNAL ww_O_p : std_logic;
-SIGNAL ww_O_n : std_logic;
-SIGNAL \O_p~output_o\ : std_logic;
-SIGNAL \O_n~output_o\ : std_logic;
-SIGNAL \I~input_o\ : std_logic;
-SIGNAL \ALT_INV_I~input_o\ : std_logic;
-
-COMPONENT hard_block
-    PORT (
-	devoe : IN std_logic;
-	devclrn : IN std_logic;
-	devpor : IN std_logic);
-END COMPONENT;
+SIGNAL ww_CLK_20M : std_logic;
+SIGNAL ww_MAIN_CLK : std_logic;
+SIGNAL ww_CLK_LOCKED : std_logic;
+SIGNAL ww_ETH0_TX_N : std_logic;
+SIGNAL ww_KEY1 : std_logic;
+SIGNAL ww_ETH0_TX_P : std_logic;
+SIGNAL ww_LED1 : std_logic;
+SIGNAL ww_ETH0_RX_P : std_logic;
+SIGNAL ww_ETH0_RX_N : std_logic;
+SIGNAL ww_RESET : std_logic;
+SIGNAL \inst|altpll_component|auto_generated|pll1_INCLK_bus\ : std_logic_vector(1 DOWNTO 0);
+SIGNAL \inst|altpll_component|auto_generated|pll1_CLK_bus\ : std_logic_vector(4 DOWNTO 0);
+SIGNAL \inst|altpll_component|auto_generated|wire_pll1_clk[0]~clkctrl_e_CLK_20M_INCLK_bus\ : std_logic_vector(3 DOWNTO 0);
+SIGNAL \ETH0_RX_P~input_o\ : std_logic;
+SIGNAL \ETH0_RX_N~input_o\ : std_logic;
+SIGNAL \RESET~input_o\ : std_logic;
+SIGNAL \~ALTERA_ASDO_DATA1~~ibuf_o\ : std_logic;
+SIGNAL \~ALTERA_ASDO_DATA1~~padout\ : std_logic;
+SIGNAL \~ALTERA_FLASH_nCE_nCSO~~ibuf_o\ : std_logic;
+SIGNAL \~ALTERA_FLASH_nCE_nCSO~~padout\ : std_logic;
+SIGNAL \~ALTERA_DCLK~~padout\ : std_logic;
+SIGNAL \~ALTERA_DATA0~~ibuf_o\ : std_logic;
+SIGNAL \~ALTERA_DATA0~~padout\ : std_logic;
+SIGNAL \~ALTERA_nCEO~~padout\ : std_logic;
+SIGNAL \~ALTERA_DCLK~~obuf_o\ : std_logic;
+SIGNAL \~ALTERA_nCEO~~obuf_o\ : std_logic;
+SIGNAL \MAIN_CLK~input_o\ : std_logic;
+SIGNAL \inst|altpll_component|auto_generated|wire_pll1_fbout\ : std_logic;
+SIGNAL \inst|altpll_component|auto_generated|wire_pll1_clk[0]~clkctrl_e_CLK_20M_outclk\ : std_logic;
+SIGNAL \inst|altpll_component|auto_generated|wire_pll1_locked\ : std_logic;
+SIGNAL \KEY1~input_o\ : std_logic;
+SIGNAL \inst|altpll_component|auto_generated|wire_pll1_clk\ : std_logic_vector(4 DOWNTO 0);
+SIGNAL \ALT_INV_KEY1~input_o\ : std_logic;
 
 BEGIN
 
-ww_I <= I;
-O_p <= ww_O_p;
-O_n <= ww_O_n;
+CLK_20M <= ww_CLK_20M;
+ww_MAIN_CLK <= MAIN_CLK;
+CLK_LOCKED <= ww_CLK_LOCKED;
+ETH0_TX_N <= ww_ETH0_TX_N;
+ww_KEY1 <= KEY1;
+ETH0_TX_P <= ww_ETH0_TX_P;
+LED1 <= ww_LED1;
+ww_ETH0_RX_P <= ETH0_RX_P;
+ww_ETH0_RX_N <= ETH0_RX_N;
+ww_RESET <= RESET;
 ww_devoe <= devoe;
 ww_devclrn <= devclrn;
 ww_devpor <= devpor;
-\ALT_INV_I~input_o\ <= NOT \I~input_o\;
-auto_generated_inst : hard_block
-PORT MAP (
-	devoe => ww_devoe,
-	devclrn => ww_devclrn,
-	devpor => ww_devpor);
 
--- Location: IOOBUF_X7_Y24_N2
-\O_p~output\ : cycloneive_io_obuf
+\inst|altpll_component|auto_generated|pll1_INCLK_bus\ <= (gnd & \MAIN_CLK~input_o\);
+
+\inst|altpll_component|auto_generated|wire_pll1_clk\(0) <= \inst|altpll_component|auto_generated|pll1_CLK_bus\(0);
+\inst|altpll_component|auto_generated|wire_pll1_clk\(1) <= \inst|altpll_component|auto_generated|pll1_CLK_bus\(1);
+\inst|altpll_component|auto_generated|wire_pll1_clk\(2) <= \inst|altpll_component|auto_generated|pll1_CLK_bus\(2);
+\inst|altpll_component|auto_generated|wire_pll1_clk\(3) <= \inst|altpll_component|auto_generated|pll1_CLK_bus\(3);
+\inst|altpll_component|auto_generated|wire_pll1_clk\(4) <= \inst|altpll_component|auto_generated|pll1_CLK_bus\(4);
+
+\inst|altpll_component|auto_generated|wire_pll1_clk[0]~clkctrl_e_CLK_20M_INCLK_bus\ <= (vcc & vcc & vcc & \inst|altpll_component|auto_generated|wire_pll1_clk\(0));
+\ALT_INV_KEY1~input_o\ <= NOT \KEY1~input_o\;
+
+-- Location: IOOBUF_X5_Y0_N23
+\CLK_20M~output\ : cycloneive_io_obuf
 -- pragma translate_off
 GENERIC MAP (
 	bus_hold => "false",
 	open_drain_output => "false")
 -- pragma translate_on
 PORT MAP (
-	i => \I~input_o\,
+	i => \inst|altpll_component|auto_generated|wire_pll1_clk[0]~clkctrl_e_CLK_20M_outclk\,
 	devoe => ww_devoe,
-	o => \O_p~output_o\);
+	o => ww_CLK_20M);
 
--- Location: IOOBUF_X7_Y24_N9
-\O_n~output\ : cycloneive_io_obuf
+-- Location: IOOBUF_X1_Y0_N16
+\CLK_LOCKED~output\ : cycloneive_io_obuf
 -- pragma translate_off
 GENERIC MAP (
 	bus_hold => "false",
 	open_drain_output => "false")
 -- pragma translate_on
 PORT MAP (
-	i => \ALT_INV_I~input_o\,
+	i => \inst|altpll_component|auto_generated|wire_pll1_locked\,
 	devoe => ww_devoe,
-	o => \O_n~output_o\);
+	o => ww_CLK_LOCKED);
 
--- Location: IOIBUF_X5_Y24_N8
-\I~input\ : cycloneive_io_ibuf
+-- Location: IOOBUF_X34_Y4_N23
+\ETH0_TX_N~output\ : cycloneive_io_obuf
+-- pragma translate_off
+GENERIC MAP (
+	bus_hold => "false",
+	open_drain_output => "false")
+-- pragma translate_on
+PORT MAP (
+	i => \ALT_INV_KEY1~input_o\,
+	devoe => ww_devoe,
+	o => ww_ETH0_TX_N);
+
+-- Location: IOOBUF_X34_Y3_N23
+\ETH0_TX_P~output\ : cycloneive_io_obuf
+-- pragma translate_off
+GENERIC MAP (
+	bus_hold => "false",
+	open_drain_output => "false")
+-- pragma translate_on
+PORT MAP (
+	i => \KEY1~input_o\,
+	devoe => ww_devoe,
+	o => ww_ETH0_TX_P);
+
+-- Location: IOOBUF_X34_Y9_N16
+\LED1~output\ : cycloneive_io_obuf
+-- pragma translate_off
+GENERIC MAP (
+	bus_hold => "false",
+	open_drain_output => "false")
+-- pragma translate_on
+PORT MAP (
+	i => \KEY1~input_o\,
+	devoe => ww_devoe,
+	o => ww_LED1);
+
+-- Location: IOIBUF_X0_Y11_N8
+\MAIN_CLK~input\ : cycloneive_io_ibuf
 -- pragma translate_off
 GENERIC MAP (
 	bus_hold => "false",
 	simulate_z_as => "z")
 -- pragma translate_on
 PORT MAP (
-	i => ww_I,
-	o => \I~input_o\);
+	i => ww_MAIN_CLK,
+	o => \MAIN_CLK~input_o\);
 
-ww_O_p <= \O_p~output_o\;
+-- Location: PLL_1
+\inst|altpll_component|auto_generated|pll1\ : cycloneive_pll
+-- pragma translate_off
+GENERIC MAP (
+	auto_settings => "false",
+	bandwidth_type => "medium",
+	c0_high => 15,
+	c0_initial => 1,
+	c0_low => 15,
+	c0_mode => "even",
+	c0_ph => 0,
+	c1_high => 0,
+	c1_initial => 0,
+	c1_low => 0,
+	c1_mode => "bypass",
+	c1_ph => 0,
+	c1_use_casc_in => "off",
+	c2_high => 0,
+	c2_initial => 0,
+	c2_low => 0,
+	c2_mode => "bypass",
+	c2_ph => 0,
+	c2_use_casc_in => "off",
+	c3_high => 0,
+	c3_initial => 0,
+	c3_low => 0,
+	c3_mode => "bypass",
+	c3_ph => 0,
+	c3_use_casc_in => "off",
+	c4_high => 0,
+	c4_initial => 0,
+	c4_low => 0,
+	c4_mode => "bypass",
+	c4_ph => 0,
+	c4_use_casc_in => "off",
+	charge_pump_current_bits => 1,
+	clk0_counter => "c0",
+	clk0_divide_by => 5,
+	clk0_duty_cycle => 50,
+	clk0_multiply_by => 2,
+	clk0_phase_shift => "0",
+	clk1_counter => "unused",
+	clk1_divide_by => 0,
+	clk1_duty_cycle => 50,
+	clk1_multiply_by => 0,
+	clk1_phase_shift => "0",
+	clk2_counter => "unused",
+	clk2_divide_by => 0,
+	clk2_duty_cycle => 50,
+	clk2_multiply_by => 0,
+	clk2_phase_shift => "0",
+	clk3_counter => "unused",
+	clk3_divide_by => 0,
+	clk3_duty_cycle => 50,
+	clk3_multiply_by => 0,
+	clk3_phase_shift => "0",
+	clk4_counter => "unused",
+	clk4_divide_by => 0,
+	clk4_duty_cycle => 50,
+	clk4_multiply_by => 0,
+	clk4_phase_shift => "0",
+	compensate_clock => "clock0",
+	inclk0_input_frequency => 20000,
+	inclk1_input_frequency => 0,
+	loop_filter_c_bits => 0,
+	loop_filter_r_bits => 27,
+	m => 12,
+	m_initial => 1,
+	m_ph => 0,
+	n => 1,
+	operation_mode => "normal",
+	pfd_max => 200000,
+	pfd_min => 3076,
+	self_reset_on_loss_lock => "off",
+	simulation_type => "functional",
+	switch_over_type => "auto",
+	vco_center => 1538,
+	vco_divide_by => 0,
+	vco_frequency_control => "auto",
+	vco_max => 3333,
+	vco_min => 1538,
+	vco_multiply_by => 0,
+	vco_phase_shift_step => 208,
+	vco_post_scale => 2)
+-- pragma translate_on
+PORT MAP (
+	areset => GND,
+	fbin => \inst|altpll_component|auto_generated|wire_pll1_fbout\,
+	inclk => \inst|altpll_component|auto_generated|pll1_INCLK_bus\,
+	locked => \inst|altpll_component|auto_generated|wire_pll1_locked\,
+	fbout => \inst|altpll_component|auto_generated|wire_pll1_fbout\,
+	clk => \inst|altpll_component|auto_generated|pll1_CLK_bus\);
 
-ww_O_n <= \O_n~output_o\;
+-- Location: CLKCTRL_PLL1E0
+\inst|altpll_component|auto_generated|wire_pll1_clk[0]~clkctrl_e_CLK_20M\ : cycloneive_clkctrl
+-- pragma translate_off
+GENERIC MAP (
+	clock_type => "external clock output",
+	ena_register_mode => "double register")
+-- pragma translate_on
+PORT MAP (
+	inclk => \inst|altpll_component|auto_generated|wire_pll1_clk[0]~clkctrl_e_CLK_20M_INCLK_bus\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	outclk => \inst|altpll_component|auto_generated|wire_pll1_clk[0]~clkctrl_e_CLK_20M_outclk\);
+
+-- Location: IOIBUF_X34_Y12_N22
+\KEY1~input\ : cycloneive_io_ibuf
+-- pragma translate_off
+GENERIC MAP (
+	bus_hold => "false",
+	simulate_z_as => "z")
+-- pragma translate_on
+PORT MAP (
+	i => ww_KEY1,
+	o => \KEY1~input_o\);
+
+-- Location: IOIBUF_X34_Y4_N15
+\ETH0_RX_P~input\ : cycloneive_io_ibuf
+-- pragma translate_off
+GENERIC MAP (
+	bus_hold => "false",
+	simulate_z_as => "z")
+-- pragma translate_on
+PORT MAP (
+	i => ww_ETH0_RX_P,
+	o => \ETH0_RX_P~input_o\);
+
+-- Location: IOIBUF_X34_Y7_N8
+\ETH0_RX_N~input\ : cycloneive_io_ibuf
+-- pragma translate_off
+GENERIC MAP (
+	bus_hold => "false",
+	simulate_z_as => "z")
+-- pragma translate_on
+PORT MAP (
+	i => ww_ETH0_RX_N,
+	o => \ETH0_RX_N~input_o\);
+
+-- Location: IOIBUF_X0_Y11_N22
+\RESET~input\ : cycloneive_io_ibuf
+-- pragma translate_off
+GENERIC MAP (
+	bus_hold => "false",
+	simulate_z_as => "z")
+-- pragma translate_on
+PORT MAP (
+	i => ww_RESET,
+	o => \RESET~input_o\);
 END structure;
 
 

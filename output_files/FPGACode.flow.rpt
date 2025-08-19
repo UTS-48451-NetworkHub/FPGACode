@@ -1,5 +1,5 @@
 Flow report for FPGACode
-Tue Aug 19 11:03:11 2025
+Tue Aug 19 17:37:08 2025
 Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
 
 
@@ -41,10 +41,10 @@ on the Quartus Prime software download page.
 +--------------------------------------------------------------------------------------+
 ; Flow Summary                                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Flow Status                        ; Successful - Tue Aug 19 11:03:11 2025           ;
+; Flow Status                        ; Successful - Tue Aug 19 17:37:08 2025           ;
 ; Quartus Prime Version              ; 24.1std.0 Build 1077 03/04/2025 SC Lite Edition ;
 ; Revision Name                      ; FPGACode                                        ;
-; Top-level Entity Name              ; BUFF_OUTPUT_DIFF                                ;
+; Top-level Entity Name              ; FPGACode                                        ;
 ; Family                             ; Cyclone IV E                                    ;
 ; Device                             ; EP4CE6E22C8                                     ;
 ; Timing Models                      ; Final                                           ;
@@ -52,11 +52,11 @@ on the Quartus Prime software download page.
 ;     Total combinational functions  ; 0 / 6,272 ( 0 % )                               ;
 ;     Dedicated logic registers      ; 0 / 6,272 ( 0 % )                               ;
 ; Total registers                    ; 0                                               ;
-; Total pins                         ; 3 / 92 ( 3 % )                                  ;
+; Total pins                         ; 10 / 92 ( 11 % )                                ;
 ; Total virtual pins                 ; 0                                               ;
 ; Total memory bits                  ; 0 / 276,480 ( 0 % )                             ;
 ; Embedded Multiplier 9-bit elements ; 0 / 30 ( 0 % )                                  ;
-; Total PLLs                         ; 0 / 2 ( 0 % )                                   ;
+; Total PLLs                         ; 1 / 2 ( 50 % )                                  ;
 +------------------------------------+-------------------------------------------------+
 
 
@@ -65,44 +65,41 @@ on the Quartus Prime software download page.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 08/19/2025 11:02:45 ;
+; Start date & time ; 08/19/2025 17:36:05 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; FPGACode            ;
 +-------------------+---------------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------+
-; Flow Non-Default Global Settings                                                                                                                    ;
-+-------------------------------------+----------------------------------------+---------------+------------------+-----------------------------------+
-; Assignment Name                     ; Value                                  ; Default Value ; Entity Name      ; Section Id                        ;
-+-------------------------------------+----------------------------------------+---------------+------------------+-----------------------------------+
-; COMPILER_SIGNATURE_ID               ; 244346341085386.175556536560595        ; --            ; --               ; --                                ;
-; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                    ; --            ; --               ; eda_board_design_timing           ;
-; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                    ; --            ; --               ; eda_board_design_boundary_scan    ;
-; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                    ; --            ; --               ; eda_board_design_signal_integrity ;
-; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                    ; --            ; --               ; eda_board_design_symbol           ;
-; EDA_OUTPUT_DATA_FORMAT              ; Vhdl                                   ; --            ; --               ; eda_simulation                    ;
-; EDA_SIMULATION_TOOL                 ; Questa Intel FPGA (VHDL)               ; <None>        ; --               ; --                                ;
-; EDA_TIME_SCALE                      ; 1 ps                                   ; --            ; --               ; eda_simulation                    ;
-; MAX_CORE_JUNCTION_TEMP              ; 85                                     ; --            ; --               ; --                                ;
-; MIN_CORE_JUNCTION_TEMP              ; 0                                      ; --            ; --               ; --                                ;
-; MISC_FILE                           ; PLL20.cmp                              ; --            ; --               ; --                                ;
-; MISC_FILE                           ; PLL20.ppf                              ; --            ; --               ; --                                ;
-; MISC_FILE                           ; FIFO_ETH_PACKET.bsf                    ; --            ; --               ; --                                ;
-; MISC_FILE                           ; FIFO_ETH_PACKET_inst.vhd               ; --            ; --               ; --                                ;
-; MISC_FILE                           ; FIFO_ETH_PACKET.cmp                    ; --            ; --               ; --                                ;
-; NOMINAL_CORE_SUPPLY_VOLTAGE         ; 1.2V                                   ; --            ; --               ; --                                ;
-; PARTITION_COLOR                     ; -- (Not supported for targeted family) ; --            ; BUFF_OUTPUT_DIFF ; Top                               ;
-; PARTITION_COLOR                     ; -- (Not supported for targeted family) ; --            ; EthernetSwitch   ; Top                               ;
-; PARTITION_FITTER_PRESERVATION_LEVEL ; -- (Not supported for targeted family) ; --            ; BUFF_OUTPUT_DIFF ; Top                               ;
-; PARTITION_FITTER_PRESERVATION_LEVEL ; -- (Not supported for targeted family) ; --            ; EthernetSwitch   ; Top                               ;
-; PARTITION_NETLIST_TYPE              ; -- (Not supported for targeted family) ; --            ; BUFF_OUTPUT_DIFF ; Top                               ;
-; PARTITION_NETLIST_TYPE              ; -- (Not supported for targeted family) ; --            ; EthernetSwitch   ; Top                               ;
-; POWER_BOARD_THERMAL_MODEL           ; None (CONSERVATIVE)                    ; --            ; --               ; --                                ;
-; POWER_PRESET_COOLING_SOLUTION       ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW  ; --            ; --               ; --                                ;
-; PROJECT_OUTPUT_DIRECTORY            ; output_files                           ; --            ; --               ; --                                ;
-; TOP_LEVEL_ENTITY                    ; BUFF_OUTPUT_DIFF                       ; FPGACode      ; --               ; --                                ;
-+-------------------------------------+----------------------------------------+---------------+------------------+-----------------------------------+
++------------------------------------------------------------------------------------------------------------------------------------------------+
+; Flow Non-Default Global Settings                                                                                                               ;
++-------------------------------------+----------------------------------------+---------------+-------------+-----------------------------------+
+; Assignment Name                     ; Value                                  ; Default Value ; Entity Name ; Section Id                        ;
++-------------------------------------+----------------------------------------+---------------+-------------+-----------------------------------+
+; COMPILER_SIGNATURE_ID               ; 59770517192784.175558896538941         ; --            ; --          ; --                                ;
+; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                    ; --            ; --          ; eda_board_design_timing           ;
+; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                    ; --            ; --          ; eda_board_design_boundary_scan    ;
+; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                    ; --            ; --          ; eda_board_design_signal_integrity ;
+; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                    ; --            ; --          ; eda_board_design_symbol           ;
+; EDA_OUTPUT_DATA_FORMAT              ; Vhdl                                   ; --            ; --          ; eda_simulation                    ;
+; EDA_SIMULATION_TOOL                 ; Questa Intel FPGA (VHDL)               ; <None>        ; --          ; --                                ;
+; EDA_TIME_SCALE                      ; 1 ps                                   ; --            ; --          ; eda_simulation                    ;
+; IOBANK_VCCIO                        ; 3.3V                                   ; --            ; --          ; 5                                 ;
+; MAX_CORE_JUNCTION_TEMP              ; 85                                     ; --            ; --          ; --                                ;
+; MIN_CORE_JUNCTION_TEMP              ; 0                                      ; --            ; --          ; --                                ;
+; MISC_FILE                           ; PLL20.cmp                              ; --            ; --          ; --                                ;
+; MISC_FILE                           ; PLL20.ppf                              ; --            ; --          ; --                                ;
+; MISC_FILE                           ; FIFO_ETH_PACKET.bsf                    ; --            ; --          ; --                                ;
+; MISC_FILE                           ; FIFO_ETH_PACKET_inst.vhd               ; --            ; --          ; --                                ;
+; MISC_FILE                           ; FIFO_ETH_PACKET.cmp                    ; --            ; --          ; --                                ;
+; NOMINAL_CORE_SUPPLY_VOLTAGE         ; 1.2V                                   ; --            ; --          ; --                                ;
+; PARTITION_COLOR                     ; -- (Not supported for targeted family) ; --            ; --          ; Top                               ;
+; PARTITION_FITTER_PRESERVATION_LEVEL ; -- (Not supported for targeted family) ; --            ; --          ; Top                               ;
+; PARTITION_NETLIST_TYPE              ; -- (Not supported for targeted family) ; --            ; --          ; Top                               ;
+; POWER_BOARD_THERMAL_MODEL           ; None (CONSERVATIVE)                    ; --            ; --          ; --                                ;
+; POWER_PRESET_COOLING_SOLUTION       ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW  ; --            ; --          ; --                                ;
+; PROJECT_OUTPUT_DIRECTORY            ; output_files                           ; --            ; --          ; --                                ;
++-------------------------------------+----------------------------------------+---------------+-------------+-----------------------------------+
 
 
 +--------------------------------------------------------------------------------------------------------------------------+
@@ -110,12 +107,14 @@ on the Quartus Prime software download page.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:10     ; 1.0                     ; 427 MB              ; 00:00:26                           ;
-; Fitter               ; 00:00:05     ; 1.0                     ; 924 MB              ; 00:00:05                           ;
-; Assembler            ; 00:00:01     ; 1.0                     ; 344 MB              ; 00:00:02                           ;
-; Timing Analyzer      ; 00:00:02     ; 1.0                     ; 450 MB              ; 00:00:02                           ;
-; EDA Netlist Writer   ; 00:00:01     ; 1.0                     ; 591 MB              ; 00:00:01                           ;
-; Total                ; 00:00:19     ; --                      ; --                  ; 00:00:36                           ;
+; Analysis & Synthesis ; 00:00:11     ; 1.0                     ; 433 MB              ; 00:00:27                           ;
+; Fitter               ; 00:00:05     ; 1.0                     ; 926 MB              ; 00:00:07                           ;
+; Assembler            ; 00:00:02     ; 1.0                     ; 359 MB              ; 00:00:02                           ;
+; Timing Analyzer      ; 00:00:02     ; 1.0                     ; 458 MB              ; 00:00:02                           ;
+; EDA Netlist Writer   ; 00:00:01     ; 1.0                     ; 588 MB              ; 00:00:01                           ;
+; EDA Netlist Writer   ; 00:00:00     ; 1.0                     ; 588 MB              ; 00:00:01                           ;
+; EDA Netlist Writer   ; 00:00:01     ; 1.0                     ; 588 MB              ; 00:00:01                           ;
+; Total                ; 00:00:22     ; --                      ; --                  ; 00:00:41                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
@@ -129,6 +128,8 @@ on the Quartus Prime software download page.
 ; Assembler            ; win-ufkgnq81239  ; Pop!_OS ; 22         ; x86_64         ;
 ; Timing Analyzer      ; win-ufkgnq81239  ; Pop!_OS ; 22         ; x86_64         ;
 ; EDA Netlist Writer   ; win-ufkgnq81239  ; Pop!_OS ; 22         ; x86_64         ;
+; EDA Netlist Writer   ; win-ufkgnq81239  ; Pop!_OS ; 22         ; x86_64         ;
+; EDA Netlist Writer   ; win-ufkgnq81239  ; Pop!_OS ; 22         ; x86_64         ;
 +----------------------+------------------+---------+------------+----------------+
 
 
@@ -140,6 +141,8 @@ quartus_fit --read_settings_files=off --write_settings_files=off FPGACode -c FPG
 quartus_asm --read_settings_files=off --write_settings_files=off FPGACode -c FPGACode
 quartus_sta FPGACode -c FPGACode
 quartus_eda --read_settings_files=off --write_settings_files=off FPGACode -c FPGACode
+quartus_eda --gen_testbench --tool=modelsim_oem --format=vhdl --write_settings_files=off FPGACode -c FPGACode --vector_source=/home/mac/Code/FPGACode/simulation/TB_BUF_DP_OUT.vwf --testbench_file=/home/mac/Code/FPGACode/simulation/qsim/simulation/TB_BUF_DP_OUT.vwf.vht
+quartus_eda --write_settings_files=off --simulation=on --functional=on --flatten_buses=off --tool=modelsim_oem --format=vhdl --output_directory=/home/mac/Code/FPGACode/simulation/qsim/ FPGACode -c FPGACode
 
 
 

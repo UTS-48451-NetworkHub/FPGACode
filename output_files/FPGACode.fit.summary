@@ -1,7 +1,7 @@
-Fitter Status : Successful - Tue Aug 19 11:03:02 2025
+Fitter Status : Successful - Tue Aug 19 17:36:22 2025
 Quartus Prime Version : 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
 Revision Name : FPGACode
-Top-level Entity Name : BUFF_OUTPUT_DIFF
+Top-level Entity Name : FPGACode
 Family : Cyclone IV E
 Device : EP4CE6E22C8
 Timing Models : Final
@@ -9,8 +9,8 @@ Total logic elements : 0 / 6,272 ( 0 % )
     Total combinational functions : 0 / 6,272 ( 0 % )
     Dedicated logic registers : 0 / 6,272 ( 0 % )
 Total registers : 0
-Total pins : 3 / 92 ( 3 % )
+Total pins : 10 / 92 ( 11 % )
 Total virtual pins : 0
 Total memory bits : 0 / 276,480 ( 0 % )
 Embedded Multiplier 9-bit elements : 0 / 30 ( 0 % )
-Total PLLs : 0 / 2 ( 0 % )
+Total PLLs : 1 / 2 ( 50 % )
