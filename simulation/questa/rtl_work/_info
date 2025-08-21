@@ -1,0 +1,160 @@
+m255
+K4
+z2
+!s11e MIXED_VERSIONS
+!s11f vlog 2024.3 2024.09, Sep 10 2024
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dG:/FPGA_Projects/Ethernet_Switch/FPGACode/simulation/questa
+Ebuff_input_diff
+Z1 w1755083778
+Z2 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z3 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
+!i122 3
+R0
+Z4 8G:/FPGA_Projects/Ethernet_Switch/FPGACode/BUFF_INPUT_DIFF.vhd
+Z5 FG:/FPGA_Projects/Ethernet_Switch/FPGACode/BUFF_INPUT_DIFF.vhd
+l0
+L5 1
+Ve@FCA13d3U_OUeed[fDkb1
+!s100 FgiaTY1VX_VQGoSaKjndn1
+Z6 OL;C;2024.3;79
+31
+Z7 !s110 1755778241
+!i10b 1
+Z8 !s108 1755778241.000000
+Z9 !s90 -reportprogress|300|-93|-work|work|G:/FPGA_Projects/Ethernet_Switch/FPGACode/BUFF_INPUT_DIFF.vhd|
+!s107 G:/FPGA_Projects/Ethernet_Switch/FPGACode/BUFF_INPUT_DIFF.vhd|
+!i113 0
+Z10 o-93 -work work
+Z11 tExplicit 1 CvgOpt 0
+Aconcurrent
+R2
+R3
+DEx4 work 15 buff_input_diff 0 22 e@FCA13d3U_OUeed[fDkb1
+!i122 3
+l14
+L13 6
+VPHTINZD=WQEoFViRZ;[Db1
+!s100 KARU>0DbFVNJDPU35AYbj1
+R6
+31
+R7
+!i10b 1
+R8
+R9
+Z12 !s107 G:/FPGA_Projects/Ethernet_Switch/FPGACode/BUFF_INPUT_DIFF.vhd|
+!i113 0
+R10
+R11
+Epll20
+Z13 w1755777719
+R2
+R3
+!i122 2
+R0
+Z14 8G:/FPGA_Projects/Ethernet_Switch/FPGACode/PLL20.vhd
+Z15 FG:/FPGA_Projects/Ethernet_Switch/FPGACode/PLL20.vhd
+l0
+L43 1
+VOSzmJJfIhIFL_D[FAbfcU3
+!s100 =nc?4LazcRa3o8?VhLhIa3
+R6
+31
+R7
+!i10b 1
+R8
+Z16 !s90 -reportprogress|300|-93|-work|work|G:/FPGA_Projects/Ethernet_Switch/FPGACode/PLL20.vhd|
+Z17 !s107 G:/FPGA_Projects/Ethernet_Switch/FPGACode/PLL20.vhd|
+!i113 0
+R10
+R11
+Asyn
+R2
+R3
+DEx4 work 5 pll20 0 22 OSzmJJfIhIFL_D[FAbfcU3
+!i122 2
+l132
+L54 155
+VJnnB56hZ?=oZST<>1Qi;D2
+!s100 ;f6oz6RO3zYmT_`7;3VjO3
+R6
+31
+R7
+!i10b 1
+R8
+R16
+R17
+!i113 0
+R10
+R11
+vPLL20_altpll
+2G:/FPGA_Projects/Ethernet_Switch/FPGACode/db/pll20_altpll.v
+!s110 1755778240
+!i10b 1
+!s100 M>iD@j:W9`0]CS@KcfIV`0
+IoYcl9AN6jBTL>WcY0?@gd0
+R0
+w1755771311
+8G:/FPGA_Projects/Ethernet_Switch/FPGACode/db/pll20_altpll.v
+FG:/FPGA_Projects/Ethernet_Switch/FPGACode/db/pll20_altpll.v
+!i122 0
+L0 31 79
+VDg1SIo80bB@j0V0VzS_@n1
+OL;L;2024.3;79
+r1
+!s85 0
+31
+Z18 !s108 1755778240.000000
+!s107 G:/FPGA_Projects/Ethernet_Switch/FPGACode/db/pll20_altpll.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+G:/FPGA_Projects/Ethernet_Switch/FPGACode/db|G:/FPGA_Projects/Ethernet_Switch/FPGACode/db/pll20_altpll.v|
+!i113 0
+o-vlog01compat -work work -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+!s92 -vlog01compat -work work +incdir+G:/FPGA_Projects/Ethernet_Switch/FPGACode/db -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+tCvgOpt 0
+n@p@l@l20_altpll
+Eten_base_tx
+Z19 w1755776967
+R2
+R3
+!i122 1
+R0
+Z20 8G:/FPGA_Projects/Ethernet_Switch/FPGACode/TEN_BASE_TX.vhd
+Z21 FG:/FPGA_Projects/Ethernet_Switch/FPGACode/TEN_BASE_TX.vhd
+l0
+L4 1
+V=MZgZ;g;RRSA=nTY6@@JA1
+!s100 J@lB=5`CX8SWf2L?RFPm?0
+R6
+31
+R7
+!i10b 1
+R18
+Z22 !s90 -reportprogress|300|-93|-work|work|G:/FPGA_Projects/Ethernet_Switch/FPGACode/TEN_BASE_TX.vhd|
+Z23 !s107 G:/FPGA_Projects/Ethernet_Switch/FPGACode/TEN_BASE_TX.vhd|
+!i113 0
+R10
+R11
+Aarch
+R2
+R3
+DEx4 work 11 ten_base_tx 0 22 =MZgZ;g;RRSA=nTY6@@JA1
+!i122 1
+l24
+L13 32
+V;V=Mz?66RIP^<Cg;5V4jW0
+!s100 e:>EJLlg1_M;ghKJaWZX<0
+R6
+31
+R7
+!i10b 1
+R18
+R22
+R23
+!i113 0
+R10
+R11

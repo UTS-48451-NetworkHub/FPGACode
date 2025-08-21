@@ -18,6 +18,14 @@
 				{
 					"name" : "KEY1",
 					"strict" : false
+				},
+				{
+					"name" : "ETH0_RX_P",
+					"strict" : false
+				},
+				{
+					"name" : "ETH0_RX_N",
+					"strict" : false
 				}
 			]
 		}

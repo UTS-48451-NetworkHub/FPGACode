@@ -1,20 +1,37 @@
 |FPGACode
-CLK_20M <= PLL20:inst.c0
+ETH0_TX_N <= BUFF_OUTPUT_DIFF:inst2.OB
+KEY1 => TEN_BASE_TX:inst8.i_ETH_BS
 MAIN_CLK => PLL20:inst.inclk0
-CLK_LOCKED <= PLL20:inst.locked
-ETH0_TX_N <= BUFF_OUTPUT_DIFF:inst3.O_n
-KEY1 => BUFF_OUTPUT_DIFF:inst3.I
-ETH0_TX_P <= BUFF_OUTPUT_DIFF:inst3.O_p
-LED1 <= BUFF_OUTPUT_DIFF:inst3.debug_I
+ETH0_TX_P <= BUFF_OUTPUT_DIFF:inst2.O
+LED1 <= BUFF_INPUT_DIFF:inst4.O
 ETH0_RX_P => BUFF_INPUT_DIFF:inst4.I
 ETH0_RX_N => BUFF_INPUT_DIFF:inst4.IB
+TEST_CLK_20M <= PLL20:inst.c0
+TEST_PLL_LOCK <= PLL20:inst.locked
+TEST_CLK_10M <= PLL20:inst.c1
 RESET => ~NO_FANOUT~
+
+
+|FPGACode|BUFF_OUTPUT_DIFF:inst2
+I => O.DATAIN
+I => OB.DATAIN
+O <= I.DB_MAX_OUTPUT_PORT_TYPE
+OB <= I.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FPGACode|TEN_BASE_TX:inst8
+i_enable => o_MNC_OUT.OUTPUTSELECT
+i_reset => r_phase.ACLR
+i_ETH_BS => o_MNC_OUT.IN1
+i_MNC_CLK => r_phase.CLK
+o_MNC_OUT <= o_MNC_OUT.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |FPGACode|PLL20:inst
 areset => altpll:altpll_component.areset
 inclk0 => altpll:altpll_component.inclk[0]
 c0 <= altpll:altpll_component.clk[0]
+c1 <= altpll:altpll_component.clk[1]
 locked <= altpll:altpll_component.locked
 
 
@@ -89,15 +106,6 @@ clk[4] <= pll1.CLK4
 inclk[0] => pll1.CLK
 inclk[1] => pll1.CLK1
 locked <= locked.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|FPGACode|BUFF_OUTPUT_DIFF:inst3
-I => debug_I.DATAIN
-I => O_p.DATAIN
-I => O_n.DATAIN
-O_p <= I.DB_MAX_OUTPUT_PORT_TYPE
-O_n <= I.DB_MAX_OUTPUT_PORT_TYPE
-debug_I <= I.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |FPGACode|BUFF_INPUT_DIFF:inst4

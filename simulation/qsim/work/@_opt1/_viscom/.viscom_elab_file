@@ -1,0 +1,1 @@
+c:/intelfpga_lite/24.1std/questa_fse/win64/VisualizerRls/bin/viscom.exe -nolock -quiet -jmem_size 29049120 work.FPGACode_vhd_vec_tst -quiet -auto_acc_if_foreign -work work -L cycloneive -L altera -L altera_mf -L 220model -L sgate -L altera_lnsim -suppress 12110 +acc -allow_unnamed -o _opt1 -id 1-1402ec77aefc-68a72a9b-374-57f8 +__betafsm
