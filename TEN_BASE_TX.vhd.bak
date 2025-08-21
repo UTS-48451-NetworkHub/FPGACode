@@ -48,6 +48,6 @@ begin
 	end process p_PHASE_GEN;
 
 	-- Xor the data stream to get the manchester encoded output (when enabled)
-	o_MNC_OUT <= (i_ETH_BS xor r_phase) when i_enable = '1' else '0';
+	o_MNC_OUT <= not(i_ETH_BS xor r_phase) when i_enable = '1' else '0';
 
 end architecture arch;

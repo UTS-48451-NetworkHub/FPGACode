@@ -19,7 +19,7 @@
 -- the top level entity of the current Quartus project .The user can use this   
 -- testbench to simulate his design using a third-party simulation tool .       
 -- *****************************************************************************
--- Generated on "08/22/2025 00:18:02"
+-- Generated on "08/22/2025 00:29:17"
                                                              
 -- Vhdl Test Bench(with test vectors) for design  :          FPGACode
 -- 
@@ -77,6 +77,43 @@ BEGIN
 	TEST_PLL_LOCK => TEST_PLL_LOCK
 	);
 
+-- KEY1
+t_prcs_KEY1: PROCESS
+BEGIN
+	KEY1 <= '0';
+	WAIT FOR 10000 ps;
+	KEY1 <= '1';
+	WAIT FOR 100000 ps;
+	FOR i IN 1 TO 4
+	LOOP
+		KEY1 <= '0';
+		WAIT FOR 100000 ps;
+		KEY1 <= '1';
+		WAIT FOR 100000 ps;
+	END LOOP;
+	KEY1 <= '0';
+WAIT;
+END PROCESS t_prcs_KEY1;
+
+-- MAIN_CLK
+t_prcs_MAIN_CLK: PROCESS
+BEGIN
+LOOP
+	MAIN_CLK <= '0';
+	WAIT FOR 10000 ps;
+	MAIN_CLK <= '1';
+	WAIT FOR 10000 ps;
+	IF (NOW >= 1000000 ps) THEN WAIT; END IF;
+END LOOP;
+END PROCESS t_prcs_MAIN_CLK;
+
+-- RESET
+t_prcs_RESET: PROCESS
+BEGIN
+	RESET <= '0';
+WAIT;
+END PROCESS t_prcs_RESET;
+
 -- ETH0_RX_P
 t_prcs_ETH0_RX_P: PROCESS
 BEGIN
@@ -95,42 +132,10 @@ BEGIN
 WAIT;
 END PROCESS t_prcs_ETH0_RX_P;
 
--- KEY1
-t_prcs_KEY1: PROCESS
-BEGIN
-	KEY1 <= '0';
-	WAIT FOR 200000 ps;
-	KEY1 <= '1';
-	WAIT FOR 200000 ps;
-	KEY1 <= '0';
-	WAIT FOR 200000 ps;
-	KEY1 <= '1';
-WAIT;
-END PROCESS t_prcs_KEY1;
-
--- MAIN_CLK
-t_prcs_MAIN_CLK: PROCESS
-BEGIN
-LOOP
-	MAIN_CLK <= '0';
-	WAIT FOR 10000 ps;
-	MAIN_CLK <= '1';
-	WAIT FOR 10000 ps;
-	IF (NOW >= 1000000 ps) THEN WAIT; END IF;
-END LOOP;
-END PROCESS t_prcs_MAIN_CLK;
-
 -- ETH0_RX_N
 t_prcs_ETH0_RX_N: PROCESS
 BEGIN
 	ETH0_RX_N <= '0';
 WAIT;
 END PROCESS t_prcs_ETH0_RX_N;
-
--- RESET
-t_prcs_RESET: PROCESS
-BEGIN
-	RESET <= '0';
-WAIT;
-END PROCESS t_prcs_RESET;
 END FPGACode_arch;

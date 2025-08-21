@@ -1,5 +1,5 @@
 Flow report for FPGACode
-Fri Aug 22 00:18:02 2025
+Fri Aug 22 00:29:17 2025
 Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
 
 
@@ -41,7 +41,7 @@ on the Quartus Prime software download page.
 +--------------------------------------------------------------------------------------+
 ; Flow Summary                                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Flow Status                        ; Successful - Fri Aug 22 00:18:02 2025           ;
+; Flow Status                        ; Successful - Fri Aug 22 00:29:17 2025           ;
 ; Quartus Prime Version              ; 24.1std.0 Build 1077 03/04/2025 SC Lite Edition ;
 ; Revision Name                      ; FPGACode                                        ;
 ; Top-level Entity Name              ; FPGACode                                        ;
@@ -118,7 +118,15 @@ on the Quartus Prime software download page.
 ; EDA Netlist Writer   ; 00:00:00     ; 1.0                     ; 4647 MB             ; 00:00:00                           ;
 ; EDA Netlist Writer   ; 00:00:01     ; 1.0                     ; 4646 MB             ; 00:00:00                           ;
 ; EDA Netlist Writer   ; 00:00:00     ; 1.0                     ; 4647 MB             ; 00:00:00                           ;
-; Total                ; 00:00:10     ; --                      ; --                  ; 00:00:18                           ;
+; EDA Netlist Writer   ; 00:00:00     ; 1.0                     ; 4646 MB             ; 00:00:00                           ;
+; EDA Netlist Writer   ; 00:00:01     ; 1.0                     ; 4647 MB             ; 00:00:00                           ;
+; EDA Netlist Writer   ; 00:00:00     ; 1.0                     ; 4646 MB             ; 00:00:00                           ;
+; EDA Netlist Writer   ; 00:00:00     ; 1.0                     ; 4647 MB             ; 00:00:00                           ;
+; EDA Netlist Writer   ; 00:00:01     ; 1.0                     ; 4646 MB             ; 00:00:00                           ;
+; EDA Netlist Writer   ; 00:00:00     ; 1.0                     ; 4647 MB             ; 00:00:00                           ;
+; EDA Netlist Writer   ; 00:00:00     ; 1.0                     ; 4646 MB             ; 00:00:00                           ;
+; EDA Netlist Writer   ; 00:00:00     ; 1.0                     ; 4647 MB             ; 00:00:00                           ;
+; Total                ; 00:00:12     ; --                      ; --                  ; 00:00:18                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
@@ -136,6 +144,14 @@ on the Quartus Prime software download page.
 ; EDA Netlist Writer   ; WIN-UQQF09ASK8R  ; Windows 10 ; 10.0       ; x86_64         ;
 ; EDA Netlist Writer   ; WIN-UQQF09ASK8R  ; Windows 10 ; 10.0       ; x86_64         ;
 ; EDA Netlist Writer   ; WIN-UQQF09ASK8R  ; Windows 10 ; 10.0       ; x86_64         ;
+; EDA Netlist Writer   ; WIN-UQQF09ASK8R  ; Windows 10 ; 10.0       ; x86_64         ;
+; EDA Netlist Writer   ; WIN-UQQF09ASK8R  ; Windows 10 ; 10.0       ; x86_64         ;
+; EDA Netlist Writer   ; WIN-UQQF09ASK8R  ; Windows 10 ; 10.0       ; x86_64         ;
+; EDA Netlist Writer   ; WIN-UQQF09ASK8R  ; Windows 10 ; 10.0       ; x86_64         ;
+; EDA Netlist Writer   ; WIN-UQQF09ASK8R  ; Windows 10 ; 10.0       ; x86_64         ;
+; EDA Netlist Writer   ; WIN-UQQF09ASK8R  ; Windows 10 ; 10.0       ; x86_64         ;
+; EDA Netlist Writer   ; WIN-UQQF09ASK8R  ; Windows 10 ; 10.0       ; x86_64         ;
+; EDA Netlist Writer   ; WIN-UQQF09ASK8R  ; Windows 10 ; 10.0       ; x86_64         ;
 +----------------------+------------------+------------+------------+----------------+
 
 
@@ -147,6 +163,14 @@ quartus_fit --read_settings_files=off --write_settings_files=off FPGACode -c FPG
 quartus_asm --read_settings_files=off --write_settings_files=off FPGACode -c FPGACode
 quartus_sta FPGACode -c FPGACode
 quartus_eda --read_settings_files=off --write_settings_files=off FPGACode -c FPGACode
+quartus_eda --gen_testbench --tool=modelsim_oem --format=vhdl --write_settings_files=off FPGACode -c FPGACode --vector_source=G:/FPGA_Projects/Ethernet_Switch/FPGACode/SIM_TX_WIN.vwf --testbench_file=G:/FPGA_Projects/Ethernet_Switch/FPGACode/simulation/qsim/SIM_TX_WIN.vwf.vht
+quartus_eda --write_settings_files=off --simulation=on --functional=on --flatten_buses=off --tool=modelsim_oem --format=vhdl --output_directory=G:/FPGA_Projects/Ethernet_Switch/FPGACode/simulation/qsim/ FPGACode -c FPGACode
+quartus_eda --gen_testbench --tool=modelsim_oem --format=vhdl --write_settings_files=off FPGACode -c FPGACode --vector_source=G:/FPGA_Projects/Ethernet_Switch/FPGACode/SIM_TX_WIN.vwf --testbench_file=G:/FPGA_Projects/Ethernet_Switch/FPGACode/simulation/qsim/SIM_TX_WIN.vwf.vht
+quartus_eda --write_settings_files=off --simulation=on --functional=on --flatten_buses=off --tool=modelsim_oem --format=vhdl --output_directory=G:/FPGA_Projects/Ethernet_Switch/FPGACode/simulation/qsim/ FPGACode -c FPGACode
+quartus_eda --gen_testbench --tool=modelsim_oem --format=vhdl --write_settings_files=off FPGACode -c FPGACode --vector_source=G:/FPGA_Projects/Ethernet_Switch/FPGACode/SIM_TX_WIN.vwf --testbench_file=G:/FPGA_Projects/Ethernet_Switch/FPGACode/simulation/qsim/SIM_TX_WIN.vwf.vht
+quartus_eda --write_settings_files=off --simulation=on --functional=on --flatten_buses=off --tool=modelsim_oem --format=vhdl --output_directory=G:/FPGA_Projects/Ethernet_Switch/FPGACode/simulation/qsim/ FPGACode -c FPGACode
+quartus_eda --gen_testbench --tool=modelsim_oem --format=vhdl --write_settings_files=off FPGACode -c FPGACode --vector_source=G:/FPGA_Projects/Ethernet_Switch/FPGACode/SIM_TX_WIN.vwf --testbench_file=G:/FPGA_Projects/Ethernet_Switch/FPGACode/simulation/qsim/SIM_TX_WIN.vwf.vht
+quartus_eda --write_settings_files=off --simulation=on --functional=on --flatten_buses=off --tool=modelsim_oem --format=vhdl --output_directory=G:/FPGA_Projects/Ethernet_Switch/FPGACode/simulation/qsim/ FPGACode -c FPGACode
 quartus_eda --gen_testbench --tool=modelsim_oem --format=vhdl --write_settings_files=off FPGACode -c FPGACode --vector_source=G:/FPGA_Projects/Ethernet_Switch/FPGACode/SIM_TX_WIN.vwf --testbench_file=G:/FPGA_Projects/Ethernet_Switch/FPGACode/simulation/qsim/SIM_TX_WIN.vwf.vht
 quartus_eda --write_settings_files=off --simulation=on --functional=on --flatten_buses=off --tool=modelsim_oem --format=vhdl --output_directory=G:/FPGA_Projects/Ethernet_Switch/FPGACode/simulation/qsim/ FPGACode -c FPGACode
 quartus_eda --gen_testbench --tool=modelsim_oem --format=vhdl --write_settings_files=off FPGACode -c FPGACode --vector_source=G:/FPGA_Projects/Ethernet_Switch/FPGACode/SIM_TX_WIN.vwf --testbench_file=G:/FPGA_Projects/Ethernet_Switch/FPGACode/simulation/qsim/SIM_TX_WIN.vwf.vht
