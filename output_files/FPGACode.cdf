@@ -4,7 +4,7 @@ JedecChain;
 	DefaultMfr(6E);
 
 	P ActionCode(Cfg)
-		Device PartName(EP4CE6E22) Path("/home/mac/Code/FPGACode/output_files/") File("FPGACode.sof") MfrSpec(OpMask(1));
+		Device PartName(EP4CE6E22) Path("G:/FPGA_Projects/Ethernet_Switch/FPGACode/output_files/") File("FPGACode.sof") MfrSpec(OpMask(1));
 
 ChainEnd;
 
