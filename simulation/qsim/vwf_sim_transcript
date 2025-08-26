@@ -26,7 +26,7 @@ Info: Running Quartus Prime EDA Netlist Writer
     Info: Altera and sold by Altera or its authorized distributors.  Please
     Info: refer to the Altera Software License Subscription Agreements 
     Info: on the Quartus Prime software download page.
-    Info: Processing started: Fri Aug 22 00:29:17 2025
+    Info: Processing started: Tue Aug 26 22:48:47 2025
 Info: Command: quartus_eda --gen_testbench --tool=modelsim_oem --format=vhdl --write_settings_files=off FPGACode -c FPGACode --vector_source=G:/FPGA_Projects/Ethernet_Switch/FPGACode/SIM_TX_WIN.vwf --testbench_file=G:/FPGA_Projects/Ethernet_Switch/FPGACode/simulation/qsim/SIM_TX_WIN.vwf.vht
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 
@@ -53,14 +53,14 @@ Info: Running Quartus Prime EDA Netlist Writer
     Info: Altera and sold by Altera or its authorized distributors.  Please
     Info: refer to the Altera Software License Subscription Agreements 
     Info: on the Quartus Prime software download page.
-    Info: Processing started: Fri Aug 22 00:29:17 2025
+    Info: Processing started: Tue Aug 26 22:48:47 2025
 Info: Command: quartus_eda --write_settings_files=off --simulation=on --functional=on --flatten_buses=off --tool=modelsim_oem --format=vhdl --output_directory=G:/FPGA_Projects/Ethernet_Switch/FPGACode/simulation/qsim/ FPGACode -c FPGACode
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (204019): Generated file FPGACode.vho in folder "G:/FPGA_Projects/Ethernet_Switch/FPGACode/simulation/qsim//" for EDA simulation tool
 Info: Quartus Prime EDA Netlist Writer was successful. 0 errors, 1 warning
     Info: Peak virtual memory: 4647 megabytes
-    Info: Processing ended: Fri Aug 22 00:29:17 2025
-    Info: Elapsed time: 00:00:00
+    Info: Processing ended: Tue Aug 26 22:48:48 2025
+    Info: Elapsed time: 00:00:01
     Info: Total CPU time (on all processors): 00:00:00
 
 Completed successfully. 
@@ -88,7 +88,7 @@ Reading pref.tcl
 
 # Questa Intel Starter FPGA Edition-64 vcom 2024.3 Compiler 2024.09 Sep 10 2024
 
-# Start time: 00:29:18 on Aug 22,2025
+# Start time: 22:48:48 on Aug 26,2025
 # vcom -work work FPGACode.vho 
 
 # -- Loading package STANDARD
@@ -102,7 +102,6 @@ Reading pref.tcl
 # -- Loading package VITAL_Primitives
 
 # -- Loading package dffeas_pack
-
 # -- Loading package altera_primitives_components
 
 # -- Loading package cycloneive_atom_pack
@@ -113,12 +112,13 @@ Reading pref.tcl
 
 # -- Compiling architecture structure of FPGACode
 
-# End time: 00:29:18 on Aug 22,2025, Elapsed time: 0:00:00
+# End time: 22:48:48 on Aug 26,2025, Elapsed time: 0:00:00
+
 # Errors: 0, Warnings: 0
 
 # Questa Intel Starter FPGA Edition-64 vcom 2024.3 Compiler 2024.09 Sep 10 2024
 
-# Start time: 00:29:18 on Aug 22,2025
+# Start time: 22:48:48 on Aug 26,2025
 # vcom -work work SIM_TX_WIN.vwf.vht 
 
 # -- Loading package STANDARD
@@ -131,12 +131,11 @@ Reading pref.tcl
 
 # -- Compiling architecture FPGACode_arch of FPGACode_vhd_vec_tst
 
-# End time: 00:29:18 on Aug 22,2025, Elapsed time: 0:00:00
-
+# End time: 22:48:48 on Aug 26,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 
 # vsim -voptargs=""+acc"" -suppress 12110 -c -t 1ps -L cycloneive -L altera -L altera_mf -L 220model -L sgate -L altera_lnsim work.FPGACode_vhd_vec_tst 
-# Start time: 00:29:18 on Aug 22,2025
+# Start time: 22:48:49 on Aug 26,2025
 # ** Note: (vsim-8009) Loading existing optimized design _opt1
 # //  Questa Intel Starter FPGA Edition-64
 # //  Version 2024.3 win64 Sep 10 2024
@@ -175,11 +174,19 @@ Reading pref.tcl
 # Loading cycloneive.cycloneive_scale_cntr(behave)#1
 # Loading cycloneive.cycloneive_clkctrl(vital_clkctrl)#1
 # Loading cycloneive.cycloneive_ena_reg(behave)#1
+# Loading cycloneive.cycloneive_clkctrl(vital_clkctrl)#2
 # Loading cycloneive.cycloneive_lcell_comb(vital_lcell_comb)#1
 # Loading altera.dffeas(vital_dffeas)#1
 # Loading cycloneive.cycloneive_lcell_comb(vital_lcell_comb)#2
 # Loading cycloneive.cycloneive_lcell_comb(vital_lcell_comb)#3
-# Loading cycloneive.cycloneive_clkctrl(vital_clkctrl)#2
+# Loading cycloneive.cycloneive_lcell_comb(vital_lcell_comb)#4
+# Loading cycloneive.cycloneive_lcell_comb(vital_lcell_comb)#5
+# Loading cycloneive.cycloneive_lcell_comb(vital_lcell_comb)#6
+# Loading cycloneive.cycloneive_lcell_comb(vital_lcell_comb)#7
+# Loading cycloneive.cycloneive_lcell_comb(vital_lcell_comb)#8
+# Loading cycloneive.cycloneive_lcell_comb(vital_lcell_comb)#9
+# Loading cycloneive.cycloneive_lcell_comb(vital_lcell_comb)#10
+# Loading cycloneive.cycloneive_lcell_comb(vital_lcell_comb)#11
 
 # after#34
 
@@ -188,7 +195,7 @@ Reading pref.tcl
 # ** Note: Cycloneive PLL lost lock due to loss of input clock or the input clock is not detected within the allowed time frame.
 #    Time: 1030 ns  Iteration: 3  Instance: /fpgacode_vhd_vec_tst/i1/\inst|altpll_component|auto_generated|pll1\
 
-# End time: 00:29:19 on Aug 22,2025, Elapsed time: 0:00:01
+# End time: 22:48:49 on Aug 26,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 
 Completed successfully. 
@@ -201,7 +208,7 @@ Reading G:/FPGA_Projects/Ethernet_Switch/FPGACode/simulation/qsim/FPGACode.msim.
 
 Processing channel transitions... 
 
-Writing the resulting VWF to G:/FPGA_Projects/Ethernet_Switch/FPGACode/simulation/qsim/FPGACode_20250822002919.sim.vwf
+Writing the resulting VWF to G:/FPGA_Projects/Ethernet_Switch/FPGACode/simulation/qsim/FPGACode_20250826224849.sim.vwf
 
 Finished VCD to VWF conversion.
 

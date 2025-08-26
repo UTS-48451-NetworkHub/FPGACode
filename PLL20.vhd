@@ -55,15 +55,15 @@ END PLL20;
 
 ARCHITECTURE SYN OF pll20 IS
 
-	SIGNAL sub_wire0	: STD_LOGIC_VECTOR (4 DOWNTO 0);
-	SIGNAL sub_wire1	: STD_LOGIC ;
-	SIGNAL sub_wire2	: STD_LOGIC ;
-	SIGNAL sub_wire3	: STD_LOGIC ;
+	SIGNAL sub_wire0	: STD_LOGIC ;
+	SIGNAL sub_wire1	: STD_LOGIC_VECTOR (1 DOWNTO 0);
+	SIGNAL sub_wire2_bv	: BIT_VECTOR (0 DOWNTO 0);
+	SIGNAL sub_wire2	: STD_LOGIC_VECTOR (0 DOWNTO 0);
+	SIGNAL sub_wire3	: STD_LOGIC_VECTOR (4 DOWNTO 0);
 	SIGNAL sub_wire4	: STD_LOGIC ;
 	SIGNAL sub_wire5	: STD_LOGIC ;
-	SIGNAL sub_wire6	: STD_LOGIC_VECTOR (1 DOWNTO 0);
-	SIGNAL sub_wire7_bv	: BIT_VECTOR (0 DOWNTO 0);
-	SIGNAL sub_wire7	: STD_LOGIC_VECTOR (0 DOWNTO 0);
+	SIGNAL sub_wire6	: STD_LOGIC ;
+	SIGNAL sub_wire7	: STD_LOGIC ;
 
 
 
@@ -142,17 +142,17 @@ ARCHITECTURE SYN OF pll20 IS
 	END COMPONENT;
 
 BEGIN
-	sub_wire7_bv(0 DOWNTO 0) <= "0";
-	sub_wire7    <= To_stdlogicvector(sub_wire7_bv);
-	sub_wire3    <= sub_wire0(2);
-	sub_wire2    <= sub_wire0(1);
-	sub_wire1    <= sub_wire0(0);
-	c0    <= sub_wire1;
-	c1    <= sub_wire2;
-	c2    <= sub_wire3;
-	locked    <= sub_wire4;
-	sub_wire5    <= inclk0;
-	sub_wire6    <= sub_wire7(0 DOWNTO 0) & sub_wire5;
+	sub_wire2_bv(0 DOWNTO 0) <= "0";
+	sub_wire2    <= To_stdlogicvector(sub_wire2_bv);
+	sub_wire0    <= inclk0;
+	sub_wire1    <= sub_wire2(0 DOWNTO 0) & sub_wire0;
+	sub_wire6    <= sub_wire3(2);
+	sub_wire5    <= sub_wire3(1);
+	sub_wire4    <= sub_wire3(0);
+	c0    <= sub_wire4;
+	c1    <= sub_wire5;
+	c2    <= sub_wire6;
+	locked    <= sub_wire7;
 
 	altpll_component : altpll
 	GENERIC MAP (
@@ -222,9 +222,9 @@ BEGIN
 	)
 	PORT MAP (
 		areset => areset,
-		inclk => sub_wire6,
-		clk => sub_wire0,
-		locked => sub_wire4
+		inclk => sub_wire1,
+		clk => sub_wire3,
+		locked => sub_wire7
 	);
 
 

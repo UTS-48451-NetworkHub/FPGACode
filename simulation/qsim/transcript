@@ -2,7 +2,7 @@
 # ** Warning: (vlib-34) Library already exists at "work".
 # Errors: 0, Warnings: 1
 # Questa Intel Starter FPGA Edition-64 vcom 2024.3 Compiler 2024.09 Sep 10 2024
-# Start time: 00:29:18 on Aug 22,2025
+# Start time: 22:48:48 on Aug 26,2025
 # vcom -work work FPGACode.vho 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
@@ -15,20 +15,20 @@
 # -- Loading package cycloneive_components
 # -- Compiling entity FPGACode
 # -- Compiling architecture structure of FPGACode
-# End time: 00:29:18 on Aug 22,2025, Elapsed time: 0:00:00
+# End time: 22:48:48 on Aug 26,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Questa Intel Starter FPGA Edition-64 vcom 2024.3 Compiler 2024.09 Sep 10 2024
-# Start time: 00:29:18 on Aug 22,2025
+# Start time: 22:48:48 on Aug 26,2025
 # vcom -work work SIM_TX_WIN.vwf.vht 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
 # -- Loading package std_logic_1164
 # -- Compiling entity FPGACode_vhd_vec_tst
 # -- Compiling architecture FPGACode_arch of FPGACode_vhd_vec_tst
-# End time: 00:29:18 on Aug 22,2025, Elapsed time: 0:00:00
+# End time: 22:48:48 on Aug 26,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -voptargs=""+acc"" -suppress 12110 -c -t 1ps -L cycloneive -L altera -L altera_mf -L 220model -L sgate -L altera_lnsim work.FPGACode_vhd_vec_tst 
-# Start time: 00:29:18 on Aug 22,2025
+# Start time: 22:48:49 on Aug 26,2025
 # ** Note: (vsim-8009) Loading existing optimized design _opt1
 # //  Questa Intel Starter FPGA Edition-64
 # //  Version 2024.3 win64 Sep 10 2024
@@ -66,15 +66,23 @@
 # Loading cycloneive.cycloneive_scale_cntr(behave)#1
 # Loading cycloneive.cycloneive_clkctrl(vital_clkctrl)#1
 # Loading cycloneive.cycloneive_ena_reg(behave)#1
+# Loading cycloneive.cycloneive_clkctrl(vital_clkctrl)#2
 # Loading cycloneive.cycloneive_lcell_comb(vital_lcell_comb)#1
 # Loading altera.dffeas(vital_dffeas)#1
 # Loading cycloneive.cycloneive_lcell_comb(vital_lcell_comb)#2
 # Loading cycloneive.cycloneive_lcell_comb(vital_lcell_comb)#3
-# Loading cycloneive.cycloneive_clkctrl(vital_clkctrl)#2
+# Loading cycloneive.cycloneive_lcell_comb(vital_lcell_comb)#4
+# Loading cycloneive.cycloneive_lcell_comb(vital_lcell_comb)#5
+# Loading cycloneive.cycloneive_lcell_comb(vital_lcell_comb)#6
+# Loading cycloneive.cycloneive_lcell_comb(vital_lcell_comb)#7
+# Loading cycloneive.cycloneive_lcell_comb(vital_lcell_comb)#8
+# Loading cycloneive.cycloneive_lcell_comb(vital_lcell_comb)#9
+# Loading cycloneive.cycloneive_lcell_comb(vital_lcell_comb)#10
+# Loading cycloneive.cycloneive_lcell_comb(vital_lcell_comb)#11
 # after#34
 # ** Note: Cycloneive PLL locked to incoming clock
 #    Time: 90 ns  Iteration: 3  Instance: /fpgacode_vhd_vec_tst/i1/\inst|altpll_component|auto_generated|pll1\
 # ** Note: Cycloneive PLL lost lock due to loss of input clock or the input clock is not detected within the allowed time frame.
 #    Time: 1030 ns  Iteration: 3  Instance: /fpgacode_vhd_vec_tst/i1/\inst|altpll_component|auto_generated|pll1\
-# End time: 00:29:19 on Aug 22,2025, Elapsed time: 0:00:01
+# End time: 22:48:49 on Aug 26,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0

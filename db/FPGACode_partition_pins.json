@@ -8,19 +8,11 @@
 					"strict" : false
 				},
 				{
-					"name" : "ETH1_TX_P",
+					"name" : "TEST_NLP",
 					"strict" : false
 				},
 				{
-					"name" : "ETH1_TX_N",
-					"strict" : false
-				},
-				{
-					"name" : "ETH0_TX_P",
-					"strict" : false
-				},
-				{
-					"name" : "ETH0_TX_N",
+					"name" : "TEST_MNC",
 					"strict" : false
 				},
 				{
@@ -28,19 +20,7 @@
 					"strict" : false
 				},
 				{
-					"name" : "ETH0_RX_P",
-					"strict" : false
-				},
-				{
-					"name" : "ETH0_RX_N",
-					"strict" : false
-				},
-				{
-					"name" : "ETH1_RX_P",
-					"strict" : false
-				},
-				{
-					"name" : "ETH1_RX_N",
+					"name" : "KEY1",
 					"strict" : false
 				}
 			]
