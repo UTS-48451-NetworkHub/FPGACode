@@ -1,7 +1,7 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
-entity TEN_BASE_TX is
+entity MNC_ENCODER is
 	port (
 		i_enable    : in std_logic;
 		i_reset     : in std_logic;
@@ -9,28 +9,14 @@ entity TEN_BASE_TX is
 		i_MNC_CLK   : in std_logic; -- 20 MHz
 		o_MNC_OUT   : out std_logic
 		);
-end TEN_BASE_TX;
+end MNC_ENCODER;
 
 --------------------------------------------------------------------------------
 -- Manchester Encoding Generator
--- Ethernet bits are always latched in on the rising edge of the 10 MHz clock
--- If 20 MHz rising edge & 10 MHz rising edge: # Byte Window Start
---   Latch incoming ethernet bit.
---   If data incoming is 0: Set output high
---   If data incoming is 1: Set output low
--- If 20 MHz rising edge & 10 MHz falling edge: # Byte Window Half Time
---   If data incoming is 0: Set output low
---   If data incoming is 1: Set output high
---------------------------------------------------------------------------------
--- But VHDL processes output on the next clock cycle??????
--- I need to rethink this.
--- I can see why the 20 MHz clock was recommended.
---------------------------------------------------------------------------------
--- Manchester Encoding Generator Take 2
 -- We need to calculate and store a 'phase' e.g. the two cases we defined above.
 -- Remember phase is one clock behind!
 
-architecture arch of TEN_BASE_TX is
+architecture arch of MNC_ENCODER is
 
 	-- Bit Phase Register
 	signal r_phase : std_logic := '0';
