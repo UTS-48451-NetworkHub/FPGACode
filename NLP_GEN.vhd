@@ -4,17 +4,18 @@ library ieee ;
 
 entity NLP_GEN is
   port (
-	i_enable    : in std_logic;
-	i_NLP_CLK   : in std_logic; -- 10 MHz
-	o_NLP_OUT   : out std_logic
-  ) ;
-end entity ; -- NLP_GEN
+		i_enable    : in std_logic;
+		i_clk   : in std_logic; -- 10 MHz
+		o_nlp_out   : out std_logic
+  );
+end NLP_GEN;
 
 --------------------------------------------------------------------------------
 -- Network Link Pulse (NLP) Generator
 -- We need to generate a pulse between 85 and 100ns long to indicate
 -- to a connected computer that a device is present.
--- This pulse must be sent every ~16ms. At 10MHz, that is a ~2^17 counter.
+-- This pulse must be sent every ~16ms. At 10MHz, that is 160k counts.
+-- Hence the usage of a 2^18 counter.
 
 architecture arch of NLP_GEN is
 
@@ -27,10 +28,10 @@ architecture arch of NLP_GEN is
 begin
 
 	-- Reset, Counting & NLP Generation.
-	p_NLP : process (i_NLP_CLK) is
+	p_nlp : process (i_clk) is
 	begin			
 		-- Reset & Delay Handling
-		if rising_edge(i_NLP_CLK) then
+		if rising_edge(i_clk) then
 			-- Handle disabled state
 			if i_enable = '0' then
 				r_delay_counter <= (others => '0');
@@ -52,9 +53,9 @@ begin
 				r_nlp_int <= '0';
 			end if;
 		end if;
-	end process p_NLP;
+	end process p_nlp;
 
 	-- Output nlp internal register to output
-	o_NLP_OUT <= r_nlp_int;
+	o_nlp_out <= r_nlp_int;
 
 end architecture arch;

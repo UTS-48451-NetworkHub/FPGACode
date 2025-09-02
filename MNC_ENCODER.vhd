@@ -3,12 +3,11 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity MNC_ENCODER is
 	port (
-		i_enable    : in std_logic;
 		i_reset     : in std_logic;
-		i_ETH_BS    : in std_logic;
-		i_MNC_CLK   : in std_logic; -- 20 MHz
-		o_MNC_OUT   : out std_logic
-		);
+		i_eth_bs    : in std_logic;
+		i_clk       : in std_logic; -- 20 MHz
+		o_mnc_out   : out std_logic
+	);
 end MNC_ENCODER;
 
 --------------------------------------------------------------------------------
@@ -24,16 +23,16 @@ architecture arch of MNC_ENCODER is
 begin
 
 	-- Generate the 'phase' of the bit stream
-	p_PHASE_GEN : process (i_MNC_CLK) is
+	p_phase_gen : process (i_clk) is
 	begin
 		if i_reset = '1' then
 			r_phase <= '0';
-		elsif rising_edge(i_MNC_CLK) then
+		elsif rising_edge(i_clk) then
 			r_phase <= not r_phase;
 		end if;
-	end process p_PHASE_GEN;
+	end process p_phase_gen;
 
-	-- Xor the data stream to get the manchester encoded output (when enabled)
-	o_MNC_OUT <= (i_ETH_BS xor r_phase) when i_enable = '1' else '0';
+	-- Xor the data stream to get the manchester encoded output
+	o_mnc_out <= (i_eth_bs xor r_phase);
 
 end architecture arch;

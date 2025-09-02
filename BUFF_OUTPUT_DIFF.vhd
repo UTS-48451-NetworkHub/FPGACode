@@ -8,7 +8,7 @@ entity BUFF_OUTPUT_DIFF is
 	O  : out std_logic;
 	OB : out std_logic
   ) ;
-end entity ; -- BUFF_OUTPUT_DIFF
+end BUFF_OUTPUT_DIFF;
 
 architecture arch of BUFF_OUTPUT_DIFF is
 begin
