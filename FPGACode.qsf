@@ -135,6 +135,7 @@ set_global_assignment -name VHDL_FILE "g:\\FPGA_Projects\\Ethernet_Switch\\FPGAC
 set_global_assignment -name VHDL_FILE "g:\\FPGA_Projects\\Ethernet_Switch\\FPGACode\\eth_tx.vhd"
 set_global_assignment -name VHDL_FILE "g:\\FPGA_Projects\\Ethernet_Switch\\FPGACode\\ethernet_switch.vhd"
 set_global_assignment -name QIP_FILE "g:\\FPGA_Projects\\Ethernet_Switch\\FPGACode\\fifo_eth_packet.qip"
+set_global_assignment -name QIP_FILE "g:\\FPGA_Projects\\Ethernet_Switch\\FPGACode\\ram_eth_packet.qip"
 set_global_assignment -name QIP_FILE "g:\\FPGA_Projects\\Ethernet_Switch\\FPGACode\\pll_main.qip"
 set_global_assignment -name QIP_FILE "g:\\FPGA_Projects\\Ethernet_Switch\\FPGACode\\tx_mux.qip"
 set_global_assignment -name VHDL_FILE "g:\\FPGA_Projects\\Ethernet_Switch\\FPGACode\\altclkctrl\\synthesis\\altclkctrl.vhd"

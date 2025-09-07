@@ -91,10 +91,16 @@ begin
       port map
       (
         clk => clk_100,
+        -- Upstream Data Port
         i_data => r_eth0_downstream_data,
         i_data_valid => r_eth0_downstream_data_valid,
         o_data => r_eth0_upstream_data,
-        o_data_valid => r_eth0_upstream_data_valid
+        o_data_valid => r_eth0_upstream_data_valid,
+        -- Downstream Data Port
+        rx_p => ETH0_RX_P,
+        rx_n => ETH0_RX_N,
+        tx_p => ETH0_TX_P,
+        tx_n => ETH0_TX_N
       );
 
 end architecture arch;
