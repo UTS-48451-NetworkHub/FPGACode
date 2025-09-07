@@ -1,40 +1,59 @@
-|FPGACode
-LED1 <= RESET.DB_MAX_OUTPUT_PORT_TYPE
-RESET => LED1.DATAIN
-TEST_CLK_20M <= PLL20:inst.c2
-MAIN_CLK => PLL20:inst.inclk0
-TEST_PLL_LOCK <= PLL20:inst.locked
-TEST_CLK_10M <= PLL20:inst.c3
-ETH1_TX_P <= <GND>
-ETH1_TX_N <= <GND>
-TEST_CLK_50M <= PLL20:inst.c1
-TEST_CLK_100M <= PLL20:inst.c0
-ETH0_TX_P <= ETH_TX:inst12.o_dp
-KEY1 => COUNT_TEST_8:inst2.clock
-ETH0_TX_N <= ETH_TX:inst12.o_dn
-ETH0_RX_P => ~NO_FANOUT~
+|ethernet_switch
+MAIN_CLK => pll_main:c_pll.inclk0
+RESET => pll_main:c_pll.areset
+KEY1 => ~NO_FANOUT~
+KEY2 => ~NO_FANOUT~
+KEY3 => ~NO_FANOUT~
+KEY4 => ~NO_FANOUT~
+LED1 << LED1.DB_MAX_OUTPUT_PORT_TYPE
+UART_RX => ~NO_FANOUT~
+UART_TX << UART_TX.DB_MAX_OUTPUT_PORT_TYPE
 ETH0_RX_N => ~NO_FANOUT~
-ETH1_RX_P => ~NO_FANOUT~
+ETH0_RX_P => ~NO_FANOUT~
+ETH0_TX_N << ETH0_TX_N.DB_MAX_OUTPUT_PORT_TYPE
+ETH0_TX_P << ETH0_TX_P.DB_MAX_OUTPUT_PORT_TYPE
+ETH0_LED_GRN << ETH0_LED_GRN.DB_MAX_OUTPUT_PORT_TYPE
+ETH0_LED_YEL << ETH0_LED_YEL.DB_MAX_OUTPUT_PORT_TYPE
 ETH1_RX_N => ~NO_FANOUT~
+ETH1_RX_P => ~NO_FANOUT~
+ETH1_TX_N << ETH1_TX_N.DB_MAX_OUTPUT_PORT_TYPE
+ETH1_TX_P << ETH1_TX_P.DB_MAX_OUTPUT_PORT_TYPE
+ETH1_LED_GRN << ETH1_LED_GRN.DB_MAX_OUTPUT_PORT_TYPE
+ETH1_LED_YEL << ETH1_LED_YEL.DB_MAX_OUTPUT_PORT_TYPE
+ETH2_RX_N => ~NO_FANOUT~
+ETH2_RX_P => ~NO_FANOUT~
+ETH2_TX_N << ETH2_TX_N.DB_MAX_OUTPUT_PORT_TYPE
+ETH2_TX_P << ETH2_TX_P.DB_MAX_OUTPUT_PORT_TYPE
+ETH2_LED_GRN << ETH2_LED_GRN.DB_MAX_OUTPUT_PORT_TYPE
+ETH2_LED_YEL << ETH2_LED_YEL.DB_MAX_OUTPUT_PORT_TYPE
+ETH3_RX_N => ~NO_FANOUT~
+ETH3_RX_P => ~NO_FANOUT~
+ETH3_TX_N << ETH3_TX_N.DB_MAX_OUTPUT_PORT_TYPE
+ETH3_TX_P << ETH3_TX_P.DB_MAX_OUTPUT_PORT_TYPE
+ETH3_LED_GRN << ETH3_LED_GRN.DB_MAX_OUTPUT_PORT_TYPE
+ETH3_LED_YEL << ETH3_LED_YEL.DB_MAX_OUTPUT_PORT_TYPE
+ETH4_RX_N => ~NO_FANOUT~
+ETH4_RX_P => ~NO_FANOUT~
+ETH4_TX_N << ETH4_TX_N.DB_MAX_OUTPUT_PORT_TYPE
+ETH4_TX_P << ETH4_TX_P.DB_MAX_OUTPUT_PORT_TYPE
+ETH4_LED_GRN << ETH4_LED_GRN.DB_MAX_OUTPUT_PORT_TYPE
+ETH4_LED_YEL << comb.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|FPGACode|PLL20:inst
+|ethernet_switch|pll_main:c_pll
 areset => altpll:altpll_component.areset
 inclk0 => altpll:altpll_component.inclk[0]
 c0 <= altpll:altpll_component.clk[0]
-c1 <= altpll:altpll_component.clk[1]
-c2 <= altpll:altpll_component.clk[2]
-c3 <= altpll:altpll_component.clk[3]
 locked <= altpll:altpll_component.locked
 
 
-|FPGACode|PLL20:inst|altpll:altpll_component
-inclk[0] => PLL20_altpll:auto_generated.inclk[0]
-inclk[1] => PLL20_altpll:auto_generated.inclk[1]
+|ethernet_switch|pll_main:c_pll|altpll:altpll_component
+inclk[0] => pll_main_altpll:auto_generated.inclk[0]
+inclk[1] => pll_main_altpll:auto_generated.inclk[1]
 fbin => ~NO_FANOUT~
 pllena => ~NO_FANOUT~
 clkswitch => ~NO_FANOUT~
-areset => PLL20_altpll:auto_generated.areset
+areset => pll_main_altpll:auto_generated.areset
 pfdena => ~NO_FANOUT~
 clkena[0] => ~NO_FANOUT~
 clkena[1] => ~NO_FANOUT~
@@ -75,7 +94,7 @@ enable1 <= <GND>
 enable0 <= <GND>
 activeclock <= <GND>
 clkloss <= <GND>
-locked <= PLL20_altpll:auto_generated.locked
+locked <= pll_main_altpll:auto_generated.locked
 scandataout <= <GND>
 scandone <= <GND>
 sclkout0 <= <GND>
@@ -88,7 +107,7 @@ fref <= <GND>
 icdrclk <= <GND>
 
 
-|FPGACode|PLL20:inst|altpll:altpll_component|PLL20_altpll:auto_generated
+|ethernet_switch|pll_main:c_pll|altpll:altpll_component|pll_main_altpll:auto_generated
 areset => pll_lock_sync.ACLR
 areset => pll1.ARESET
 clk[0] <= pll1.CLK
@@ -101,179 +120,44 @@ inclk[1] => pll1.CLK1
 locked <= locked.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|FPGACode|ETH_TX:inst12
-i_eth_byte[0] => ~NO_FANOUT~
-i_eth_byte[1] => ~NO_FANOUT~
-i_eth_byte[2] => ~NO_FANOUT~
-i_eth_byte[3] => ~NO_FANOUT~
-i_eth_byte[4] => ~NO_FANOUT~
-i_eth_byte[5] => ~NO_FANOUT~
-i_eth_byte[6] => ~NO_FANOUT~
-i_eth_byte[7] => ~NO_FANOUT~
-i_clk_20M => mnc_encoder:c_mnc_gen.i_clk
-i_clk_10M => nlp_gen:c_nlp_gen.i_clk
-o_dp <= buff_output_diff:c_diff_out.O
-o_dn <= buff_output_diff:c_diff_out.OB
+|ethernet_switch|altclkctrl:c_alt_clk_ctrl
+inclk => altclkctrl_altclkctrl_0:altclkctrl_0.inclk
+outclk <= altclkctrl_altclkctrl_0:altclkctrl_0.outclk
 
 
-|FPGACode|ETH_TX:inst12|MNC_ENCODER:c_mnc_gen
-i_reset => r_phase.ACLR
-i_eth_bs => o_mnc_out.IN1
-i_clk => r_phase.CLK
-o_mnc_out <= o_mnc_out.DB_MAX_OUTPUT_PORT_TYPE
+|ethernet_switch|altclkctrl:c_alt_clk_ctrl|altclkctrl_altclkctrl_0:altclkctrl_0
+inclk => sub_wire3[0].IN1
+outclk <= altclkctrl_altclkctrl_0_sub:altclkctrl_altclkctrl_0_sub_component.outclk
 
 
-|FPGACode|ETH_TX:inst12|NLP_GEN:c_nlp_gen
-i_enable => r_delay_counter.OUTPUTSELECT
-i_enable => r_delay_counter.OUTPUTSELECT
-i_enable => r_delay_counter.OUTPUTSELECT
-i_enable => r_delay_counter.OUTPUTSELECT
-i_enable => r_delay_counter.OUTPUTSELECT
-i_enable => r_delay_counter.OUTPUTSELECT
-i_enable => r_delay_counter.OUTPUTSELECT
-i_enable => r_delay_counter.OUTPUTSELECT
-i_enable => r_delay_counter.OUTPUTSELECT
-i_enable => r_delay_counter.OUTPUTSELECT
-i_enable => r_delay_counter.OUTPUTSELECT
-i_enable => r_delay_counter.OUTPUTSELECT
-i_enable => r_delay_counter.OUTPUTSELECT
-i_enable => r_delay_counter.OUTPUTSELECT
-i_enable => r_delay_counter.OUTPUTSELECT
-i_enable => r_delay_counter.OUTPUTSELECT
-i_enable => r_delay_counter.OUTPUTSELECT
-i_enable => r_delay_counter.OUTPUTSELECT
-i_enable => r_nlp_int.OUTPUTSELECT
-i_clk => r_nlp_int.CLK
-i_clk => r_delay_counter[0].CLK
-i_clk => r_delay_counter[1].CLK
-i_clk => r_delay_counter[2].CLK
-i_clk => r_delay_counter[3].CLK
-i_clk => r_delay_counter[4].CLK
-i_clk => r_delay_counter[5].CLK
-i_clk => r_delay_counter[6].CLK
-i_clk => r_delay_counter[7].CLK
-i_clk => r_delay_counter[8].CLK
-i_clk => r_delay_counter[9].CLK
-i_clk => r_delay_counter[10].CLK
-i_clk => r_delay_counter[11].CLK
-i_clk => r_delay_counter[12].CLK
-i_clk => r_delay_counter[13].CLK
-i_clk => r_delay_counter[14].CLK
-i_clk => r_delay_counter[15].CLK
-i_clk => r_delay_counter[16].CLK
-i_clk => r_delay_counter[17].CLK
-o_nlp_out <= r_nlp_int.DB_MAX_OUTPUT_PORT_TYPE
+|ethernet_switch|altclkctrl:c_alt_clk_ctrl|altclkctrl_altclkctrl_0:altclkctrl_0|altclkctrl_altclkctrl_0_sub:altclkctrl_altclkctrl_0_sub_component
+ena => clkctrl1.ENA
+inclk[0] => clkctrl1.INCLK
+inclk[1] => clkctrl1.INCLK1
+inclk[2] => clkctrl1.INCLK2
+inclk[3] => clkctrl1.INCLK3
+outclk <= clkctrl1.CLK
 
 
-|FPGACode|ETH_TX:inst12|BUFF_OUTPUT_DIFF:c_diff_out
-I => O.DATAIN
-I => OB.DATAIN
-O <= I.DB_MAX_OUTPUT_PORT_TYPE
-OB <= I.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|FPGACode|ETH_TX:inst12|TX_MUX:c_mux
-data0 => LPM_MUX:LPM_MUX_component.DATA[0][0]
-data1 => LPM_MUX:LPM_MUX_component.DATA[1][0]
-sel => LPM_MUX:LPM_MUX_component.SEL[0]
-result <= LPM_MUX:LPM_MUX_component.RESULT[0]
-
-
-|FPGACode|ETH_TX:inst12|TX_MUX:c_mux|LPM_MUX:LPM_MUX_component
-data[0][0] => mux_i7e:auto_generated.data[0]
-data[1][0] => mux_i7e:auto_generated.data[1]
-sel[0] => mux_i7e:auto_generated.sel[0]
-clock => ~NO_FANOUT~
-aclr => ~NO_FANOUT~
-clken => ~NO_FANOUT~
-result[0] <= mux_i7e:auto_generated.result[0]
-
-
-|FPGACode|ETH_TX:inst12|TX_MUX:c_mux|LPM_MUX:LPM_MUX_component|mux_i7e:auto_generated
-data[0] => result_node[0].IN1
-data[1] => result_node[0].IN1
-result[0] <= result_node[0].DB_MAX_OUTPUT_PORT_TYPE
-sel[0] => result_node[0].IN0
-sel[0] => _.IN0
-
-
-|FPGACode|COUNT_TEST_8:inst2
-clock => lpm_counter:LPM_COUNTER_component.clock
-q[0] <= lpm_counter:LPM_COUNTER_component.q[0]
-q[1] <= lpm_counter:LPM_COUNTER_component.q[1]
-q[2] <= lpm_counter:LPM_COUNTER_component.q[2]
-q[3] <= lpm_counter:LPM_COUNTER_component.q[3]
-q[4] <= lpm_counter:LPM_COUNTER_component.q[4]
-q[5] <= lpm_counter:LPM_COUNTER_component.q[5]
-q[6] <= lpm_counter:LPM_COUNTER_component.q[6]
-q[7] <= lpm_counter:LPM_COUNTER_component.q[7]
-
-
-|FPGACode|COUNT_TEST_8:inst2|lpm_counter:LPM_COUNTER_component
-clock => cntr_eph:auto_generated.clock
-clk_en => ~NO_FANOUT~
-cnt_en => ~NO_FANOUT~
-updown => ~NO_FANOUT~
-aclr => ~NO_FANOUT~
-aset => ~NO_FANOUT~
-aconst => ~NO_FANOUT~
-aload => ~NO_FANOUT~
-sclr => ~NO_FANOUT~
-sset => ~NO_FANOUT~
-sconst => ~NO_FANOUT~
-sload => ~NO_FANOUT~
-data[0] => ~NO_FANOUT~
-data[1] => ~NO_FANOUT~
-data[2] => ~NO_FANOUT~
-data[3] => ~NO_FANOUT~
-data[4] => ~NO_FANOUT~
-data[5] => ~NO_FANOUT~
-data[6] => ~NO_FANOUT~
-data[7] => ~NO_FANOUT~
-cin => ~NO_FANOUT~
-q[0] <= cntr_eph:auto_generated.q[0]
-q[1] <= cntr_eph:auto_generated.q[1]
-q[2] <= cntr_eph:auto_generated.q[2]
-q[3] <= cntr_eph:auto_generated.q[3]
-q[4] <= cntr_eph:auto_generated.q[4]
-q[5] <= cntr_eph:auto_generated.q[5]
-q[6] <= cntr_eph:auto_generated.q[6]
-q[7] <= cntr_eph:auto_generated.q[7]
-cout <= <GND>
-eq[0] <= <GND>
-eq[1] <= <GND>
-eq[2] <= <GND>
-eq[3] <= <GND>
-eq[4] <= <GND>
-eq[5] <= <GND>
-eq[6] <= <GND>
-eq[7] <= <GND>
-eq[8] <= <GND>
-eq[9] <= <GND>
-eq[10] <= <GND>
-eq[11] <= <GND>
-eq[12] <= <GND>
-eq[13] <= <GND>
-eq[14] <= <GND>
-eq[15] <= <GND>
-
-
-|FPGACode|COUNT_TEST_8:inst2|lpm_counter:LPM_COUNTER_component|cntr_eph:auto_generated
-clock => counter_reg_bit[7].CLK
-clock => counter_reg_bit[6].CLK
-clock => counter_reg_bit[5].CLK
-clock => counter_reg_bit[4].CLK
-clock => counter_reg_bit[3].CLK
-clock => counter_reg_bit[2].CLK
-clock => counter_reg_bit[1].CLK
-clock => counter_reg_bit[0].CLK
-q[0] <= counter_reg_bit[0].DB_MAX_OUTPUT_PORT_TYPE
-q[1] <= counter_reg_bit[1].DB_MAX_OUTPUT_PORT_TYPE
-q[2] <= counter_reg_bit[2].DB_MAX_OUTPUT_PORT_TYPE
-q[3] <= counter_reg_bit[3].DB_MAX_OUTPUT_PORT_TYPE
-q[4] <= counter_reg_bit[4].DB_MAX_OUTPUT_PORT_TYPE
-q[5] <= counter_reg_bit[5].DB_MAX_OUTPUT_PORT_TYPE
-q[6] <= counter_reg_bit[6].DB_MAX_OUTPUT_PORT_TYPE
-q[7] <= counter_reg_bit[7].DB_MAX_OUTPUT_PORT_TYPE
+|ethernet_switch|eth_port:c_eth0
+clk => ~NO_FANOUT~
+i_data[0] => ~NO_FANOUT~
+i_data[1] => ~NO_FANOUT~
+i_data[2] => ~NO_FANOUT~
+i_data[3] => ~NO_FANOUT~
+i_data[4] => ~NO_FANOUT~
+i_data[5] => ~NO_FANOUT~
+i_data[6] => ~NO_FANOUT~
+i_data[7] => ~NO_FANOUT~
+i_data_valid => ~NO_FANOUT~
+o_data[0] <= o_data[0].DB_MAX_OUTPUT_PORT_TYPE
+o_data[1] <= o_data[1].DB_MAX_OUTPUT_PORT_TYPE
+o_data[2] <= o_data[2].DB_MAX_OUTPUT_PORT_TYPE
+o_data[3] <= o_data[3].DB_MAX_OUTPUT_PORT_TYPE
+o_data[4] <= o_data[4].DB_MAX_OUTPUT_PORT_TYPE
+o_data[5] <= o_data[5].DB_MAX_OUTPUT_PORT_TYPE
+o_data[6] <= o_data[6].DB_MAX_OUTPUT_PORT_TYPE
+o_data[7] <= o_data[7].DB_MAX_OUTPUT_PORT_TYPE
+o_data_valid <= comb.DB_MAX_OUTPUT_PORT_TYPE
 
 

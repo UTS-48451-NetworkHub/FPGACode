@@ -39,7 +39,7 @@
 
 set_global_assignment -name FAMILY "Cyclone IV E"
 set_global_assignment -name DEVICE EP4CE6E22C8
-set_global_assignment -name TOP_LEVEL_ENTITY EthernetSwitch
+set_global_assignment -name TOP_LEVEL_ENTITY ethernet_switch
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 23.1STD.0
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "10:48:32  AUGUST 05, 2025"
 set_global_assignment -name LAST_QUARTUS_VERSION "24.1std.0 Lite Edition"
@@ -97,20 +97,8 @@ set_location_assignment PIN_115 -to UART_RX
 set_location_assignment PIN_25 -to RESET
 set_location_assignment PIN_84 -to LED1
 set_global_assignment -name IOBANK_VCCIO 3.3V -section_id 5
-set_global_assignment -name VHDL_FILE ETH_TX.vhd
-set_global_assignment -name VHDL_FILE NLP_GEN.vhd
-set_global_assignment -name VHDL_FILE MNC_ENCODER.vhd
-set_global_assignment -name VHDL_FILE BUFF_OUTPUT_DIFF.vhd
-set_global_assignment -name VECTOR_WAVEFORM_FILE SIM_TX_WIN.vwf
-set_global_assignment -name VECTOR_WAVEFORM_FILE SIM_TX_LIN.vwf
-set_global_assignment -name QIP_FILE PLL20.qip
-set_global_assignment -name BDF_FILE FPGACode.bdf
-set_global_assignment -name VHDL_FILE BUFF_INPUT_DIFF.vhd
-set_global_assignment -name QIP_FILE FIFO_ETH_PACKET.qip
-set_global_assignment -name SDC_FILE timings.sdc
-set_global_assignment -name QIP_FILE TX_MUX.qip
-set_global_assignment -name QIP_FILE COUNT_TEST_8.qip
-set_global_assignment -name VHDL_FILE "g:\\FPGA_Projects\\Ethernet_Switch\\FPGACode\\EthernetSwitch.vhd"
+set_global_assignment -name ALLOW_REGISTER_RETIMING ON
+set_global_assignment -name OPTIMIZATION_MODE BALANCED
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
@@ -134,16 +122,38 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH4_RX_N
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH4_RX_P
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH4_TX_N
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH4_TX_P
-set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to UART_TX
-set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to UART_RX
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to UART_TX
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to UART_RX
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to RESET
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LED1
-set_instance_assignment -name CURRENT_STRENGTH_NEW 2MA -to UART_TX
-set_instance_assignment -name CURRENT_STRENGTH_NEW 8MA -to ETH0_TX_N
-set_instance_assignment -name CURRENT_STRENGTH_NEW 8MA -to ETH0_TX_P
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to KEY1
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to MAIN_CLK
-set_instance_assignment -name CURRENT_STRENGTH_NEW 8MA -to MAIN_CLK
+set_global_assignment -name QSYS_FILE "g:\\FPGA_Projects\\Ethernet_Switch\\FPGACode\\altclkctrl.qsys"
+set_global_assignment -name VHDL_FILE "g:\\FPGA_Projects\\Ethernet_Switch\\FPGACode\\buff_diff_in.vhd"
+set_global_assignment -name VHDL_FILE "g:\\FPGA_Projects\\Ethernet_Switch\\FPGACode\\buff_diff_out.vhd"
+set_global_assignment -name VHDL_FILE "g:\\FPGA_Projects\\Ethernet_Switch\\FPGACode\\eth_port.vhd"
+set_global_assignment -name VHDL_FILE "g:\\FPGA_Projects\\Ethernet_Switch\\FPGACode\\eth_tx.vhd"
+set_global_assignment -name VHDL_FILE "g:\\FPGA_Projects\\Ethernet_Switch\\FPGACode\\ethernet_switch.vhd"
+set_global_assignment -name QIP_FILE "g:\\FPGA_Projects\\Ethernet_Switch\\FPGACode\\fifo_eth_packet.qip"
+set_global_assignment -name QIP_FILE "g:\\FPGA_Projects\\Ethernet_Switch\\FPGACode\\pll_main.qip"
+set_global_assignment -name QIP_FILE "g:\\FPGA_Projects\\Ethernet_Switch\\FPGACode\\tx_mux.qip"
+set_global_assignment -name VHDL_FILE "g:\\FPGA_Projects\\Ethernet_Switch\\FPGACode\\altclkctrl\\synthesis\\altclkctrl.vhd"
+set_global_assignment -name VHDL_FILE "g:\\FPGA_Projects\\Ethernet_Switch\\FPGACode\\altclkctrl\\simulation\\altclkctrl.vhd"
+set_global_assignment -name VHDL_FILE "g:\\FPGA_Projects\\Ethernet_Switch\\FPGACode\\pll_main.vhd"
+set_global_assignment -name VHDL_FILE "g:\\FPGA_Projects\\Ethernet_Switch\\FPGACode\\tx_mnc_encoder.vhd"
+set_global_assignment -name VHDL_FILE "g:\\FPGA_Projects\\Ethernet_Switch\\FPGACode\\tx_nlp_gen.vhd"
+set_global_assignment -name VHDL_FILE "g:\\FPGA_Projects\\Ethernet_Switch\\FPGACode\\tx_fsm.vhd"
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to KEY4
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to KEY3
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to KEY2
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH4_LED_YEL
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH4_LED_GRN
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH3_LED_YEL
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH3_LED_GRN
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH2_LED_YEL
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH2_LED_GRN
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH1_LED_YEL
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH1_LED_GRN
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH0_LED_YEL
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH0_LED_GRN
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
-set_global_assignment -name ALLOW_REGISTER_RETIMING ON
-set_global_assignment -name OPTIMIZATION_MODE BALANCED

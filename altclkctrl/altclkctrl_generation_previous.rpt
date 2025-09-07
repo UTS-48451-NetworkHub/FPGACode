@@ -1,0 +1,63 @@
+Info: Starting: Create simulation model
+Info: qsys-generate G:\FPGA_Projects\Ethernet_Switch\FPGACode\altclkctrl.qsys --simulation=VHDL --allow-mixed-language-simulation --output-directory=G:\FPGA_Projects\Ethernet_Switch\FPGACode\altclkctrl\simulation --family="Cyclone IV E" --part=EP4CE6E22C8
+Progress: Loading FPGACode/altclkctrl.qsys
+Progress: Reading input file
+Progress: Adding altclkctrl_0 [altclkctrl 24.1]
+Progress: Parameterizing module altclkctrl_0
+Progress: Building connections
+Progress: Parameterizing connections
+Progress: Validating
+Progress: Done reading input file
+: altclkctrl.altclkctrl_0: Targeting device family: Cyclone IV E.
+: altclkctrl.altclkctrl_0: Global clock network allows a clock signal to reach all parts of the chip with the same amount of skew. Input port 'clkselect' can be used to switch between four clock inputs.
+Info: altclkctrl: Generating "altclkctrl" for SIM_VHDL
+Info: altclkctrl_0: Generating top-level entity altclkctrl_altclkctrl_0.
+Info: altclkctrl_0: "altclkctrl" instantiated altclkctrl "altclkctrl_0"
+Info: altclkctrl: Done "altclkctrl" with 2 modules, 2 files
+Info: qsys-generate succeeded.
+Info: Finished: Create simulation model
+Info: Starting: Create Modelsim Project.
+Info: sim-script-gen --spd=G:\FPGA_Projects\Ethernet_Switch\FPGACode\altclkctrl\altclkctrl.spd --output-directory=G:/FPGA_Projects/Ethernet_Switch/FPGACode/altclkctrl/simulation/ --use-relative-paths=true
+Info: Doing: ip-make-simscript --spd=G:\FPGA_Projects\Ethernet_Switch\FPGACode\altclkctrl\altclkctrl.spd --output-directory=G:/FPGA_Projects/Ethernet_Switch/FPGACode/altclkctrl/simulation/ --use-relative-paths=true
+Info: Generating the following file(s) for MODELSIM simulator in G:/FPGA_Projects/Ethernet_Switch/FPGACode/altclkctrl/simulation/ directory:
+Info: 	mentor/msim_setup.tcl
+Info: Generating the following file(s) for RIVIERA simulator in G:/FPGA_Projects/Ethernet_Switch/FPGACode/altclkctrl/simulation/ directory:
+Info: 	aldec/rivierapro_setup.tcl
+Info: For information on how to simulate your IP, see the explanatory comments in the simulator-specific subdirectories under G:/FPGA_Projects/Ethernet_Switch/FPGACode/altclkctrl/simulation/.
+Info: Regenerate these scripts whenever you make any change to any Quartus-generated IP in your project.
+Info: Finished: Create Modelsim Project.
+Info: Starting: Create block symbol file (.bsf)
+Info: qsys-generate G:\FPGA_Projects\Ethernet_Switch\FPGACode\altclkctrl.qsys --block-symbol-file --output-directory=G:\FPGA_Projects\Ethernet_Switch\FPGACode\altclkctrl --family="Cyclone IV E" --part=EP4CE6E22C8
+Progress: Loading FPGACode/altclkctrl.qsys
+Progress: Reading input file
+Progress: Adding altclkctrl_0 [altclkctrl 24.1]
+Progress: Parameterizing module altclkctrl_0
+Progress: Building connections
+Progress: Parameterizing connections
+Progress: Validating
+Progress: Done reading input file
+: altclkctrl.altclkctrl_0: Targeting device family: Cyclone IV E.
+: altclkctrl.altclkctrl_0: Global clock network allows a clock signal to reach all parts of the chip with the same amount of skew. Input port 'clkselect' can be used to switch between four clock inputs.
+Info: qsys-generate succeeded.
+Info: Finished: Create block symbol file (.bsf)
+Info: 
+Info: Starting: Create HDL design files for synthesis
+Info: qsys-generate G:\FPGA_Projects\Ethernet_Switch\FPGACode\altclkctrl.qsys --synthesis=VHDL --greybox --output-directory=G:\FPGA_Projects\Ethernet_Switch\FPGACode\altclkctrl\synthesis --family="Cyclone IV E" --part=EP4CE6E22C8
+Progress: Loading FPGACode/altclkctrl.qsys
+Progress: Reading input file
+Progress: Adding altclkctrl_0 [altclkctrl 24.1]
+Progress: Parameterizing module altclkctrl_0
+Progress: Building connections
+Progress: Parameterizing connections
+Progress: Validating
+Progress: Done reading input file
+: altclkctrl.altclkctrl_0: Targeting device family: Cyclone IV E.
+: altclkctrl.altclkctrl_0: Global clock network allows a clock signal to reach all parts of the chip with the same amount of skew. Input port 'clkselect' can be used to switch between four clock inputs.
+Info: altclkctrl: Generating "altclkctrl" for QUARTUS_SYNTH
+Info: altclkctrl_0: Generating top-level entity altclkctrl_altclkctrl_0.
+Info: altclkctrl_0: "altclkctrl" instantiated altclkctrl "altclkctrl_0"
+Info: altclkctrl: Done "altclkctrl" with 2 modules, 2 files
+Info: Generating third-party timing and resource estimation model ...
+Info: Done generating third-party timing and resource estimation model.
+Info: qsys-generate succeeded.
+Info: Finished: Create HDL design files for synthesis

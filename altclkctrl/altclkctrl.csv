@@ -1,0 +1,18 @@
+# system info altclkctrl on 2025.09.07.22:07:58
+system_info:
+name,value
+DEVICE,EP4CE6E22C8
+DEVICE_FAMILY,Cyclone IV E
+GENERATION_ID,1757246877
+#
+#
+# Files generated for altclkctrl on 2025.09.07.22:07:58
+files:
+filepath,kind,attributes,module,is_top
+simulation/altclkctrl.vhd,VHDL,,altclkctrl,true
+simulation/submodules/altclkctrl_altclkctrl_0.vhd,VHDL,,altclkctrl_altclkctrl_0,false
+#
+# Map from instance-path to kind of module
+instances:
+instancePath,module
+altclkctrl.altclkctrl_0,altclkctrl_altclkctrl_0

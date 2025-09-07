@@ -4,7 +4,7 @@
 -- MODULE: LPM_MUX 
 
 -- ============================================================
--- File Name: TX_MUX.vhd
+-- File Name: tx_mux.vhd
 -- Megafunction Name(s):
 -- 			LPM_MUX
 --
@@ -40,7 +40,7 @@ USE ieee.std_logic_1164.all;
 LIBRARY lpm;
 USE lpm.lpm_components.all;
 
-ENTITY TX_MUX IS
+ENTITY tx_mux IS
 	PORT
 	(
 		data0		: IN STD_LOGIC ;
@@ -48,30 +48,30 @@ ENTITY TX_MUX IS
 		sel		: IN STD_LOGIC ;
 		result		: OUT STD_LOGIC 
 	);
-END TX_MUX;
+END tx_mux;
 
 
 ARCHITECTURE SYN OF tx_mux IS
 
 --	type STD_LOGIC_2D is array (NATURAL RANGE <>, NATURAL RANGE <>) of STD_LOGIC;
 
-	SIGNAL sub_wire0	: STD_LOGIC_VECTOR (0 DOWNTO 0);
-	SIGNAL sub_wire1	: STD_LOGIC ;
+	SIGNAL sub_wire0	: STD_LOGIC ;
+	SIGNAL sub_wire1	: STD_LOGIC_2D (1 DOWNTO 0, 0 DOWNTO 0);
 	SIGNAL sub_wire2	: STD_LOGIC ;
-	SIGNAL sub_wire3	: STD_LOGIC_2D (1 DOWNTO 0, 0 DOWNTO 0);
-	SIGNAL sub_wire4	: STD_LOGIC ;
-	SIGNAL sub_wire5	: STD_LOGIC ;
-	SIGNAL sub_wire6	: STD_LOGIC_VECTOR (0 DOWNTO 0);
+	SIGNAL sub_wire3	: STD_LOGIC ;
+	SIGNAL sub_wire4	: STD_LOGIC_VECTOR (0 DOWNTO 0);
+	SIGNAL sub_wire5	: STD_LOGIC_VECTOR (0 DOWNTO 0);
+	SIGNAL sub_wire6	: STD_LOGIC ;
 
 BEGIN
-	sub_wire4    <= data0;
-	sub_wire1    <= sub_wire0(0);
-	result    <= sub_wire1;
-	sub_wire2    <= data1;
-	sub_wire3(1, 0)    <= sub_wire2;
-	sub_wire3(0, 0)    <= sub_wire4;
-	sub_wire5    <= sel;
-	sub_wire6(0)    <= sub_wire5;
+	sub_wire2    <= data0;
+	sub_wire0    <= data1;
+	sub_wire1(1, 0)    <= sub_wire0;
+	sub_wire1(0, 0)    <= sub_wire2;
+	sub_wire3    <= sel;
+	sub_wire4(0)    <= sub_wire3;
+	sub_wire6    <= sub_wire5(0);
+	result    <= sub_wire6;
 
 	LPM_MUX_component : LPM_MUX
 	GENERIC MAP (
@@ -81,9 +81,9 @@ BEGIN
 		lpm_widths => 1
 	)
 	PORT MAP (
-		data => sub_wire3,
-		sel => sub_wire6,
-		result => sub_wire0
+		data => sub_wire1,
+		sel => sub_wire4,
+		result => sub_wire5
 	);
 
 
@@ -109,9 +109,9 @@ END SYN;
 -- Retrieval info: CONNECT: @data 1 1 1 0 data1 0 0 0 0
 -- Retrieval info: CONNECT: @sel 0 0 1 0 sel 0 0 0 0
 -- Retrieval info: CONNECT: result 0 0 0 0 @result 0 0 1 0
--- Retrieval info: GEN_FILE: TYPE_NORMAL TX_MUX.vhd TRUE
--- Retrieval info: GEN_FILE: TYPE_NORMAL TX_MUX.inc FALSE
--- Retrieval info: GEN_FILE: TYPE_NORMAL TX_MUX.cmp TRUE
--- Retrieval info: GEN_FILE: TYPE_NORMAL TX_MUX.bsf TRUE
--- Retrieval info: GEN_FILE: TYPE_NORMAL TX_MUX_inst.vhd TRUE
+-- Retrieval info: GEN_FILE: TYPE_NORMAL tx_mux.vhd TRUE
+-- Retrieval info: GEN_FILE: TYPE_NORMAL tx_mux.inc FALSE
+-- Retrieval info: GEN_FILE: TYPE_NORMAL tx_mux.cmp FALSE
+-- Retrieval info: GEN_FILE: TYPE_NORMAL tx_mux.bsf FALSE
+-- Retrieval info: GEN_FILE: TYPE_NORMAL tx_mux_inst.vhd FALSE
 -- Retrieval info: LIB_FILE: lpm

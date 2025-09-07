@@ -3,16 +3,15 @@
  <debug showDebugMenu="0" />
  <systemtable filter="All Interfaces">
   <columns>
-   <connections preferredWidth="95" />
+   <connections preferredWidth="31" />
    <irq preferredWidth="34" />
    <name preferredWidth="225" />
    <description preferredWidth="396" />
    <inputclock preferredWidth="229" />
   </columns>
  </systemtable>
- <library
-   expandedCategories="Library/Basic Functions/Simulation; Debug and Verification,Library/Basic Functions,Library,Library/Processors and Peripherals/Co-Processors/Nios II Custom Instructions,Project,Library/Processors and Peripherals,Library/Processors and Peripherals/Co-Processors,Library/Processors and Peripherals/Embedded Processors,Library/Basic Functions/Simulation; Debug and Verification/Simulation" />
+ <library expandedCategories="Library,Project" />
  <window width="3840" height="2100" x="0" y="0" />
- <generation synthesis="VHDL" />
+ <generation synthesis="VHDL" greybox="0" simulation="NONE" block_symbol_file="0" />
  <hdlexample language="VHDL" />
 </preferences>
