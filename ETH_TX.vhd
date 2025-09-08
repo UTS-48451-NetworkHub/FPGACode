@@ -46,9 +46,8 @@ begin
     (
       data      => r_wr_data,
       rdaddress => r_rd_addr,
-      rdclock   => r_rd_clk,
+      clock   => r_rd_clk,
       wraddress => r_wr_addr,
-      wrclock   => r_wr_clk,
       wren      => r_wr_en,
       q         => r_rd_data
     );
