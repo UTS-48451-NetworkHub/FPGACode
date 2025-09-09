@@ -43,7 +43,7 @@ begin
         r_delay_counter <= r_delay_counter + 1;
 
         -- Generate the network link pulse
-        if r_delay_counter = to_unsigned(160000, 17) then
+        if r_delay_counter = to_unsigned(160000, r_delay_counter'length) then
           r_nlp_int <= '1';
         end if;
       end if;

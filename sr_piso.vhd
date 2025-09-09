@@ -16,7 +16,7 @@ entity piso is
     byte_in     : in  std_logic_vector(WIDTH-1 downto 0);
     byte_valid  : in  std_logic;     -- pulse high when byte_in is valid
     byte_ready  : out std_logic;     -- high when this PISO can accept a new byte
-
+    
     -- Serial output side
     bit_out     : out std_logic;     -- serial bit to Manchester encoder
     bit_valid   : out std_logic      -- 1-clk strobe: bit_out is valid this cycle
