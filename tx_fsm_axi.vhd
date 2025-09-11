@@ -8,13 +8,13 @@ entity tx_fsm_axi is
     clk    : in std_logic; -- 100 MHz
     resetn : in std_logic;
     -- Control Signals
-    receive_ready : in std_logic;
-    tx_req        : out std_logic;
-    wr_en         : out std_logic;
-    tlast         : in std_logic;
-    tkeep         : in std_logic;
-    tready        : out std_logic;
-    tvalid        : in std_logic;
+    packet_ready : in std_logic;
+    packet_valid : out std_logic;
+    wr_en        : out std_logic;
+    tlast        : in std_logic;
+    tkeep        : in std_logic;
+    tready       : out std_logic;
+    tvalid       : in std_logic;
     -- Data Signals
     addr : out std_logic_vector(10 downto 0)
   );

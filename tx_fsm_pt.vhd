@@ -8,12 +8,12 @@ entity tx_fsm_pt is
     clk    : in std_logic; -- 100 MHz
     resetn : in std_logic;
     -- Control Signals
-    tx_active       : out std_logic;
-    nlp_request : out std_logic;
-    next_byte       : out std_logic;
-    ready_next_byte : in std_logic;
-    receive_ready   : out std_logic; -- Tell AXI FSM that it is free to write to the RAM.
-    tx_req          : in std_logic; -- AXI FSM has received a full packet to ram and transmission is required.
+    tx_active     : out std_logic;
+    byte_valid    : out std_logic;
+    packet_ready  : out std_logic; -- Tell AXI FSM that it is free to write to the RAM.
+    packet_valid  : in std_logic; -- AXI FSM has received a full packet to ram and transmission is required.
+    receive_ready : out std_logic;
+    reg_clk       : out std_logic;
     -- Data Signals
     addr : out std_logic_vector(10 downto 0);
     data : in std_logic_vector(7 downto 0)
@@ -123,9 +123,9 @@ begin
 
         -- Move to IFG & end tx transaction once send is complete
         if (r_addr_counter = r_packet_length) then
-          tx_active <= '0';
+          tx_active      <= '0';
           r_addr_counter <= to_unsigned(0, r_addr_counter'length);
-          next_state <= IFG;
+          next_state     <= IFG;
         end if;
 
       when IFG =>

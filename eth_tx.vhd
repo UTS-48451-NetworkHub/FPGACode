@@ -43,7 +43,7 @@ architecture arch of eth_tx is
   signal r_bit_valid  : std_logic := '0';
 
   -- TX FSM Communication Signals
-  signal r_tx_active : std_logic := '0';
+  signal r_tx_active         : std_logic := '0';
   signal r_fsm_receive_ready : std_logic := '0';
   signal r_fsm_tx_req        : std_logic := '0';
 
@@ -52,15 +52,16 @@ begin
   r_rd_clk <= r_rd_clk_en and clk;
 
   c_phy : entity work.tx_phy(arch)
-  port map (
-    clk => clk,
-    resetn => resetn,
-    tx_active => r_tx_active,
-    bit_valid => r_bit_valid,
-    driver_en => tx_en,
-    bit_in => r_bs,
-    tx_out => tx
-  )
+    port map
+    (
+      clk       => clk,
+      resetn    => resetn,
+      tx_active => r_tx_active,
+      bit_valid => r_bit_valid,
+      driver_en => tx_en,
+      bit_in    => r_bs,
+      tx_out    => tx
+    );
 
   c_ram : entity work.ram_eth_packet(SYN)
     port map
@@ -80,41 +81,42 @@ begin
     )
     port map
     (
-      clk        => r_byte_clk,
+      clk        => clk,
       resetn     => resetn,
       byte_in    => r_rd_data,
-      byte_valid => r_sr_data_valid,
-      byte_ready => r_sr_data_ready,
+      byte_valid => r_byte_valid,
+      byte_ready => r_byte_ready,
       bit_out    => r_bs,
-      bit_valid  => r_sr_bit_valid
+      bit_valid  => r_bit_valid
     );
 
   c_fsm_pt : entity work.tx_fsm_pt(arch)
     port map
     (
-      clk           => clk,
-      resetn        => resetn,
-      tx_active     => r_tx_active,
-      next_byte     => r_sr_data_valid,
-      receive_ready => r_fsm_receive_ready,
-      tx_req        => r_fsm_tx_req,
-      addr          => r_rd_addr,
-      data          => r_rd_data
+      clk          => clk,
+      resetn       => resetn,
+      tx_active    => r_tx_active,
+      byte_valid   => r_byte_valid,
+      packet_ready => r_packet_ready,
+      packet_valid => r_packet_valid,
+      addr         => r_rd_addr,
+      data         => r_rd_data,
+      reg_clk      => r_reg_clk
     );
 
   c_fsm_axi : entity work.tx_fsm_axi(arch)
     port map
     (
-      clk           => clk,
-      resetn        => resetn,
-      receive_ready => r_fsm_receive_ready,
-      tx_req        => r_fsm_tx_req,
-      wr_en         => r_wr_en,
-      tlast         => tlast,
-      tkeep         => tkeep,
-      tready        => tready,
-      tvalid        => tvalid,
-      addr          => r_wr_addr
+      clk          => clk,
+      resetn       => resetn,
+      packet_ready => r_packet_ready,
+      packet_valid => r_packet_valid,
+      wr_en        => r_wr_en,
+      tlast        => tlast,
+      tkeep        => tkeep,
+      tready       => tready,
+      tvalid       => tvalid,
+      addr         => r_wr_addr
     );
 
 end architecture arch;
