@@ -1,12 +1,16 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.all;
+use IEEE.NUMERIC_STD.all;
 
 entity tx_mnc_encoder is
   port (
-    i_reset   : in std_logic;
-    i_eth_bs  : in std_logic;
-    i_clk     : in std_logic; -- 20 MHz
-    o_mnc_out : out std_logic
+    -- Mandatory
+    clk    : in std_logic; -- 100 MHz
+    resetn : in std_logic;
+    -- Inputs
+    eth_bs : in std_logic;
+    -- Outputs
+    mnc_out : out std_logic
   );
 end tx_mnc_encoder;
 
@@ -20,19 +24,28 @@ architecture arch of tx_mnc_encoder is
   -- Bit Phase Register
   signal r_phase : std_logic := '0';
 
+  -- Clock division counter (for 10 MHz clk_en)
+  signal r_clk_counter : unsigned(2 downto 0) := (others => '0');
+
 begin
 
   -- Generate the 'phase' of the bit stream
-  p_phase_gen : process (i_clk) is
+  p_phase_gen : process (clk) is
   begin
-    if i_reset = '1' then
+    if resetn = '0' then
       r_phase <= '0';
-    elsif rising_edge(i_clk) then
-      r_phase <= not r_phase;
+      r_clk_counter <= (others => '0');
+    elsif rising_edge(clk) then
+      if r_clk_counter = to_unsigned(4, r_clk_counter'length) then
+        r_phase <= not r_phase;
+        r_clk_counter <= (others => '0');
+      else
+        r_clk_counter <= r_clk_counter + 1;
+      end if;
     end if;
   end process p_phase_gen;
 
   -- Xor the data stream to get the manchester encoded output
-  o_mnc_out <= (i_eth_bs xor r_phase);
-
+  mnc_out <= (eth_bs xor r_phase);
+  
 end architecture arch;

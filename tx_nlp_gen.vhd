@@ -5,7 +5,7 @@ use ieee.numeric_std.all;
 entity tx_nlp_gen is
   port (
     i_enable  : in std_logic;
-    i_clk     : in std_logic; -- 10 MHz
+    i_clk     : in std_logic; -- 100 MHz
     o_nlp_out : out std_logic
   );
 end tx_nlp_gen;

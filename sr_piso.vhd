@@ -3,14 +3,14 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
 
-entity piso is
+entity sr_piso is
   generic (
     WIDTH      : positive := 8;      -- bits per word
     MSB_FIRST  : boolean  := true    -- true: send MSB first; false: send LSB first
   );
   port (
     clk         : in  std_logic;     -- system clock
-    rst_n       : in  std_logic;     -- active-low synchronous reset
+    resetn       : in  std_logic;     -- active-low synchronous reset
 
     -- Byte/word input side (handshake)
     byte_in     : in  std_logic_vector(WIDTH-1 downto 0);
@@ -21,9 +21,9 @@ entity piso is
     bit_out     : out std_logic;     -- serial bit to Manchester encoder
     bit_valid   : out std_logic      -- 1-clk strobe: bit_out is valid this cycle
   );
-end entity piso;
+end entity sr_piso;
 
-architecture rtl of piso is
+architecture rtl of sr_piso is
   signal reg_q   : std_logic_vector(WIDTH-1 downto 0) := (others => '0');
   signal cnt_q   : unsigned(2 downto 0) := (others => '0');  -- 3 bits for WIDTH=8
   signal active  : std_logic := '0';   -- '1' while we are shifting out a word
@@ -38,7 +38,7 @@ begin
       -- defaults each cycle
       bit_valid <= '0';
 
-      if rst_n = '0' then
+      if resetn = '0' then
         reg_q   <= (others => '0');
         cnt_q   <= (others => '0');
         active  <= '0';

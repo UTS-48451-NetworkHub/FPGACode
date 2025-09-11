@@ -9,6 +9,7 @@ entity tx_fsm_pt is
     resetn : in std_logic;
     -- Control Signals
     tx_active       : out std_logic;
+    nlp_request : out std_logic;
     next_byte       : out std_logic;
     ready_next_byte : in std_logic;
     receive_ready   : out std_logic; -- Tell AXI FSM that it is free to write to the RAM.

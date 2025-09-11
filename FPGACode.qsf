@@ -57,35 +57,29 @@ set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_
 set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_boundary_scan
 set_location_assignment PIN_23 -to MAIN_CLK
 set_location_assignment PIN_83 -to ETH0_LED_YEL
-set_location_assignment PIN_80 -to ETH0_RX_N
-set_location_assignment PIN_77 -to ETH0_RX_P
-set_location_assignment PIN_76 -to ETH0_TX_N
-set_location_assignment PIN_75 -to ETH0_TX_P
-set_location_assignment PIN_74 -to ETH0_LED_GRN
-set_location_assignment PIN_73 -to ETH1_LED_YEL
-set_location_assignment PIN_72 -to ETH1_RX_N
-set_location_assignment PIN_71 -to ETH1_RX_P
-set_location_assignment PIN_70 -to ETH1_TX_N
-set_location_assignment PIN_69 -to ETH1_TX_P
-set_location_assignment PIN_68 -to ETH1_LED_GRN
-set_location_assignment PIN_67 -to ETH2_LED_YEL
-set_location_assignment PIN_66 -to ETH2_RX_N
-set_location_assignment PIN_65 -to ETH2_RX_P
-set_location_assignment PIN_64 -to ETH2_TX_N
-set_location_assignment PIN_60 -to ETH2_TX_P
-set_location_assignment PIN_59 -to ETH2_LED_GRN
-set_location_assignment PIN_58 -to ETH3_LED_YEL
-set_location_assignment PIN_55 -to ETH3_RX_N
-set_location_assignment PIN_54 -to ETH3_RX_P
-set_location_assignment PIN_53 -to ETH3_TX_N
-set_location_assignment PIN_52 -to ETH3_TX_P
-set_location_assignment PIN_51 -to ETH3_LED_GRN
-set_location_assignment PIN_50 -to ETH4_LED_YEL
-set_location_assignment PIN_49 -to ETH4_RX_N
-set_location_assignment PIN_46 -to ETH4_RX_P
-set_location_assignment PIN_44 -to ETH4_TX_N
-set_location_assignment PIN_43 -to ETH4_TX_P
-set_location_assignment PIN_42 -to ETH4_LED_GRN
+set_location_assignment PIN_80 -to ETH0_TX_EN
+set_location_assignment PIN_77 -to ETH0_RX
+set_location_assignment PIN_75 -to ETH0_LED_GRN
+set_location_assignment PIN_74 -to ETH0_TX
+set_location_assignment PIN_71 -to ETH1_LED_YEL
+set_location_assignment PIN_70 -to ETH1_TX
+set_location_assignment PIN_69 -to ETH1_TX_EN
+set_location_assignment PIN_67 -to ETH1_LED_GRN
+set_location_assignment PIN_66 -to ETH1_RX
+set_location_assignment PIN_60 -to ETH2_LED_YEL
+set_location_assignment PIN_59 -to ETH2_RX
+set_location_assignment PIN_54 -to ETH2_LED_GRN
+set_location_assignment PIN_53 -to ETH2_TX_EN
+set_location_assignment PIN_50 -to ETH3_LED_YEL
+set_location_assignment PIN_49 -to ETH3_RX
+set_location_assignment PIN_46 -to ETH3_TX
+set_location_assignment PIN_43 -to ETH3_LED_GRN
+set_location_assignment PIN_42 -to ETH3_TX_EN
+set_location_assignment PIN_34 -to ETH4_LED_YEL
+set_location_assignment PIN_33 -to ETH4_RX
+set_location_assignment PIN_32 -to ETH4_TX
+set_location_assignment PIN_30 -to ETH4_LED_GRN
+set_location_assignment PIN_28 -to ETH4_TX_EN
 set_location_assignment PIN_88 -to KEY1
 set_location_assignment PIN_89 -to KEY2
 set_location_assignment PIN_90 -to KEY3
@@ -102,26 +96,21 @@ set_global_assignment -name OPTIMIZATION_MODE BALANCED
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH1_TX_P
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH1_TX_N
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH1_RX_P
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH1_RX_N
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH0_TX_P
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH0_TX_N
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH0_RX_P
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH0_RX_N
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH2_RX_N
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH2_RX_P
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH2_TX_N
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH2_TX_P
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH3_RX_N
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH3_RX_P
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH3_TX_N
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH3_TX_P
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH4_RX_N
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH4_RX_P
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH4_TX_N
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH4_TX_P
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH1_TX
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH1_RX
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH1_TX_EN
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH0_TX
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH0_RX
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH0_TX_EN
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH2_TX
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH2_RX
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH2_TX_EN
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH3_TX
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH3_RX
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH3_TX_EN
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH4_TX
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH4_RX
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH4_TX_EN
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to UART_TX
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to UART_RX
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to RESET
@@ -129,21 +118,18 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LED1
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to KEY1
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to MAIN_CLK
 set_global_assignment -name QSYS_FILE "g:\\FPGA_Projects\\Ethernet_Switch\\FPGACode\\altclkctrl.qsys"
-set_global_assignment -name VHDL_FILE "g:\\FPGA_Projects\\Ethernet_Switch\\FPGACode\\buff_diff_in.vhd"
-set_global_assignment -name VHDL_FILE "g:\\FPGA_Projects\\Ethernet_Switch\\FPGACode\\buff_diff_out.vhd"
-set_global_assignment -name VHDL_FILE "g:\\FPGA_Projects\\Ethernet_Switch\\FPGACode\\eth_port.vhd"
-set_global_assignment -name VHDL_FILE "g:\\FPGA_Projects\\Ethernet_Switch\\FPGACode\\eth_tx.vhd"
-set_global_assignment -name VHDL_FILE "g:\\FPGA_Projects\\Ethernet_Switch\\FPGACode\\ethernet_switch.vhd"
+set_global_assignment -name VHDL_FILE "g:\\FPGA_Projects\\Ethernet_Switch\\FPGACode\\altclkctrl\\synthesis\\altclkctrl.vhd"
+set_global_assignment -name VHDL_FILE "g:\\FPGA_Projects\\Ethernet_Switch\\FPGACode\\altclkctrl\\simulation\\altclkctrl.vhd"
 set_global_assignment -name QIP_FILE "g:\\FPGA_Projects\\Ethernet_Switch\\FPGACode\\fifo_eth_packet.qip"
 set_global_assignment -name QIP_FILE "g:\\FPGA_Projects\\Ethernet_Switch\\FPGACode\\ram_eth_packet.qip"
 set_global_assignment -name QIP_FILE "g:\\FPGA_Projects\\Ethernet_Switch\\FPGACode\\pll_main.qip"
-set_global_assignment -name QIP_FILE "g:\\FPGA_Projects\\Ethernet_Switch\\FPGACode\\tx_mux.qip"
-set_global_assignment -name VHDL_FILE "g:\\FPGA_Projects\\Ethernet_Switch\\FPGACode\\altclkctrl\\synthesis\\altclkctrl.vhd"
-set_global_assignment -name VHDL_FILE "g:\\FPGA_Projects\\Ethernet_Switch\\FPGACode\\altclkctrl\\simulation\\altclkctrl.vhd"
 set_global_assignment -name VHDL_FILE "g:\\FPGA_Projects\\Ethernet_Switch\\FPGACode\\pll_main.vhd"
-set_global_assignment -name VHDL_FILE "g:\\FPGA_Projects\\Ethernet_Switch\\FPGACode\\tx_mnc_encoder.vhd"
-set_global_assignment -name VHDL_FILE "g:\\FPGA_Projects\\Ethernet_Switch\\FPGACode\\tx_nlp_gen.vhd"
-set_global_assignment -name VHDL_FILE "g:\\FPGA_Projects\\Ethernet_Switch\\FPGACode\\tx_fsm.vhd"
+set_global_assignment -name VHDL_FILE "g:\\FPGA_Projects\\Ethernet_Switch\\FPGACode\\ethernet_switch.vhd"
+set_global_assignment -name VHDL_FILE "g:\\FPGA_Projects\\Ethernet_Switch\\FPGACode\\eth_port.vhd"
+set_global_assignment -name VHDL_FILE "g:\\FPGA_Projects\\Ethernet_Switch\\FPGACode\\eth_tx.vhd"
+set_global_assignment -name VHDL_FILE "g:\\FPGA_Projects\\Ethernet_Switch\\FPGACode\\tx_phy.vhd"
+set_global_assignment -name VHDL_FILE "g:\\FPGA_Projects\\Ethernet_Switch\\FPGACode\\tx_fsm_pt.vhd"
+set_global_assignment -name VHDL_FILE "g:\\FPGA_Projects\\Ethernet_Switch\\FPGACode\\tx_fsm_axi.vhd"
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to KEY4
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to KEY3
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to KEY2

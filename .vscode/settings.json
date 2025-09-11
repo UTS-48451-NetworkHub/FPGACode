@@ -1,0 +1,30 @@
+// Workspace settings
+{
+    // The following will hide the js and map files in the editor
+    "files.exclude": {
+        "**/*.qsys": true,
+        "**/*.o": true,
+        "**/*.rpt": true,
+        "**/*.qip": true,
+        "**/*.vhd.bak": true,
+        "**/*.sopcinfo": true,
+        "**/*.qws": true,
+        "**/*.qdf": true,
+        "**/*.qpf": true,
+        "**/*.ghw": true,
+        "**/*.gtkw": true,
+        "**/*.exe": true,
+        "**/*.ppf": true,
+        "**/*.cf": true,
+        ".qsys_edit": true,
+        ".idea": true,
+        "altclkctrl": true,
+        "atom_netlists": true,
+        "db": true,
+        "drivers": true,
+        "greybox_tmp": true,
+        "incremental_db": true,
+        "output_files": true,
+        "simulation": true,
+    }
+}
