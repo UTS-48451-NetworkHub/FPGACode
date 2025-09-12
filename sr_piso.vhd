@@ -45,9 +45,9 @@ architecture rtl of sr_piso is
 
   --! PISO SR FSM states
   type state_t is (
-    IDLE,
-    TX,
-    TX_BYTE_READY
+    IDLE, --! Awaiting new data to shift
+    TX, --! Actively shifting data & unable to accept new data
+    TX_BYTE_READY --! Actively shifting data & able to accept new data
   );
 
   --! FSM State Variables
@@ -59,7 +59,7 @@ begin
   -- Sequential Processes
   ------------------------------------------------------------------
   --! Sequential Logic Update & State Register Process
-  process (clk, resetn)
+  p_seq : process (clk, resetn)
   begin
     if resetn = '0' then
       state         <= IDLE;
@@ -115,7 +115,7 @@ begin
   -- Combinatorial Processes
   ------------------------------------------------------------------
   --! Combinatorial logic for FSM state updates
-  process (state, byte_valid, cnt_bit_rem, cnt_bit_delay)
+  p_cmb : process (state, byte_valid, cnt_bit_rem, cnt_bit_delay)
   begin
     -- Default state assignment
     next_state <= state;
