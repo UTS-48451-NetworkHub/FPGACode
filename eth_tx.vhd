@@ -101,7 +101,7 @@ begin
       packet_valid => r_packet_valid,
       addr         => r_rd_addr,
       data         => r_rd_data,
-      reg_clk      => r_reg_clk
+      byte_ready   => r_byte_ready
     );
 
   c_fsm_axi : entity work.tx_fsm_axi(arch)

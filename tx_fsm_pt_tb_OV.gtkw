@@ -1,0 +1,49 @@
+[*]
+[*] GTKWave Analyzer v3.3.118 (w)1999-2023 BSI
+[*] Fri Sep 12 19:11:09 2025
+[*]
+[dumpfile] "G:\FPGA_Projects\Ethernet_Switch\FPGACode\tx_fsm_pt_tb.ghw"
+[dumpfile_mtime] "Fri Sep 12 19:08:31 2025"
+[dumpfile_size] 154071
+[savefile] "G:\FPGA_Projects\Ethernet_Switch\FPGACode\tx_fsm_pt_tb_OV.gtkw"
+[timestart] 0
+[size] 1920 1017
+[pos] -1 -1
+*-33.000000 57680000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] top.
+[treeopen] top.tx_fsm_pt_tb.
+[sst_width] 218
+[signals_width] 198
+[sst_expanded] 1
+[sst_vpaned_height] 304
+@28
+top.tx_fsm_pt_tb.clk
+@c00022
+#{top.tx_fsm_pt_tb.data[7:0]} top.tx_fsm_pt_tb.data[7] top.tx_fsm_pt_tb.data[6] top.tx_fsm_pt_tb.data[5] top.tx_fsm_pt_tb.data[4] top.tx_fsm_pt_tb.data[3] top.tx_fsm_pt_tb.data[2] top.tx_fsm_pt_tb.data[1] top.tx_fsm_pt_tb.data[0]
+@28
+top.tx_fsm_pt_tb.data[7]
+top.tx_fsm_pt_tb.data[6]
+top.tx_fsm_pt_tb.data[5]
+top.tx_fsm_pt_tb.data[4]
+top.tx_fsm_pt_tb.data[3]
+top.tx_fsm_pt_tb.data[2]
+top.tx_fsm_pt_tb.data[1]
+top.tx_fsm_pt_tb.data[0]
+@1401200
+-group_end
+@24
+#{top.tx_fsm_pt_tb.addr[10:0]} top.tx_fsm_pt_tb.addr[10] top.tx_fsm_pt_tb.addr[9] top.tx_fsm_pt_tb.addr[8] top.tx_fsm_pt_tb.addr[7] top.tx_fsm_pt_tb.addr[6] top.tx_fsm_pt_tb.addr[5] top.tx_fsm_pt_tb.addr[4] top.tx_fsm_pt_tb.addr[3] top.tx_fsm_pt_tb.addr[2] top.tx_fsm_pt_tb.addr[1] top.tx_fsm_pt_tb.addr[0]
+@28
+top.tx_fsm_pt_tb.uut.packet_valid
+top.tx_fsm_pt_tb.packet_ready
+@420
+top.tx_fsm_pt_tb.uut.state
+@24
+#{top.tx_fsm_pt_tb.uut.r_packet_length[10:0]} top.tx_fsm_pt_tb.uut.r_packet_length[10] top.tx_fsm_pt_tb.uut.r_packet_length[9] top.tx_fsm_pt_tb.uut.r_packet_length[8] top.tx_fsm_pt_tb.uut.r_packet_length[7] top.tx_fsm_pt_tb.uut.r_packet_length[6] top.tx_fsm_pt_tb.uut.r_packet_length[5] top.tx_fsm_pt_tb.uut.r_packet_length[4] top.tx_fsm_pt_tb.uut.r_packet_length[3] top.tx_fsm_pt_tb.uut.r_packet_length[2] top.tx_fsm_pt_tb.uut.r_packet_length[1] top.tx_fsm_pt_tb.uut.r_packet_length[0]
+#{top.tx_fsm_pt_tb.uut.cnt_addr[10:0]} top.tx_fsm_pt_tb.uut.cnt_addr[10] top.tx_fsm_pt_tb.uut.cnt_addr[9] top.tx_fsm_pt_tb.uut.cnt_addr[8] top.tx_fsm_pt_tb.uut.cnt_addr[7] top.tx_fsm_pt_tb.uut.cnt_addr[6] top.tx_fsm_pt_tb.uut.cnt_addr[5] top.tx_fsm_pt_tb.uut.cnt_addr[4] top.tx_fsm_pt_tb.uut.cnt_addr[3] top.tx_fsm_pt_tb.uut.cnt_addr[2] top.tx_fsm_pt_tb.uut.cnt_addr[1] top.tx_fsm_pt_tb.uut.cnt_addr[0]
+@28
+top.tx_fsm_pt_tb.bit_out
+top.tx_fsm_pt_tb.bit_valid
+top.tx_fsm_pt_tb.tx_active
+[pattern_trace] 1
+[pattern_trace] 0

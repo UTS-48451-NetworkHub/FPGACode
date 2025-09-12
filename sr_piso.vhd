@@ -7,7 +7,7 @@ use ieee.math_real.all;
 --! Byte valid to first bit latency is 2 CLKs. Bit to Bit latency is BIT_DELAY CLKs.
 --! If sending multiple bytes in close contact, the next byte may be sent anytime
 --! after byte_ready goes high and 2 CLKs before the first bit out (otherwise
---! a gap in output may be observed).
+--! a gap in output may be observed). Bit order within octet is LSB first.
 entity sr_piso is
   generic (
     WIDTH     : positive := 8; --! Width of input byte
@@ -87,8 +87,8 @@ begin
         -- Bit out time
         if cnt_bit_delay = 0 then
           -- Shift bit out
-          bit_out <= r_byte(WIDTH - 1);
-          r_byte  <= r_byte(WIDTH - 2 downto 0) & '0';
+          bit_out <= r_byte(0);
+          r_byte  <= '0' & r_byte(WIDTH - 1 downto 1);
           -- Decrease remaining bits
           cnt_bit_rem <= cnt_bit_rem - 1;
           -- Set bit valid true if not transitioning to IDLE

@@ -117,19 +117,19 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to RESET
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LED1
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to KEY1
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to MAIN_CLK
-set_global_assignment -name QSYS_FILE "altclkctrl.qsys"
-set_global_assignment -name VHDL_FILE "altclkctrl\\synthesis\\altclkctrl.vhd"
-set_global_assignment -name VHDL_FILE "altclkctrl\\simulation\\altclkctrl.vhd"
-set_global_assignment -name QIP_FILE "fifo_eth_packet.qip"
-set_global_assignment -name QIP_FILE "ram_eth_packet.qip"
-set_global_assignment -name QIP_FILE "pll_main.qip"
-set_global_assignment -name VHDL_FILE "pll_main.vhd"
-set_global_assignment -name VHDL_FILE "ethernet_switch.vhd"
-set_global_assignment -name VHDL_FILE "eth_port.vhd"
-set_global_assignment -name VHDL_FILE "eth_tx.vhd"
-set_global_assignment -name VHDL_FILE "tx_phy.vhd"
-set_global_assignment -name VHDL_FILE "tx_fsm_pt.vhd"
-set_global_assignment -name VHDL_FILE "tx_fsm_axi.vhd"
+set_global_assignment -name QSYS_FILE altclkctrl.qsys
+set_global_assignment -name VHDL_FILE altclkctrl\\synthesis\\altclkctrl.vhd
+set_global_assignment -name VHDL_FILE altclkctrl\\simulation\\altclkctrl.vhd
+set_global_assignment -name QIP_FILE fifo_eth_packet.qip
+set_global_assignment -name QIP_FILE ram_eth_packet.qip
+set_global_assignment -name QIP_FILE pll_main.qip
+set_global_assignment -name VHDL_FILE pll_main.vhd
+set_global_assignment -name VHDL_FILE ethernet_switch.vhd
+set_global_assignment -name VHDL_FILE eth_port.vhd
+set_global_assignment -name VHDL_FILE eth_tx.vhd
+set_global_assignment -name VHDL_FILE tx_phy.vhd
+set_global_assignment -name VHDL_FILE tx_fsm_pt.vhd
+set_global_assignment -name VHDL_FILE tx_fsm_axi.vhd
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to KEY4
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to KEY3
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to KEY2
