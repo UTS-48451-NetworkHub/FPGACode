@@ -43,9 +43,9 @@ architecture arch of eth_tx is
   signal r_bit_valid  : std_logic := '0';
 
   -- TX FSM Communication Signals
-  signal r_tx_active         : std_logic := '0';
-  signal r_fsm_receive_ready : std_logic := '0';
-  signal r_fsm_tx_req        : std_logic := '0';
+  signal r_tx_active    : std_logic := '0';
+  signal r_packet_ready : std_logic := '0';
+  signal r_packet_valid : std_logic := '0';
 
 begin
   r_wr_clk <= r_wr_clk_en and clk;

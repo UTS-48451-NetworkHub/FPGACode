@@ -18,7 +18,7 @@ end entity;
 architecture sim of sr_piso_tb is
   -- DUT generics
   constant WIDTH      : positive := 8;
-  constant CLK_PERIOD : time     := 100 ns; -- 10 MHz
+  constant CLK_PERIOD : time     := 10 ns; -- 100 MHz
 
   -- DUT ports
   signal clk        : std_logic                            := '1';
@@ -41,7 +41,7 @@ begin
   uut : entity work.sr_piso
     generic map(
       WIDTH     => WIDTH,
-      MSB_FIRST => true
+      BIT_DELAY => 10
     )
     port map
     (
@@ -72,8 +72,7 @@ begin
     wait until rising_edge(clk); -- one cycle pulse
     byte_valid <= '0';
 
-    -- Wait until word is shifted out
-    wait for (WIDTH + 5) * CLK_PERIOD;
+    wait for 880 ns;
 
     -- Send second word (0x3C = 00111100)
     wait until rising_edge(clk) and byte_ready = '1';
@@ -82,8 +81,14 @@ begin
     wait until rising_edge(clk);
     byte_valid <= '0';
 
-    -- Let simulation run long enough
-    wait for (WIDTH + 10) * CLK_PERIOD;
+    -- Send third word (0x5A = 01011010)
+    wait until rising_edge(clk) and byte_ready = '1';
+    byte_in    <= x"5A";
+    byte_valid <= '1';
+    wait until rising_edge(clk);
+    byte_valid <= '0';
+
+    wait for 1000 ns;
 
     -- Finish
     assert false report "Simulation finished." severity failure;

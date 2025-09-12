@@ -1,32 +1,55 @@
 [*]
 [*] GTKWave Analyzer v3.3.118 (w)1999-2023 BSI
-[*] Thu Sep 11 07:10:35 2025
+[*] Fri Sep 12 15:31:04 2025
 [*]
 [dumpfile] "G:\FPGA_Projects\Ethernet_Switch\FPGACode\sr_piso_tb.ghw"
-[dumpfile_mtime] "Thu Sep 11 07:07:59 2025"
-[dumpfile_size] 1420
+[dumpfile_mtime] "Fri Sep 12 15:30:56 2025"
+[dumpfile_size] 5829
 [savefile] "G:\FPGA_Projects\Ethernet_Switch\FPGACode\sr_piso_tb.gtkw"
-[timestart] 337000000
+[timestart] 2466000000
 [size] 1920 1017
-[pos] -2085 904
-*-27.000000 600700000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[pos] -1 -1
+*-25.000000 2600200000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.sr_piso_tb.
 [treeopen] top.sr_piso_tb.uut.
 [sst_width] 174
-[signals_width] 126
+[signals_width] 213
 [sst_expanded] 1
-[sst_vpaned_height] 304
+[sst_vpaned_height] 589
 @28
 top.sr_piso_tb.clk
-@29
 top.sr_piso_tb.uut.resetn
-@22
+@c00022
 #{top.sr_piso_tb.uut.byte_in[7:0]} top.sr_piso_tb.uut.byte_in[7] top.sr_piso_tb.uut.byte_in[6] top.sr_piso_tb.uut.byte_in[5] top.sr_piso_tb.uut.byte_in[4] top.sr_piso_tb.uut.byte_in[3] top.sr_piso_tb.uut.byte_in[2] top.sr_piso_tb.uut.byte_in[1] top.sr_piso_tb.uut.byte_in[0]
+@28
+top.sr_piso_tb.uut.byte_in[7]
+top.sr_piso_tb.uut.byte_in[6]
+top.sr_piso_tb.uut.byte_in[5]
+top.sr_piso_tb.uut.byte_in[4]
+top.sr_piso_tb.uut.byte_in[3]
+top.sr_piso_tb.uut.byte_in[2]
+top.sr_piso_tb.uut.byte_in[1]
+top.sr_piso_tb.uut.byte_in[0]
+@1401200
+-group_end
 @28
 top.sr_piso_tb.uut.byte_valid
 top.sr_piso_tb.uut.byte_ready
-top.sr_piso_tb.uut.bit_out
 top.sr_piso_tb.uut.bit_valid
+top.sr_piso_tb.uut.bit_out
+@c00022
+#{top.sr_piso_tb.uut.cnt_bit_delay[3:0]} top.sr_piso_tb.uut.cnt_bit_delay[3] top.sr_piso_tb.uut.cnt_bit_delay[2] top.sr_piso_tb.uut.cnt_bit_delay[1] top.sr_piso_tb.uut.cnt_bit_delay[0]
+@28
+top.sr_piso_tb.uut.cnt_bit_delay[3]
+top.sr_piso_tb.uut.cnt_bit_delay[2]
+top.sr_piso_tb.uut.cnt_bit_delay[1]
+top.sr_piso_tb.uut.cnt_bit_delay[0]
+@1401200
+-group_end
+@22
+#{top.sr_piso_tb.uut.cnt_bit_rem[3:0]} top.sr_piso_tb.uut.cnt_bit_rem[3] top.sr_piso_tb.uut.cnt_bit_rem[2] top.sr_piso_tb.uut.cnt_bit_rem[1] top.sr_piso_tb.uut.cnt_bit_rem[0]
+@420
+top.sr_piso_tb.uut.state
 [pattern_trace] 1
 [pattern_trace] 0

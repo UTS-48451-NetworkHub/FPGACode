@@ -3,14 +3,17 @@ use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
 use IEEE.math_real.all;
 
+--! Serial-In, Parallel-Out Shift Register with configurable delay for bit output.
+--! Byte valid to first bit latency is 2 CLKs. Bit to Bit latency is BIT_DELAY CLKs.
 entity sr_sipo is
   generic (
-    WIDTH     : positive := 8;
-    MSB_FIRST : boolean  := true
+    WIDTH     : positive := 8; --! Width of input byte
+    MSB_FIRST : boolean  := true; --! Whether to output the most significiant or least significiant bit first
+    BIT_DELAY : integer := 1 --! Number of clocks between each bit output
   );
   port (
-    clk        : in std_logic;
-    rst_n      : in std_logic;
+    clk        : in std_logic; --! Input clock
+    resetn      : in std_logic; --! 
     bit_in     : in std_logic;
     bit_valid  : in std_logic;
     realign    : in std_logic;
@@ -36,7 +39,7 @@ begin
 
       byte_valid <= '0';
 
-      if rst_n = '0' then
+      if resetn = '0' then
         reg_q <= (others => '0');
         cnt_q <= (others => '0');
 
