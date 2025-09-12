@@ -2,7 +2,20 @@
 	"partitions" : [
 		{
 			"name" : "Top",
-			"pins" : []
+			"pins" : [
+				{
+					"name" : "ETH0_TX",
+					"strict" : false
+				},
+				{
+					"name" : "ETH0_TX_EN",
+					"strict" : false
+				},
+				{
+					"name" : "RESET",
+					"strict" : false
+				}
+			]
 		}
 	]
 }

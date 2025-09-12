@@ -31,12 +31,6 @@ architecture arch of eth_tx is
   signal r_wr_addr : std_logic_vector(10 downto 0) := (others => '0');
   signal r_rd_addr : std_logic_vector(10 downto 0) := (others => '0');
 
-  -- TX Ram Clock Signals
-  signal r_wr_clk_en : std_logic := '0';
-  signal r_rd_clk_en : std_logic := '0';
-  signal r_wr_clk    : std_logic := '0';
-  signal r_rd_clk    : std_logic := '0';
-
   -- TX PISO Shift Register Signals
   signal r_byte_valid : std_logic := '0';
   signal r_byte_ready : std_logic := '0';
@@ -48,8 +42,6 @@ architecture arch of eth_tx is
   signal r_packet_valid : std_logic := '0';
 
 begin
-  r_wr_clk <= r_wr_clk_en and clk;
-  r_rd_clk <= r_rd_clk_en and clk;
 
   c_phy : entity work.tx_phy(arch)
     port map
@@ -68,7 +60,7 @@ begin
     (
       data      => r_wr_data,
       rdaddress => r_rd_addr,
-      clock     => r_rd_clk,
+      clock     => clk,
       wraddress => r_wr_addr,
       wren      => r_wr_en,
       q         => r_rd_data
@@ -77,7 +69,7 @@ begin
   c_piso_sr : entity work.sr_piso(rtl)
     generic map(
       WIDTH     => 8,
-      MSB_FIRST => true
+      BIT_DELAY => 10
     )
     port map
     (

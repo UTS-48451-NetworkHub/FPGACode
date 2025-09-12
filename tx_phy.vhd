@@ -45,7 +45,7 @@ architecture arch of tx_phy is
   --! Internal register for bit_in
   signal r_mcn_bit_in : std_logic := '0';
   --! Phase used to generate manchester encoding 
-  signal r_mcn_phase : std_logic := '0';
+  signal r_mcn_phase : std_logic := '1';
 
   -- NLP
   --! Internal NLP generator output

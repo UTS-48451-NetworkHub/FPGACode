@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <deploy
- date="2025.09.07.23:34:22"
+ date="2025.09.13.05:27:46"
  outputDirectory="G:/FPGA_Projects/Ethernet_Switch/FPGACode/db/ip/altclkctrl/">
  <perimeter>
   <parameter
@@ -46,12 +46,12 @@
  </perimeter>
  <entity
    path=""
-   parameterizationKey="altclkctrl:1.0:AUTO_DEVICE=EP4CE6E22C8,AUTO_DEVICE_FAMILY=Cyclone IV E,AUTO_DEVICE_SPEEDGRADE=8,AUTO_GENERATION_ID=1757252060,AUTO_UNIQUE_ID=(altclkctrl:24.1:CLOCK_TYPE=1,DEVICE_FAMILY=Cyclone IV E,ENA_REGISTER_MODE=1,GUI_USE_ENA=false,NUMBER_OF_CLOCKS=1,USE_GLITCH_FREE_SWITCH_OVER_IMPLEMENTATION=false)"
+   parameterizationKey="altclkctrl:1.0:AUTO_DEVICE=EP4CE6E22C8,AUTO_DEVICE_FAMILY=Cyclone IV E,AUTO_DEVICE_SPEEDGRADE=8,AUTO_GENERATION_ID=1757705264,AUTO_UNIQUE_ID=(altclkctrl:24.1:CLOCK_TYPE=1,DEVICE_FAMILY=Cyclone IV E,ENA_REGISTER_MODE=1,GUI_USE_ENA=false,NUMBER_OF_CLOCKS=1,USE_GLITCH_FREE_SWITCH_OVER_IMPLEMENTATION=false)"
    instancePathKey="altclkctrl"
    kind="altclkctrl"
    version="1.0"
    name="altclkctrl">
-  <parameter name="AUTO_GENERATION_ID" value="1757252060" />
+  <parameter name="AUTO_GENERATION_ID" value="1757705264" />
   <parameter name="AUTO_DEVICE" value="EP4CE6E22C8" />
   <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone IV E" />
   <parameter name="AUTO_UNIQUE_ID" value="" />

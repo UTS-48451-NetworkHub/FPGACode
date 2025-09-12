@@ -1,0 +1,23 @@
+
+State Machine - |ethernet_switch|eth_port:c_eth0|eth_tx:c_tx|tx_fsm_pt:c_fsm_pt|state
+Name state.IFG state.TX_LAST state.TX_WAIT state.TX_FIRST state.TX_LOAD state.LOAD_LENGTH_LOWER state.LOAD_LENGTH_UPPER state.IDLE 
+state.IDLE 0 0 0 0 0 0 0 0 
+state.LOAD_LENGTH_UPPER 0 0 0 0 0 0 1 1 
+state.LOAD_LENGTH_LOWER 0 0 0 0 0 1 0 1 
+state.TX_LOAD 0 0 0 0 1 0 0 1 
+state.TX_FIRST 0 0 0 1 0 0 0 1 
+state.TX_WAIT 0 0 1 0 0 0 0 1 
+state.TX_LAST 0 1 0 0 0 0 0 1 
+state.IFG 1 0 0 0 0 0 0 1 
+
+State Machine - |ethernet_switch|eth_port:c_eth0|eth_tx:c_tx|sr_piso:c_piso_sr|state
+Name state.TX_BYTE_READY state.TX state.IDLE 
+state.IDLE 0 0 0 
+state.TX 0 1 1 
+state.TX_BYTE_READY 1 0 1 
+
+State Machine - |ethernet_switch|eth_port:c_eth0|eth_tx:c_tx|tx_phy:c_phy|state
+Name state.NLP state.TX state.IDLE 
+state.IDLE 0 0 0 
+state.TX 0 1 1 
+state.NLP 1 0 1 
