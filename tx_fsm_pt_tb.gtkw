@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.118 (w)1999-2023 BSI
-[*] Fri Sep 12 18:55:15 2025
+[*] Sat Sep 13 06:01:04 2025
 [*]
 [dumpfile] "G:\FPGA_Projects\Ethernet_Switch\FPGACode\tx_fsm_pt_tb.ghw"
-[dumpfile_mtime] "Fri Sep 12 18:54:09 2025"
-[dumpfile_size] 135480
+[dumpfile_mtime] "Sat Sep 13 05:58:41 2025"
+[dumpfile_size] 154071
 [savefile] "G:\FPGA_Projects\Ethernet_Switch\FPGACode\tx_fsm_pt_tb.gtkw"
 [timestart] 0
-[size] 1920 1017
-[pos] -1 -1
-*-33.000000 56850000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[size] 2560 1377
+[pos] -347 -347
+*-27.000000 56850000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.tx_fsm_pt_tb.
 [sst_width] 218

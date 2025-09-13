@@ -5,17 +5,17 @@ use ieee.numeric_std.all;
 entity tx_fsm_pt is
   port (
     -- Mandatory Signals
-    clk    : in std_logic; -- 100 MHz
-    resetn : in std_logic;
+    clk    : in std_logic; --! 100 MHz Clock
+    resetn : in std_logic; --! Active low reset
     -- Control Signals
-    tx_active    : out std_logic;
-    byte_valid   : out std_logic;
-    byte_ready   : in std_logic;
-    packet_ready : out std_logic;
-    packet_valid : in std_logic;
+    tx_active    : out std_logic; --! Tell the PHY when a TX transaction starts
+    byte_valid   : out std_logic; --! Tell the PISO SR when a byte is valid on the data bus
+    byte_ready   : in std_logic; --! PISO SR is ready to receive a new byte
+    packet_ready : out std_logic; --! Packet is ready to be received from AXI-S
+    packet_valid : in std_logic; --! Packet is valid in RAM and ready to be transmitted
     -- Data Signals
-    addr : out std_logic_vector(10 downto 0);
-    data : in std_logic_vector(7 downto 0)
+    addr : out std_logic_vector(10 downto 0); --! RAM Data Address
+    data : in std_logic_vector(7 downto 0) --! RAM Data
   );
 end tx_fsm_pt;
 
@@ -23,28 +23,30 @@ architecture arch of tx_fsm_pt is
 
   --! Packet Transmission FSM states
   type state_t is (
-    IDLE,
-    LOAD_LENGTH_UPPER,
-    LOAD_LENGTH_LOWER,
-    TX_LOAD,
-    TX_FIRST,
-    TX_WAIT,
-    TX_LAST,
-    IFG
+    IDLE, --! Awaiting new transmission 
+    LOAD_LENGTH_UPPER, --! Load the upper part of packet length
+    LOAD_LENGTH_LOWER, --! Load the lower part of packet length
+    TX_LOAD, --! Load the next address's data into the shift register
+    TX_FIRST, --! Load the first byte (set tx active high)
+    TX_WAIT, --! Wait for this byte to finish shifting out
+    TX_LAST, --! Load the last byte (set tx active low at completion)
+    IFG --! Inter-frame-gap between transmission and idle state.
   );
   --! FSM State Variables
   signal state, next_state : state_t;
 
   --! Memory Read FSM states
   type mem_state_t is (
-    LADDR,
-    VALID
+    LADDR, --! Loading address.
+    VALID --! Data is valid this cycle.
   );
   --! Memory Read FSM State Variables
   signal mem_state, mem_next_state : mem_state_t;
 
-  --! Memory Read Control Signals
+  -- Memory Read Control Signals
+  --! Memory read request
   signal r_mem_read_req   : std_logic := '0';
+  --! Memory read is valid this cycle
   signal r_mem_read_valid : std_logic := '0';
 
   --! Packet Length Counter
@@ -58,8 +60,9 @@ architecture arch of tx_fsm_pt is
 
   --! FSM Flag First Byte Output
   signal f_first_byte : std_logic := '0';
-  --! IFG Complete Constant
+  --! IFG Counter Reuse, Max for LAST bit delay
   constant IFG_LAST_BIT : integer := 80;
+  --! IFG Counter Finish Delay
   constant IFG_MAX      : integer := 1040;
 
 begin
@@ -146,7 +149,7 @@ begin
 
       -- State Change: TX_LAST to IFG
       if state = TX_LAST and next_state = IFG then
-        tx_active  <= '0';
+        tx_active <= '0';
       end if;
 
       -- State: IFG/TX_LAST
@@ -210,47 +213,47 @@ begin
           next_state <= IFG;
         end if;
 
-        when IFG =>
-          if cnt_IFG = to_unsigned(IFG_MAX, cnt_IFG'length) then
-            next_state <= IDLE;
-          end if;
+      when IFG =>
+        if cnt_IFG = to_unsigned(IFG_MAX, cnt_IFG'length) then
+          next_state <= IDLE;
+        end if;
 
-        end case;
-    end process;
+    end case;
+  end process;
 
-    p_ram_fsm : process (mem_state, r_mem_read_req)
-    begin
-      -- Default state assignment
-      mem_next_state <= mem_state;
+  p_ram_fsm : process (mem_state, r_mem_read_req)
+  begin
+    -- Default state assignment
+    mem_next_state <= mem_state;
 
-      -- State case to set next state
-      case mem_state is
-        when LADDR =>
-          r_mem_read_valid <= '0';
-          if r_mem_read_req = '1' then
-            mem_next_state <= VALID;
-          end if;
+    -- State case to set next state
+    case mem_state is
+      when LADDR =>
+        r_mem_read_valid <= '0';
+        if r_mem_read_req = '1' then
+          mem_next_state <= VALID;
+        end if;
 
-        when VALID =>
-          r_mem_read_valid <= '1';
-          mem_next_state   <= LADDR;
+      when VALID =>
+        r_mem_read_valid <= '1';
+        mem_next_state   <= LADDR;
 
-      end case;
-    end process;
+    end case;
+  end process;
 
-    ------------------------------------------------------------------
-    -- Direct State Outputs
-    ------------------------------------------------------------------
-    with state select
-      packet_ready <=
-      '1' when IDLE,
-      '0' when others;
+  ------------------------------------------------------------------
+  -- Direct State Outputs
+  ------------------------------------------------------------------
+  with state select
+    packet_ready <=
+    '1' when IDLE,
+    '0' when others;
 
-    with state select
-      addr <=
-      std_logic_vector(to_unsigned(0, addr'length)) when LOAD_LENGTH_UPPER,
-      std_logic_vector(to_unsigned(1, addr'length)) when LOAD_LENGTH_LOWER,
-      std_logic_vector(cnt_addr) when TX_WAIT | TX_LOAD | TX_FIRST | TX_LAST,
-      std_logic_vector(to_unsigned(79, addr'length)) when others;
+  with state select
+    addr <=
+    std_logic_vector(to_unsigned(0, addr'length)) when LOAD_LENGTH_UPPER,
+    std_logic_vector(to_unsigned(1, addr'length)) when LOAD_LENGTH_LOWER,
+    std_logic_vector(cnt_addr) when TX_WAIT | TX_LOAD | TX_FIRST | TX_LAST,
+    std_logic_vector(to_unsigned(79, addr'length)) when others;
 
-  end architecture arch;
+end architecture arch;
