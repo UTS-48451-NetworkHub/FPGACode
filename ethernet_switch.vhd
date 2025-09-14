@@ -45,7 +45,7 @@ entity ethernet_switch is
     ETH4_TX      : out std_logic; -- Pin 
     ETH4_TX_EN   : out std_logic; -- Pin
     ETH4_LED_GRN : out std_logic; -- Pin
-    ETH4_LED_YEL : out std_logic  -- Pin
+    ETH4_LED_YEL : out std_logic -- Pin
   );
 end entity ethernet_switch;
 
@@ -56,20 +56,23 @@ architecture arch of ethernet_switch is
   signal clk_100_ng : std_logic := '0';
   signal clk_100    : std_logic := '0';
 
+  -- Reset
+  signal resetn : std_logic := '0';
+
   -- Ethernet Port 0 TX AXI-S
   signal r_eth0_tx_valid : std_logic                    := '0';
   signal r_eth0_tx_ready : std_logic                    := '0';
-  signal r_eth0_tx_keep  : std_logic                    := '0';
   signal r_eth0_tx_last  : std_logic                    := '0';
   signal r_eth0_tx_data  : std_logic_vector(7 downto 0) := (others => '0');
 
 begin
-
+  ------------------------------------------------------------------------
   -- Clock Generation
+  ------------------------------------------------------------------------
   c_pll : entity work.pll_main(SYN)
     port map
     (
-      areset => RESET,
+      areset => resetn,
       inclk0 => MAIN_CLK,
       c0     => clk_100_ng,
       locked => r_clk_lock
@@ -82,22 +85,53 @@ begin
       outclk => clk_100
     );
 
+  ------------------------------------------------------------------------
+  -- Reset Generation
+  ------------------------------------------------------------------------
+  c_reset_ctrl : entity work.reset_ctrl(rtl)
+  generic map (
+    DEBOUNCE_CYCLES => 1_000_000
+  )
+  port map (
+    clk => clk_100,
+    btn_n => RESET,
+    resetn => resetn
+  );
+
+  ------------------------------------------------------------------------
   -- Ethernet Ports
+  ------------------------------------------------------------------------
   c_eth0 : entity work.eth_port(arch)
     port map
     (
       clk    => clk_100,
-      resetn => RESET,
+      resetn => resetn,
       -- Upstream Data Port
       tx_valid => r_eth0_tx_valid,
       tx_ready => r_eth0_tx_ready,
-      tx_keep  => r_eth0_tx_keep,
       tx_last  => r_eth0_tx_last,
       tx_data  => r_eth0_tx_data,
       -- Downstream Data Port
       rx    => ETH0_RX,
       tx    => ETH0_TX,
-      tx_en => ETH0_TX_EN
+      tx_en => ETH0_TX_EN,
+      -- LEDs
+      link => ETH0_LED_GRN,
+      act => ETH0_LED_YEL
+    );
+
+  ------------------------------------------------------------------------
+  -- Debug Generator
+  ------------------------------------------------------------------------
+  debug_tx : entity work.eth_tx_tb_driver
+    port map
+    (
+      clk    => clk_100,
+      resetn => resetn,
+      tvalid => r_eth0_tx_valid,
+      tready => r_eth0_tx_ready,
+      tlast  => r_eth0_tx_last,
+      tdata  => r_eth0_tx_data
     );
 
 end architecture arch;

@@ -33,8 +33,8 @@ architecture sim of tx_fsm_axi_tb is
   x"11", x"12", x"13", x"14", x"15", x"16", x"17", x"18",
   x"19", x"1A", x"1B", x"1C", x"1D", x"1E", x"1F", x"20",
   x"21", x"22", x"23", x"24", x"25", x"26", x"27", x"28",
-  x"29", x"2A", x"2B", x"2C", x"2D", x"2E", x"AA", x"BB",
-  x"CC", x"DD"
+  x"29", x"2A", x"2B", x"2C", x"2D", x"2E", x"49", x"e6",
+  x"26", x"c0"
   );
 
 begin

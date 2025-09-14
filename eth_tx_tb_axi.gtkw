@@ -1,0 +1,80 @@
+[*]
+[*] GTKWave Analyzer v3.3.118 (w)1999-2023 BSI
+[*] Sun Sep 14 13:09:17 2025
+[*]
+[dumpfile] "G:\FPGA_Projects\Ethernet_Switch\FPGACode\eth_tx_tb.ghw"
+[dumpfile_mtime] "Sun Sep 14 13:08:22 2025"
+[dumpfile_size] 95328
+[savefile] "G:\FPGA_Projects\Ethernet_Switch\FPGACode\eth_tx_tb_axi.gtkw"
+[timestart] 17740000000
+[size] 1920 1017
+[pos] -1 -1
+*-29.000000 910330000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] top.
+[treeopen] top.eth_tx_tb.
+[sst_width] 350
+[signals_width] 198
+[sst_expanded] 1
+[sst_vpaned_height] 382
+@200
+-AXI FSM & DATA
+@28
+top.eth_tx_tb.clk
+top.eth_tx_tb.resetn
+top.eth_tx_tb.tready
+top.eth_tx_tb.tvalid
+top.eth_tx_tb.tlast
+@420
+top.eth_tx_tb.uut.c_fsm_axi.state
+top.eth_tx_tb.uut.c_fsm_axi.next_state
+@200
+-RAM
+@28
+top.eth_tx_tb.uut.c_ram.wren
+@24
+#{top.eth_tx_tb.uut.c_ram.wraddress[10:0]} top.eth_tx_tb.uut.c_ram.wraddress[10] top.eth_tx_tb.uut.c_ram.wraddress[9] top.eth_tx_tb.uut.c_ram.wraddress[8] top.eth_tx_tb.uut.c_ram.wraddress[7] top.eth_tx_tb.uut.c_ram.wraddress[6] top.eth_tx_tb.uut.c_ram.wraddress[5] top.eth_tx_tb.uut.c_ram.wraddress[4] top.eth_tx_tb.uut.c_ram.wraddress[3] top.eth_tx_tb.uut.c_ram.wraddress[2] top.eth_tx_tb.uut.c_ram.wraddress[1] top.eth_tx_tb.uut.c_ram.wraddress[0]
+@22
+#{top.eth_tx_tb.uut.c_ram.data[7:0]} top.eth_tx_tb.uut.c_ram.data[7] top.eth_tx_tb.uut.c_ram.data[6] top.eth_tx_tb.uut.c_ram.data[5] top.eth_tx_tb.uut.c_ram.data[4] top.eth_tx_tb.uut.c_ram.data[3] top.eth_tx_tb.uut.c_ram.data[2] top.eth_tx_tb.uut.c_ram.data[1] top.eth_tx_tb.uut.c_ram.data[0]
+@200
+-FSM Comms
+@28
+top.eth_tx_tb.uut.r_packet_ready
+top.eth_tx_tb.uut.r_packet_valid
+@200
+-PT FSM & DATA
+@22
+#{top.eth_tx_tb.uut.c_fsm_pt.addr[10:0]} top.eth_tx_tb.uut.c_fsm_pt.addr[10] top.eth_tx_tb.uut.c_fsm_pt.addr[9] top.eth_tx_tb.uut.c_fsm_pt.addr[8] top.eth_tx_tb.uut.c_fsm_pt.addr[7] top.eth_tx_tb.uut.c_fsm_pt.addr[6] top.eth_tx_tb.uut.c_fsm_pt.addr[5] top.eth_tx_tb.uut.c_fsm_pt.addr[4] top.eth_tx_tb.uut.c_fsm_pt.addr[3] top.eth_tx_tb.uut.c_fsm_pt.addr[2] top.eth_tx_tb.uut.c_fsm_pt.addr[1] top.eth_tx_tb.uut.c_fsm_pt.addr[0]
+#{top.eth_tx_tb.uut.c_fsm_pt.data[7:0]} top.eth_tx_tb.uut.c_fsm_pt.data[7] top.eth_tx_tb.uut.c_fsm_pt.data[6] top.eth_tx_tb.uut.c_fsm_pt.data[5] top.eth_tx_tb.uut.c_fsm_pt.data[4] top.eth_tx_tb.uut.c_fsm_pt.data[3] top.eth_tx_tb.uut.c_fsm_pt.data[2] top.eth_tx_tb.uut.c_fsm_pt.data[1] top.eth_tx_tb.uut.c_fsm_pt.data[0]
+@420
+top.eth_tx_tb.uut.c_fsm_pt.state
+top.eth_tx_tb.uut.c_fsm_pt.mem_state
+@24
+#{top.eth_tx_tb.uut.c_fsm_pt.r_packet_length[10:0]} top.eth_tx_tb.uut.c_fsm_pt.r_packet_length[10] top.eth_tx_tb.uut.c_fsm_pt.r_packet_length[9] top.eth_tx_tb.uut.c_fsm_pt.r_packet_length[8] top.eth_tx_tb.uut.c_fsm_pt.r_packet_length[7] top.eth_tx_tb.uut.c_fsm_pt.r_packet_length[6] top.eth_tx_tb.uut.c_fsm_pt.r_packet_length[5] top.eth_tx_tb.uut.c_fsm_pt.r_packet_length[4] top.eth_tx_tb.uut.c_fsm_pt.r_packet_length[3] top.eth_tx_tb.uut.c_fsm_pt.r_packet_length[2] top.eth_tx_tb.uut.c_fsm_pt.r_packet_length[1] top.eth_tx_tb.uut.c_fsm_pt.r_packet_length[0]
+@200
+-SR
+@c00022
+#{top.eth_tx_tb.uut.c_piso_sr.r_byte[7:0]} top.eth_tx_tb.uut.c_piso_sr.r_byte[7] top.eth_tx_tb.uut.c_piso_sr.r_byte[6] top.eth_tx_tb.uut.c_piso_sr.r_byte[5] top.eth_tx_tb.uut.c_piso_sr.r_byte[4] top.eth_tx_tb.uut.c_piso_sr.r_byte[3] top.eth_tx_tb.uut.c_piso_sr.r_byte[2] top.eth_tx_tb.uut.c_piso_sr.r_byte[1] top.eth_tx_tb.uut.c_piso_sr.r_byte[0]
+@28
+top.eth_tx_tb.uut.c_piso_sr.r_byte[7]
+top.eth_tx_tb.uut.c_piso_sr.r_byte[6]
+top.eth_tx_tb.uut.c_piso_sr.r_byte[5]
+top.eth_tx_tb.uut.c_piso_sr.r_byte[4]
+top.eth_tx_tb.uut.c_piso_sr.r_byte[3]
+top.eth_tx_tb.uut.c_piso_sr.r_byte[2]
+top.eth_tx_tb.uut.c_piso_sr.r_byte[1]
+top.eth_tx_tb.uut.c_piso_sr.r_byte[0]
+@1401200
+-group_end
+@28
+top.eth_tx_tb.uut.c_piso_sr.byte_ready
+top.eth_tx_tb.uut.c_piso_sr.byte_valid
+top.eth_tx_tb.uut.c_piso_sr.bit_valid
+@200
+-PHY
+@420
+top.eth_tx_tb.uut.c_phy.state
+@28
+top.eth_tx_tb.tx_en
+top.eth_tx_tb.tx
+[pattern_trace] 1
+[pattern_trace] 0

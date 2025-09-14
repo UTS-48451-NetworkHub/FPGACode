@@ -15,7 +15,10 @@ entity eth_port is
     -- Downstream Data Port (PLS)
     rx    : in std_logic;
     tx    : out std_logic;
-    tx_en : out std_logic
+    tx_en : out std_logic;
+    -- LEDs
+    link : out std_logic;
+    act : out std_logic
   );
 end eth_port;
 
@@ -35,5 +38,9 @@ begin
       tlast  => tx_last,
       tdata  => tx_data
     );
+
+  -- Debug temporary
+  link <= '1';
+  act <= '0';
 
 end architecture arch;

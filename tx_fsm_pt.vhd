@@ -254,6 +254,6 @@ begin
     std_logic_vector(to_unsigned(0, addr'length)) when LOAD_LENGTH_UPPER,
     std_logic_vector(to_unsigned(1, addr'length)) when LOAD_LENGTH_LOWER,
     std_logic_vector(cnt_addr) when TX_WAIT | TX_LOAD | TX_FIRST | TX_LAST,
-    std_logic_vector(to_unsigned(79, addr'length)) when others;
+    std_logic_vector(to_unsigned(0, addr'length)) when others;
 
 end architecture arch;

@@ -57,6 +57,7 @@ begin
     if resetn = '0' then
       state        <= IDLE;
       packet_valid <= '0';
+      cnt_addr <= (others => '0');
 
     elsif rising_edge(clk) then
       -- Transition state
@@ -68,7 +69,7 @@ begin
         if cnt_addr = to_unsigned(0, cnt_addr'length) then
           cnt_addr <= to_unsigned(1, cnt_addr'length);
         elsif cnt_addr = to_unsigned(1, cnt_addr'length) then
-          cnt_addr <= to_unsigned(9, cnt_addr'length);
+          cnt_addr <= to_unsigned(10, cnt_addr'length);
         else
           cnt_addr <= cnt_addr + 1;
         end if;
