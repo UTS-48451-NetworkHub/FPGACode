@@ -1,7 +1,6 @@
 |ethernet_switch
 MAIN_CLK => pll_main:c_pll.inclk0
-RESET => pll_main:c_pll.areset
-RESET => eth_port:c_eth0.resetn
+RESET => reset_ctrl:c_reset_ctrl.btn_n
 KEY1 => ~NO_FANOUT~
 KEY2 => ~NO_FANOUT~
 KEY3 => ~NO_FANOUT~
@@ -12,8 +11,8 @@ UART_TX << UART_TX.DB_MAX_OUTPUT_PORT_TYPE
 ETH0_RX => eth_port:c_eth0.rx
 ETH0_TX << eth_port:c_eth0.tx
 ETH0_TX_EN << eth_port:c_eth0.tx_en
-ETH0_LED_GRN << ETH0_LED_GRN.DB_MAX_OUTPUT_PORT_TYPE
-ETH0_LED_YEL << ETH0_LED_YEL.DB_MAX_OUTPUT_PORT_TYPE
+ETH0_LED_GRN << eth_port:c_eth0.link
+ETH0_LED_YEL << eth_port:c_eth0.act
 ETH1_RX => ~NO_FANOUT~
 ETH1_TX << ETH1_TX.DB_MAX_OUTPUT_PORT_TYPE
 ETH1_TX_EN << ETH1_TX_EN.DB_MAX_OUTPUT_PORT_TYPE
@@ -135,12 +134,41 @@ inclk[3] => clkctrl1.INCLK3
 outclk <= clkctrl1.CLK
 
 
+|ethernet_switch|reset_ctrl:c_reset_ctrl
+clk => reset_ff[0].CLK
+clk => reset_ff[1].CLK
+clk => stable.CLK
+clk => cnt[0].CLK
+clk => cnt[1].CLK
+clk => cnt[2].CLK
+clk => cnt[3].CLK
+clk => cnt[4].CLK
+clk => cnt[5].CLK
+clk => cnt[6].CLK
+clk => cnt[7].CLK
+clk => cnt[8].CLK
+clk => cnt[9].CLK
+clk => cnt[10].CLK
+clk => cnt[11].CLK
+clk => cnt[12].CLK
+clk => cnt[13].CLK
+clk => cnt[14].CLK
+clk => cnt[15].CLK
+clk => cnt[16].CLK
+clk => cnt[17].CLK
+clk => cnt[18].CLK
+clk => cnt[19].CLK
+clk => btn_sync[0].CLK
+clk => btn_sync[1].CLK
+btn_n => btn_sync[0].DATAIN
+resetn <= reset_ff[1].DB_MAX_OUTPUT_PORT_TYPE
+
+
 |ethernet_switch|eth_port:c_eth0
 clk => eth_tx:c_tx.clk
 resetn => eth_tx:c_tx.resetn
 tx_valid => eth_tx:c_tx.tvalid
 tx_ready <= eth_tx:c_tx.tready
-tx_keep => eth_tx:c_tx.tkeep
 tx_last => eth_tx:c_tx.tlast
 tx_data[0] => eth_tx:c_tx.tdata[0]
 tx_data[1] => eth_tx:c_tx.tdata[1]
@@ -153,6 +181,8 @@ tx_data[7] => eth_tx:c_tx.tdata[7]
 rx => ~NO_FANOUT~
 tx <= eth_tx:c_tx.tx
 tx_en <= eth_tx:c_tx.tx_en
+link <= <VCC>
+act <= <GND>
 
 
 |ethernet_switch|eth_port:c_eth0|eth_tx:c_tx
@@ -169,16 +199,15 @@ tx <= tx_phy:c_phy.tx_out
 tx_en <= tx_phy:c_phy.driver_en
 tvalid => tx_fsm_axi:c_fsm_axi.tvalid
 tready <= tx_fsm_axi:c_fsm_axi.tready
-tkeep => tx_fsm_axi:c_fsm_axi.tkeep
 tlast => tx_fsm_axi:c_fsm_axi.tlast
-tdata[0] => ~NO_FANOUT~
-tdata[1] => ~NO_FANOUT~
-tdata[2] => ~NO_FANOUT~
-tdata[3] => ~NO_FANOUT~
-tdata[4] => ~NO_FANOUT~
-tdata[5] => ~NO_FANOUT~
-tdata[6] => ~NO_FANOUT~
-tdata[7] => ~NO_FANOUT~
+tdata[0] => ram_eth_packet:c_ram.data[0]
+tdata[1] => ram_eth_packet:c_ram.data[1]
+tdata[2] => ram_eth_packet:c_ram.data[2]
+tdata[3] => ram_eth_packet:c_ram.data[3]
+tdata[4] => ram_eth_packet:c_ram.data[4]
+tdata[5] => ram_eth_packet:c_ram.data[5]
+tdata[6] => ram_eth_packet:c_ram.data[6]
+tdata[7] => ram_eth_packet:c_ram.data[7]
 
 
 |ethernet_switch|eth_port:c_eth0|eth_tx:c_tx|tx_phy:c_phy
@@ -290,18 +319,18 @@ q[7] <= altsyncram:altsyncram_component.q_b[7]
 
 
 |ethernet_switch|eth_port:c_eth0|eth_tx:c_tx|ram_eth_packet:c_ram|altsyncram:altsyncram_component
-wren_a => altsyncram_bho3:auto_generated.wren_a
+wren_a => altsyncram_49r3:auto_generated.wren_a
 rden_a => ~NO_FANOUT~
 wren_b => ~NO_FANOUT~
 rden_b => ~NO_FANOUT~
-data_a[0] => altsyncram_bho3:auto_generated.data_a[0]
-data_a[1] => altsyncram_bho3:auto_generated.data_a[1]
-data_a[2] => altsyncram_bho3:auto_generated.data_a[2]
-data_a[3] => altsyncram_bho3:auto_generated.data_a[3]
-data_a[4] => altsyncram_bho3:auto_generated.data_a[4]
-data_a[5] => altsyncram_bho3:auto_generated.data_a[5]
-data_a[6] => altsyncram_bho3:auto_generated.data_a[6]
-data_a[7] => altsyncram_bho3:auto_generated.data_a[7]
+data_a[0] => altsyncram_49r3:auto_generated.data_a[0]
+data_a[1] => altsyncram_49r3:auto_generated.data_a[1]
+data_a[2] => altsyncram_49r3:auto_generated.data_a[2]
+data_a[3] => altsyncram_49r3:auto_generated.data_a[3]
+data_a[4] => altsyncram_49r3:auto_generated.data_a[4]
+data_a[5] => altsyncram_49r3:auto_generated.data_a[5]
+data_a[6] => altsyncram_49r3:auto_generated.data_a[6]
+data_a[7] => altsyncram_49r3:auto_generated.data_a[7]
 data_b[0] => ~NO_FANOUT~
 data_b[1] => ~NO_FANOUT~
 data_b[2] => ~NO_FANOUT~
@@ -310,31 +339,31 @@ data_b[4] => ~NO_FANOUT~
 data_b[5] => ~NO_FANOUT~
 data_b[6] => ~NO_FANOUT~
 data_b[7] => ~NO_FANOUT~
-address_a[0] => altsyncram_bho3:auto_generated.address_a[0]
-address_a[1] => altsyncram_bho3:auto_generated.address_a[1]
-address_a[2] => altsyncram_bho3:auto_generated.address_a[2]
-address_a[3] => altsyncram_bho3:auto_generated.address_a[3]
-address_a[4] => altsyncram_bho3:auto_generated.address_a[4]
-address_a[5] => altsyncram_bho3:auto_generated.address_a[5]
-address_a[6] => altsyncram_bho3:auto_generated.address_a[6]
-address_a[7] => altsyncram_bho3:auto_generated.address_a[7]
-address_a[8] => altsyncram_bho3:auto_generated.address_a[8]
-address_a[9] => altsyncram_bho3:auto_generated.address_a[9]
-address_a[10] => altsyncram_bho3:auto_generated.address_a[10]
-address_b[0] => altsyncram_bho3:auto_generated.address_b[0]
-address_b[1] => altsyncram_bho3:auto_generated.address_b[1]
-address_b[2] => altsyncram_bho3:auto_generated.address_b[2]
-address_b[3] => altsyncram_bho3:auto_generated.address_b[3]
-address_b[4] => altsyncram_bho3:auto_generated.address_b[4]
-address_b[5] => altsyncram_bho3:auto_generated.address_b[5]
-address_b[6] => altsyncram_bho3:auto_generated.address_b[6]
-address_b[7] => altsyncram_bho3:auto_generated.address_b[7]
-address_b[8] => altsyncram_bho3:auto_generated.address_b[8]
-address_b[9] => altsyncram_bho3:auto_generated.address_b[9]
-address_b[10] => altsyncram_bho3:auto_generated.address_b[10]
+address_a[0] => altsyncram_49r3:auto_generated.address_a[0]
+address_a[1] => altsyncram_49r3:auto_generated.address_a[1]
+address_a[2] => altsyncram_49r3:auto_generated.address_a[2]
+address_a[3] => altsyncram_49r3:auto_generated.address_a[3]
+address_a[4] => altsyncram_49r3:auto_generated.address_a[4]
+address_a[5] => altsyncram_49r3:auto_generated.address_a[5]
+address_a[6] => altsyncram_49r3:auto_generated.address_a[6]
+address_a[7] => altsyncram_49r3:auto_generated.address_a[7]
+address_a[8] => altsyncram_49r3:auto_generated.address_a[8]
+address_a[9] => altsyncram_49r3:auto_generated.address_a[9]
+address_a[10] => altsyncram_49r3:auto_generated.address_a[10]
+address_b[0] => altsyncram_49r3:auto_generated.address_b[0]
+address_b[1] => altsyncram_49r3:auto_generated.address_b[1]
+address_b[2] => altsyncram_49r3:auto_generated.address_b[2]
+address_b[3] => altsyncram_49r3:auto_generated.address_b[3]
+address_b[4] => altsyncram_49r3:auto_generated.address_b[4]
+address_b[5] => altsyncram_49r3:auto_generated.address_b[5]
+address_b[6] => altsyncram_49r3:auto_generated.address_b[6]
+address_b[7] => altsyncram_49r3:auto_generated.address_b[7]
+address_b[8] => altsyncram_49r3:auto_generated.address_b[8]
+address_b[9] => altsyncram_49r3:auto_generated.address_b[9]
+address_b[10] => altsyncram_49r3:auto_generated.address_b[10]
 addressstall_a => ~NO_FANOUT~
 addressstall_b => ~NO_FANOUT~
-clock0 => altsyncram_bho3:auto_generated.clock0
+clock0 => altsyncram_49r3:auto_generated.clock0
 clock1 => ~NO_FANOUT~
 clocken0 => ~NO_FANOUT~
 clocken1 => ~NO_FANOUT~
@@ -352,20 +381,20 @@ q_a[4] <= <GND>
 q_a[5] <= <GND>
 q_a[6] <= <GND>
 q_a[7] <= <GND>
-q_b[0] <= altsyncram_bho3:auto_generated.q_b[0]
-q_b[1] <= altsyncram_bho3:auto_generated.q_b[1]
-q_b[2] <= altsyncram_bho3:auto_generated.q_b[2]
-q_b[3] <= altsyncram_bho3:auto_generated.q_b[3]
-q_b[4] <= altsyncram_bho3:auto_generated.q_b[4]
-q_b[5] <= altsyncram_bho3:auto_generated.q_b[5]
-q_b[6] <= altsyncram_bho3:auto_generated.q_b[6]
-q_b[7] <= altsyncram_bho3:auto_generated.q_b[7]
+q_b[0] <= altsyncram_49r3:auto_generated.q_b[0]
+q_b[1] <= altsyncram_49r3:auto_generated.q_b[1]
+q_b[2] <= altsyncram_49r3:auto_generated.q_b[2]
+q_b[3] <= altsyncram_49r3:auto_generated.q_b[3]
+q_b[4] <= altsyncram_49r3:auto_generated.q_b[4]
+q_b[5] <= altsyncram_49r3:auto_generated.q_b[5]
+q_b[6] <= altsyncram_49r3:auto_generated.q_b[6]
+q_b[7] <= altsyncram_49r3:auto_generated.q_b[7]
 eccstatus[0] <= <GND>
 eccstatus[1] <= <GND>
 eccstatus[2] <= <GND>
 
 
-|ethernet_switch|eth_port:c_eth0|eth_tx:c_tx|ram_eth_packet:c_ram|altsyncram:altsyncram_component|altsyncram_bho3:auto_generated
+|ethernet_switch|eth_port:c_eth0|eth_tx:c_tx|ram_eth_packet:c_ram|altsyncram:altsyncram_component|altsyncram_49r3:auto_generated
 address_a[0] => ram_block1a0.PORTAADDR
 address_a[0] => ram_block1a1.PORTAADDR
 address_a[0] => ram_block1a2.PORTAADDR
@@ -748,13 +777,13 @@ packet_valid => next_state.OUTPUTSELECT
 packet_valid => next_state.OUTPUTSELECT
 packet_valid => next_state.OUTPUTSELECT
 packet_valid => next_state.OUTPUTSELECT
-addr[0] <= Selector12.DB_MAX_OUTPUT_PORT_TYPE
-addr[1] <= Selector11.DB_MAX_OUTPUT_PORT_TYPE
-addr[2] <= Selector10.DB_MAX_OUTPUT_PORT_TYPE
-addr[3] <= Selector9.DB_MAX_OUTPUT_PORT_TYPE
+addr[0] <= Selector8.DB_MAX_OUTPUT_PORT_TYPE
+addr[1] <= addr.DB_MAX_OUTPUT_PORT_TYPE
+addr[2] <= addr.DB_MAX_OUTPUT_PORT_TYPE
+addr[3] <= addr.DB_MAX_OUTPUT_PORT_TYPE
 addr[4] <= addr.DB_MAX_OUTPUT_PORT_TYPE
 addr[5] <= addr.DB_MAX_OUTPUT_PORT_TYPE
-addr[6] <= Selector8.DB_MAX_OUTPUT_PORT_TYPE
+addr[6] <= addr.DB_MAX_OUTPUT_PORT_TYPE
 addr[7] <= addr.DB_MAX_OUTPUT_PORT_TYPE
 addr[8] <= addr.DB_MAX_OUTPUT_PORT_TYPE
 addr[9] <= addr.DB_MAX_OUTPUT_PORT_TYPE
@@ -773,25 +802,119 @@ data[7] => r_packet_length.DATAB
 
 
 |ethernet_switch|eth_port:c_eth0|eth_tx:c_tx|tx_fsm_axi:c_fsm_axi
-clk => ~NO_FANOUT~
-resetn => ~NO_FANOUT~
-packet_ready => ~NO_FANOUT~
-packet_valid <= packet_valid.DB_MAX_OUTPUT_PORT_TYPE
-wr_en <= wr_en.DB_MAX_OUTPUT_PORT_TYPE
-tlast => ~NO_FANOUT~
-tkeep => ~NO_FANOUT~
-tready <= tready.DB_MAX_OUTPUT_PORT_TYPE
-tvalid => ~NO_FANOUT~
-addr[0] <= comb.DB_MAX_OUTPUT_PORT_TYPE
-addr[1] <= addr[1].DB_MAX_OUTPUT_PORT_TYPE
-addr[2] <= addr[2].DB_MAX_OUTPUT_PORT_TYPE
-addr[3] <= addr[3].DB_MAX_OUTPUT_PORT_TYPE
-addr[4] <= addr[4].DB_MAX_OUTPUT_PORT_TYPE
-addr[5] <= addr[5].DB_MAX_OUTPUT_PORT_TYPE
-addr[6] <= addr[6].DB_MAX_OUTPUT_PORT_TYPE
-addr[7] <= addr[7].DB_MAX_OUTPUT_PORT_TYPE
-addr[8] <= addr[8].DB_MAX_OUTPUT_PORT_TYPE
-addr[9] <= addr[9].DB_MAX_OUTPUT_PORT_TYPE
-addr[10] <= addr[10].DB_MAX_OUTPUT_PORT_TYPE
+clk => cnt_addr[0].CLK
+clk => cnt_addr[1].CLK
+clk => cnt_addr[2].CLK
+clk => cnt_addr[3].CLK
+clk => cnt_addr[4].CLK
+clk => cnt_addr[5].CLK
+clk => cnt_addr[6].CLK
+clk => cnt_addr[7].CLK
+clk => cnt_addr[8].CLK
+clk => cnt_addr[9].CLK
+clk => cnt_addr[10].CLK
+clk => packet_valid~reg0.CLK
+clk => state~1.DATAIN
+resetn => cnt_addr[0].ACLR
+resetn => cnt_addr[1].ACLR
+resetn => cnt_addr[2].ACLR
+resetn => cnt_addr[3].ACLR
+resetn => cnt_addr[4].ACLR
+resetn => cnt_addr[5].ACLR
+resetn => cnt_addr[6].ACLR
+resetn => cnt_addr[7].ACLR
+resetn => cnt_addr[8].ACLR
+resetn => cnt_addr[9].ACLR
+resetn => cnt_addr[10].ACLR
+resetn => packet_valid~reg0.ACLR
+resetn => state~3.DATAIN
+packet_ready => next_state.OUTPUTSELECT
+packet_ready => next_state.OUTPUTSELECT
+packet_ready => next_state.OUTPUTSELECT
+packet_ready => next_state.OUTPUTSELECT
+packet_valid <= packet_valid~reg0.DB_MAX_OUTPUT_PORT_TYPE
+wr_en <= WideNor1.DB_MAX_OUTPUT_PORT_TYPE
+tlast => next_state.OUTPUTSELECT
+tlast => next_state.OUTPUTSELECT
+tlast => next_state.OUTPUTSELECT
+tlast => next_state.OUTPUTSELECT
+tready <= WideNor0.DB_MAX_OUTPUT_PORT_TYPE
+tvalid => next_state.OUTPUTSELECT
+tvalid => next_state.OUTPUTSELECT
+tvalid => next_state.OUTPUTSELECT
+tvalid => next_state.OUTPUTSELECT
+tvalid => next_state.OUTPUTSELECT
+tvalid => next_state.OUTPUTSELECT
+tvalid => next_state.OUTPUTSELECT
+tvalid => next_state.OUTPUTSELECT
+addr[0] <= cnt_addr[0].DB_MAX_OUTPUT_PORT_TYPE
+addr[1] <= cnt_addr[1].DB_MAX_OUTPUT_PORT_TYPE
+addr[2] <= cnt_addr[2].DB_MAX_OUTPUT_PORT_TYPE
+addr[3] <= cnt_addr[3].DB_MAX_OUTPUT_PORT_TYPE
+addr[4] <= cnt_addr[4].DB_MAX_OUTPUT_PORT_TYPE
+addr[5] <= cnt_addr[5].DB_MAX_OUTPUT_PORT_TYPE
+addr[6] <= cnt_addr[6].DB_MAX_OUTPUT_PORT_TYPE
+addr[7] <= cnt_addr[7].DB_MAX_OUTPUT_PORT_TYPE
+addr[8] <= cnt_addr[8].DB_MAX_OUTPUT_PORT_TYPE
+addr[9] <= cnt_addr[9].DB_MAX_OUTPUT_PORT_TYPE
+addr[10] <= cnt_addr[10].DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ethernet_switch|eth_tx_tb_driver:debug_tx
+clk => tdata_r[0].CLK
+clk => tdata_r[1].CLK
+clk => tdata_r[2].CLK
+clk => tdata_r[3].CLK
+clk => tdata_r[4].CLK
+clk => tdata_r[5].CLK
+clk => tdata_r[6].CLK
+clk => tdata_r[7].CLK
+clk => tlast_r.CLK
+clk => tvalid_r.CLK
+clk => delay_cnt[0].CLK
+clk => delay_cnt[1].CLK
+clk => delay_cnt[2].CLK
+clk => delay_cnt[3].CLK
+clk => active.CLK
+clk => idx[0].CLK
+clk => idx[1].CLK
+clk => idx[2].CLK
+clk => idx[3].CLK
+clk => idx[4].CLK
+clk => idx[5].CLK
+clk => idx[6].CLK
+resetn => tdata_r[0].ACLR
+resetn => tdata_r[1].ACLR
+resetn => tdata_r[2].ACLR
+resetn => tdata_r[3].ACLR
+resetn => tdata_r[4].ACLR
+resetn => tdata_r[5].ACLR
+resetn => tdata_r[6].ACLR
+resetn => tdata_r[7].ACLR
+resetn => tlast_r.ACLR
+resetn => tvalid_r.ACLR
+resetn => delay_cnt[0].ACLR
+resetn => delay_cnt[1].ACLR
+resetn => delay_cnt[2].ACLR
+resetn => delay_cnt[3].ACLR
+resetn => active.ACLR
+resetn => idx[0].ACLR
+resetn => idx[1].ACLR
+resetn => idx[2].ACLR
+resetn => idx[3].ACLR
+resetn => idx[4].ACLR
+resetn => idx[5].ACLR
+resetn => idx[6].ACLR
+tvalid <= tvalid_r.DB_MAX_OUTPUT_PORT_TYPE
+tready => process_0.IN1
+tlast <= tlast_r.DB_MAX_OUTPUT_PORT_TYPE
+tdata[0] <= tdata_r[0].DB_MAX_OUTPUT_PORT_TYPE
+tdata[1] <= tdata_r[1].DB_MAX_OUTPUT_PORT_TYPE
+tdata[2] <= tdata_r[2].DB_MAX_OUTPUT_PORT_TYPE
+tdata[3] <= tdata_r[3].DB_MAX_OUTPUT_PORT_TYPE
+tdata[4] <= tdata_r[4].DB_MAX_OUTPUT_PORT_TYPE
+tdata[5] <= tdata_r[5].DB_MAX_OUTPUT_PORT_TYPE
+tdata[6] <= tdata_r[6].DB_MAX_OUTPUT_PORT_TYPE
+tdata[7] <= tdata_r[7].DB_MAX_OUTPUT_PORT_TYPE
 
 

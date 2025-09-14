@@ -1,4 +1,11 @@
 
+State Machine - |ethernet_switch|eth_port:c_eth0|eth_tx:c_tx|tx_fsm_axi:c_fsm_axi|state
+Name state.LAST state.RECEIVING state.READY state.IDLE 
+state.IDLE 0 0 0 0 
+state.READY 0 0 1 1 
+state.RECEIVING 0 1 0 1 
+state.LAST 1 0 0 1 
+
 State Machine - |ethernet_switch|eth_port:c_eth0|eth_tx:c_tx|tx_fsm_pt:c_fsm_pt|state
 Name state.IFG state.TX_LAST state.TX_WAIT state.TX_FIRST state.TX_LOAD state.LOAD_LENGTH_LOWER state.LOAD_LENGTH_UPPER state.IDLE 
 state.IDLE 0 0 0 0 0 0 0 0 

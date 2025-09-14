@@ -1,5 +1,5 @@
 Analysis & Synthesis report for FPGACode
-Sat Sep 13 05:27:48 2025
+Sun Sep 14 23:46:11 2025
 Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
 
 
@@ -15,25 +15,27 @@ Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
   7. Analysis & Synthesis Resource Utilization by Entity
   8. Analysis & Synthesis RAM Summary
   9. Analysis & Synthesis IP Cores Summary
- 10. State Machine - |ethernet_switch|eth_port:c_eth0|eth_tx:c_tx|tx_fsm_pt:c_fsm_pt|state
- 11. State Machine - |ethernet_switch|eth_port:c_eth0|eth_tx:c_tx|sr_piso:c_piso_sr|state
- 12. State Machine - |ethernet_switch|eth_port:c_eth0|eth_tx:c_tx|tx_phy:c_phy|state
- 13. General Register Statistics
- 14. Inverted Register Statistics
- 15. Multiplexer Restructuring Statistics (Restructuring Performed)
- 16. Source assignments for eth_port:c_eth0|eth_tx:c_tx|ram_eth_packet:c_ram|altsyncram:altsyncram_component|altsyncram_bho3:auto_generated
- 17. Parameter Settings for User Entity Instance: pll_main:c_pll|altpll:altpll_component
- 18. Parameter Settings for User Entity Instance: eth_port:c_eth0|eth_tx:c_tx|ram_eth_packet:c_ram|altsyncram:altsyncram_component
- 19. Parameter Settings for User Entity Instance: eth_port:c_eth0|eth_tx:c_tx|sr_piso:c_piso_sr
- 20. altpll Parameter Settings by Entity Instance
- 21. altsyncram Parameter Settings by Entity Instance
- 22. Port Connectivity Checks: "eth_port:c_eth0|eth_tx:c_tx|ram_eth_packet:c_ram"
- 23. Port Connectivity Checks: "eth_port:c_eth0"
- 24. Port Connectivity Checks: "altclkctrl:c_alt_clk_ctrl|altclkctrl_altclkctrl_0:altclkctrl_0|altclkctrl_altclkctrl_0_sub:altclkctrl_altclkctrl_0_sub_component"
- 25. Port Connectivity Checks: "pll_main:c_pll"
- 26. Post-Synthesis Netlist Statistics for Top Partition
- 27. Elapsed Time Per Partition
- 28. Analysis & Synthesis Messages
+ 10. State Machine - |ethernet_switch|eth_port:c_eth0|eth_tx:c_tx|tx_fsm_axi:c_fsm_axi|state
+ 11. State Machine - |ethernet_switch|eth_port:c_eth0|eth_tx:c_tx|tx_fsm_pt:c_fsm_pt|state
+ 12. State Machine - |ethernet_switch|eth_port:c_eth0|eth_tx:c_tx|sr_piso:c_piso_sr|state
+ 13. State Machine - |ethernet_switch|eth_port:c_eth0|eth_tx:c_tx|tx_phy:c_phy|state
+ 14. Registers Removed During Synthesis
+ 15. General Register Statistics
+ 16. Inverted Register Statistics
+ 17. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 18. Source assignments for eth_port:c_eth0|eth_tx:c_tx|ram_eth_packet:c_ram|altsyncram:altsyncram_component|altsyncram_49r3:auto_generated
+ 19. Parameter Settings for User Entity Instance: pll_main:c_pll|altpll:altpll_component
+ 20. Parameter Settings for User Entity Instance: reset_ctrl:c_reset_ctrl
+ 21. Parameter Settings for User Entity Instance: eth_port:c_eth0|eth_tx:c_tx|ram_eth_packet:c_ram|altsyncram:altsyncram_component
+ 22. Parameter Settings for User Entity Instance: eth_port:c_eth0|eth_tx:c_tx|sr_piso:c_piso_sr
+ 23. Parameter Settings for User Entity Instance: eth_tx_tb_driver:debug_tx
+ 24. altpll Parameter Settings by Entity Instance
+ 25. altsyncram Parameter Settings by Entity Instance
+ 26. Port Connectivity Checks: "altclkctrl:c_alt_clk_ctrl|altclkctrl_altclkctrl_0:altclkctrl_0|altclkctrl_altclkctrl_0_sub:altclkctrl_altclkctrl_0_sub_component"
+ 27. Port Connectivity Checks: "pll_main:c_pll"
+ 28. Post-Synthesis Netlist Statistics for Top Partition
+ 29. Elapsed Time Per Partition
+ 30. Analysis & Synthesis Messages
 
 
 
@@ -60,15 +62,15 @@ on the Quartus Prime software download page.
 +--------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Sat Sep 13 05:27:48 2025           ;
+; Analysis & Synthesis Status        ; Successful - Sun Sep 14 23:46:11 2025           ;
 ; Quartus Prime Version              ; 24.1std.0 Build 1077 03/04/2025 SC Lite Edition ;
 ; Revision Name                      ; FPGACode                                        ;
 ; Top-level Entity Name              ; ethernet_switch                                 ;
 ; Family                             ; Cyclone IV E                                    ;
-; Total logic elements               ; 184                                             ;
-;     Total combinational functions  ; 173                                             ;
-;     Dedicated logic registers      ; 95                                              ;
-; Total registers                    ; 95                                              ;
+; Total logic elements               ; 337                                             ;
+;     Total combinational functions  ; 325                                             ;
+;     Dedicated logic registers      ; 157                                             ;
+; Total registers                    ; 157                                             ;
 ; Total pins                         ; 34                                              ;
 ; Total virtual pins                 ; 0                                               ;
 ; Total memory bits                  ; 16,384                                          ;
@@ -180,38 +182,41 @@ on the Quartus Prime software download page.
 +----------------------------+-------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                                                                                                                                          ;
-+-------------------------------------------------------------------------------------------------+-----------------+------------------------------+-------------------------------------------------------------------------------------------------+------------+
-; File Name with User-Entered Path                                                                ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                                                    ; Library    ;
-+-------------------------------------------------------------------------------------------------+-----------------+------------------------------+-------------------------------------------------------------------------------------------------+------------+
-; altclkctrl/synthesis/altclkctrl.vhd                                                             ; yes             ; User VHDL File               ; G:/FPGA_Projects/Ethernet_Switch/FPGACode/altclkctrl/synthesis/altclkctrl.vhd                   ;            ;
-; sr_piso.vhd                                                                                     ; yes             ; User VHDL File               ; G:/FPGA_Projects/Ethernet_Switch/FPGACode/sr_piso.vhd                                           ;            ;
-; ram_eth_packet.vhd                                                                              ; yes             ; User Wizard-Generated File   ; G:/FPGA_Projects/Ethernet_Switch/FPGACode/ram_eth_packet.vhd                                    ;            ;
-; pll_main.vhd                                                                                    ; yes             ; User Wizard-Generated File   ; G:/FPGA_Projects/Ethernet_Switch/FPGACode/pll_main.vhd                                          ;            ;
-; ethernet_switch.vhd                                                                             ; yes             ; User VHDL File               ; G:/FPGA_Projects/Ethernet_Switch/FPGACode/ethernet_switch.vhd                                   ;            ;
-; eth_port.vhd                                                                                    ; yes             ; User VHDL File               ; G:/FPGA_Projects/Ethernet_Switch/FPGACode/eth_port.vhd                                          ;            ;
-; eth_tx.vhd                                                                                      ; yes             ; User VHDL File               ; G:/FPGA_Projects/Ethernet_Switch/FPGACode/eth_tx.vhd                                            ;            ;
-; tx_phy.vhd                                                                                      ; yes             ; User VHDL File               ; G:/FPGA_Projects/Ethernet_Switch/FPGACode/tx_phy.vhd                                            ;            ;
-; tx_fsm_pt.vhd                                                                                   ; yes             ; User VHDL File               ; G:/FPGA_Projects/Ethernet_Switch/FPGACode/tx_fsm_pt.vhd                                         ;            ;
-; tx_fsm_axi.vhd                                                                                  ; yes             ; User VHDL File               ; G:/FPGA_Projects/Ethernet_Switch/FPGACode/tx_fsm_axi.vhd                                        ;            ;
-; g:/fpga_projects/ethernet_switch/fpgacode/db/ip/altclkctrl/submodules/altclkctrl_altclkctrl_0.v ; yes             ; Auto-Found Verilog HDL File  ; g:/fpga_projects/ethernet_switch/fpgacode/db/ip/altclkctrl/submodules/altclkctrl_altclkctrl_0.v ; altclkctrl ;
-; altpll.tdf                                                                                      ; yes             ; Megafunction                 ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/altpll.tdf                            ;            ;
-; aglobal241.inc                                                                                  ; yes             ; Megafunction                 ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/aglobal241.inc                        ;            ;
-; stratix_pll.inc                                                                                 ; yes             ; Megafunction                 ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/stratix_pll.inc                       ;            ;
-; stratixii_pll.inc                                                                               ; yes             ; Megafunction                 ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/stratixii_pll.inc                     ;            ;
-; cycloneii_pll.inc                                                                               ; yes             ; Megafunction                 ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/cycloneii_pll.inc                     ;            ;
-; db/pll_main_altpll.v                                                                            ; yes             ; Auto-Generated Megafunction  ; G:/FPGA_Projects/Ethernet_Switch/FPGACode/db/pll_main_altpll.v                                  ;            ;
-; altsyncram.tdf                                                                                  ; yes             ; Megafunction                 ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/altsyncram.tdf                        ;            ;
-; stratix_ram_block.inc                                                                           ; yes             ; Megafunction                 ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/stratix_ram_block.inc                 ;            ;
-; lpm_mux.inc                                                                                     ; yes             ; Megafunction                 ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/lpm_mux.inc                           ;            ;
-; lpm_decode.inc                                                                                  ; yes             ; Megafunction                 ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/lpm_decode.inc                        ;            ;
-; a_rdenreg.inc                                                                                   ; yes             ; Megafunction                 ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/a_rdenreg.inc                         ;            ;
-; altrom.inc                                                                                      ; yes             ; Megafunction                 ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/altrom.inc                            ;            ;
-; altram.inc                                                                                      ; yes             ; Megafunction                 ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/altram.inc                            ;            ;
-; altdpram.inc                                                                                    ; yes             ; Megafunction                 ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/altdpram.inc                          ;            ;
-; db/altsyncram_bho3.tdf                                                                          ; yes             ; Auto-Generated Megafunction  ; G:/FPGA_Projects/Ethernet_Switch/FPGACode/db/altsyncram_bho3.tdf                                ;            ;
-+-------------------------------------------------------------------------------------------------+-----------------+------------------------------+-------------------------------------------------------------------------------------------------+------------+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                                                                                                                    ;
++-------------------------------------------------------------------------------------------------+-----------------+----------------------------------------+-------------------------------------------------------------------------------------------------+------------+
+; File Name with User-Entered Path                                                                ; Used in Netlist ; File Type                              ; File Name with Absolute Path                                                                    ; Library    ;
++-------------------------------------------------------------------------------------------------+-----------------+----------------------------------------+-------------------------------------------------------------------------------------------------+------------+
+; reset_ctrl.vhd                                                                                  ; yes             ; User VHDL File                         ; G:/FPGA_Projects/Ethernet_Switch/FPGACode/reset_ctrl.vhd                                        ;            ;
+; eth_tx_tb_driver.vhd                                                                            ; yes             ; User VHDL File                         ; G:/FPGA_Projects/Ethernet_Switch/FPGACode/eth_tx_tb_driver.vhd                                  ;            ;
+; altclkctrl/synthesis/altclkctrl.vhd                                                             ; yes             ; User VHDL File                         ; G:/FPGA_Projects/Ethernet_Switch/FPGACode/altclkctrl/synthesis/altclkctrl.vhd                   ;            ;
+; sr_piso.vhd                                                                                     ; yes             ; User VHDL File                         ; G:/FPGA_Projects/Ethernet_Switch/FPGACode/sr_piso.vhd                                           ;            ;
+; ram_eth_packet.vhd                                                                              ; yes             ; User Wizard-Generated File             ; G:/FPGA_Projects/Ethernet_Switch/FPGACode/ram_eth_packet.vhd                                    ;            ;
+; pll_main.vhd                                                                                    ; yes             ; User Wizard-Generated File             ; G:/FPGA_Projects/Ethernet_Switch/FPGACode/pll_main.vhd                                          ;            ;
+; ethernet_switch.vhd                                                                             ; yes             ; User VHDL File                         ; G:/FPGA_Projects/Ethernet_Switch/FPGACode/ethernet_switch.vhd                                   ;            ;
+; eth_port.vhd                                                                                    ; yes             ; User VHDL File                         ; G:/FPGA_Projects/Ethernet_Switch/FPGACode/eth_port.vhd                                          ;            ;
+; eth_tx.vhd                                                                                      ; yes             ; User VHDL File                         ; G:/FPGA_Projects/Ethernet_Switch/FPGACode/eth_tx.vhd                                            ;            ;
+; tx_phy.vhd                                                                                      ; yes             ; User VHDL File                         ; G:/FPGA_Projects/Ethernet_Switch/FPGACode/tx_phy.vhd                                            ;            ;
+; tx_fsm_pt.vhd                                                                                   ; yes             ; User VHDL File                         ; G:/FPGA_Projects/Ethernet_Switch/FPGACode/tx_fsm_pt.vhd                                         ;            ;
+; tx_fsm_axi.vhd                                                                                  ; yes             ; User VHDL File                         ; G:/FPGA_Projects/Ethernet_Switch/FPGACode/tx_fsm_axi.vhd                                        ;            ;
+; g:/fpga_projects/ethernet_switch/fpgacode/db/ip/altclkctrl/submodules/altclkctrl_altclkctrl_0.v ; yes             ; Auto-Found Verilog HDL File            ; g:/fpga_projects/ethernet_switch/fpgacode/db/ip/altclkctrl/submodules/altclkctrl_altclkctrl_0.v ; altclkctrl ;
+; altpll.tdf                                                                                      ; yes             ; Megafunction                           ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/altpll.tdf                            ;            ;
+; aglobal241.inc                                                                                  ; yes             ; Megafunction                           ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/aglobal241.inc                        ;            ;
+; stratix_pll.inc                                                                                 ; yes             ; Megafunction                           ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/stratix_pll.inc                       ;            ;
+; stratixii_pll.inc                                                                               ; yes             ; Megafunction                           ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/stratixii_pll.inc                     ;            ;
+; cycloneii_pll.inc                                                                               ; yes             ; Megafunction                           ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/cycloneii_pll.inc                     ;            ;
+; db/pll_main_altpll.v                                                                            ; yes             ; Auto-Generated Megafunction            ; G:/FPGA_Projects/Ethernet_Switch/FPGACode/db/pll_main_altpll.v                                  ;            ;
+; altsyncram.tdf                                                                                  ; yes             ; Megafunction                           ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/altsyncram.tdf                        ;            ;
+; stratix_ram_block.inc                                                                           ; yes             ; Megafunction                           ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/stratix_ram_block.inc                 ;            ;
+; lpm_mux.inc                                                                                     ; yes             ; Megafunction                           ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/lpm_mux.inc                           ;            ;
+; lpm_decode.inc                                                                                  ; yes             ; Megafunction                           ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/lpm_decode.inc                        ;            ;
+; a_rdenreg.inc                                                                                   ; yes             ; Megafunction                           ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/a_rdenreg.inc                         ;            ;
+; altrom.inc                                                                                      ; yes             ; Megafunction                           ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/altrom.inc                            ;            ;
+; altram.inc                                                                                      ; yes             ; Megafunction                           ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/altram.inc                            ;            ;
+; altdpram.inc                                                                                    ; yes             ; Megafunction                           ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/altdpram.inc                          ;            ;
+; db/altsyncram_49r3.tdf                                                                          ; yes             ; Auto-Generated Megafunction            ; G:/FPGA_Projects/Ethernet_Switch/FPGACode/db/altsyncram_49r3.tdf                                ;            ;
+; ram_preamble.hex                                                                                ; yes             ; Auto-Found Memory Initialization File  ; G:/FPGA_Projects/Ethernet_Switch/FPGACode/ram_preamble.hex                                      ;            ;
++-------------------------------------------------------------------------------------------------+-----------------+----------------------------------------+-------------------------------------------------------------------------------------------------+------------+
 
 
 +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -219,20 +224,20 @@ on the Quartus Prime software download page.
 +---------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------+
 ; Resource                                    ; Usage                                                                                                                                                 ;
 +---------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Estimated Total logic elements              ; 184                                                                                                                                                   ;
+; Estimated Total logic elements              ; 337                                                                                                                                                   ;
 ;                                             ;                                                                                                                                                       ;
-; Total combinational functions               ; 173                                                                                                                                                   ;
+; Total combinational functions               ; 325                                                                                                                                                   ;
 ; Logic element usage by number of LUT inputs ;                                                                                                                                                       ;
-;     -- 4 input functions                    ; 85                                                                                                                                                    ;
-;     -- 3 input functions                    ; 30                                                                                                                                                    ;
-;     -- <=2 input functions                  ; 58                                                                                                                                                    ;
+;     -- 4 input functions                    ; 156                                                                                                                                                   ;
+;     -- 3 input functions                    ; 46                                                                                                                                                    ;
+;     -- <=2 input functions                  ; 123                                                                                                                                                   ;
 ;                                             ;                                                                                                                                                       ;
 ; Logic elements by mode                      ;                                                                                                                                                       ;
-;     -- normal mode                          ; 128                                                                                                                                                   ;
-;     -- arithmetic mode                      ; 45                                                                                                                                                    ;
+;     -- normal mode                          ; 245                                                                                                                                                   ;
+;     -- arithmetic mode                      ; 80                                                                                                                                                    ;
 ;                                             ;                                                                                                                                                       ;
-; Total registers                             ; 95                                                                                                                                                    ;
-;     -- Dedicated logic registers            ; 95                                                                                                                                                    ;
+; Total registers                             ; 157                                                                                                                                                   ;
+;     -- Dedicated logic registers            ; 157                                                                                                                                                   ;
 ;     -- I/O registers                        ; 0                                                                                                                                                     ;
 ;                                             ;                                                                                                                                                       ;
 ; I/O pins                                    ; 34                                                                                                                                                    ;
@@ -244,9 +249,9 @@ on the Quartus Prime software download page.
 ;     -- PLLs                                 ; 1                                                                                                                                                     ;
 ;                                             ;                                                                                                                                                       ;
 ; Maximum fan-out node                        ; altclkctrl:c_alt_clk_ctrl|altclkctrl_altclkctrl_0:altclkctrl_0|altclkctrl_altclkctrl_0_sub:altclkctrl_altclkctrl_0_sub_component|wire_clkctrl1_outclk ;
-; Maximum fan-out                             ; 103                                                                                                                                                   ;
-; Total fan-out                               ; 1021                                                                                                                                                  ;
-; Average fan-out                             ; 2.95                                                                                                                                                  ;
+; Maximum fan-out                             ; 165                                                                                                                                                   ;
+; Total fan-out                               ; 1791                                                                                                                                                  ;
+; Average fan-out                             ; 3.20                                                                                                                                                  ;
 +---------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 
@@ -255,32 +260,35 @@ on the Quartus Prime software download page.
 +------------------------------------------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------+--------------+
 ; Compilation Hierarchy Node                                                   ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                                               ; Entity Name                 ; Library Name ;
 +------------------------------------------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------+--------------+
-; |ethernet_switch                                                             ; 173 (1)             ; 95 (0)                    ; 16384       ; 0            ; 0       ; 0         ; 34   ; 0            ; |ethernet_switch                                                                                                                                  ; ethernet_switch             ; work         ;
+; |ethernet_switch                                                             ; 325 (1)             ; 157 (0)                   ; 16384       ; 0            ; 0       ; 0         ; 34   ; 0            ; |ethernet_switch                                                                                                                                  ; ethernet_switch             ; work         ;
 ;    |altclkctrl:c_alt_clk_ctrl|                                               ; 0 (0)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ethernet_switch|altclkctrl:c_alt_clk_ctrl                                                                                                        ; altclkctrl                  ; work         ;
 ;       |altclkctrl_altclkctrl_0:altclkctrl_0|                                 ; 0 (0)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ethernet_switch|altclkctrl:c_alt_clk_ctrl|altclkctrl_altclkctrl_0:altclkctrl_0                                                                   ; altclkctrl_altclkctrl_0     ; altclkctrl   ;
 ;          |altclkctrl_altclkctrl_0_sub:altclkctrl_altclkctrl_0_sub_component| ; 0 (0)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ethernet_switch|altclkctrl:c_alt_clk_ctrl|altclkctrl_altclkctrl_0:altclkctrl_0|altclkctrl_altclkctrl_0_sub:altclkctrl_altclkctrl_0_sub_component ; altclkctrl_altclkctrl_0_sub ; altclkctrl   ;
-;    |eth_port:c_eth0|                                                         ; 172 (0)             ; 95 (0)                    ; 16384       ; 0            ; 0       ; 0         ; 0    ; 0            ; |ethernet_switch|eth_port:c_eth0                                                                                                                  ; eth_port                    ; work         ;
-;       |eth_tx:c_tx|                                                          ; 172 (0)             ; 95 (0)                    ; 16384       ; 0            ; 0       ; 0         ; 0    ; 0            ; |ethernet_switch|eth_port:c_eth0|eth_tx:c_tx                                                                                                      ; eth_tx                      ; work         ;
+;    |eth_port:c_eth0|                                                         ; 217 (0)             ; 111 (0)                   ; 16384       ; 0            ; 0       ; 0         ; 0    ; 0            ; |ethernet_switch|eth_port:c_eth0                                                                                                                  ; eth_port                    ; work         ;
+;       |eth_tx:c_tx|                                                          ; 217 (0)             ; 111 (0)                   ; 16384       ; 0            ; 0       ; 0         ; 0    ; 0            ; |ethernet_switch|eth_port:c_eth0|eth_tx:c_tx                                                                                                      ; eth_tx                      ; work         ;
 ;          |ram_eth_packet:c_ram|                                              ; 0 (0)               ; 0 (0)                     ; 16384       ; 0            ; 0       ; 0         ; 0    ; 0            ; |ethernet_switch|eth_port:c_eth0|eth_tx:c_tx|ram_eth_packet:c_ram                                                                                 ; ram_eth_packet              ; work         ;
 ;             |altsyncram:altsyncram_component|                                ; 0 (0)               ; 0 (0)                     ; 16384       ; 0            ; 0       ; 0         ; 0    ; 0            ; |ethernet_switch|eth_port:c_eth0|eth_tx:c_tx|ram_eth_packet:c_ram|altsyncram:altsyncram_component                                                 ; altsyncram                  ; work         ;
-;                |altsyncram_bho3:auto_generated|                              ; 0 (0)               ; 0 (0)                     ; 16384       ; 0            ; 0       ; 0         ; 0    ; 0            ; |ethernet_switch|eth_port:c_eth0|eth_tx:c_tx|ram_eth_packet:c_ram|altsyncram:altsyncram_component|altsyncram_bho3:auto_generated                  ; altsyncram_bho3             ; work         ;
-;          |sr_piso:c_piso_sr|                                                 ; 36 (36)             ; 21 (21)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ethernet_switch|eth_port:c_eth0|eth_tx:c_tx|sr_piso:c_piso_sr                                                                                    ; sr_piso                     ; work         ;
-;          |tx_fsm_pt:c_fsm_pt|                                                ; 90 (90)             ; 46 (46)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ethernet_switch|eth_port:c_eth0|eth_tx:c_tx|tx_fsm_pt:c_fsm_pt                                                                                   ; tx_fsm_pt                   ; work         ;
+;                |altsyncram_49r3:auto_generated|                              ; 0 (0)               ; 0 (0)                     ; 16384       ; 0            ; 0       ; 0         ; 0    ; 0            ; |ethernet_switch|eth_port:c_eth0|eth_tx:c_tx|ram_eth_packet:c_ram|altsyncram:altsyncram_component|altsyncram_49r3:auto_generated                  ; altsyncram_49r3             ; work         ;
+;          |sr_piso:c_piso_sr|                                                 ; 38 (38)             ; 21 (21)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ethernet_switch|eth_port:c_eth0|eth_tx:c_tx|sr_piso:c_piso_sr                                                                                    ; sr_piso                     ; work         ;
+;          |tx_fsm_axi:c_fsm_axi|                                              ; 37 (37)             ; 16 (16)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ethernet_switch|eth_port:c_eth0|eth_tx:c_tx|tx_fsm_axi:c_fsm_axi                                                                                 ; tx_fsm_axi                  ; work         ;
+;          |tx_fsm_pt:c_fsm_pt|                                                ; 96 (96)             ; 46 (46)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ethernet_switch|eth_port:c_eth0|eth_tx:c_tx|tx_fsm_pt:c_fsm_pt                                                                                   ; tx_fsm_pt                   ; work         ;
 ;          |tx_phy:c_phy|                                                      ; 46 (46)             ; 28 (28)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ethernet_switch|eth_port:c_eth0|eth_tx:c_tx|tx_phy:c_phy                                                                                         ; tx_phy                      ; work         ;
+;    |eth_tx_tb_driver:debug_tx|                                               ; 75 (75)             ; 21 (21)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ethernet_switch|eth_tx_tb_driver:debug_tx                                                                                                        ; eth_tx_tb_driver            ; work         ;
 ;    |pll_main:c_pll|                                                          ; 0 (0)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ethernet_switch|pll_main:c_pll                                                                                                                   ; pll_main                    ; work         ;
 ;       |altpll:altpll_component|                                              ; 0 (0)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ethernet_switch|pll_main:c_pll|altpll:altpll_component                                                                                           ; altpll                      ; work         ;
 ;          |pll_main_altpll:auto_generated|                                    ; 0 (0)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ethernet_switch|pll_main:c_pll|altpll:altpll_component|pll_main_altpll:auto_generated                                                            ; pll_main_altpll             ; work         ;
+;    |reset_ctrl:c_reset_ctrl|                                                 ; 32 (32)             ; 25 (25)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |ethernet_switch|reset_ctrl:c_reset_ctrl                                                                                                          ; reset_ctrl                  ; work         ;
 +------------------------------------------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
 
-+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis RAM Summary                                                                                                                                                                                                ;
-+----------------------------------------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+-------+------+
-; Name                                                                                                                       ; Type ; Mode             ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Size  ; MIF  ;
-+----------------------------------------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+-------+------+
-; eth_port:c_eth0|eth_tx:c_tx|ram_eth_packet:c_ram|altsyncram:altsyncram_component|altsyncram_bho3:auto_generated|ALTSYNCRAM ; M9K  ; Simple Dual Port ; 2048         ; 8            ; 2048         ; 8            ; 16384 ; None ;
-+----------------------------------------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+-------+------+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis RAM Summary                                                                                                                                                                                                            ;
++----------------------------------------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+-------+------------------+
+; Name                                                                                                                       ; Type ; Mode             ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Size  ; MIF              ;
++----------------------------------------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+-------+------------------+
+; eth_port:c_eth0|eth_tx:c_tx|ram_eth_packet:c_ram|altsyncram:altsyncram_component|altsyncram_49r3:auto_generated|ALTSYNCRAM ; M9K  ; Simple Dual Port ; 2048         ; 8            ; 2048         ; 8            ; 16384 ; ram_preamble.hex ;
++----------------------------------------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+-------+------------------+
 
 
 +--------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -290,6 +298,19 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +--------+--------------+---------+--------------+--------------+-------------------------------------------------------------------+--------------------+
 ; Altera ; RAM: 2-PORT  ; 24.1    ; N/A          ; N/A          ; |ethernet_switch|eth_port:c_eth0|eth_tx:c_tx|ram_eth_packet:c_ram ; ram_eth_packet.vhd ;
 +--------+--------------+---------+--------------+--------------+-------------------------------------------------------------------+--------------------+
+
+
+Encoding Type:  One-Hot
++-----------------------------------------------------------------------------------------+
+; State Machine - |ethernet_switch|eth_port:c_eth0|eth_tx:c_tx|tx_fsm_axi:c_fsm_axi|state ;
++-----------------+------------+-----------------+-------------+--------------------------+
+; Name            ; state.LAST ; state.RECEIVING ; state.READY ; state.IDLE               ;
++-----------------+------------+-----------------+-------------+--------------------------+
+; state.IDLE      ; 0          ; 0               ; 0           ; 0                        ;
+; state.READY     ; 0          ; 0               ; 1           ; 1                        ;
+; state.RECEIVING ; 0          ; 1               ; 0           ; 1                        ;
+; state.LAST      ; 1          ; 0               ; 0           ; 1                        ;
++-----------------+------------+-----------------+-------------+--------------------------+
 
 
 Encoding Type:  One-Hot
@@ -333,17 +354,27 @@ Encoding Type:  One-Hot
 +------------+-----------+----------+---------------------------------------------+
 
 
++--------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                   ;
++---------------------------------------+----------------------------------------------+
+; Register name                         ; Reason for Removal                           ;
++---------------------------------------+----------------------------------------------+
+; eth_tx_tb_driver:debug_tx|tvalid_r    ; Merged with eth_tx_tb_driver:debug_tx|active ;
+; Total Number of Removed Registers = 1 ;                                              ;
++---------------------------------------+----------------------------------------------+
+
+
 +------------------------------------------------------+
 ; General Register Statistics                          ;
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 95    ;
-; Number of registers using Synchronous Clear  ; 18    ;
+; Total registers                              ; 157   ;
+; Number of registers using Synchronous Clear  ; 47    ;
 ; Number of registers using Synchronous Load   ; 12    ;
-; Number of registers using Asynchronous Clear ; 60    ;
+; Number of registers using Asynchronous Clear ; 97    ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 45    ;
+; Number of registers using Clock Enable       ; 72    ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -354,7 +385,10 @@ Encoding Type:  One-Hot
 ; Inverted Register                                    ; Fan out ;
 +------------------------------------------------------+---------+
 ; eth_port:c_eth0|eth_tx:c_tx|tx_phy:c_phy|r_mcn_phase ; 2       ;
-; Total number of inverted registers = 1               ;         ;
+; reset_ctrl:c_reset_ctrl|stable                       ; 4       ;
+; reset_ctrl:c_reset_ctrl|btn_sync[1]                  ; 2       ;
+; reset_ctrl:c_reset_ctrl|btn_sync[0]                  ; 1       ;
+; Total number of inverted registers = 4               ;         ;
 +------------------------------------------------------+---------+
 
 
@@ -363,20 +397,25 @@ Encoding Type:  One-Hot
 +--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                      ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------------------------+
-; 3:1                ; 7 bits    ; 14 LEs        ; 7 LEs                ; 7 LEs                  ; Yes        ; |ethernet_switch|eth_port:c_eth0|eth_tx:c_tx|sr_piso:c_piso_sr|r_byte[3]        ;
-; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |ethernet_switch|eth_port:c_eth0|eth_tx:c_tx|sr_piso:c_piso_sr|cnt_bit_delay[1] ;
-; 4:1                ; 11 bits   ; 22 LEs        ; 22 LEs               ; 0 LEs                  ; Yes        ; |ethernet_switch|eth_port:c_eth0|eth_tx:c_tx|tx_fsm_pt:c_fsm_pt|cnt_addr[1]     ;
-; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |ethernet_switch|eth_port:c_eth0|eth_tx:c_tx|sr_piso:c_piso_sr|cnt_bit_rem[1]   ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |ethernet_switch|eth_tx_tb_driver:debug_tx|idx[1]                               ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 7 LEs                ; 7 LEs                  ; Yes        ; |ethernet_switch|eth_port:c_eth0|eth_tx:c_tx|sr_piso:c_piso_sr|r_byte[0]        ;
+; 3:1                ; 20 bits   ; 40 LEs        ; 20 LEs               ; 20 LEs                 ; Yes        ; |ethernet_switch|reset_ctrl:c_reset_ctrl|cnt[15]                                ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 22 LEs               ; 0 LEs                  ; Yes        ; |ethernet_switch|eth_port:c_eth0|eth_tx:c_tx|tx_fsm_axi:c_fsm_axi|cnt_addr[4]   ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |ethernet_switch|eth_port:c_eth0|eth_tx:c_tx|sr_piso:c_piso_sr|cnt_bit_delay[3] ;
+; 4:1                ; 11 bits   ; 22 LEs        ; 22 LEs               ; 0 LEs                  ; Yes        ; |ethernet_switch|eth_port:c_eth0|eth_tx:c_tx|tx_fsm_pt:c_fsm_pt|cnt_addr[9]     ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |ethernet_switch|eth_port:c_eth0|eth_tx:c_tx|sr_piso:c_piso_sr|cnt_bit_rem[0]   ;
 ; 5:1                ; 4 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; Yes        ; |ethernet_switch|eth_port:c_eth0|eth_tx:c_tx|tx_phy:c_phy|r_clk_counter[3]      ;
+; 68:1               ; 4 bits    ; 180 LEs       ; 136 LEs              ; 44 LEs                 ; Yes        ; |ethernet_switch|eth_tx_tb_driver:debug_tx|tdata_r[1]                           ;
 ; 7:1                ; 3 bits    ; 12 LEs        ; 9 LEs                ; 3 LEs                  ; No         ; |ethernet_switch|eth_port:c_eth0|eth_tx:c_tx|sr_piso:c_piso_sr|Selector2        ;
-; 7:1                ; 3 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; No         ; |ethernet_switch|eth_port:c_eth0|eth_tx:c_tx|tx_phy:c_phy|Selector2             ;
-; 12:1               ; 4 bits    ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; No         ; |ethernet_switch|eth_port:c_eth0|eth_tx:c_tx|tx_fsm_pt:c_fsm_pt|Selector0       ;
+; 7:1                ; 3 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; No         ; |ethernet_switch|eth_port:c_eth0|eth_tx:c_tx|tx_phy:c_phy|Selector0             ;
+; 8:1                ; 4 bits    ; 20 LEs        ; 12 LEs               ; 8 LEs                  ; No         ; |ethernet_switch|eth_port:c_eth0|eth_tx:c_tx|tx_fsm_axi:c_fsm_axi|Selector2     ;
+; 12:1               ; 4 bits    ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; No         ; |ethernet_switch|eth_port:c_eth0|eth_tx:c_tx|tx_fsm_pt:c_fsm_pt|Selector7       ;
 ; 14:1               ; 2 bits    ; 18 LEs        ; 6 LEs                ; 12 LEs                 ; No         ; |ethernet_switch|eth_port:c_eth0|eth_tx:c_tx|tx_fsm_pt:c_fsm_pt|Selector5       ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------------------------+
 
 
 +----------------------------------------------------------------------------------------------------------------------------------------+
-; Source assignments for eth_port:c_eth0|eth_tx:c_tx|ram_eth_packet:c_ram|altsyncram:altsyncram_component|altsyncram_bho3:auto_generated ;
+; Source assignments for eth_port:c_eth0|eth_tx:c_tx|ram_eth_packet:c_ram|altsyncram:altsyncram_component|altsyncram_49r3:auto_generated ;
 +---------------------------------+--------------------+------+--------------------------------------------------------------------------+
 ; Assignment                      ; Value              ; From ; To                                                                       ;
 +---------------------------------+--------------------+------+--------------------------------------------------------------------------+
@@ -758,6 +797,16 @@ Encoding Type:  One-Hot
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
++----------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: reset_ctrl:c_reset_ctrl ;
++-----------------+---------+------------------------------------------+
+; Parameter Name  ; Value   ; Type                                     ;
++-----------------+---------+------------------------------------------+
+; debounce_cycles ; 1000000 ; Signed Integer                           ;
++-----------------+---------+------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
 +-------------------------------------------------------------------------------------------------------------------------------+
 ; Parameter Settings for User Entity Instance: eth_port:c_eth0|eth_tx:c_tx|ram_eth_packet:c_ram|altsyncram:altsyncram_component ;
 +------------------------------------+----------------------+-------------------------------------------------------------------+
@@ -801,7 +850,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE            ; Untyped                                                           ;
 ; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped                                                           ;
 ; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped                                                           ;
-; INIT_FILE                          ; UNUSED               ; Untyped                                                           ;
+; INIT_FILE                          ; ram_preamble.hex     ; Untyped                                                           ;
 ; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped                                                           ;
 ; MAXIMUM_DEPTH                      ; 0                    ; Signed Integer                                                    ;
 ; CLOCK_ENABLE_INPUT_A               ; BYPASS               ; Untyped                                                           ;
@@ -814,7 +863,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                ; Untyped                                                           ;
 ; WIDTH_ECCSTATUS                    ; 3                    ; Signed Integer                                                    ;
 ; DEVICE_FAMILY                      ; Cyclone IV E         ; Untyped                                                           ;
-; CBXI_PARAMETER                     ; altsyncram_bho3      ; Untyped                                                           ;
+; CBXI_PARAMETER                     ; altsyncram_49r3      ; Untyped                                                           ;
 +------------------------------------+----------------------+-------------------------------------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
@@ -827,6 +876,16 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; width          ; 8     ; Signed Integer                                                    ;
 ; bit_delay      ; 10    ; Signed Integer                                                    ;
 +----------------+-------+-------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: eth_tx_tb_driver:debug_tx ;
++----------------+-------+-----------------------------------------------+
+; Parameter Name ; Value ; Type                                          ;
++----------------+-------+-----------------------------------------------+
+; startup_delay  ; 10    ; Signed Integer                                ;
++----------------+-------+-----------------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
@@ -867,28 +926,6 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-------------------------------------------+----------------------------------------------------------------------------------+
 
 
-+------------------------------------------------------------------------------+
-; Port Connectivity Checks: "eth_port:c_eth0|eth_tx:c_tx|ram_eth_packet:c_ram" ;
-+------+-------+----------+----------------------------------------------------+
-; Port ; Type  ; Severity ; Details                                            ;
-+------+-------+----------+----------------------------------------------------+
-; data ; Input ; Info     ; Stuck at GND                                       ;
-+------+-------+----------+----------------------------------------------------+
-
-
-+--------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "eth_port:c_eth0"                                                                        ;
-+----------+--------+----------+-------------------------------------------------------------------------------------+
-; Port     ; Type   ; Severity ; Details                                                                             ;
-+----------+--------+----------+-------------------------------------------------------------------------------------+
-; tx_valid ; Input  ; Info     ; Stuck at GND                                                                        ;
-; tx_ready ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-; tx_keep  ; Input  ; Info     ; Stuck at GND                                                                        ;
-; tx_last  ; Input  ; Info     ; Stuck at GND                                                                        ;
-; tx_data  ; Input  ; Info     ; Stuck at GND                                                                        ;
-+----------+--------+----------+-------------------------------------------------------------------------------------+
-
-
 +--------------------------------------------------------------------------------------------------------------------------------------------------------------+
 ; Port Connectivity Checks: "altclkctrl:c_alt_clk_ctrl|altclkctrl_altclkctrl_0:altclkctrl_0|altclkctrl_altclkctrl_0_sub:altclkctrl_altclkctrl_0_sub_component" ;
 +-------------+-------+----------+-----------------------------------------------------------------------------------------------------------------------------+
@@ -915,29 +952,31 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-----------------------+-----------------------------+
 ; boundary_port         ; 34                          ;
 ; cycloneiii_clkctrl    ; 1                           ;
-; cycloneiii_ff         ; 95                          ;
-;     CLR               ; 30                          ;
+; cycloneiii_ff         ; 157                         ;
+;     CLR               ; 40                          ;
 ;     CLR SCLR          ; 18                          ;
 ;     CLR SLD           ; 1                           ;
 ;     ENA               ; 23                          ;
-;     ENA CLR           ; 11                          ;
+;     ENA CLR           ; 29                          ;
+;     ENA CLR SCLR      ; 9                           ;
 ;     ENA SLD           ; 11                          ;
-;     plain             ; 1                           ;
-; cycloneiii_lcell_comb ; 173                         ;
-;     arith             ; 45                          ;
-;         2 data inputs ; 43                          ;
+;     SCLR              ; 20                          ;
+;     plain             ; 6                           ;
+; cycloneiii_lcell_comb ; 326                         ;
+;     arith             ; 80                          ;
+;         2 data inputs ; 78                          ;
 ;         3 data inputs ; 2                           ;
-;     normal            ; 128                         ;
-;         0 data inputs ; 1                           ;
-;         1 data inputs ; 4                           ;
-;         2 data inputs ; 10                          ;
-;         3 data inputs ; 28                          ;
-;         4 data inputs ; 85                          ;
+;     normal            ; 246                         ;
+;         0 data inputs ; 2                           ;
+;         1 data inputs ; 9                           ;
+;         2 data inputs ; 35                          ;
+;         3 data inputs ; 44                          ;
+;         4 data inputs ; 156                         ;
 ; cycloneiii_pll        ; 1                           ;
 ; cycloneiii_ram_block  ; 8                           ;
 ;                       ;                             ;
-; Max LUT depth         ; 7.60                        ;
-; Average LUT depth     ; 4.04                        ;
+; Max LUT depth         ; 7.20                        ;
+; Average LUT depth     ; 3.53                        ;
 +-----------------------+-----------------------------+
 
 
@@ -956,26 +995,32 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
-    Info: Processing started: Sat Sep 13 05:27:35 2025
+    Info: Processing started: Sun Sep 14 23:45:57 2025
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off FPGACode -c FPGACode
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 16 of the 16 processors detected
 Info (12248): Elaborating Platform Designer system entity "altclkctrl.qsys"
-Info (12250): 2025.09.13.05:27:42 Progress: Loading FPGACode/altclkctrl.qsys
-Info (12250): 2025.09.13.05:27:43 Progress: Reading input file
-Info (12250): 2025.09.13.05:27:43 Progress: Adding altclkctrl_0 [altclkctrl 24.1]
-Info (12250): 2025.09.13.05:27:43 Progress: Parameterizing module altclkctrl_0
-Info (12250): 2025.09.13.05:27:43 Progress: Building connections
-Info (12250): 2025.09.13.05:27:43 Progress: Parameterizing connections
-Info (12250): 2025.09.13.05:27:43 Progress: Validating
-Info (12250): 2025.09.13.05:27:43 Progress: Done reading input file
-Info (12250): 2025.09.13.05:27:44 : altclkctrl.altclkctrl_0: Targeting device family: Cyclone IV E.
-Info (12250): 2025.09.13.05:27:44 : altclkctrl.altclkctrl_0: Global clock network allows a clock signal to reach all parts of the chip with the same amount of skew. Input port 'clkselect' can be used to switch between four clock inputs.
+Info (12250): 2025.09.14.23:46:05 Progress: Loading FPGACode/altclkctrl.qsys
+Info (12250): 2025.09.14.23:46:06 Progress: Reading input file
+Info (12250): 2025.09.14.23:46:06 Progress: Adding altclkctrl_0 [altclkctrl 24.1]
+Info (12250): 2025.09.14.23:46:06 Progress: Parameterizing module altclkctrl_0
+Info (12250): 2025.09.14.23:46:06 Progress: Building connections
+Info (12250): 2025.09.14.23:46:06 Progress: Parameterizing connections
+Info (12250): 2025.09.14.23:46:06 Progress: Validating
+Info (12250): 2025.09.14.23:46:06 Progress: Done reading input file
+Info (12250): 2025.09.14.23:46:07 : altclkctrl.altclkctrl_0: Targeting device family: Cyclone IV E.
+Info (12250): 2025.09.14.23:46:07 : altclkctrl.altclkctrl_0: Global clock network allows a clock signal to reach all parts of the chip with the same amount of skew. Input port 'clkselect' can be used to switch between four clock inputs.
 Info (12250): Altclkctrl: Generating "altclkctrl" for QUARTUS_SYNTH
 Info (12250): Altclkctrl_0: Generating top-level entity altclkctrl_altclkctrl_0.
 Info (12250): Altclkctrl_0: "altclkctrl" instantiated altclkctrl "altclkctrl_0"
 Info (12250): Altclkctrl: Done "altclkctrl" with 2 modules, 2 files
 Info (12249): Finished elaborating Platform Designer system entity "altclkctrl.qsys"
+Info (12021): Found 2 design units, including 1 entities, in source file reset_ctrl.vhd
+    Info (12022): Found design unit 1: reset_ctrl-rtl File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/reset_ctrl.vhd Line: 16
+    Info (12023): Found entity 1: reset_ctrl File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/reset_ctrl.vhd Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file eth_tx_tb_driver.vhd
+    Info (12022): Found design unit 1: eth_tx_tb_driver-rtl File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/eth_tx_tb_driver.vhd Line: 20
+    Info (12023): Found entity 1: eth_tx_tb_driver File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/eth_tx_tb_driver.vhd Line: 5
 Warning (12090): Entity "altclkctrl" obtained from "altclkctrl/synthesis/altclkctrl.vhd" instead of from Quartus Prime megafunction library File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/altclkctrl/synthesis/altclkctrl.vhd Line: 9
 Info (12021): Found 2 design units, including 1 entities, in source file altclkctrl/synthesis/altclkctrl.vhd
     Info (12022): Found design unit 1: altclkctrl-rtl File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/altclkctrl/synthesis/altclkctrl.vhd Line: 16
@@ -996,10 +1041,10 @@ Info (12021): Found 2 design units, including 1 entities, in source file etherne
     Info (12022): Found design unit 1: ethernet_switch-arch File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/ethernet_switch.vhd Line: 52
     Info (12023): Found entity 1: ethernet_switch File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/ethernet_switch.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file eth_port.vhd
-    Info (12022): Found design unit 1: eth_port-arch File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/eth_port.vhd Line: 23
+    Info (12022): Found design unit 1: eth_port-arch File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/eth_port.vhd Line: 25
     Info (12023): Found entity 1: eth_port File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/eth_port.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file eth_tx.vhd
-    Info (12022): Found design unit 1: eth_tx-arch File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/eth_tx.vhd Line: 22
+    Info (12022): Found design unit 1: eth_tx-arch File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/eth_tx.vhd Line: 21
     Info (12023): Found entity 1: eth_tx File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/eth_tx.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file tx_phy.vhd
     Info (12022): Found design unit 1: tx_phy-arch File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/tx_phy.vhd Line: 23
@@ -1008,7 +1053,7 @@ Info (12021): Found 2 design units, including 1 entities, in source file tx_fsm_
     Info (12022): Found design unit 1: tx_fsm_pt-arch File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/tx_fsm_pt.vhd Line: 22
     Info (12023): Found entity 1: tx_fsm_pt File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/tx_fsm_pt.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file tx_fsm_axi.vhd
-    Info (12022): Found design unit 1: tx_fsm_axi-arch File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/tx_fsm_axi.vhd Line: 23
+    Info (12022): Found design unit 1: tx_fsm_axi-arch File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/tx_fsm_axi.vhd Line: 35
     Info (12023): Found entity 1: tx_fsm_axi File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/tx_fsm_axi.vhd Line: 5
 Warning (12090): Entity "altclkctrl" obtained from "db/ip/altclkctrl/altclkctrl.v" instead of from Quartus Prime megafunction library File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/db/ip/altclkctrl/altclkctrl.v Line: 6
 Info (12021): Found 1 design units, including 1 entities, in source file db/ip/altclkctrl/altclkctrl.v
@@ -1019,8 +1064,6 @@ Info (12021): Found 2 design units, including 2 entities, in source file db/ip/a
 Info (12127): Elaborating entity "ethernet_switch" for the top level hierarchy
 Warning (10541): VHDL Signal Declaration warning at ethernet_switch.vhd(15): used implicit default value for signal "LED1" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/ethernet_switch.vhd Line: 15
 Warning (10541): VHDL Signal Declaration warning at ethernet_switch.vhd(18): used implicit default value for signal "UART_TX" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/ethernet_switch.vhd Line: 18
-Warning (10541): VHDL Signal Declaration warning at ethernet_switch.vhd(23): used implicit default value for signal "ETH0_LED_GRN" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/ethernet_switch.vhd Line: 23
-Warning (10541): VHDL Signal Declaration warning at ethernet_switch.vhd(24): used implicit default value for signal "ETH0_LED_YEL" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/ethernet_switch.vhd Line: 24
 Warning (10541): VHDL Signal Declaration warning at ethernet_switch.vhd(27): used implicit default value for signal "ETH1_TX" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/ethernet_switch.vhd Line: 27
 Warning (10541): VHDL Signal Declaration warning at ethernet_switch.vhd(28): used implicit default value for signal "ETH1_TX_EN" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/ethernet_switch.vhd Line: 28
 Warning (10541): VHDL Signal Declaration warning at ethernet_switch.vhd(29): used implicit default value for signal "ETH1_LED_GRN" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/ethernet_switch.vhd Line: 29
@@ -1038,12 +1081,7 @@ Warning (10541): VHDL Signal Declaration warning at ethernet_switch.vhd(46): use
 Warning (10541): VHDL Signal Declaration warning at ethernet_switch.vhd(47): used implicit default value for signal "ETH4_LED_GRN" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/ethernet_switch.vhd Line: 47
 Warning (10541): VHDL Signal Declaration warning at ethernet_switch.vhd(48): used implicit default value for signal "ETH4_LED_YEL" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/ethernet_switch.vhd Line: 48
 Warning (10036): Verilog HDL or VHDL warning at ethernet_switch.vhd(55): object "r_clk_lock" assigned a value but never read File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/ethernet_switch.vhd Line: 55
-Warning (10540): VHDL Signal Declaration warning at ethernet_switch.vhd(60): used explicit default value for signal "r_eth0_tx_valid" because signal was never assigned a value File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/ethernet_switch.vhd Line: 60
-Warning (10036): Verilog HDL or VHDL warning at ethernet_switch.vhd(61): object "r_eth0_tx_ready" assigned a value but never read File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/ethernet_switch.vhd Line: 61
-Warning (10540): VHDL Signal Declaration warning at ethernet_switch.vhd(62): used explicit default value for signal "r_eth0_tx_keep" because signal was never assigned a value File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/ethernet_switch.vhd Line: 62
-Warning (10540): VHDL Signal Declaration warning at ethernet_switch.vhd(63): used explicit default value for signal "r_eth0_tx_last" because signal was never assigned a value File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/ethernet_switch.vhd Line: 63
-Warning (10540): VHDL Signal Declaration warning at ethernet_switch.vhd(64): used explicit default value for signal "r_eth0_tx_data" because signal was never assigned a value File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/ethernet_switch.vhd Line: 64
-Info (12129): Elaborating entity "pll_main" using architecture "A:syn" for hierarchy "pll_main:c_pll" File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/ethernet_switch.vhd Line: 69
+Info (12129): Elaborating entity "pll_main" using architecture "A:syn" for hierarchy "pll_main:c_pll" File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/ethernet_switch.vhd Line: 72
 Info (12128): Elaborating entity "altpll" for hierarchy "pll_main:c_pll|altpll:altpll_component" File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/pll_main.vhd Line: 141
 Info (12130): Elaborated megafunction instantiation "pll_main:c_pll|altpll:altpll_component" File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/pll_main.vhd Line: 141
 Info (12133): Instantiated megafunction "pll_main:c_pll|altpll:altpll_component" with the following parameter: File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/pll_main.vhd Line: 141
@@ -1105,14 +1143,15 @@ Info (12133): Instantiated megafunction "pll_main:c_pll|altpll:altpll_component"
 Info (12021): Found 1 design units, including 1 entities, in source file db/pll_main_altpll.v
     Info (12023): Found entity 1: pll_main_altpll File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/db/pll_main_altpll.v Line: 31
 Info (12128): Elaborating entity "pll_main_altpll" for hierarchy "pll_main:c_pll|altpll:altpll_component|pll_main_altpll:auto_generated" File: c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/altpll.tdf Line: 898
-Info (12129): Elaborating entity "altclkctrl" using architecture "A:rtl" for hierarchy "altclkctrl:c_alt_clk_ctrl" File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/ethernet_switch.vhd Line: 78
+Info (12129): Elaborating entity "altclkctrl" using architecture "A:rtl" for hierarchy "altclkctrl:c_alt_clk_ctrl" File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/ethernet_switch.vhd Line: 81
 Info (12128): Elaborating entity "altclkctrl_altclkctrl_0" for hierarchy "altclkctrl:c_alt_clk_ctrl|altclkctrl_altclkctrl_0:altclkctrl_0" File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/altclkctrl/synthesis/altclkctrl.vhd Line: 26
 Info (12128): Elaborating entity "altclkctrl_altclkctrl_0_sub" for hierarchy "altclkctrl:c_alt_clk_ctrl|altclkctrl_altclkctrl_0:altclkctrl_0|altclkctrl_altclkctrl_0_sub:altclkctrl_altclkctrl_0_sub_component" File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/db/ip/altclkctrl/submodules/altclkctrl_altclkctrl_0.v Line: 113
-Info (12129): Elaborating entity "eth_port" using architecture "A:arch" for hierarchy "eth_port:c_eth0" File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/ethernet_switch.vhd Line: 86
-Info (12129): Elaborating entity "eth_tx" using architecture "A:arch" for hierarchy "eth_port:c_eth0|eth_tx:c_tx" File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/eth_port.vhd Line: 27
-Warning (10540): VHDL Signal Declaration warning at eth_tx.vhd(26): used explicit default value for signal "r_wr_data" because signal was never assigned a value File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/eth_tx.vhd Line: 26
-Info (12129): Elaborating entity "tx_phy" using architecture "A:arch" for hierarchy "eth_port:c_eth0|eth_tx:c_tx|tx_phy:c_phy" File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/eth_tx.vhd Line: 46
-Info (12129): Elaborating entity "ram_eth_packet" using architecture "A:syn" for hierarchy "eth_port:c_eth0|eth_tx:c_tx|ram_eth_packet:c_ram" File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/eth_tx.vhd Line: 58
+Info (12129): Elaborating entity "reset_ctrl" using architecture "A:rtl" for hierarchy "reset_ctrl:c_reset_ctrl" File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/ethernet_switch.vhd Line: 91
+Info (12129): Elaborating entity "eth_port" using architecture "A:arch" for hierarchy "eth_port:c_eth0" File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/ethernet_switch.vhd Line: 104
+Info (12129): Elaborating entity "eth_tx" using architecture "A:arch" for hierarchy "eth_port:c_eth0|eth_tx:c_tx" File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/eth_port.vhd Line: 29
+Warning (10036): Verilog HDL or VHDL warning at eth_tx.vhd(26): object "r_wr_data" assigned a value but never read File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/eth_tx.vhd Line: 26
+Info (12129): Elaborating entity "tx_phy" using architecture "A:arch" for hierarchy "eth_port:c_eth0|eth_tx:c_tx|tx_phy:c_phy" File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/eth_tx.vhd Line: 45
+Info (12129): Elaborating entity "ram_eth_packet" using architecture "A:syn" for hierarchy "eth_port:c_eth0|eth_tx:c_tx|ram_eth_packet:c_ram" File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/eth_tx.vhd Line: 57
 Info (12128): Elaborating entity "altsyncram" for hierarchy "eth_port:c_eth0|eth_tx:c_tx|ram_eth_packet:c_ram|altsyncram:altsyncram_component" File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/ram_eth_packet.vhd Line: 63
 Info (12130): Elaborated megafunction instantiation "eth_port:c_eth0|eth_tx:c_tx|ram_eth_packet:c_ram|altsyncram:altsyncram_component" File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/ram_eth_packet.vhd Line: 63
 Info (12133): Instantiated megafunction "eth_port:c_eth0|eth_tx:c_tx|ram_eth_packet:c_ram|altsyncram:altsyncram_component" with the following parameter: File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/ram_eth_packet.vhd Line: 63
@@ -1136,7 +1175,7 @@ Info (12133): Instantiated megafunction "eth_port:c_eth0|eth_tx:c_tx|ram_eth_pac
     Info (12134): Parameter "indata_aclr_a" = "UNUSED"
     Info (12134): Parameter "indata_aclr_b" = "NONE"
     Info (12134): Parameter "indata_reg_b" = "CLOCK1"
-    Info (12134): Parameter "init_file" = "UNUSED"
+    Info (12134): Parameter "init_file" = "ram_preamble.hex"
     Info (12134): Parameter "init_file_layout" = "PORT_A"
     Info (12134): Parameter "maximum_depth" = "0"
     Info (12134): Parameter "numwords_a" = "2048"
@@ -1146,7 +1185,7 @@ Info (12133): Instantiated megafunction "eth_port:c_eth0|eth_tx:c_tx|ram_eth_pac
     Info (12134): Parameter "outdata_aclr_b" = "NONE"
     Info (12134): Parameter "outdata_reg_a" = "UNREGISTERED"
     Info (12134): Parameter "outdata_reg_b" = "UNREGISTERED"
-    Info (12134): Parameter "power_up_uninitialized" = "TRUE"
+    Info (12134): Parameter "power_up_uninitialized" = "FALSE"
     Info (12134): Parameter "ram_block_type" = "M9K"
     Info (12134): Parameter "rdcontrol_aclr_b" = "NONE"
     Info (12134): Parameter "rdcontrol_reg_b" = "CLOCK1"
@@ -1166,22 +1205,19 @@ Info (12133): Instantiated megafunction "eth_port:c_eth0|eth_tx:c_tx|ram_eth_pac
     Info (12134): Parameter "wrcontrol_wraddress_reg_b" = "CLOCK1"
     Info (12134): Parameter "lpm_hint" = "UNUSED"
     Info (12134): Parameter "lpm_type" = "altsyncram"
-Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_bho3.tdf
-    Info (12023): Found entity 1: altsyncram_bho3 File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/db/altsyncram_bho3.tdf Line: 28
-Info (12128): Elaborating entity "altsyncram_bho3" for hierarchy "eth_port:c_eth0|eth_tx:c_tx|ram_eth_packet:c_ram|altsyncram:altsyncram_component|altsyncram_bho3:auto_generated" File: c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/altsyncram.tdf Line: 792
-Info (12129): Elaborating entity "sr_piso" using architecture "A:rtl" for hierarchy "eth_port:c_eth0|eth_tx:c_tx|sr_piso:c_piso_sr" File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/eth_tx.vhd Line: 69
-Info (12129): Elaborating entity "tx_fsm_pt" using architecture "A:arch" for hierarchy "eth_port:c_eth0|eth_tx:c_tx|tx_fsm_pt:c_fsm_pt" File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/eth_tx.vhd Line: 85
-Info (12129): Elaborating entity "tx_fsm_axi" using architecture "A:arch" for hierarchy "eth_port:c_eth0|eth_tx:c_tx|tx_fsm_axi:c_fsm_axi" File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/eth_tx.vhd Line: 99
-Warning (10541): VHDL Signal Declaration warning at tx_fsm_axi.vhd(12): used implicit default value for signal "packet_valid" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/tx_fsm_axi.vhd Line: 12
-Warning (10541): VHDL Signal Declaration warning at tx_fsm_axi.vhd(13): used implicit default value for signal "wr_en" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/tx_fsm_axi.vhd Line: 13
-Warning (10541): VHDL Signal Declaration warning at tx_fsm_axi.vhd(16): used implicit default value for signal "tready" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/tx_fsm_axi.vhd Line: 16
-Warning (10541): VHDL Signal Declaration warning at tx_fsm_axi.vhd(19): used implicit default value for signal "addr" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/tx_fsm_axi.vhd Line: 19
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_49r3.tdf
+    Info (12023): Found entity 1: altsyncram_49r3 File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/db/altsyncram_49r3.tdf Line: 28
+Info (12128): Elaborating entity "altsyncram_49r3" for hierarchy "eth_port:c_eth0|eth_tx:c_tx|ram_eth_packet:c_ram|altsyncram:altsyncram_component|altsyncram_49r3:auto_generated" File: c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/altsyncram.tdf Line: 792
+Info (12129): Elaborating entity "sr_piso" using architecture "A:rtl" for hierarchy "eth_port:c_eth0|eth_tx:c_tx|sr_piso:c_piso_sr" File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/eth_tx.vhd Line: 68
+Info (12129): Elaborating entity "tx_fsm_pt" using architecture "A:arch" for hierarchy "eth_port:c_eth0|eth_tx:c_tx|tx_fsm_pt:c_fsm_pt" File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/eth_tx.vhd Line: 84
+Info (12129): Elaborating entity "tx_fsm_axi" using architecture "A:arch" for hierarchy "eth_port:c_eth0|eth_tx:c_tx|tx_fsm_axi:c_fsm_axi" File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/eth_tx.vhd Line: 98
+Info (12128): Elaborating entity "eth_tx_tb_driver" for hierarchy "eth_tx_tb_driver:debug_tx" File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/ethernet_switch.vhd Line: 126
 Info (13000): Registers with preset signals will power-up high File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/tx_phy.vhd Line: 48
 Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
 Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "LED1" is stuck at GND File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/ethernet_switch.vhd Line: 15
     Warning (13410): Pin "UART_TX" is stuck at GND File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/ethernet_switch.vhd Line: 18
-    Warning (13410): Pin "ETH0_LED_GRN" is stuck at GND File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/ethernet_switch.vhd Line: 23
+    Warning (13410): Pin "ETH0_LED_GRN" is stuck at VCC File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/ethernet_switch.vhd Line: 23
     Warning (13410): Pin "ETH0_LED_YEL" is stuck at GND File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/ethernet_switch.vhd Line: 24
     Warning (13410): Pin "ETH1_TX" is stuck at GND File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/ethernet_switch.vhd Line: 27
     Warning (13410): Pin "ETH1_TX_EN" is stuck at GND File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/ethernet_switch.vhd Line: 28
@@ -1213,16 +1249,16 @@ Warning (21074): Design contains 10 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "ETH2_RX" File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/ethernet_switch.vhd Line: 32
     Warning (15610): No output dependent on input pin "ETH3_RX" File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/ethernet_switch.vhd Line: 38
     Warning (15610): No output dependent on input pin "ETH4_RX" File: G:/FPGA_Projects/Ethernet_Switch/FPGACode/ethernet_switch.vhd Line: 44
-Info (21057): Implemented 233 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 385 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 12 input pins
     Info (21059): Implemented 22 output pins
-    Info (21061): Implemented 189 logic cells
+    Info (21061): Implemented 341 logic cells
     Info (21064): Implemented 8 RAM segments
     Info (21065): Implemented 1 PLLs
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 66 warnings
-    Info: Peak virtual memory: 4898 megabytes
-    Info: Processing ended: Sat Sep 13 05:27:48 2025
-    Info: Elapsed time: 00:00:13
-    Info: Total CPU time (on all processors): 00:00:29
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 55 warnings
+    Info: Peak virtual memory: 4895 megabytes
+    Info: Processing ended: Sun Sep 14 23:46:11 2025
+    Info: Elapsed time: 00:00:14
+    Info: Total CPU time (on all processors): 00:00:30
 
 

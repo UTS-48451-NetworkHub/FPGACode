@@ -4,10 +4,10 @@ use ieee.numeric_std.all;
 
 entity reset_ctrl is
   generic (
-    DEBOUNCE_CYCLES : natural := 1_000_000  -- number of clk cycles to debounce
+    DEBOUNCE_CYCLES : natural := 1_000_000
   );
   port (
-    clk     : in  std_logic;   -- system clock
+    clk     : in  std_logic;
     btn_n   : in  std_logic;   -- active-low pushbutton
     resetn  : out std_logic    -- clean, active-low reset
   );
@@ -18,25 +18,25 @@ architecture rtl of reset_ctrl is
   signal btn_sync  : std_logic_vector(1 downto 0) := (others => '1');
   signal stable    : std_logic := '1';
   signal cnt       : natural range 0 to DEBOUNCE_CYCLES := 0;
-  signal resetn_r  : std_logic := '0';
+  signal reset_ff  : std_logic_vector(1 downto 0) := (others => '0');
 
 begin
 
-  resetn <= resetn_r;
+  resetn <= reset_ff(1);
 
   process(clk)
   begin
     if rising_edge(clk) then
       --------------------------------------------------------------------
-      -- 1) Synchronize the async button to clk
+      -- Synchronize pushbutton to clk
       --------------------------------------------------------------------
       btn_sync <= btn_sync(0) & btn_n;
 
       --------------------------------------------------------------------
-      -- 2) Debounce logic: require DEBOUNCE_CYCLES of stable input
+      -- Debounce
       --------------------------------------------------------------------
       if btn_sync(1) = stable then
-        cnt <= 0;  -- input still matches stable value
+        cnt <= 0;
       else
         if cnt = DEBOUNCE_CYCLES then
           stable <= btn_sync(1);
@@ -47,17 +47,14 @@ begin
       end if;
 
       --------------------------------------------------------------------
-      -- 3) Reset control
-      --    resetn_r is low while button is pressed (stable='0').
-      --    It only goes high when stable='1' AND clk is high
-      --    (so reset is released synchronously on clk high).
+      -- Reset release synchronizer
+      --  * Goes low immediately when stable='0'
+      --  * Goes high only after two rising edges once stable='1'
       --------------------------------------------------------------------
       if stable = '0' then
-        resetn_r <= '0';
+        reset_ff <= (others => '0');
       else
-        if clk = '1' then  -- release only when clk is high
-          resetn_r <= '1';
-        end if;
+        reset_ff <= reset_ff(0) & '1';
       end if;
     end if;
   end process;
