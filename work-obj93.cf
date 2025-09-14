@@ -1,19 +1,25 @@
 v 4
-file . "tx_fsm_pt_tb.vhd" "f3f02472992a1ae3cd1021255c595a21ddc5c2d9" "20250913060759.166":
-  entity tx_fsm_pt_tb at 1( 0) + 0 on 787;
-  architecture sim of tx_fsm_pt_tb at 8( 119) + 0 on 788;
-file . "sr_piso_tb.vhd" "72406bdc64920ba1f99be4a1ea491c2f0b5dad0f" "20250912153056.536":
-  entity sr_piso_tb at 11( 241) + 0 on 399;
-  architecture sim of sr_piso_tb at 18( 352) + 0 on 400;
-file . "sr_piso.vhd" "e51a4d1e53052713a4e28943fdf78935a6c7bf3a" "20250913060759.104":
-  entity sr_piso at 1( 0) + 0 on 785;
-  architecture rtl of sr_piso at 32( 1280) + 0 on 786;
-file . "tx_phy.vhd" "7ff14fae05bed7e27ecd5216d4734793af1ccbe3" "20250913060118.716":
-  entity tx_phy at 1( 0) + 0 on 779;
-  architecture arch of tx_phy at 23( 882) + 0 on 780;
-file . "tx_phy_tb.vhd" "a259cbd9c41c7f5acfd0f8dc11f7670a9f6e0460" "20250913060118.780":
-  entity tx_phy_tb at 1( 0) + 0 on 781;
-  architecture sim of tx_phy_tb at 8( 120) + 0 on 782;
+file . "tx_fsm_axi.vhd" "cc0f9018890a6fb537ce5273dea9080cd1503018" "20250914095540.750":
+  entity tx_fsm_axi at 1( 0) + 0 on 887;
+  architecture arch of tx_fsm_axi at 35( 1224) + 0 on 888;
 file . "tx_fsm_pt.vhd" "ecb91d16340e75a5cfd9160cff5dc011bf104f9d" "20250913060759.040":
   entity tx_fsm_pt at 1( 0) + 0 on 783;
   architecture arch of tx_fsm_pt at 22( 531) + 0 on 784;
+file . "tx_phy_tb.vhd" "a259cbd9c41c7f5acfd0f8dc11f7670a9f6e0460" "20250913060118.780":
+  entity tx_phy_tb at 1( 0) + 0 on 781;
+  architecture sim of tx_phy_tb at 8( 120) + 0 on 782;
+file . "tx_phy.vhd" "7ff14fae05bed7e27ecd5216d4734793af1ccbe3" "20250913060118.716":
+  entity tx_phy at 1( 0) + 0 on 779;
+  architecture arch of tx_phy at 23( 882) + 0 on 780;
+file . "sr_piso.vhd" "e51a4d1e53052713a4e28943fdf78935a6c7bf3a" "20250913060759.104":
+  entity sr_piso at 1( 0) + 0 on 785;
+  architecture rtl of sr_piso at 32( 1280) + 0 on 786;
+file . "sr_piso_tb.vhd" "72406bdc64920ba1f99be4a1ea491c2f0b5dad0f" "20250912153056.536":
+  entity sr_piso_tb at 11( 241) + 0 on 399;
+  architecture sim of sr_piso_tb at 18( 352) + 0 on 400;
+file . "tx_fsm_pt_tb.vhd" "f3f02472992a1ae3cd1021255c595a21ddc5c2d9" "20250913060759.166":
+  entity tx_fsm_pt_tb at 1( 0) + 0 on 787;
+  architecture sim of tx_fsm_pt_tb at 8( 119) + 0 on 788;
+file . "tx_fsm_axi_tb.vhd" "ee2ade213b5f4a7637ea7cbdd5428cb326ded63f" "20250914095540.794":
+  entity tx_fsm_axi_tb at 1( 0) + 0 on 889;
+  architecture sim of tx_fsm_axi_tb at 8( 114) + 0 on 890;

@@ -13,7 +13,6 @@ entity eth_tx is
     -- Inputs (AXI-S Bus)
     tvalid : in std_logic;
     tready : out std_logic;
-    tkeep  : in std_logic;
     tlast  : in std_logic;
     tdata  : in std_logic_vector(7 downto 0)
   );
@@ -105,7 +104,6 @@ begin
       packet_valid => r_packet_valid,
       wr_en        => r_wr_en,
       tlast        => tlast,
-      tkeep        => tkeep,
       tready       => tready,
       tvalid       => tvalid,
       addr         => r_wr_addr

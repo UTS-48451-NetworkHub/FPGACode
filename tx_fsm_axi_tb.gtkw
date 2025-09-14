@@ -1,0 +1,39 @@
+[*]
+[*] GTKWave Analyzer v3.3.118 (w)1999-2023 BSI
+[*] Sun Sep 14 10:01:43 2025
+[*]
+[dumpfile] "G:\FPGA_Projects\Ethernet_Switch\FPGACode\tx_fsm_axi_tb.ghw"
+[dumpfile_mtime] "Sun Sep 14 09:55:41 2025"
+[dumpfile_size] 4673
+[savefile] "G:\FPGA_Projects\Ethernet_Switch\FPGACode\tx_fsm_axi_tb.gtkw"
+[timestart] 0
+[size] 1920 1017
+[pos] -1 -1
+*-26.000000 150000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] top.
+[treeopen] top.tx_fsm_axi_tb.
+[sst_width] 174
+[signals_width] 126
+[sst_expanded] 1
+[sst_vpaned_height] 647
+@28
+top.tx_fsm_axi_tb.clk
+top.tx_fsm_axi_tb.resetn
+@29
+top.tx_fsm_axi_tb.tvalid
+top.tx_fsm_axi_tb.tready
+@28
+top.tx_fsm_axi_tb.tlast
+@420
+top.tx_fsm_axi_tb.uut.state
+@29
+top.tx_fsm_axi_tb.wr_en
+@28
+top.tx_fsm_axi_tb.packet_valid
+top.tx_fsm_axi_tb.packet_ready
+@24
+#{top.tx_fsm_axi_tb.addr[10:0]} top.tx_fsm_axi_tb.addr[10] top.tx_fsm_axi_tb.addr[9] top.tx_fsm_axi_tb.addr[8] top.tx_fsm_axi_tb.addr[7] top.tx_fsm_axi_tb.addr[6] top.tx_fsm_axi_tb.addr[5] top.tx_fsm_axi_tb.addr[4] top.tx_fsm_axi_tb.addr[3] top.tx_fsm_axi_tb.addr[2] top.tx_fsm_axi_tb.addr[1] top.tx_fsm_axi_tb.addr[0]
+@22
+#{top.tx_fsm_axi_tb.tdata[7:0]} top.tx_fsm_axi_tb.tdata[7] top.tx_fsm_axi_tb.tdata[6] top.tx_fsm_axi_tb.tdata[5] top.tx_fsm_axi_tb.tdata[4] top.tx_fsm_axi_tb.tdata[3] top.tx_fsm_axi_tb.tdata[2] top.tx_fsm_axi_tb.tdata[1] top.tx_fsm_axi_tb.tdata[0]
+[pattern_trace] 1
+[pattern_trace] 0

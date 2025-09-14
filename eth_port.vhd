@@ -10,7 +10,6 @@ entity eth_port is
     -- Upstream Data Port (TX/RX AXI-S)
     tx_valid : in std_logic;
     tx_ready : out std_logic;
-    tx_keep  : in std_logic;
     tx_last  : in std_logic;
     tx_data  : in std_logic_vector(7 downto 0);
     -- Downstream Data Port (PLS)
@@ -33,7 +32,6 @@ begin
       tx_en  => tx_en,
       tvalid => tx_valid,
       tready => tx_ready,
-      tkeep  => tx_keep,
       tlast  => tx_last,
       tdata  => tx_data
     );
