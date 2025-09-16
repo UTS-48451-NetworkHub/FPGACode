@@ -13,6 +13,9 @@ entity ethernet_switch is
     KEY4     : in std_logic; -- Pin 91
     ---- Outputs (Other)
     LED1 : out std_logic; -- Pin 84
+    LED2 : out std_logic; -- Pin 85
+    LED3 : out std_logic; -- Pin 86
+    LED4 : out std_logic; -- Pin 87
     ---- UART
     UART_RX : in std_logic; -- Pin 115
     UART_TX : out std_logic; -- Pin 114
@@ -64,15 +67,17 @@ architecture arch of ethernet_switch is
   signal r_eth0_tx_ready : std_logic                    := '0';
   signal r_eth0_tx_last  : std_logic                    := '0';
   signal r_eth0_tx_data  : std_logic_vector(7 downto 0) := (others => '0');
+  signal r_eth0_tx_en : std_logic := '0';
 
 begin
+
   ------------------------------------------------------------------------
   -- Clock Generation
   ------------------------------------------------------------------------
   c_pll : entity work.pll_main(SYN)
     port map
     (
-      areset => resetn,
+      areset => '0',
       inclk0 => MAIN_CLK,
       c0     => clk_100_ng,
       locked => r_clk_lock
@@ -89,9 +94,6 @@ begin
   -- Reset Generation
   ------------------------------------------------------------------------
   c_reset_ctrl : entity work.reset_ctrl(rtl)
-  generic map (
-    DEBOUNCE_CYCLES => 1_000_000
-  )
   port map (
     clk => clk_100,
     btn_n => RESET,
@@ -114,7 +116,7 @@ begin
       -- Downstream Data Port
       rx    => ETH0_RX,
       tx    => ETH0_TX,
-      tx_en => ETH0_TX_EN,
+      tx_en => r_eth0_tx_en,
       -- LEDs
       link => ETH0_LED_GRN,
       act => ETH0_LED_YEL
@@ -133,5 +135,11 @@ begin
       tlast  => r_eth0_tx_last,
       tdata  => r_eth0_tx_data
     );
+	 
+	 LED1 <= not resetn;
+   ETH0_TX_EN <= r_eth0_tx_en;
+   LED2 <= not r_eth0_tx_en;
+   LED3 <= not r_eth0_tx_valid;
+   LED4 <= not r_eth0_tx_ready;
 
 end architecture arch;

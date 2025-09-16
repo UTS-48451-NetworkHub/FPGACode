@@ -1,0 +1,30 @@
+[*]
+[*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
+[*] Tue Sep 16 00:34:31 2025
+[*]
+[dumpfile] "/home/mac/Code/FPGACode/reset_ctrl_tb.ghw"
+[dumpfile_mtime] "Tue Sep 16 00:33:39 2025"
+[dumpfile_size] 18023322
+[savefile] "/home/mac/Code/FPGACode/reset_ctrl_tb.gtkw"
+[timestart] 657142900000
+[size] 1920 1011
+[pos] -101 -101
+*-26.000000 657374400000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] top.
+[treeopen] top.reset_ctrl_tb.
+[treeopen] top.reset_ctrl_tb.uut.
+[sst_width] 221
+[signals_width] 110
+[sst_expanded] 1
+[sst_vpaned_height] 606
+@28
+top.reset_ctrl_tb.clk
+top.reset_ctrl_tb.resetn
+top.reset_ctrl_tb.btn_n
+top.reset_ctrl_tb.uut.btn_sync
+@24
+#{top.reset_ctrl_tb.uut.cnt[15:0]} top.reset_ctrl_tb.uut.cnt[15] top.reset_ctrl_tb.uut.cnt[14] top.reset_ctrl_tb.uut.cnt[13] top.reset_ctrl_tb.uut.cnt[12] top.reset_ctrl_tb.uut.cnt[11] top.reset_ctrl_tb.uut.cnt[10] top.reset_ctrl_tb.uut.cnt[9] top.reset_ctrl_tb.uut.cnt[8] top.reset_ctrl_tb.uut.cnt[7] top.reset_ctrl_tb.uut.cnt[6] top.reset_ctrl_tb.uut.cnt[5] top.reset_ctrl_tb.uut.cnt[4] top.reset_ctrl_tb.uut.cnt[3] top.reset_ctrl_tb.uut.cnt[2] top.reset_ctrl_tb.uut.cnt[1] top.reset_ctrl_tb.uut.cnt[0]
+@28
+top.reset_ctrl_tb.uut.r_cnt_over
+[pattern_trace] 1
+[pattern_trace] 0

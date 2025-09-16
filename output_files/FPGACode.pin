@@ -153,9 +153,9 @@ VCCIO5                       : 81        : power  :                   : 3.3V    
 GND                          : 82        : gnd    :                   :         :           :                
 ETH0_LED_YEL                 : 83        : output : 3.3-V LVTTL       :         : 5         : Y              
 LED1                         : 84        : output : 3.3-V LVTTL       :         : 5         : Y              
-RESERVED_INPUT_WITH_WEAK_PULLUP : 85        :        :                   :         : 5         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : 86        :        :                   :         : 5         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : 87        :        :                   :         : 5         :                
+LED2                         : 85        : output : 3.3-V LVTTL       :         : 5         : Y              
+LED3                         : 86        : output : 3.3-V LVTTL       :         : 5         : Y              
+LED4                         : 87        : output : 3.3-V LVTTL       :         : 5         : Y              
 KEY1                         : 88        : input  : 3.3-V LVTTL       :         : 5         : Y              
 KEY2                         : 89        : input  : 3.3-V LVTTL       :         : 5         : Y              
 KEY3                         : 90        : input  : 3.3-V LVTTL       :         : 6         : Y              

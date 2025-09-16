@@ -11,12 +11,12 @@ file . "tx_fsm_axi_tb.vhd" "ee2ade213b5f4a7637ea7cbdd5428cb326ded63f" "202509140
 file . "tx_fsm_pt_tb.vhd" "f3f02472992a1ae3cd1021255c595a21ddc5c2d9" "20250913060759.166":
   entity tx_fsm_pt_tb at 1( 0) + 0 on 787;
   architecture sim of tx_fsm_pt_tb at 8( 119) + 0 on 788;
-file . "sr_piso_tb.vhd" "72406bdc64920ba1f99be4a1ea491c2f0b5dad0f" "20250912153056.536":
-  entity sr_piso_tb at 11( 241) + 0 on 399;
-  architecture sim of sr_piso_tb at 18( 352) + 0 on 400;
-file . "sr_piso.vhd" "e51a4d1e53052713a4e28943fdf78935a6c7bf3a" "20250914130820.547":
-  entity sr_piso at 1( 0) + 0 on 1415;
-  architecture rtl of sr_piso at 32( 1280) + 0 on 1416;
+file . "sr_piso_tb.vhd" "ebf21b6adedf3ce619cf7b96a63ec1d2a4350052" "20250915235157.156":
+  entity sr_piso_tb at 11( 231) + 0 on 1431;
+  architecture sim of sr_piso_tb at 18( 335) + 0 on 1432;
+file . "sr_piso.vhd" "223b5bc5a38728e74fa6f443e00e640922319619" "20250915235157.154":
+  entity sr_piso at 1( 0) + 0 on 1429;
+  architecture rtl of sr_piso at 32( 1249) + 0 on 1430;
 file . "tx_phy.vhd" "7ff14fae05bed7e27ecd5216d4734793af1ccbe3" "20250914130820.389":
   entity tx_phy at 1( 0) + 0 on 1409;
   architecture arch of tx_phy at 23( 882) + 0 on 1410;
@@ -35,3 +35,9 @@ file . "ram_eth_packet.vhd" "fed679e48a48ccb930a2e385484fce89e5a45c03" "20250914
 file . "eth_tx_tb.vhd" "4b69f998d1443423cf9f40d3f91d5aff2d9af4d3" "20250914130820.765":
   entity eth_tx_tb at 1( 0) + 0 on 1423;
   architecture sim of eth_tx_tb at 8( 110) + 0 on 1424;
+file . "reset_ctrl.vhd" "5c2a674935f7463b1525610a72205e76f54a93e4" "20250916003331.805":
+  entity reset_ctrl at 1( 0) + 0 on 1461;
+  architecture rtl of reset_ctrl at 13( 261) + 0 on 1462;
+file . "reset_ctrl_tb.vhd" "4522675bc59492c333da1fcaae843d8f91bf5ef8" "20250916003331.807":
+  entity reset_ctrl_tb at 1( 0) + 0 on 1463;
+  architecture sim of reset_ctrl_tb at 8( 107) + 0 on 1464;

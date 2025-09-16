@@ -1,5 +1,5 @@
 //altclkctrl CBX_SINGLE_OUTPUT_FILE="ON" CLOCK_TYPE="Global Clock" DEVICE_FAMILY="Cyclone IV E" ENA_REGISTER_MODE="falling edge" USE_GLITCH_FREE_SWITCH_OVER_IMPLEMENTATION="OFF" ena inclk outclk
-//VERSION_BEGIN 24.1 cbx_altclkbuf 2025:03:05:20:06:36:SC cbx_cycloneii 2025:03:05:20:06:36:SC cbx_lpm_add_sub 2025:03:05:20:06:36:SC cbx_lpm_compare 2025:03:05:20:06:36:SC cbx_lpm_decode 2025:03:05:20:06:36:SC cbx_lpm_mux 2025:03:05:20:06:36:SC cbx_mgl 2025:03:05:20:07:01:SC cbx_nadder 2025:03:05:20:06:36:SC cbx_stratix 2025:03:05:20:06:36:SC cbx_stratixii 2025:03:05:20:06:36:SC cbx_stratixiii 2025:03:05:20:06:36:SC cbx_stratixv 2025:03:05:20:06:36:SC  VERSION_END
+//VERSION_BEGIN 24.1 cbx_altclkbuf 2025:03:05:20:03:09:SC cbx_cycloneii 2025:03:05:20:03:09:SC cbx_lpm_add_sub 2025:03:05:20:03:09:SC cbx_lpm_compare 2025:03:05:20:03:09:SC cbx_lpm_decode 2025:03:05:20:03:09:SC cbx_lpm_mux 2025:03:05:20:03:09:SC cbx_mgl 2025:03:05:20:10:25:SC cbx_nadder 2025:03:05:20:03:09:SC cbx_stratix 2025:03:05:20:03:09:SC cbx_stratixii 2025:03:05:20:03:09:SC cbx_stratixiii 2025:03:05:20:03:09:SC cbx_stratixv 2025:03:05:20:03:09:SC  VERSION_END
 // synthesis VERILOG_INPUT_VERSION VERILOG_2001
 // altera message_off 10463
 

@@ -148,4 +148,10 @@ set_global_assignment -name VHDL_FILE eth_tx.vhd
 set_global_assignment -name VHDL_FILE tx_phy.vhd
 set_global_assignment -name VHDL_FILE tx_fsm_pt.vhd
 set_global_assignment -name VHDL_FILE tx_fsm_axi.vhd
+set_location_assignment PIN_85 -to LED2
+set_location_assignment PIN_86 -to LED3
+set_location_assignment PIN_87 -to LED4
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LED2
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LED3
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LED4
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

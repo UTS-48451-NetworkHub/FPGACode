@@ -1,0 +1,56 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity reset_ctrl is
+  generic (
+    DEBOUNCE_CYCLES : natural := 1_000_000
+  );
+  port (
+    clk     : in  std_logic;
+    btn_n   : in  std_logic;   -- active-low pushbutton
+    resetn  : out std_logic    -- clean, active-low reset
+  );
+end entity;
+
+architecture rtl of reset_ctrl is
+
+  signal btn_sync  : std_logic := '0';
+  signal cnt       : unsigned(15 downto 0) := (others => '0');
+  signal r_cnt_over : std_logic := '0';
+  signal r_reset  : std_logic := '0';
+
+begin
+
+  resetn <= r_reset;
+
+  process(clk)
+  begin
+    if rising_edge(clk) then
+      --------------------------------------------------------------------
+      -- Synchronize pushbutton to clk
+      --------------------------------------------------------------------
+      btn_sync <= clk and btn_n;
+
+      --------------------------------------------------------------------
+      -- Debounce Trigger
+      --------------------------------------------------------------------
+      if btn_sync = '1' then
+        if r_cnt_over = '1' then
+          r_cnt_over <= '0';
+          cnt <= (others => '0');
+          r_reset <= '1';
+        end if;
+      end if;
+
+      --------------------------------------------------------------------
+      -- Debounce Counter
+      --------------------------------------------------------------------
+      cnt <= cnt + 1;
+      if cnt = to_unsigned(65535, cnt'length) then
+        r_cnt_over <= '1';
+      end if;
+    end if;
+  end process;
+
+end architecture;
