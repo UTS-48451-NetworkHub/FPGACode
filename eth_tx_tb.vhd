@@ -19,6 +19,8 @@ architecture sim of eth_tx_tb is
   signal tx      : std_logic;
   signal tx_en   : std_logic;
 
+  signal r_enable : std_logic := '0';
+
 begin
 
   --------------------------------------------------------------------------
@@ -55,7 +57,11 @@ begin
     wait for 100 ns;
     resetn <= '1';
 
-    wait for 30 us;
+    -- Allow time for NLP to be sent first
+    wait for 20 ms;
+    r_enable <= '1';
+
+    wait for 200 us;
     assert false report "Simulation finished" severity failure;
   end process;
 
@@ -69,7 +75,8 @@ begin
     tvalid => tvalid,
     tready => tready,
     tlast => tlast,
-    tdata => tdata
+    tdata => tdata,
+    enable => r_enable
   );
 
 end architecture;

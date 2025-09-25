@@ -80,6 +80,7 @@ begin
         packet_valid <= '1';
       elsif state = LAST and next_state = IDLE then
         packet_valid <= '0';
+        cnt_addr <= (others => '0');
       end if;
     end if;
   end process;

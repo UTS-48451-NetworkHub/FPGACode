@@ -23,7 +23,6 @@ architecture arch of eth_tx is
   -- TX Data Streams
   signal r_bs      : std_logic                    := '0';
   signal r_rd_data : std_logic_vector(7 downto 0) := (others => '0');
-  signal r_wr_data : std_logic_vector(7 downto 0) := (others => '0');
 
   -- TX Ram Signals
   signal r_wr_en   : std_logic                     := '0';
@@ -108,12 +107,5 @@ begin
       tvalid       => tvalid,
       addr         => r_wr_addr
     );
-
-  p_tdata_reg : process(clk)
-  begin
-    if rising_edge(clk) then
-      r_wr_data <= tdata;
-    end if;
-  end process;
 
 end architecture arch;

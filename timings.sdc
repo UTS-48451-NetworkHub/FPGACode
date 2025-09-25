@@ -5,8 +5,9 @@ derive_pll_clocks
 
 derive_clock_uncertainty
 
-# Ignore timing for async button reset
+# Ignore timing for async button reset / KEYs
 set_false_path -from [get_ports RESET]
+set_false_path -from [get_ports KEY*]
 
 # Ethernet Ports (Input Delay)
 set_input_delay -clock c_pll|altpll_component|auto_generated|pll1|clk[0] -min 24.5 [get_ports ETH*_RX]
@@ -28,3 +29,6 @@ set_multicycle_path -from c_pll|altpll_component|auto_generated|pll1|clk[0] -to 
 # Same for the TX enable pin if appropriate
 set_multicycle_path -from c_pll|altpll_component|auto_generated|pll1|clk[0] -to [get_ports ETH*_TX_EN] -setup 10
 set_multicycle_path -from c_pll|altpll_component|auto_generated|pll1|clk[0] -to [get_ports ETH*_TX_EN] -hold 9
+
+# LEDs
+set_false_path -to [get_ports LED*]

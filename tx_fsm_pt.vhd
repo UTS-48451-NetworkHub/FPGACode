@@ -60,10 +60,6 @@ architecture arch of tx_fsm_pt is
 
   --! FSM Flag First Byte Output
   signal f_first_byte : std_logic := '0';
-  --! IFG Counter Reuse, Max for LAST bit delay
-  constant IFG_LAST_BIT : integer := 80;
-  --! IFG Counter Finish Delay
-  constant IFG_MAX      : integer := 1040;
 
 begin
 
@@ -78,6 +74,11 @@ begin
       mem_state  <= LADDR;
       byte_valid <= '0';
       tx_active  <= '0';
+      r_packet_length <= (others => '0');
+      f_first_byte <= '0';
+      cnt_IFG <= (others => '0');
+      cnt_addr <= (others => '0');
+      r_mem_read_req <= '0';
 
     elsif rising_edge(clk) then
       -- Move states forward
@@ -145,11 +146,13 @@ begin
         -- End byte valid signal
         byte_valid <= '0';
         cnt_addr   <= (others => '0');
+        cnt_IFG <= (others => '0');
       end if;
 
       -- State Change: TX_LAST to IFG
       if state = TX_LAST and next_state = IFG then
         tx_active <= '0';
+        cnt_IFG <= (others => '0');
       end if;
 
       -- State: IFG/TX_LAST
@@ -209,12 +212,12 @@ begin
         end if;
 
       when TX_LAST =>
-        if cnt_IFG = to_unsigned(IFG_LAST_BIT, cnt_IFG'length) then
+        if cnt_IFG = to_unsigned(80, cnt_IFG'length) then
           next_state <= IFG;
         end if;
 
       when IFG =>
-        if cnt_IFG = to_unsigned(IFG_MAX, cnt_IFG'length) then
+        if cnt_IFG = to_unsigned(1040, cnt_IFG'length) then
           next_state <= IDLE;
         end if;
 

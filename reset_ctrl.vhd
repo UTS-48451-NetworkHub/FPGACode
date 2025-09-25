@@ -12,14 +12,16 @@ end entity;
 
 architecture rtl of reset_ctrl is
 
-  signal btn_sync  : std_logic := '1';
-  signal cnt       : unsigned(15 downto 0) := (others => '0');
-  signal r_cnt_over : std_logic := '1';
-  signal r_reset  : std_logic := '0';
+  signal btn_sync1   : std_logic := '1';  -- First FF sync
+  signal btn_sync2   : std_logic := '1';  -- Second FF Sync
+  signal btn  : std_logic := '1'; -- debounced level
+  signal last_btn : std_logic := '1';
+  signal cnt         : unsigned(15 downto 0) := (others => '0');
+  signal r_resetn    : std_logic := '0';
 
 begin
 
-  resetn <= r_reset;
+  resetn <= r_resetn;
 
   process(clk)
   begin
@@ -27,27 +29,31 @@ begin
       --------------------------------------------------------------------
       -- Synchronize pushbutton to clk
       --------------------------------------------------------------------
-      btn_sync <= clk and btn_n;
+      btn_sync1 <= btn_n;
+      btn_sync2 <= btn_sync1;
 
       --------------------------------------------------------------------
-      -- Debounce Counter
+      -- Debounce: count stable samples
       --------------------------------------------------------------------
-      cnt <= cnt + 1;
-      if cnt = to_unsigned(65535, cnt'length) then
-        r_cnt_over <= '1';
-      end if;
-
-      --------------------------------------------------------------------
-      -- Debounce Trigger
-      --------------------------------------------------------------------
-      if btn_sync = '0' then
-        if r_cnt_over = '1' then
-          r_cnt_over <= '0';
-          cnt <= (others => '0');
-          r_reset <= not r_reset;
+      if btn_sync2 = btn then
+        if cnt /= (cnt'range => '1') then
+          cnt <= cnt + 1;
         end if;
+      else
+        cnt <= (others => '0');
       end if;
 
+      if cnt = (cnt'range => '1') then
+        btn <= btn_sync2;
+      end if;
+
+      --------------------------------------------------------------------
+      -- Detect falling edge of debounced button (press)
+      --------------------------------------------------------------------
+      if last_btn = '1' and btn = '0' then
+        r_resetn <= not r_resetn;
+      end if;
+      last_btn <= btn;
     end if;
   end process;
 

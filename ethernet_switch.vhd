@@ -62,6 +62,9 @@ architecture arch of ethernet_switch is
   -- Reset
   signal resetn : std_logic := '0';
 
+  -- Packet Send Enable
+  signal r_enable : std_logic := '0';
+
   -- Ethernet Port 0 TX AXI-S
   signal r_eth0_tx_valid : std_logic                    := '0';
   signal r_eth0_tx_ready : std_logic                    := '0';
@@ -100,6 +103,13 @@ begin
     resetn => resetn
   );
 
+  c_trigger_ctrl : entity work.reset_ctrl(rtl)
+  port map (
+    clk => clk_100,
+    btn_n => KEY4,
+    resetn => r_enable
+  );
+
   ------------------------------------------------------------------------
   -- Ethernet Ports
   ------------------------------------------------------------------------
@@ -130,16 +140,18 @@ begin
     (
       clk    => clk_100,
       resetn => resetn,
+      enable => r_enable,
       tvalid => r_eth0_tx_valid,
       tready => r_eth0_tx_ready,
       tlast  => r_eth0_tx_last,
       tdata  => r_eth0_tx_data
     );
 	 
-	 LED1 <= not resetn;
-   ETH0_TX_EN <= r_eth0_tx_en;
-   LED2 <= not r_eth0_tx_en;
-   LED3 <= not r_eth0_tx_valid;
-   LED4 <= not r_eth0_tx_ready;
+  ETH0_TX_EN <= '1';
+
+  LED1 <= not r_eth0_tx_valid;
+  LED2 <= not r_eth0_tx_ready;
+  LED3 <= not r_eth0_tx_last;
+  LED4 <= not r_enable;
 
 end architecture arch;

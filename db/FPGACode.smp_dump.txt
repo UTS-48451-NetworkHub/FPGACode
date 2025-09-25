@@ -24,7 +24,9 @@ state.TX 0 1 1
 state.TX_BYTE_READY 1 0 1 
 
 State Machine - |ethernet_switch|eth_port:c_eth0|eth_tx:c_tx|tx_phy:c_phy|state
-Name state.NLP state.TX state.IDLE 
-state.IDLE 0 0 0 
-state.TX 0 1 1 
-state.NLP 1 0 1 
+Name state.TP_IDL state.TP_IDL_WAIT state.NLP state.TX state.IDLE 
+state.IDLE 0 0 0 0 0 
+state.TX 0 0 0 1 1 
+state.NLP 0 0 1 0 1 
+state.TP_IDL_WAIT 0 1 0 0 1 
+state.TP_IDL 1 0 0 0 1 

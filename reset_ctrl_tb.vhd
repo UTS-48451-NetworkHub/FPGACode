@@ -45,7 +45,13 @@ begin
   stim_proc : process
   begin
     -- Wait some cycles before first press
-    wait for 2 us;
+    wait for 5 ms;
+
+    -- Clean Press (no bounce)
+    btn_n <= '0';
+    wait for 30 ms;
+    btn_n <= '1';
+    wait for 30 ms;
 
     -- Button press with bounce (active-low)
     -- A "real" button might chatter rapidly between 0/1 for a few hundred ns
@@ -54,7 +60,7 @@ begin
     btn_n <= '0';  wait for 200 ns;
     btn_n <= '1';  wait for 50 ns;
     btn_n <= '0';  -- finally settled pressed
-    wait for 3 us;
+    wait for 30 ms;
 
     -- Button release with bounce
     btn_n <= '1';  wait for 80 ns;
@@ -62,15 +68,8 @@ begin
     btn_n <= '1';  wait for 100 ns;
     btn_n <= '0';  wait for 50 ns;
     btn_n <= '1';  -- finally settled released
-    wait for 3 us;
+    wait for 30 ms;
 
-    -- Another clean press (no bounce)
-    btn_n <= '0';
-    wait for 2 us;
-    btn_n <= '1';
-    wait for 2 us;
-
-    wait for 10 ms;
     assert false report "Simulation finished." severity failure;
   end process;
 end architecture;

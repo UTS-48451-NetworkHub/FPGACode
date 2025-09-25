@@ -30,7 +30,7 @@ architecture arch of tx_mnc_encoder is
 begin
 
   -- Generate the 'phase' of the bit stream
-  p_phase_gen : process (clk) is
+  p_phase_gen : process (clk, resetn) is
   begin
     if resetn = '0' then
       r_phase <= '0';

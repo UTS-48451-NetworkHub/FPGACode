@@ -115,7 +115,7 @@ begin
     ----------------------------------------------------------------
     report "Testing NLP generation";
     -- Just wait long enough to exceed inactivity counter
-    wait for 2 ms;
+    wait for 30 ms;
 
     ----------------------------------------------------------------
     -- End simulation
