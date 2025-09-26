@@ -1,18 +1,19 @@
 [*]
 [*] GTKWave Analyzer v3.3.118 (w)1999-2023 BSI
-[*] Thu Sep 25 10:47:49 2025
+[*] Fri Sep 26 11:04:50 2025
 [*]
 [dumpfile] "G:\FPGA_Projects\Ethernet_Switch\FPGACode\eth_tx_tb.ghw"
-[dumpfile_mtime] "Thu Sep 25 10:45:53 2025"
-[dumpfile_size] 54399268
+[dumpfile_mtime] "Fri Sep 26 10:59:20 2025"
+[dumpfile_size] 54395080
 [savefile] "G:\FPGA_Projects\Ethernet_Switch\FPGACode\eth_tx_tb_axi.gtkw"
-[timestart] 20060706500000
+[timestart] 20055135000000
 [size] 2560 1377
 [pos] -1 -1
-*-26.000000 20061150000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-29.000000 20056957000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.eth_tx_tb.
 [treeopen] top.eth_tx_tb.uut.
+[treeopen] top.eth_tx_tb.uut.c_fsm_pt.
 [sst_width] 350
 [signals_width] 198
 [sst_expanded] 1
@@ -40,6 +41,9 @@ top.eth_tx_tb.tvalid
 top.eth_tx_tb.uut.r_wr_en
 @24
 #{top.eth_tx_tb.uut.r_wr_addr[10:0]} top.eth_tx_tb.uut.r_wr_addr[10] top.eth_tx_tb.uut.r_wr_addr[9] top.eth_tx_tb.uut.r_wr_addr[8] top.eth_tx_tb.uut.r_wr_addr[7] top.eth_tx_tb.uut.r_wr_addr[6] top.eth_tx_tb.uut.r_wr_addr[5] top.eth_tx_tb.uut.r_wr_addr[4] top.eth_tx_tb.uut.r_wr_addr[3] top.eth_tx_tb.uut.r_wr_addr[2] top.eth_tx_tb.uut.r_wr_addr[1] top.eth_tx_tb.uut.r_wr_addr[0]
+@22
+#{top.eth_tx_tb.uut.c_fsm_pt.cnt_addr[10:0]} top.eth_tx_tb.uut.c_fsm_pt.cnt_addr[10] top.eth_tx_tb.uut.c_fsm_pt.cnt_addr[9] top.eth_tx_tb.uut.c_fsm_pt.cnt_addr[8] top.eth_tx_tb.uut.c_fsm_pt.cnt_addr[7] top.eth_tx_tb.uut.c_fsm_pt.cnt_addr[6] top.eth_tx_tb.uut.c_fsm_pt.cnt_addr[5] top.eth_tx_tb.uut.c_fsm_pt.cnt_addr[4] top.eth_tx_tb.uut.c_fsm_pt.cnt_addr[3] top.eth_tx_tb.uut.c_fsm_pt.cnt_addr[2] top.eth_tx_tb.uut.c_fsm_pt.cnt_addr[1] top.eth_tx_tb.uut.c_fsm_pt.cnt_addr[0]
+#{top.eth_tx_tb.uut.c_fsm_pt.r_packet_length[10:0]} top.eth_tx_tb.uut.c_fsm_pt.r_packet_length[10] top.eth_tx_tb.uut.c_fsm_pt.r_packet_length[9] top.eth_tx_tb.uut.c_fsm_pt.r_packet_length[8] top.eth_tx_tb.uut.c_fsm_pt.r_packet_length[7] top.eth_tx_tb.uut.c_fsm_pt.r_packet_length[6] top.eth_tx_tb.uut.c_fsm_pt.r_packet_length[5] top.eth_tx_tb.uut.c_fsm_pt.r_packet_length[4] top.eth_tx_tb.uut.c_fsm_pt.r_packet_length[3] top.eth_tx_tb.uut.c_fsm_pt.r_packet_length[2] top.eth_tx_tb.uut.c_fsm_pt.r_packet_length[1] top.eth_tx_tb.uut.c_fsm_pt.r_packet_length[0]
 @200
 -TX Read Internals
 @22
@@ -56,5 +60,9 @@ top.eth_tx_tb.tx_en
 top.eth_tx_tb.uut.c_phy.state
 @28
 top.eth_tx_tb.uut.c_phy.tx_active
+@200
+-SR PISO Internals
+@22
+#{top.eth_tx_tb.uut.c_piso_sr.r_byte[7:0]} top.eth_tx_tb.uut.c_piso_sr.r_byte[7] top.eth_tx_tb.uut.c_piso_sr.r_byte[6] top.eth_tx_tb.uut.c_piso_sr.r_byte[5] top.eth_tx_tb.uut.c_piso_sr.r_byte[4] top.eth_tx_tb.uut.c_piso_sr.r_byte[3] top.eth_tx_tb.uut.c_piso_sr.r_byte[2] top.eth_tx_tb.uut.c_piso_sr.r_byte[1] top.eth_tx_tb.uut.c_piso_sr.r_byte[0]
 [pattern_trace] 1
 [pattern_trace] 0

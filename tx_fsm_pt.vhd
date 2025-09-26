@@ -204,7 +204,7 @@ begin
 
       when TX_WAIT =>
         -- Move to IFG if transmission is complete.
-        if cnt_addr = r_packet_length + 1 then
+        if cnt_addr = (r_packet_length + 2) then
           next_state <= TX_LAST;
           -- Check if SIPO is ready
         elsif byte_ready = '1' then
