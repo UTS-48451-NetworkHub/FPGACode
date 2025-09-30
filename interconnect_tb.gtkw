@@ -1,0 +1,76 @@
+[*]
+[*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
+[*] Tue Sep 30 02:44:49 2025
+[*]
+[dumpfile] "/home/mac/Code/FPGACode/interconnect_tb.ghw"
+[dumpfile_mtime] "Tue Sep 30 02:38:32 2025"
+[dumpfile_size] 2125
+[savefile] "/home/mac/Code/FPGACode/interconnect_tb.gtkw"
+[timestart] 0
+[size] 1920 1011
+[pos] -51 -51
+*-25.134851 16700000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] top.
+[treeopen] top.interconnect_tb.
+[sst_width] 221
+[signals_width] 163
+[sst_expanded] 1
+[sst_vpaned_height] 572
+@29
+top.interconnect_tb.uut.resetn
+@28
+top.interconnect_tb.uut.clk
+@420
+top.interconnect_tb.uut.active_port
+top.interconnect_tb.uut.last_port
+@200
+-Port Handshakes
+-Port A
+@28
+top.interconnect_tb.uut.pa_rx_tvalid
+top.interconnect_tb.uut.pa_rx_tlast
+top.interconnect_tb.uut.pa_tx_tvalid
+top.interconnect_tb.uut.pa_tx_tlast
+@200
+-PORT B
+@28
+top.interconnect_tb.uut.pb_rx_tvalid
+top.interconnect_tb.uut.pb_rx_tlast
+top.interconnect_tb.uut.pb_tx_tvalid
+top.interconnect_tb.uut.pb_tx_tlast
+@200
+-PORT C
+@28
+top.interconnect_tb.uut.pc_rx_tvalid
+top.interconnect_tb.uut.pc_rx_tlast
+top.interconnect_tb.uut.pc_tx_tvalid
+top.interconnect_tb.uut.pc_tx_tlast
+@200
+-PORT D
+@28
+top.interconnect_tb.uut.pd_rx_tvalid
+top.interconnect_tb.uut.pd_rx_tlast
+top.interconnect_tb.uut.pd_tx_tvalid
+top.interconnect_tb.uut.pd_tx_tlast
+@200
+-PORT E
+@28
+top.interconnect_tb.uut.pe_rx_tvalid
+top.interconnect_tb.uut.pe_rx_tlast
+top.interconnect_tb.uut.pe_tx_tvalid
+top.interconnect_tb.uut.pe_tx_tlast
+@200
+-Port Data
+@22
+#{top.interconnect_tb.pa_rx_tdata[7:0]} top.interconnect_tb.pa_rx_tdata[7] top.interconnect_tb.pa_rx_tdata[6] top.interconnect_tb.pa_rx_tdata[5] top.interconnect_tb.pa_rx_tdata[4] top.interconnect_tb.pa_rx_tdata[3] top.interconnect_tb.pa_rx_tdata[2] top.interconnect_tb.pa_rx_tdata[1] top.interconnect_tb.pa_rx_tdata[0]
+#{top.interconnect_tb.pa_tx_tdata[7:0]} top.interconnect_tb.pa_tx_tdata[7] top.interconnect_tb.pa_tx_tdata[6] top.interconnect_tb.pa_tx_tdata[5] top.interconnect_tb.pa_tx_tdata[4] top.interconnect_tb.pa_tx_tdata[3] top.interconnect_tb.pa_tx_tdata[2] top.interconnect_tb.pa_tx_tdata[1] top.interconnect_tb.pa_tx_tdata[0]
+#{top.interconnect_tb.pb_rx_tdata[7:0]} top.interconnect_tb.pb_rx_tdata[7] top.interconnect_tb.pb_rx_tdata[6] top.interconnect_tb.pb_rx_tdata[5] top.interconnect_tb.pb_rx_tdata[4] top.interconnect_tb.pb_rx_tdata[3] top.interconnect_tb.pb_rx_tdata[2] top.interconnect_tb.pb_rx_tdata[1] top.interconnect_tb.pb_rx_tdata[0]
+#{top.interconnect_tb.pb_tx_tdata[7:0]} top.interconnect_tb.pb_tx_tdata[7] top.interconnect_tb.pb_tx_tdata[6] top.interconnect_tb.pb_tx_tdata[5] top.interconnect_tb.pb_tx_tdata[4] top.interconnect_tb.pb_tx_tdata[3] top.interconnect_tb.pb_tx_tdata[2] top.interconnect_tb.pb_tx_tdata[1] top.interconnect_tb.pb_tx_tdata[0]
+#{top.interconnect_tb.pc_rx_tdata[7:0]} top.interconnect_tb.pc_rx_tdata[7] top.interconnect_tb.pc_rx_tdata[6] top.interconnect_tb.pc_rx_tdata[5] top.interconnect_tb.pc_rx_tdata[4] top.interconnect_tb.pc_rx_tdata[3] top.interconnect_tb.pc_rx_tdata[2] top.interconnect_tb.pc_rx_tdata[1] top.interconnect_tb.pc_rx_tdata[0]
+#{top.interconnect_tb.pc_tx_tdata[7:0]} top.interconnect_tb.pc_tx_tdata[7] top.interconnect_tb.pc_tx_tdata[6] top.interconnect_tb.pc_tx_tdata[5] top.interconnect_tb.pc_tx_tdata[4] top.interconnect_tb.pc_tx_tdata[3] top.interconnect_tb.pc_tx_tdata[2] top.interconnect_tb.pc_tx_tdata[1] top.interconnect_tb.pc_tx_tdata[0]
+#{top.interconnect_tb.pd_rx_tdata[7:0]} top.interconnect_tb.pd_rx_tdata[7] top.interconnect_tb.pd_rx_tdata[6] top.interconnect_tb.pd_rx_tdata[5] top.interconnect_tb.pd_rx_tdata[4] top.interconnect_tb.pd_rx_tdata[3] top.interconnect_tb.pd_rx_tdata[2] top.interconnect_tb.pd_rx_tdata[1] top.interconnect_tb.pd_rx_tdata[0]
+#{top.interconnect_tb.pd_tx_tdata[7:0]} top.interconnect_tb.pd_tx_tdata[7] top.interconnect_tb.pd_tx_tdata[6] top.interconnect_tb.pd_tx_tdata[5] top.interconnect_tb.pd_tx_tdata[4] top.interconnect_tb.pd_tx_tdata[3] top.interconnect_tb.pd_tx_tdata[2] top.interconnect_tb.pd_tx_tdata[1] top.interconnect_tb.pd_tx_tdata[0]
+#{top.interconnect_tb.pe_rx_tdata[7:0]} top.interconnect_tb.pe_rx_tdata[7] top.interconnect_tb.pe_rx_tdata[6] top.interconnect_tb.pe_rx_tdata[5] top.interconnect_tb.pe_rx_tdata[4] top.interconnect_tb.pe_rx_tdata[3] top.interconnect_tb.pe_rx_tdata[2] top.interconnect_tb.pe_rx_tdata[1] top.interconnect_tb.pe_rx_tdata[0]
+#{top.interconnect_tb.pe_tx_tdata[7:0]} top.interconnect_tb.pe_tx_tdata[7] top.interconnect_tb.pe_tx_tdata[6] top.interconnect_tb.pe_tx_tdata[5] top.interconnect_tb.pe_tx_tdata[4] top.interconnect_tb.pe_tx_tdata[3] top.interconnect_tb.pe_tx_tdata[2] top.interconnect_tb.pe_tx_tdata[1] top.interconnect_tb.pe_tx_tdata[0]
+[pattern_trace] 1
+[pattern_trace] 0
