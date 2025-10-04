@@ -3,22 +3,20 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 entity ringbuffer is
-  generic (
-    DATA_WIDTH  : positive := 8;       -- AXIS width (bits)
-    DEPTH_BYTES : positive := 2048     -- total storage (bytes)
+  generic(
+    DATA_WIDTH  : positive := 8;        -- AXIS width (bits)
+    DEPTH_BYTES : positive := 2048      -- total storage (bytes)
   );
-  port (
+  port(
     clk           : in  std_logic;
     rst_n         : in  std_logic;
-
     -- AXI-Stream input (slave)
-    s_axis_tdata  : in  std_logic_vector(DATA_WIDTH-1 downto 0);
+    s_axis_tdata  : in  std_logic_vector(DATA_WIDTH - 1 downto 0);
     s_axis_tvalid : in  std_logic;
     s_axis_tlast  : in  std_logic;
     s_axis_tready : out std_logic;
-
     -- AXI-Stream output (master)
-    m_axis_tdata  : out std_logic_vector(DATA_WIDTH-1 downto 0);
+    m_axis_tdata  : out std_logic_vector(DATA_WIDTH - 1 downto 0);
     m_axis_tvalid : out std_logic;
     m_axis_tlast  : out std_logic;
     m_axis_tready : in  std_logic
@@ -42,7 +40,11 @@ architecture rtl of ringbuffer is
 
   function to_sl(b : boolean) return std_logic is
   begin
-    if b then return '1'; else return '0'; end if;
+    if b then
+      return '1';
+    else
+      return '0';
+    end if;
   end function;
 
   --------------------------------------------------------------------
@@ -54,34 +56,34 @@ architecture rtl of ringbuffer is
   --------------------------------------------------------------------
   -- Block RAM: store {tlast,data}
   --------------------------------------------------------------------
-  type ram_t is array (0 to DEPTH_WORDS-1) of std_logic_vector(DATA_WIDTH downto 0);
-  signal ram : ram_t := (others => (others => '0'));
+  type   ram_t is array (0 to DEPTH_WORDS - 1) of std_logic_vector(DATA_WIDTH downto 0);
+  signal ram   : ram_t := (others => (others => '0'));
 
   -- Port A (write)
-  signal a_en   : std_logic := '0';
-  signal a_we   : std_logic := '0';
-  signal a_addr : unsigned(AW-1 downto 0) := (others => '0');
+  signal a_en   : std_logic                             := '0';
+  signal a_we   : std_logic                             := '0';
+  signal a_addr : unsigned(AW - 1 downto 0)             := (others => '0');
   signal a_din  : std_logic_vector(DATA_WIDTH downto 0) := (others => '0');
 
   -- Port B (read)
-  signal b_en   : std_logic := '0';
-  signal b_addr : unsigned(AW-1 downto 0) := (others => '0');
+  signal b_en   : std_logic                             := '0';
+  signal b_addr : unsigned(AW - 1 downto 0)             := (others => '0');
   signal b_dout : std_logic_vector(DATA_WIDTH downto 0) := (others => '0');
 
   --------------------------------------------------------------------
   -- Pointers / counters / state  (single-driver!)
   --------------------------------------------------------------------
-  signal wr_ptr    : unsigned(AW-1 downto 0) := (others => '0');
-  signal rd_ptr    : unsigned(AW-1 downto 0) := (others => '0');
-  signal occ_words : unsigned(AW downto 0)   := (others => '0'); -- 0..DEPTH_WORDS
-  signal pkt_count : unsigned(15 downto 0)   := (others => '0');
+  signal wr_ptr    : unsigned(AW - 1 downto 0) := (others => '0');
+  signal rd_ptr    : unsigned(AW - 1 downto 0) := (others => '0');
+  signal occ_words : unsigned(AW downto 0)     := (others => '0'); -- 0..DEPTH_WORDS
+  signal pkt_count : unsigned(15 downto 0)     := (others => '0');
 
   -- rollback snapshot
-  signal sop_ptr   : unsigned(AW-1 downto 0) := (others => '0');
-  signal sop_occ   : unsigned(AW downto 0)   := (others => '0');
+  signal sop_ptr : unsigned(AW - 1 downto 0) := (others => '0');
+  signal sop_occ : unsigned(AW downto 0)     := (others => '0');
 
-  signal in_packet   : std_logic := '0';
-  signal dropping    : std_logic := '0';
+  signal in_packet : std_logic := '0';
+  signal dropping  : std_logic := '0';
 
   -- handshakes
   signal s_handshake : std_logic;
@@ -100,7 +102,6 @@ begin
   -- OUT ports
   --------------------------------------------------------------------
   s_axis_tready <= s_axis_tready_i;
-  m_axis_tvalid <= m_axis_tvalid_i;
 
   --------------------------------------------------------------------
   -- RAM: sync write, 1-cycle read
@@ -109,7 +110,7 @@ begin
   begin
     if rising_edge(clk) then
       if rst_n = '0' then
-        b_dout <= (others => '0');  -- avoid red X on output bus after reset
+        b_dout <= (others => '0');      -- avoid red X on output bus after reset
       else
         if a_en = '1' and a_we = '1' then
           ram(to_integer(a_addr)) <= a_din;
@@ -140,11 +141,10 @@ begin
 
   -- Keep ready asserted while IN a packet (so we can flush to tlast),
   -- otherwise only ready if space is available.
-  s_axis_tready_i <=
-       '0' when rst_n = '0' else
-       '1' when in_packet = '1' else
-       '0' when occ_words = to_unsigned(DEPTH_WORDS, occ_words'length) else
-       '1';
+  s_axis_tready_i <= '0' when rst_n = '0' else
+                     '1' when in_packet = '1' else
+                     '0' when occ_words = to_unsigned(DEPTH_WORDS, occ_words'length) else
+                     '1';
 
   --------------------------------------------------------------------
   -- Read side wiring
@@ -152,7 +152,7 @@ begin
   b_en   <= '1';
   b_addr <= rd_ptr;
 
-  m_axis_tdata    <= b_dout(DATA_WIDTH-1 downto 0);
+  m_axis_tdata    <= b_dout(DATA_WIDTH - 1 downto 0);
   m_axis_tlast    <= b_dout(DATA_WIDTH);
   m_axis_tvalid_i <= have_packet and (not empty_words);
 
@@ -165,16 +165,17 @@ begin
   begin
     if rising_edge(clk) then
       if rst_n = '0' then
-        wr_ptr     <= (others => '0');
-        rd_ptr     <= (others => '0');
-        occ_words  <= (others => '0');
-        pkt_count  <= (others => '0');
-        sop_ptr    <= (others => '0');
-        sop_occ    <= (others => '0');
-        in_packet  <= '0';
-        dropping   <= '0';
+        wr_ptr    <= (others => '0');
+        rd_ptr    <= (others => '0');
+        occ_words <= (others => '0');
+        pkt_count <= (others => '0');
+        sop_ptr   <= (others => '0');
+        sop_occ   <= (others => '0');
+        in_packet <= '0';
+        dropping  <= '0';
 
       else
+        m_axis_tvalid <= m_axis_tvalid_i;
         ----------------------------------------------------------------
         -- WRITE PATH (accept or drop)
         ----------------------------------------------------------------
@@ -207,8 +208,7 @@ begin
             else
               -- Start dropping if after this accept we're full,
               -- OR if we were already full when this beat arrived.
-              if (next_occ_inc = to_unsigned(DEPTH_WORDS, occ_words'length)) or
-                 (occ_words     = to_unsigned(DEPTH_WORDS, occ_words'length)) then
+              if (next_occ_inc = to_unsigned(DEPTH_WORDS, occ_words'length)) or (occ_words = to_unsigned(DEPTH_WORDS, occ_words'length)) then
                 dropping <= '1';
               end if;
             end if;
@@ -246,8 +246,8 @@ begin
           end if;
         end if;
 
-      end if; -- rst
-    end if; -- clk
+      end if;                           -- rst
+    end if;                             -- clk
   end process;
 
 end architecture rtl;
