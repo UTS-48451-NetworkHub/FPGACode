@@ -132,6 +132,16 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH0_LED_YEL
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ETH0_LED_GRN
 
 set_location_assignment PIN_53 -to ETH2_TX
+set_location_assignment PIN_85 -to LED2
+set_location_assignment PIN_86 -to LED3
+set_location_assignment PIN_87 -to LED4
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LED2
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LED3
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LED4
+set_global_assignment -name ENABLE_SIGNALTAP ON
+set_global_assignment -name USE_SIGNALTAP_FILE stp1.stp
+set_global_assignment -name VHDL_FILE axi4s_interconnect.vhd
+set_global_assignment -name VHDL_FILE ringbuffer.vhd
 set_global_assignment -name VHDL_FILE reset_ctrl.vhd
 set_global_assignment -name VHDL_FILE eth_tx_tb_driver.vhd
 set_global_assignment -name VHDL_FILE altclkctrl/synthesis/altclkctrl.vhd
@@ -148,14 +158,7 @@ set_global_assignment -name VHDL_FILE eth_tx.vhd
 set_global_assignment -name VHDL_FILE tx_phy.vhd
 set_global_assignment -name VHDL_FILE tx_fsm_pt.vhd
 set_global_assignment -name VHDL_FILE tx_fsm_axi.vhd
-set_location_assignment PIN_85 -to LED2
-set_location_assignment PIN_86 -to LED3
-set_location_assignment PIN_87 -to LED4
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LED2
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LED3
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LED4
-set_global_assignment -name ENABLE_SIGNALTAP ON
-set_global_assignment -name USE_SIGNALTAP_FILE stp1.stp
 set_global_assignment -name SIGNALTAP_FILE stp1.stp
-set_global_assignment -name SLD_FILE db/stp1_auto_stripped.stp
+set_global_assignment -name QIP_FILE ram_packet_rb.qip
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
+set_global_assignment -name SLD_FILE db/stp1_auto_stripped.stp

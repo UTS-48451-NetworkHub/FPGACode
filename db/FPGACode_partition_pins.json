@@ -24,11 +24,11 @@
 					"strict" : false
 				},
 				{
-					"name" : "KEY4",
+					"name" : "RESET",
 					"strict" : false
 				},
 				{
-					"name" : "RESET",
+					"name" : "KEY4",
 					"strict" : false
 				}
 			]

@@ -65,12 +65,92 @@ architecture arch of ethernet_switch is
   -- Packet Send Enable
   signal r_enable : std_logic := '0';
 
-  -- Ethernet Port 0 TX AXI-S
+  -- Temporary Tx EN signals
+  signal r_eth0_tx_en : std_logic := '0';
+  signal r_eth1_tx_en : std_logic := '0';
+  signal r_eth2_tx_en : std_logic := '0';
+  signal r_eth3_tx_en : std_logic := '0';
+  signal r_eth4_tx_en : std_logic := '0';
+
+  ---- Ethernet Port 0 ----
+  -- TX AXI-S
   signal r_eth0_tx_valid : std_logic                    := '0';
   signal r_eth0_tx_ready : std_logic                    := '0';
   signal r_eth0_tx_last  : std_logic                    := '0';
   signal r_eth0_tx_data  : std_logic_vector(7 downto 0) := (others => '0');
-  signal r_eth0_tx_en : std_logic := '0';
+  -- RX AXI-S
+  signal r_eth0_rx_valid : std_logic                    := '0';
+  signal r_eth0_rx_ready : std_logic                    := '0';
+  signal r_eth0_rx_last  : std_logic                    := '0';
+  signal r_eth0_rx_data  : std_logic_vector(7 downto 0) := (others => '0');
+  -- Ring Buffer AXI-S
+  signal r_eth0_rb_valid : std_logic                    := '0';
+  signal r_eth0_rb_last  : std_logic                    := '0';
+  signal r_eth0_rb_data  : std_logic_vector(7 downto 0) := (others => '0');
+
+  ---- Ethernet Port 1 ----
+  -- TX AXI-S
+  signal r_eth1_tx_valid : std_logic                    := '0';
+  signal r_eth1_tx_ready : std_logic                    := '0';
+  signal r_eth1_tx_last  : std_logic                    := '0';
+  signal r_eth1_tx_data  : std_logic_vector(7 downto 0) := (others => '0');
+  -- RX AXI-S
+  signal r_eth1_rx_valid : std_logic                    := '0';
+  signal r_eth1_rx_ready : std_logic                    := '0';
+  signal r_eth1_rx_last  : std_logic                    := '0';
+  signal r_eth1_rx_data  : std_logic_vector(7 downto 0) := (others => '0');
+  -- Ring Buffer AXI-S
+  signal r_eth1_rb_valid : std_logic                    := '0';
+  signal r_eth1_rb_last  : std_logic                    := '0';
+  signal r_eth1_rb_data  : std_logic_vector(7 downto 0) := (others => '0');
+
+  ---- Ethernet Port 2 ----
+  -- TX AXI-S
+  signal r_eth2_tx_valid : std_logic                    := '0';
+  signal r_eth2_tx_ready : std_logic                    := '0';
+  signal r_eth2_tx_last  : std_logic                    := '0';
+  signal r_eth2_tx_data  : std_logic_vector(7 downto 0) := (others => '0');
+  -- RX AXI-S
+  signal r_eth2_rx_valid : std_logic                    := '0';
+  signal r_eth2_rx_ready : std_logic                    := '0';
+  signal r_eth2_rx_last  : std_logic                    := '0';
+  signal r_eth2_rx_data  : std_logic_vector(7 downto 0) := (others => '0');
+  -- Ring Buffer AXI-S
+  signal r_eth2_rb_valid : std_logic                    := '0';
+  signal r_eth2_rb_last  : std_logic                    := '0';
+  signal r_eth2_rb_data  : std_logic_vector(7 downto 0) := (others => '0');
+
+  ---- Ethernet Port 3 ----
+  -- TX AXI-S
+  signal r_eth3_tx_valid : std_logic                    := '0';
+  signal r_eth3_tx_ready : std_logic                    := '0';
+  signal r_eth3_tx_last  : std_logic                    := '0';
+  signal r_eth3_tx_data  : std_logic_vector(7 downto 0) := (others => '0');
+  -- RX AXI-S
+  signal r_eth3_rx_valid : std_logic                    := '0';
+  signal r_eth3_rx_ready : std_logic                    := '0';
+  signal r_eth3_rx_last  : std_logic                    := '0';
+  signal r_eth3_rx_data  : std_logic_vector(7 downto 0) := (others => '0');
+  -- Ring Buffer AXI-S
+  signal r_eth3_rb_valid : std_logic                    := '0';
+  signal r_eth3_rb_last  : std_logic                    := '0';
+  signal r_eth3_rb_data  : std_logic_vector(7 downto 0) := (others => '0');
+
+  ---- Ethernet Port 4 ----
+  -- TX AXI-S
+  signal r_eth4_tx_valid : std_logic                    := '0';
+  signal r_eth4_tx_ready : std_logic                    := '0';
+  signal r_eth4_tx_last  : std_logic                    := '0';
+  signal r_eth4_tx_data  : std_logic_vector(7 downto 0) := (others => '0');
+  -- RX AXI-S
+  signal r_eth4_rx_valid : std_logic                    := '0';
+  signal r_eth4_rx_ready : std_logic                    := '0';
+  signal r_eth4_rx_last  : std_logic                    := '0';
+  signal r_eth4_rx_data  : std_logic_vector(7 downto 0) := (others => '0');
+  -- Ring Buffer AXI-S
+  signal r_eth4_rb_valid : std_logic                    := '0';
+  signal r_eth4_rb_last  : std_logic                    := '0';
+  signal r_eth4_rb_data  : std_logic_vector(7 downto 0) := (others => '0');
 
 begin
 
@@ -132,21 +212,82 @@ begin
       act => ETH0_LED_YEL
     );
 
+  c_eth0_rb : entity work.ringbuffer
+    generic map(
+      DATA_WIDTH  => 8,
+      DEPTH_BYTES => 1024
+    )
+    port map(
+      clk           => clk_100,
+      rst_n         => resetn,
+      s_axis_tdata  => r_eth0_rb_data,
+      s_axis_tvalid => r_eth0_rb_valid,
+      s_axis_tlast  => r_eth0_rb_last,
+      m_axis_tdata  => r_eth0_tx_data,
+      m_axis_tvalid => r_eth0_tx_valid,
+      m_axis_tlast  => r_eth0_tx_last,
+      m_axis_tready => r_eth0_tx_ready
+    );
+
   ------------------------------------------------------------------------
-  -- Debug Generator
+  -- Interconnect
   ------------------------------------------------------------------------
-  debug_tx : entity work.eth_tx_tb_driver
+  c_interconnect : entity work.axi4s_interconnect
+    port map(
+      clk          => clk_100,
+      resetn       => resetn,
+      PA_RX_tdata  => r_eth0_rx_data,
+      PA_RX_tvalid => r_eth0_rx_valid,
+      PA_RX_tlast  => r_eth0_rx_last,
+      PA_RX_tready => r_eth0_rx_ready,
+      PA_TX_tdata  => r_eth0_rb_data,
+      PA_TX_tvalid => r_eth0_rb_valid,
+      PA_TX_tlast  => r_eth0_rb_last,
+      PB_RX_tdata  => r_eth1_rx_data,
+      PB_RX_tvalid => r_eth1_rx_valid,
+      PB_RX_tlast  => r_eth1_rx_last,
+      PB_RX_tready => r_eth1_rx_ready,
+      PB_TX_tdata  => r_eth1_rb_data,
+      PB_TX_tvalid => r_eth1_rb_valid,
+      PB_TX_tlast  => r_eth1_rb_last,
+      PC_RX_tdata  => r_eth2_rx_data,
+      PC_RX_tvalid => r_eth2_rx_valid,
+      PC_RX_tlast  => r_eth2_rx_last,
+      PC_RX_tready => r_eth2_rx_ready,
+      PC_TX_tdata  => r_eth2_rb_data,
+      PC_TX_tvalid => r_eth2_rb_valid,
+      PC_TX_tlast  => r_eth2_rb_last,
+      PD_RX_tdata  => r_eth3_rx_data,
+      PD_RX_tvalid => r_eth3_rx_valid,
+      PD_RX_tlast  => r_eth3_rx_last,
+      PD_RX_tready => r_eth3_rx_ready,
+      PD_TX_tdata  => r_eth3_rb_data,
+      PD_TX_tvalid => r_eth3_rb_valid,
+      PD_TX_tlast  => r_eth3_rb_last,
+      PE_RX_tdata  => r_eth4_rx_data,
+      PE_RX_tvalid => r_eth4_rx_valid,
+      PE_RX_tlast  => r_eth4_rx_last,
+      PE_RX_tready => r_eth4_rx_ready,
+      PE_TX_tdata  => r_eth4_rb_data,
+      PE_TX_tvalid => r_eth4_rb_valid,
+      PE_TX_tlast  => r_eth4_rb_last
+    );
+  
+  ------------------------------------------------------------------------
+  -- Debug Generator / Stuff
+  ------------------------------------------------------------------------
+  c_debug_tx : entity work.eth_tx_tb_driver
     port map
     (
       clk    => clk_100,
       resetn => resetn,
       enable => r_enable,
-      tvalid => r_eth0_tx_valid,
-      tready => r_eth0_tx_ready,
-      tlast  => r_eth0_tx_last,
-      tdata  => r_eth0_tx_data
+      tvalid => r_eth1_rx_valid,
+      tready => r_eth1_rx_ready,
+      tlast  => r_eth1_rx_last,
+      tdata  => r_eth1_rx_data
     );
-	 
+	
   ETH0_TX_EN <= '1';
 
   LED1 <= not r_eth0_tx_valid;
