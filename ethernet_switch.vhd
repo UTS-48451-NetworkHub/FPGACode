@@ -215,7 +215,7 @@ begin
   c_eth0_rb : entity work.ringbuffer
     generic map(
       DATA_WIDTH  => 8,
-      DEPTH_BYTES => 1024
+      DEPTH_BYTES => 2048
     )
     port map(
       clk           => clk_100,

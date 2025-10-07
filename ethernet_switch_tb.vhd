@@ -102,7 +102,7 @@ begin
         KEY4 <= '1';
 
         -- Let the system run for a while
-        wait for 400 us;
+        wait for 100 us;
 
         -- End simulation
         assert false report "Simulation Finished" severity failure;
