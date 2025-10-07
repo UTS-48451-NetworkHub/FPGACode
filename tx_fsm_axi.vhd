@@ -64,7 +64,7 @@ begin
       state <= next_state;
 
       -- Transaction is active
-      if next_state = RECEIVING or state = LAST then
+      if state = RECEIVING or state = LAST then
         -- Handle the address counter
         if cnt_addr = to_unsigned(0, cnt_addr'length) then
           cnt_addr <= to_unsigned(1, cnt_addr'length);
@@ -128,7 +128,7 @@ begin
     '1' when READY | RECEIVING | LAST,
     '0' when others;
 
-  with next_state select
+  with state select
     wr_en <=
     '1' when RECEIVING | LAST,
     '0' when others;

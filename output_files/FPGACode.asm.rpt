@@ -1,5 +1,5 @@
 Assembler report for FPGACode
-Sat Oct  4 20:29:05 2025
+Tue Oct  7 10:52:05 2025
 Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
 
 
@@ -11,7 +11,7 @@ Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
   3. Assembler Settings
   4. Assembler Encrypted IP Cores Summary
   5. Assembler Generated Files
-  6. Assembler Device Options: G:/FPGA_Projects/Ethernet_Switch/FPGACode/output_files/FPGACode.sof
+  6. Assembler Device Options: FPGACode.sof
   7. Assembler Messages
 
 
@@ -39,7 +39,7 @@ on the Quartus Prime software download page.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Sat Oct  4 20:29:05 2025 ;
+; Assembler Status      ; Successful - Tue Oct  7 10:52:05 2025 ;
 ; Revision Name         ; FPGACode                              ;
 ; Top-level Entity Name ; ethernet_switch                       ;
 ; Family                ; Cyclone IV E                          ;
@@ -64,23 +64,23 @@ on the Quartus Prime software download page.
 +--------+------------------------+--------------+
 
 
-+---------------------------------------------------------------------+
-; Assembler Generated Files                                           ;
-+---------------------------------------------------------------------+
-; File Name                                                           ;
-+---------------------------------------------------------------------+
-; G:/FPGA_Projects/Ethernet_Switch/FPGACode/output_files/FPGACode.sof ;
-+---------------------------------------------------------------------+
++---------------------------------------------------+
+; Assembler Generated Files                         ;
++---------------------------------------------------+
+; File Name                                         ;
++---------------------------------------------------+
+; /home/mac/Code/FPGACode/output_files/FPGACode.sof ;
++---------------------------------------------------+
 
 
-+-----------------------------------------------------------------------------------------------+
-; Assembler Device Options: G:/FPGA_Projects/Ethernet_Switch/FPGACode/output_files/FPGACode.sof ;
-+----------------+------------------------------------------------------------------------------+
-; Option         ; Setting                                                                      ;
-+----------------+------------------------------------------------------------------------------+
-; JTAG usercode  ; 0x00176582                                                                   ;
-; Checksum       ; 0x00176582                                                                   ;
-+----------------+------------------------------------------------------------------------------+
++----------------------------------------+
+; Assembler Device Options: FPGACode.sof ;
++----------------+-----------------------+
+; Option         ; Setting               ;
++----------------+-----------------------+
+; JTAG usercode  ; 0x00167CC6            ;
+; Checksum       ; 0x00167CC6            ;
++----------------+-----------------------+
 
 
 +--------------------+
@@ -89,15 +89,17 @@ on the Quartus Prime software download page.
 Info: *******************************************************************
 Info: Running Quartus Prime Assembler
     Info: Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
-    Info: Processing started: Sat Oct  4 20:29:04 2025
+    Info: Processing started: Tue Oct  7 10:51:59 2025
 Info: Command: quartus_asm --read_settings_files=off --write_settings_files=off FPGACode -c FPGACode
+Warning (125092): Tcl Script File fifo_eth_packet.qip not found
+    Info (125063): set_global_assignment -name QIP_FILE fifo_eth_packet.qip
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (115031): Writing out detailed assembly data for power analysis
 Info (115030): Assembler is generating device programming files
-Info: Quartus Prime Assembler was successful. 0 errors, 1 warning
-    Info: Peak virtual memory: 4703 megabytes
-    Info: Processing ended: Sat Oct  4 20:29:05 2025
-    Info: Elapsed time: 00:00:01
-    Info: Total CPU time (on all processors): 00:00:01
+Info: Quartus Prime Assembler was successful. 0 errors, 2 warnings
+    Info: Peak virtual memory: 359 megabytes
+    Info: Processing ended: Tue Oct  7 10:52:05 2025
+    Info: Elapsed time: 00:00:06
+    Info: Total CPU time (on all processors): 00:00:05
 
 

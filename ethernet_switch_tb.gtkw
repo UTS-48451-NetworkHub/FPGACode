@@ -1,0 +1,55 @@
+[*]
+[*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
+[*] Tue Oct  7 00:30:27 2025
+[*]
+[dumpfile] "/home/mac/Code/FPGACode/ethernet_switch_tb.ghw"
+[dumpfile_mtime] "Tue Oct  7 00:20:12 2025"
+[dumpfile_size] 7436215
+[savefile] "/home/mac/Code/FPGACode/ethernet_switch_tb.gtkw"
+[timestart] 1094370000
+[size] 1920 1011
+[pos] -89 -89
+*-24.000000 1140000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] top.
+[treeopen] top.ethernet_switch_tb.
+[treeopen] top.ethernet_switch_tb.dut.
+[treeopen] top.ethernet_switch_tb.dut.c_eth0.
+[treeopen] top.ethernet_switch_tb.dut.c_eth0.c_tx.
+[sst_width] 221
+[signals_width] 198
+[sst_expanded] 1
+[sst_vpaned_height] 606
+@28
+top.ethernet_switch_tb.dut.clk_100
+top.ethernet_switch_tb.dut.reset
+@200
+-TX 
+@22
+#{top.ethernet_switch_tb.dut.c_eth0.c_tx.r_wr_addr[10:0]} top.ethernet_switch_tb.dut.c_eth0.c_tx.r_wr_addr[10] top.ethernet_switch_tb.dut.c_eth0.c_tx.r_wr_addr[9] top.ethernet_switch_tb.dut.c_eth0.c_tx.r_wr_addr[8] top.ethernet_switch_tb.dut.c_eth0.c_tx.r_wr_addr[7] top.ethernet_switch_tb.dut.c_eth0.c_tx.r_wr_addr[6] top.ethernet_switch_tb.dut.c_eth0.c_tx.r_wr_addr[5] top.ethernet_switch_tb.dut.c_eth0.c_tx.r_wr_addr[4] top.ethernet_switch_tb.dut.c_eth0.c_tx.r_wr_addr[3] top.ethernet_switch_tb.dut.c_eth0.c_tx.r_wr_addr[2] top.ethernet_switch_tb.dut.c_eth0.c_tx.r_wr_addr[1] top.ethernet_switch_tb.dut.c_eth0.c_tx.r_wr_addr[0]
+@420
+top.ethernet_switch_tb.dut.c_eth0.c_tx.c_fsm_axi.state
+top.ethernet_switch_tb.dut.c_eth0.c_tx.c_fsm_pt.state
+@22
+#{top.ethernet_switch_tb.dut.c_eth0.c_tx.c_fsm_pt.r_packet_length[10:0]} top.ethernet_switch_tb.dut.c_eth0.c_tx.c_fsm_pt.r_packet_length[10] top.ethernet_switch_tb.dut.c_eth0.c_tx.c_fsm_pt.r_packet_length[9] top.ethernet_switch_tb.dut.c_eth0.c_tx.c_fsm_pt.r_packet_length[8] top.ethernet_switch_tb.dut.c_eth0.c_tx.c_fsm_pt.r_packet_length[7] top.ethernet_switch_tb.dut.c_eth0.c_tx.c_fsm_pt.r_packet_length[6] top.ethernet_switch_tb.dut.c_eth0.c_tx.c_fsm_pt.r_packet_length[5] top.ethernet_switch_tb.dut.c_eth0.c_tx.c_fsm_pt.r_packet_length[4] top.ethernet_switch_tb.dut.c_eth0.c_tx.c_fsm_pt.r_packet_length[3] top.ethernet_switch_tb.dut.c_eth0.c_tx.c_fsm_pt.r_packet_length[2] top.ethernet_switch_tb.dut.c_eth0.c_tx.c_fsm_pt.r_packet_length[1] top.ethernet_switch_tb.dut.c_eth0.c_tx.c_fsm_pt.r_packet_length[0]
+#{top.ethernet_switch_tb.dut.c_eth0.c_tx.r_rd_addr[10:0]} top.ethernet_switch_tb.dut.c_eth0.c_tx.r_rd_addr[10] top.ethernet_switch_tb.dut.c_eth0.c_tx.r_rd_addr[9] top.ethernet_switch_tb.dut.c_eth0.c_tx.r_rd_addr[8] top.ethernet_switch_tb.dut.c_eth0.c_tx.r_rd_addr[7] top.ethernet_switch_tb.dut.c_eth0.c_tx.r_rd_addr[6] top.ethernet_switch_tb.dut.c_eth0.c_tx.r_rd_addr[5] top.ethernet_switch_tb.dut.c_eth0.c_tx.r_rd_addr[4] top.ethernet_switch_tb.dut.c_eth0.c_tx.r_rd_addr[3] top.ethernet_switch_tb.dut.c_eth0.c_tx.r_rd_addr[2] top.ethernet_switch_tb.dut.c_eth0.c_tx.r_rd_addr[1] top.ethernet_switch_tb.dut.c_eth0.c_tx.r_rd_addr[0]
+#{top.ethernet_switch_tb.dut.c_eth0.c_tx.r_rd_data[7:0]} top.ethernet_switch_tb.dut.c_eth0.c_tx.r_rd_data[7] top.ethernet_switch_tb.dut.c_eth0.c_tx.r_rd_data[6] top.ethernet_switch_tb.dut.c_eth0.c_tx.r_rd_data[5] top.ethernet_switch_tb.dut.c_eth0.c_tx.r_rd_data[4] top.ethernet_switch_tb.dut.c_eth0.c_tx.r_rd_data[3] top.ethernet_switch_tb.dut.c_eth0.c_tx.r_rd_data[2] top.ethernet_switch_tb.dut.c_eth0.c_tx.r_rd_data[1] top.ethernet_switch_tb.dut.c_eth0.c_tx.r_rd_data[0]
+@28
+top.ethernet_switch_tb.dut.c_eth0.c_tx.r_wr_en
+top.ethernet_switch_tb.dut.c_eth0.c_tx.tx
+@200
+-RB Output
+@23
+#{top.ethernet_switch_tb.dut.r_eth0_tx_data[7:0]} top.ethernet_switch_tb.dut.r_eth0_tx_data[7] top.ethernet_switch_tb.dut.r_eth0_tx_data[6] top.ethernet_switch_tb.dut.r_eth0_tx_data[5] top.ethernet_switch_tb.dut.r_eth0_tx_data[4] top.ethernet_switch_tb.dut.r_eth0_tx_data[3] top.ethernet_switch_tb.dut.r_eth0_tx_data[2] top.ethernet_switch_tb.dut.r_eth0_tx_data[1] top.ethernet_switch_tb.dut.r_eth0_tx_data[0]
+@28
+top.ethernet_switch_tb.dut.r_eth0_tx_valid
+top.ethernet_switch_tb.dut.r_eth0_tx_ready
+top.ethernet_switch_tb.dut.r_eth0_tx_last
+@200
+-RB Input
+@22
+#{top.ethernet_switch_tb.dut.r_eth0_rb_data[7:0]} top.ethernet_switch_tb.dut.r_eth0_rb_data[7] top.ethernet_switch_tb.dut.r_eth0_rb_data[6] top.ethernet_switch_tb.dut.r_eth0_rb_data[5] top.ethernet_switch_tb.dut.r_eth0_rb_data[4] top.ethernet_switch_tb.dut.r_eth0_rb_data[3] top.ethernet_switch_tb.dut.r_eth0_rb_data[2] top.ethernet_switch_tb.dut.r_eth0_rb_data[1] top.ethernet_switch_tb.dut.r_eth0_rb_data[0]
+@28
+top.ethernet_switch_tb.dut.r_eth0_rb_valid
+top.ethernet_switch_tb.dut.r_eth0_rb_last
+[pattern_trace] 1
+[pattern_trace] 0
