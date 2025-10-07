@@ -1,4 +1,22 @@
 
+State Machine - |ethernet_switch|axi4s_interconnect:c_interconnect|last_port
+Name last_port.PORT_E last_port.PORT_D last_port.PORT_C last_port.PORT_B last_port.PORT_A last_port.NO_PORT 
+last_port.NO_PORT 0 0 0 0 0 0 
+last_port.PORT_A 0 0 0 0 1 1 
+last_port.PORT_B 0 0 0 1 0 1 
+last_port.PORT_C 0 0 1 0 0 1 
+last_port.PORT_D 0 1 0 0 0 1 
+last_port.PORT_E 1 0 0 0 0 1 
+
+State Machine - |ethernet_switch|axi4s_interconnect:c_interconnect|active_port
+Name active_port.PORT_E active_port.PORT_D active_port.PORT_C active_port.PORT_B active_port.PORT_A active_port.NO_PORT 
+active_port.NO_PORT 0 0 0 0 0 0 
+active_port.PORT_A 0 0 0 0 1 1 
+active_port.PORT_B 0 0 0 1 0 1 
+active_port.PORT_C 0 0 1 0 0 1 
+active_port.PORT_D 0 1 0 0 0 1 
+active_port.PORT_E 1 0 0 0 0 1 
+
 State Machine - |ethernet_switch|eth_port:c_eth0|eth_tx:c_tx|tx_fsm_axi:c_fsm_axi|state
 Name state.LAST state.RECEIVING state.READY state.IDLE 
 state.IDLE 0 0 0 0 
