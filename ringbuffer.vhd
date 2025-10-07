@@ -73,6 +73,7 @@ end architecture;
 -- AXI-Stream Ring Buffer (Always-ready input, Drop-on-overflow)
 --   * 1-cycle output latency (RAM?AXI)
 --   * No skid buffer (low-latency mode)
+--   * VHDL-93 compliant
 -- ===============================================================
 library ieee;
 use ieee.std_logic_1164.all;
@@ -82,24 +83,18 @@ entity ringbuffer is
   generic(
     DATA_WIDTH  : positive := 8;
     DEPTH_BYTES : positive := 2048
-  generic(
-    DATA_WIDTH  : positive := 8;
-    DEPTH_BYTES : positive := 2048
   );
-  port(
   port(
     clk           : in  std_logic;
     rst_n         : in  std_logic;
 
     -- AXI-Stream input (slave)
     s_axis_tdata  : in  std_logic_vector(DATA_WIDTH - 1 downto 0);
-    s_axis_tdata  : in  std_logic_vector(DATA_WIDTH - 1 downto 0);
     s_axis_tvalid : in  std_logic;
     s_axis_tlast  : in  std_logic;
     s_axis_tready : out std_logic;
 
     -- AXI-Stream output (master)
-    m_axis_tdata  : out std_logic_vector(DATA_WIDTH - 1 downto 0);
     m_axis_tdata  : out std_logic_vector(DATA_WIDTH - 1 downto 0);
     m_axis_tvalid : out std_logic;
     m_axis_tlast  : out std_logic;
@@ -108,7 +103,9 @@ entity ringbuffer is
 end entity;
 
 architecture rtl of ringbuffer is
-  -- helpers
+  --------------------------------------------------------------------
+  -- Helpers
+  --------------------------------------------------------------------
   function ceil_log2(n : natural) return natural is
     variable v : natural := 1;
     variable r : natural := 0;
@@ -150,6 +147,13 @@ architecture rtl of ringbuffer is
 
   signal s_handshake : std_logic;
   signal empty_words, have_packet : std_logic;
+
+  --------------------------------------------------------------------
+  -- Internal shadow registers for outputs
+  --------------------------------------------------------------------
+  signal m_axis_tvalid_i : std_logic := '0';
+  signal m_axis_tdata_i  : std_logic_vector(DATA_WIDTH-1 downto 0) := (others => '0');
+  signal m_axis_tlast_i  : std_logic := '0';
 
 begin
   --------------------------------------------------------------------
@@ -207,9 +211,9 @@ begin
         sop_occ     <= (others => '0');
         in_packet   <= '0';
         dropping    <= '0';
-        m_axis_tdata  <= (others => '0');
-        m_axis_tlast  <= '0';
-        m_axis_tvalid <= '0';
+        m_axis_tdata_i  <= (others => '0');
+        m_axis_tlast_i  <= '0';
+        m_axis_tvalid_i <= '0';
       else
         --------------------------------------------------------------
         -- WRITE PATH (always-ready, drop-on-overflow)
@@ -225,7 +229,6 @@ begin
             if occ_words < to_unsigned(DEPTH_WORDS, occ_words'length) then
               wr_ptr    <= wr_ptr + 1;
               occ_words <= occ_words + 1;
-              occ_words <= occ_words + 1;
             end if;
 
             if s_axis_tlast = '1' then
@@ -233,9 +236,8 @@ begin
               pkt_count <= pkt_count + 1;
             elsif occ_words = to_unsigned(DEPTH_WORDS, occ_words'length) then
               dropping <= '1';
-            elsif occ_words = to_unsigned(DEPTH_WORDS, occ_words'length) then
-              dropping <= '1';
             end if;
+
           else
             if s_axis_tlast = '1' then
               wr_ptr    <= sop_ptr;
@@ -250,14 +252,14 @@ begin
         -- READ PATH (1-cycle latency)
         --------------------------------------------------------------
         if (have_packet = '1') and (empty_words = '0') then
-          m_axis_tdata  <= b_dout(DATA_WIDTH-1 downto 0);
-          m_axis_tlast  <= b_dout(DATA_WIDTH);
-          m_axis_tvalid <= '1';
+          m_axis_tdata_i  <= b_dout(DATA_WIDTH-1 downto 0);
+          m_axis_tlast_i  <= b_dout(DATA_WIDTH);
+          m_axis_tvalid_i <= '1';
         else
-          m_axis_tvalid <= '0';
+          m_axis_tvalid_i <= '0';
         end if;
 
-        if (m_axis_tvalid = '1') and (m_axis_tready = '1') then
+        if (m_axis_tvalid_i = '1') and (m_axis_tready = '1') then
           if occ_words > 0 then
             rd_ptr    <= rd_ptr + 1;
             occ_words <= occ_words - 1;
@@ -270,5 +272,12 @@ begin
       end if;
     end if;
   end process;
+
+  --------------------------------------------------------------------
+  -- Output assignments
+  --------------------------------------------------------------------
+  m_axis_tdata  <= m_axis_tdata_i;
+  m_axis_tlast  <= m_axis_tlast_i;
+  m_axis_tvalid <= m_axis_tvalid_i;
 
 end architecture;
