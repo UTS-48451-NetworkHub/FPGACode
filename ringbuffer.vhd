@@ -3,10 +3,7 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 -- ===============================================================
--- 9-bit dual-port RAM (safe for small TBs, M9K-friendly for 2048x9)
---   - Two 1024x9 banks (ram0/ram1)
---   - 1-cycle synchronous read
---   - ADDR_WIDTH < 11 → only lower bank is used (no OOB during sim)
+-- 9-bit Dual-Port RAM (up to 2048x9 using 2x M9Ks)
 -- ===============================================================
 entity ram_2048x9_cascade is
   generic (
@@ -29,40 +26,21 @@ entity ram_2048x9_cascade is
 end entity;
 
 architecture rtl of ram_2048x9_cascade is
-  
-  function min_int(a, b : integer) return integer is
-  begin
-    if a < b then return a; else return b; end if;
-  end function;
-
-  -- width of index inside each bank (<= 10)
-  constant SUBW            : integer := min_int(ADDR_WIDTH, 10);
-  constant DEPTH_PER_BANK  : integer := 2 ** SUBW;
-
-  -- Two 1024x9 banks for the full device configuration
-  type ram_t is array (0 to 1023) of std_logic_vector(8 downto 0);
-  signal ram0, ram1 : ram_t := (others => (others => '0'));
-
-  -- Sub-addresses limited to SUBW bits
-  signal sub_a, sub_b : unsigned(SUBW-1 downto 0);
-  -- Bank selects (only meaningful when ADDR_WIDTH >= 11)
+  signal sub_a, sub_b : unsigned(9 downto 0);
   signal sel_a, sel_b : std_logic;
-
+  type ram_t is array (0 to 1023) of std_logic_vector(8 downto 0);
+  signal ram0, ram1   : ram_t := (others => (others => '0'));
   signal dout_reg0, dout_reg1 : std_logic_vector(8 downto 0) := (others => '0');
 begin
-  -- form sub-addresses
-  sub_a <= resize(a_addr, SUBW);
-  sub_b <= resize(b_addr, SUBW);
+  sub_a <= resize(a_addr, 10);
+  sub_b <= resize(b_addr, 10);
 
-  -- select bank
   gen_hi : if ADDR_WIDTH >= 11 generate
-  begin
     sel_a <= std_logic(a_addr(10));
     sel_b <= std_logic(b_addr(10));
   end generate;
 
   gen_lo : if ADDR_WIDTH < 11 generate
-  begin
     sel_a <= '0';
     sel_b <= '0';
   end generate;
@@ -73,22 +51,16 @@ begin
       -- WRITE
       if a_en = '1' and a_we = '1' then
         if sel_a = '0' then
-          if to_integer(sub_a) < DEPTH_PER_BANK then
-            ram0(to_integer(sub_a)) <= a_din;
-          end if;
+          ram0(to_integer(sub_a)) <= a_din;
         else
-          if to_integer(sub_a) < DEPTH_PER_BANK then
-            ram1(to_integer(sub_a)) <= a_din;
-          end if;
+          ram1(to_integer(sub_a)) <= a_din;
         end if;
       end if;
 
       -- READ (1-cycle latency)
       if b_en = '1' then
-        if to_integer(sub_b) < DEPTH_PER_BANK then
-          dout_reg0 <= ram0(to_integer(sub_b));
-          dout_reg1 <= ram1(to_integer(sub_b));
-        end if;
+        dout_reg0 <= ram0(to_integer(sub_b));
+        dout_reg1 <= ram1(to_integer(sub_b));
       end if;
     end if;
   end process;
@@ -96,12 +68,12 @@ begin
   b_dout <= dout_reg0 when sel_b = '0' else dout_reg1;
 end architecture;
 
--- ===============================================================
--- AXI-Stream Ring Buffer (no ingress backpressure, drop on overflow)
---  - fits 2×M9Ks at 2048x9
---  - output skid buffer for clean tvalid/tready timing
--- ===============================================================
 
+-- ===============================================================
+-- AXI-Stream Ring Buffer (Always-ready input, Drop-on-overflow)
+--   * 1-cycle output latency (RAM?AXI)
+--   * No skid buffer (low-latency mode)
+-- ===============================================================
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
@@ -110,18 +82,24 @@ entity ringbuffer is
   generic(
     DATA_WIDTH  : positive := 8;
     DEPTH_BYTES : positive := 2048
+  generic(
+    DATA_WIDTH  : positive := 8;
+    DEPTH_BYTES : positive := 2048
   );
+  port(
   port(
     clk           : in  std_logic;
     rst_n         : in  std_logic;
 
     -- AXI-Stream input (slave)
     s_axis_tdata  : in  std_logic_vector(DATA_WIDTH - 1 downto 0);
+    s_axis_tdata  : in  std_logic_vector(DATA_WIDTH - 1 downto 0);
     s_axis_tvalid : in  std_logic;
     s_axis_tlast  : in  std_logic;
     s_axis_tready : out std_logic;
 
     -- AXI-Stream output (master)
+    m_axis_tdata  : out std_logic_vector(DATA_WIDTH - 1 downto 0);
     m_axis_tdata  : out std_logic_vector(DATA_WIDTH - 1 downto 0);
     m_axis_tvalid : out std_logic;
     m_axis_tlast  : out std_logic;
@@ -147,44 +125,42 @@ architecture rtl of ringbuffer is
     if b then return '1'; else return '0'; end if;
   end function;
 
-  -- constants
+  --------------------------------------------------------------------
+  -- Derived constants
+  --------------------------------------------------------------------
   constant DEPTH_WORDS : positive := (DEPTH_BYTES * 8) / DATA_WIDTH;
   constant AW          : natural  := ceil_log2(DEPTH_WORDS);
 
+  --------------------------------------------------------------------
   -- RAM interface
+  --------------------------------------------------------------------
   signal a_en, a_we, b_en : std_logic := '0';
   signal a_addr, b_addr   : unsigned(AW - 1 downto 0) := (others => '0');
-  signal a_din,  b_dout   : std_logic_vector(DATA_WIDTH downto 0) := (others => '0'); -- {last,data}
+  signal a_din, b_dout    : std_logic_vector(DATA_WIDTH downto 0) := (others => '0');
 
-  -- control / status
+  --------------------------------------------------------------------
+  -- Control/status
+  --------------------------------------------------------------------
   signal wr_ptr, rd_ptr   : unsigned(AW - 1 downto 0) := (others => '0');
-  signal occ_words        : unsigned(AW downto 0)     := (others => '0');  -- 0..DEPTH_WORDS
-  signal pkt_count        : unsigned(15 downto 0)     := (others => '0');
+  signal occ_words        : unsigned(AW downto 0) := (others => '0');
+  signal pkt_count        : unsigned(15 downto 0) := (others => '0');
 
-  signal sop_ptr          : unsigned(AW - 1 downto 0) := (others => '0');
-  signal sop_occ          : unsigned(AW downto 0)     := (others => '0');
+  signal sop_ptr, sop_occ : unsigned(AW - 1 downto 0);
+  signal in_packet, dropping : std_logic := '0';
 
-  signal in_packet        : std_logic := '0';
-  signal dropping         : std_logic := '0';
-
-  signal s_handshake, m_handshake : std_logic;
+  signal s_handshake : std_logic;
   signal empty_words, have_packet : std_logic;
 
-  -- output / skid buffer
-  signal m_axis_tvalid_i  : std_logic := '0';
-  signal m_axis_tdata_i   : std_logic_vector(DATA_WIDTH-1 downto 0) := (others => '0');
-  signal m_axis_tlast_i   : std_logic := '0';
-  signal skid_valid       : std_logic := '0';
-  signal skid_ready       : std_logic := '0';
-  signal skid_data        : std_logic_vector(DATA_WIDTH-1 downto 0) := (others => '0');
-  signal skid_last        : std_logic := '0';
-
 begin
-  -- ingress: always ready (no backpressure towards Ethernet RX)
+  --------------------------------------------------------------------
+  -- Always-ready input
+  --------------------------------------------------------------------
   s_axis_tready <= '1';
   s_handshake   <= s_axis_tvalid and rst_n;
 
-  -- RAM instance (ADDR_WIDTH=AW adapts to tiny TBs and full build)
+  --------------------------------------------------------------------
+  -- RAM instantiation
+  --------------------------------------------------------------------
   ram_inst : entity work.ram_2048x9_cascade
     generic map (ADDR_WIDTH => AW)
     port map (
@@ -198,7 +174,9 @@ begin
       b_dout => b_dout
     );
 
-  -- RAM control
+  --------------------------------------------------------------------
+  -- RAM port mapping
+  --------------------------------------------------------------------
   a_en   <= '1';
   a_we   <= s_axis_tvalid and (not dropping)
             and to_sl(occ_words < to_unsigned(DEPTH_WORDS, occ_words'length));
@@ -208,56 +186,34 @@ begin
   b_en   <= '1';
   b_addr <= rd_ptr;
 
-  -- flags
-  empty_words <= '1' when rst_n = '0' else
-                 to_sl(occ_words = to_unsigned(0, occ_words'length));
-  have_packet <= '0' when rst_n = '0' else
-                 to_sl(pkt_count /= to_unsigned(0, pkt_count'length));
+  --------------------------------------------------------------------
+  -- Derived flags
+  --------------------------------------------------------------------
+  empty_words <= to_sl(occ_words = 0);
+  have_packet <= to_sl(pkt_count /= 0);
 
-  -- RAM read (1-cycle latency)
-  m_axis_tdata_i  <= b_dout(DATA_WIDTH - 1 downto 0);
-  m_axis_tlast_i  <= b_dout(DATA_WIDTH);
-  m_axis_tvalid_i <= have_packet and (not empty_words);
-
-  -- skid buffer (one entry)
+  --------------------------------------------------------------------
+  -- Main process (1-cycle output path)
+  --------------------------------------------------------------------
   process(clk)
   begin
     if rising_edge(clk) then
       if rst_n = '0' then
-        skid_valid <= '0';
-        skid_data  <= (others => '0');
-        skid_last  <= '0';
+        wr_ptr      <= (others => '0');
+        rd_ptr      <= (others => '0');
+        occ_words   <= (others => '0');
+        pkt_count   <= (others => '0');
+        sop_ptr     <= (others => '0');
+        sop_occ     <= (others => '0');
+        in_packet   <= '0';
+        dropping    <= '0';
+        m_axis_tdata  <= (others => '0');
+        m_axis_tlast  <= '0';
+        m_axis_tvalid <= '0';
       else
-        if skid_ready = '1' then
-          skid_valid <= m_axis_tvalid_i;
-          skid_data  <= m_axis_tdata_i;
-          skid_last  <= m_axis_tlast_i;
-        end if;
-      end if;
-    end if;
-  end process;
-
-  skid_ready    <= m_axis_tready or (not skid_valid);
-  m_axis_tvalid <= skid_valid;
-  m_axis_tdata  <= skid_data;
-  m_axis_tlast  <= skid_last;
-  m_handshake   <= skid_valid and skid_ready and rst_n;
-
-  -- main bookkeeping
-  process(clk)
-  begin
-    if rising_edge(clk) then
-      if rst_n = '0' then
-        wr_ptr    <= (others => '0');
-        rd_ptr    <= (others => '0');
-        occ_words <= (others => '0');
-        pkt_count <= (others => '0');
-        sop_ptr   <= (others => '0');
-        sop_occ   <= (others => '0');
-        in_packet <= '0';
-        dropping  <= '0';
-      else
-        -- WRITE path
+        --------------------------------------------------------------
+        -- WRITE PATH (always-ready, drop-on-overflow)
+        --------------------------------------------------------------
         if s_handshake = '1' then
           if in_packet = '0' then
             sop_ptr   <= wr_ptr;
@@ -269,6 +225,7 @@ begin
             if occ_words < to_unsigned(DEPTH_WORDS, occ_words'length) then
               wr_ptr    <= wr_ptr + 1;
               occ_words <= occ_words + 1;
+              occ_words <= occ_words + 1;
             end if;
 
             if s_axis_tlast = '1' then
@@ -276,9 +233,10 @@ begin
               pkt_count <= pkt_count + 1;
             elsif occ_words = to_unsigned(DEPTH_WORDS, occ_words'length) then
               dropping <= '1';
+            elsif occ_words = to_unsigned(DEPTH_WORDS, occ_words'length) then
+              dropping <= '1';
             end if;
           else
-            -- dropping this packet: consume to TLAST, then roll back
             if s_axis_tlast = '1' then
               wr_ptr    <= sop_ptr;
               occ_words <= sop_occ;
@@ -288,19 +246,29 @@ begin
           end if;
         end if;
 
-        -- READ path
-        if m_handshake = '1' then
-          if occ_words > to_unsigned(0, occ_words'length) then
+        --------------------------------------------------------------
+        -- READ PATH (1-cycle latency)
+        --------------------------------------------------------------
+        if (have_packet = '1') and (empty_words = '0') then
+          m_axis_tdata  <= b_dout(DATA_WIDTH-1 downto 0);
+          m_axis_tlast  <= b_dout(DATA_WIDTH);
+          m_axis_tvalid <= '1';
+        else
+          m_axis_tvalid <= '0';
+        end if;
+
+        if (m_axis_tvalid = '1') and (m_axis_tready = '1') then
+          if occ_words > 0 then
             rd_ptr    <= rd_ptr + 1;
             occ_words <= occ_words - 1;
           end if;
 
-          if (b_dout(DATA_WIDTH) = '1') and
-             (pkt_count > to_unsigned(0, pkt_count'length)) then
+          if b_dout(DATA_WIDTH) = '1' and pkt_count > 0 then
             pkt_count <= pkt_count - 1;
           end if;
         end if;
       end if;
     end if;
   end process;
+
 end architecture;
