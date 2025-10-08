@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <deploy
- date="2025.10.07.10:51:09"
- outputDirectory="/home/mac/Code/FPGACode/db/ip/altclkctrl/">
+ date="2025.10.08.22:29:56"
+ outputDirectory="G:/FPGA_Projects/Ethernet_Switch/FPGACode/db/ip/altclkctrl/">
  <perimeter>
   <parameter
      name="AUTO_GENERATION_ID"
@@ -46,33 +46,33 @@
  </perimeter>
  <entity
    path=""
-   parameterizationKey="altclkctrl:1.0:AUTO_DEVICE=EP4CE6E22C8,AUTO_DEVICE_FAMILY=Cyclone IV E,AUTO_DEVICE_SPEEDGRADE=8,AUTO_GENERATION_ID=1759794668,AUTO_UNIQUE_ID=(altclkctrl:24.1:CLOCK_TYPE=1,DEVICE_FAMILY=Cyclone IV E,ENA_REGISTER_MODE=1,GUI_USE_ENA=false,NUMBER_OF_CLOCKS=1,USE_GLITCH_FREE_SWITCH_OVER_IMPLEMENTATION=false)"
+   parameterizationKey="altclkctrl:1.0:AUTO_DEVICE=EP4CE6E22C8,AUTO_DEVICE_FAMILY=Cyclone IV E,AUTO_DEVICE_SPEEDGRADE=8,AUTO_GENERATION_ID=1759922995,AUTO_UNIQUE_ID=(altclkctrl:24.1:CLOCK_TYPE=1,DEVICE_FAMILY=Cyclone IV E,ENA_REGISTER_MODE=1,GUI_USE_ENA=false,NUMBER_OF_CLOCKS=1,USE_GLITCH_FREE_SWITCH_OVER_IMPLEMENTATION=false)"
    instancePathKey="altclkctrl"
    kind="altclkctrl"
    version="1.0"
    name="altclkctrl">
-  <parameter name="AUTO_GENERATION_ID" value="1759794668" />
+  <parameter name="AUTO_GENERATION_ID" value="1759922995" />
   <parameter name="AUTO_DEVICE" value="EP4CE6E22C8" />
   <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone IV E" />
   <parameter name="AUTO_UNIQUE_ID" value="" />
   <parameter name="AUTO_DEVICE_SPEEDGRADE" value="8" />
   <generatedFiles>
    <file
-       path="/home/mac/Code/FPGACode/db/ip/altclkctrl/altclkctrl.v"
+       path="G:/FPGA_Projects/Ethernet_Switch/FPGACode/db/ip/altclkctrl/altclkctrl.v"
        type="VERILOG" />
   </generatedFiles>
   <childGeneratedFiles>
    <file
-       path="/home/mac/Code/FPGACode/db/ip/altclkctrl/submodules/altclkctrl_altclkctrl_0.v"
+       path="G:/FPGA_Projects/Ethernet_Switch/FPGACode/db/ip/altclkctrl/submodules/altclkctrl_altclkctrl_0.v"
        type="VERILOG"
        attributes="" />
   </childGeneratedFiles>
   <sourceFiles>
-   <file path="/home/mac/Code/FPGACode/altclkctrl.qsys" />
+   <file path="G:/FPGA_Projects/Ethernet_Switch/FPGACode/altclkctrl.qsys" />
   </sourceFiles>
   <childSourceFiles>
    <file
-       path="/home/mac/Software/intelFPGA_lite/24.1std/ip/altera/megafunctions/altclkctrl/altclkctrl_hw.tcl" />
+       path="C:/intelfpga_lite/24.1std/ip/altera/megafunctions/altclkctrl/altclkctrl_hw.tcl" />
   </childSourceFiles>
   <messages>
    <message level="Debug" culprit="altclkctrl">queue size: 0 starting:altclkctrl "altclkctrl"</message>
@@ -91,7 +91,7 @@
    <message level="Debug" culprit="altclkctrl"><![CDATA["<b>altclkctrl</b>" reuses <b>altclkctrl</b> "<b>submodules/altclkctrl_altclkctrl_0</b>"]]></message>
    <message level="Debug" culprit="altclkctrl">queue size: 0 starting:altclkctrl "submodules/altclkctrl_altclkctrl_0"</message>
    <message level="Info" culprit="altclkctrl_0">Generating top-level entity altclkctrl_altclkctrl_0.</message>
-   <message level="Debug" culprit="altclkctrl_0">Current quartus bindir: /home/mac/Software/intelFPGA_lite/24.1std/quartus/linux64/.</message>
+   <message level="Debug" culprit="altclkctrl_0">Current quartus bindir: C:/intelfpga_lite/24.1std/quartus/bin64/.</message>
    <message level="Info" culprit="altclkctrl_0"><![CDATA["<b>altclkctrl</b>" instantiated <b>altclkctrl</b> "<b>altclkctrl_0</b>"]]></message>
   </messages>
  </entity>
@@ -110,21 +110,21 @@
   <parameter name="CLOCK_TYPE" value="1" />
   <generatedFiles>
    <file
-       path="/home/mac/Code/FPGACode/db/ip/altclkctrl/submodules/altclkctrl_altclkctrl_0.v"
+       path="G:/FPGA_Projects/Ethernet_Switch/FPGACode/db/ip/altclkctrl/submodules/altclkctrl_altclkctrl_0.v"
        type="VERILOG"
        attributes="" />
   </generatedFiles>
   <childGeneratedFiles/>
   <sourceFiles>
    <file
-       path="/home/mac/Software/intelFPGA_lite/24.1std/ip/altera/megafunctions/altclkctrl/altclkctrl_hw.tcl" />
+       path="C:/intelfpga_lite/24.1std/ip/altera/megafunctions/altclkctrl/altclkctrl_hw.tcl" />
   </sourceFiles>
   <childSourceFiles/>
   <instantiator instantiator="altclkctrl" as="altclkctrl_0" />
   <messages>
    <message level="Debug" culprit="altclkctrl">queue size: 0 starting:altclkctrl "submodules/altclkctrl_altclkctrl_0"</message>
    <message level="Info" culprit="altclkctrl_0">Generating top-level entity altclkctrl_altclkctrl_0.</message>
-   <message level="Debug" culprit="altclkctrl_0">Current quartus bindir: /home/mac/Software/intelFPGA_lite/24.1std/quartus/linux64/.</message>
+   <message level="Debug" culprit="altclkctrl_0">Current quartus bindir: C:/intelfpga_lite/24.1std/quartus/bin64/.</message>
    <message level="Info" culprit="altclkctrl_0"><![CDATA["<b>altclkctrl</b>" instantiated <b>altclkctrl</b> "<b>altclkctrl_0</b>"]]></message>
   </messages>
  </entity>

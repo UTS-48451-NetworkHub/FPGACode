@@ -193,6 +193,7 @@ begin
   ------------------------------------------------------------------------
   -- Ethernet Ports
   ------------------------------------------------------------------------
+  -------- Port 0 --------
   c_eth0 : entity work.eth_port(arch)
     port map
     (
@@ -274,9 +275,9 @@ begin
     );
   
   ------------------------------------------------------------------------
-  -- Debug Generator / Stuff
+  -- Debug Generator & Other
   ------------------------------------------------------------------------
-  c_debug_tx : entity work.eth_tx_tb_driver
+  c_debug_tx1 : entity work.eth_tx_tb_driver
     port map
     (
       clk    => clk_100,
@@ -287,7 +288,31 @@ begin
       tlast  => r_eth1_rx_last,
       tdata  => r_eth1_rx_data
     );
-	
+
+  c_debug_tx2 : entity work.eth_tx_tb_driver
+    port map
+    (
+      clk    => clk_100,
+      resetn => resetn,
+      enable => r_enable,
+      tvalid => r_eth2_rx_valid,
+      tready => r_eth2_rx_ready,
+      tlast  => r_eth2_rx_last,
+      tdata  => r_eth2_rx_data
+    );
+
+  c_debug_tx3 : entity work.eth_tx_tb_driver
+    port map
+    (
+      clk    => clk_100,
+      resetn => resetn,
+      enable => r_enable,
+      tvalid => r_eth3_rx_valid,
+      tready => r_eth3_rx_ready,
+      tlast  => r_eth3_rx_last,
+      tdata  => r_eth3_rx_data
+    );
+
   ETH0_TX_EN <= '1';
 
   LED1 <= not r_eth0_tx_valid;

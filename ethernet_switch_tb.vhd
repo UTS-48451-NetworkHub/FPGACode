@@ -96,9 +96,9 @@ begin
         wait for 200 ns;
 
         KEY4 <= '1';
-        wait for 800 ns;
+        wait for 10 us;
         KEY4 <= '0';
-        wait for 800 ns;
+        wait for 10 us;
         KEY4 <= '1';
 
         -- Let the system run for a while

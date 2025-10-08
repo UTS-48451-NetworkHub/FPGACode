@@ -1,8 +1,8 @@
-<session jtag_chain="USB-Blaster [1-1]" jtag_device="@1: 10CL006(Y|Z)/10CL010(Y|Z)/.. (0x020F10DD)" sof_file="">
+<session jtag_chain="" jtag_device="" sof_file="">
   <display_tree gui_logging_enabled="0">
     <display_branch instance="auto_signaltap_0" log="USE_GLOBAL_TEMP" signal_set="USE_GLOBAL_TEMP" trigger="USE_GLOBAL_TEMP"/>
   </display_tree>
-  <instance enabled="true" entity_name="sld_signaltap" is_auto_node="yes" is_expanded="true" name="auto_signaltap_0" source_file="sld_signaltap.vhd">
+  <instance enabled="false" entity_name="sld_signaltap" is_auto_node="yes" is_expanded="true" name="auto_signaltap_0" source_file="sld_signaltap.vhd">
     <node_ip_info instance_id="0" mfg_id="110" node_id="0" version="6"/>
     <signal_set global_temp="1" is_expanded="true" name="signal_set: 2025/10/04 20:28:30  #0">
       <clock name="pll_main:c_pll|altpll:altpll_component|pll_main_altpll:auto_generated|wire_pll1_clk[0]" polarity="posedge" tap_mode="probeonly"/>
@@ -158,7 +158,7 @@
         <trigger_in_editor bit_condition="falling edge" is_enabled="true" is_hps_event_selected="false" is_hps_trigger_in_selected="false" is_node_selected="true" is_pin_selected="false" node_name="eth_port:c_eth0|eth_tx:c_tx|tlast" pin_name="auto_stp_trigger_in_auto_signaltap_0"/>
         <trigger_out_editor/>
       </presentation>
-      <trigger CRC="CDCACE9C" attribute_mem_mode="false" gap_record="true" global_temp="1" is_expanded="true" name="trigger: 2025/10/04 20:28:30  #1" position="pre" power_up_trigger_mode="false" record_data_gap="true" segment_size="2048" storage_mode="off" storage_qualifier_disabled="no" storage_qualifier_port_is_pin="false" storage_qualifier_port_name="auto_stp_external_storage_qualifier" storage_qualifier_port_tap_mode="classic" trigger_in="falling edge" trigger_type="circular">
+      <trigger CRC="CDCACE9C" attribute_mem_mode="false" gap_record="true" global_temp="1" is_expanded="true" name="trigger: 2025/10/04 20:28:30  #1" position="pre" power_up_trigger_mode="false" record_data_gap="true" segment_size="2048" storage_mode="off" storage_qualifier_disabled="no" storage_qualifier_port_is_pin="true" storage_qualifier_port_name="auto_stp_external_storage_qualifier" storage_qualifier_port_tap_mode="classic" trigger_in="falling edge" trigger_type="circular">
         <power_up_trigger position="pre" storage_qualifier_disabled="no" trigger_in="high"/>
         <events use_custom_flow_control="no">
           <level enabled="yes" name="condition1" type="basic">
@@ -223,7 +223,7 @@ trigger;]]>
     <single attribute="lock mode" value="0"/>
     <single attribute="sof manager visible" value="0"/>
     <multi attribute="column width" size="23" value="34,78,603,74,68,78,95,96,98,98,88,88,110,101,101,101,101,101,101,101,101,107,78"/>
-    <multi attribute="frame size" size="2" value="1920,1011"/>
+    <multi attribute="frame size" size="2" value="2279,1075"/>
     <multi attribute="jtag widget size" size="2" value="320,129"/>
   </global_info>
 </session>
