@@ -160,7 +160,7 @@ begin
             active_port <= NO_PORT;
         end case;
       else
-        -- Round robin arbitration (same as your current code)
+        -- Round robin arbitration
         case last_port is
           when NO_PORT | PORT_E =>
             if PA_RX_tvalid = '1' then
