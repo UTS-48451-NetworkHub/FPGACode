@@ -1,1 +1,4 @@
 altera/
+*.o
+*.exe
+*.vhd.bak
