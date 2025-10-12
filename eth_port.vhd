@@ -7,11 +7,16 @@ entity eth_port is
     -- Mandatory (AXI-S Bus)
     clk    : in std_logic; -- 100 MHz
     resetn : in std_logic;
-    -- Upstream Data Port (TX/RX AXI-S)
+    -- Upstream Data Port - TX AXI-S
     tx_valid : in std_logic;
     tx_ready : out std_logic;
     tx_last  : in std_logic;
     tx_data  : in std_logic_vector(7 downto 0);
+    -- Upstream Data Port - TX AXI-S
+    rx_valid : out std_logic;
+    rx_ready : in std_logic;
+    rx_last : out std_logic;
+    rx_data : out std_logic_vector(7 downto 0);
     -- Downstream Data Port (PLS)
     rx    : in std_logic;
     tx    : out std_logic;
@@ -38,6 +43,17 @@ begin
       tlast  => tx_last,
       tdata  => tx_data
     );
+
+  c_rx : entity work.eth_rx(arch)
+  port map (
+  	clk_in => clk,
+  	resetn => resetn,
+  	manchester_in => rx,
+  	tready => rx_ready,
+  	tvalid => rx_valid,
+  	tlast => rx_last,
+  	tdata => 
+  )
 
   -- Debug temporary
   link <= '1';

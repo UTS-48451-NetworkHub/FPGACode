@@ -1,0 +1,97 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.all;
+use IEEE.numeric_std.all;
+
+entity rx_decoder is
+  port (
+    clk_in        : in std_logic;
+    manchester_in : in std_logic;
+    resetn        : in std_logic;
+    data_out      : out std_logic := '0';
+    RX_timeout    : out std_logic := '0';
+    bit_valid     : out std_logic := '0'
+  );
+end rx_decoder;
+
+architecture Behavioral of rx_decoder is
+  signal data_buf        : std_logic_vector(7 downto 0); --!Register to hold incoming edges for clock recovery
+  signal manchester_prev : std_logic := '0'; --!Prev input to detect edge.
+  signal timeout         : std_logic := '0'; --!timeout to reset logic
+
+begin
+  process (clk_in)
+    variable new_mid   : unsigned(3 downto 0) := (others => '0'); --!location of mid-bit transitions during clock recovery
+    variable mid_count : unsigned(3 downto 0) := (others => '0'); --!counter to time mid-bit transitions following clock recovery
+    variable mid_loc   : unsigned(3 downto 0) := (others => '0'); --!Location of the mid-bit transitions following clock recovery
+  begin
+    if rising_edge(clk_in) then
+      manchester_prev <= manchester_in; --!current manchester input
+
+      --! Timeout logic for no transmissions
+      if (timeout = '1' or resetn = '0') then
+        new_mid := (others   => '0');
+        mid_loc := (others   => '0');
+        data_buf <= (others  => '0');
+        mid_count := (others => '0');
+        data_out        <= '0';
+        manchester_prev <= '0';
+
+        -- ! Logic to detect preamble
+      elsif (data_buf /= x"AA") then
+        -- ! Clock cycles bewteen rising and falling edges is recorded
+        if (data_buf /= x"00") then
+          new_mid := new_mid + 1;
+        end if;
+        --! clock cycles for mid-bit recorded, data shifted into preamble register
+        if (manchester_prev /= manchester_in) then
+          data_out  <= manchester_in;
+          bit_valid <= '1';
+          data_buf  <= data_buf(6 downto 0) & manchester_in;
+          mid_loc := new_mid;
+          new_mid := (others => '0');
+        else
+          bit_valid <= '0';
+        end if;
+        --! Logic to decode data after preamble
+      else
+        --! clock cycles up to mid-bit counted
+        mid_count := mid_count + 1;
+        if (mid_count = mid_loc) then
+          --! Data output at mid-bit
+          data_out  <= manchester_in;
+          bit_valid <= '1';
+          mid_count := (others => '0');
+        else
+          bit_valid <= '0';
+        end if;
+      end if;
+    end if;
+  end process;
+
+  process (clk_in)
+    variable timeout_count : unsigned(6 downto 0) := (others => '0');
+  begin
+    if rising_edge(clk_in) then
+
+      --! Timeout logic
+      if data_buf /= x"00" then
+        if timeout = '1' then
+          timeout <= '0';
+        else
+          if manchester_prev /= manchester_in then
+            timeout_count := (others => '0');
+          else
+            if timeout_count = 50 then
+              timeout <= '1';
+              timeout_count := (others => '0');
+            else
+              timeout_count := timeout_count + 1;
+            end if;
+          end if;
+        end if;
+      end if;
+    end if;
+  end process;
+
+  RX_timeout <= timeout; --can maybe be simplified.
+end Behavioral;
