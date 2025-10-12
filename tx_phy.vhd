@@ -6,17 +6,17 @@ use ieee.numeric_std.all;
 --! generating NLP pulses when the link has been active for 1.6ms. It contains a FSM that
 --! is used to control the internal logic. Input to output latency is 1 CLK.
 entity tx_phy is
-  port (
+  port(
     -- Mandatory Signals
-    clk    : in std_logic; --! 100 MHz Clock
-    resetn : in std_logic; --! Low active reset
+    clk       : in  std_logic;          --! 100 MHz Clock
+    resetn    : in  std_logic;          --! Low active reset
     -- Control Signals
-    tx_active : in std_logic; --! Packet transmission is active
-    bit_valid : in std_logic; --! Input bit is valid for this clock cycle
-    driver_en : out std_logic; --! Output driver is enabled
+    tx_active : in  std_logic;          --! Packet transmission is active
+    bit_valid : in  std_logic;          --! Input bit is valid for this clock cycle
+    driver_en : out std_logic;          --! Output driver is enabled
     -- Data Signals             
-    bit_in : in std_logic; --! Input bit to encode
-    tx_out : out std_logic --! Output Manchester / NLP data
+    bit_in    : in  std_logic;          --! Input bit to encode
+    tx_out    : out std_logic           --! Output Manchester / NLP data
   );
 end entity tx_phy;
 
@@ -24,30 +24,30 @@ architecture arch of tx_phy is
 
   --! PHY FSM states
   type state_t is (
-    IDLE, --! Nothing is happening here...
-    TX, --! Manchester encoding (TX Data) in progress
-    NLP, --! Line is idle and NLP is being sent out
-    TP_IDL_WAIT, --! Waiting for end of current bit time before going to TP_IDL
-    TP_IDL --! Sending End of Packet Signal
+    IDLE,                               --! Nothing is happening here...
+    TX,                                 --! Manchester encoding (TX Data) in progress
+    NLP,                                --! Line is idle and NLP is being sent out
+    TP_IDL_WAIT,                        --! Waiting for end of current bit time before going to TP_IDL
+    TP_IDL                              --! Sending End of Packet Signal
   );
   --! FSM State Variables
   signal state, next_state : state_t;
 
   -- Manchester Encoder
   --! Internal manchester encoder output
-  signal r_mcn_out : std_logic := '0';
+  signal r_mcn_out    : std_logic := '0';
   --! Internal register for bit_in
   signal r_mcn_bit_in : std_logic := '0';
   --! Phase used to generate manchester encoding 
-  signal r_mcn_phase : std_logic := '1';
+  signal r_mcn_phase  : std_logic := '1';
 
   -- NLP
   --! Internal NLP generator output
-  signal r_nlp_out : std_logic := '0';
+  signal   r_nlp_out            : std_logic             := '0';
   --! Idle inactivity counter (for NLP)
-  signal r_inactivity_counter : unsigned(20 downto 0) := (others => '0');
+  signal   r_inactivity_counter : unsigned(20 downto 0) := (others => '0');
   --! 802.3i specification NLP timeout
-  constant NLP_TIMEOUT : unsigned(20 downto 0) := to_unsigned(1_600_000, 21);
+  constant NLP_TIMEOUT          : unsigned(20 downto 0) := to_unsigned(1_600_000, 21);
 
   --! Clock Enable Counter for NLP and TP_IDL
   signal r_clk_counter : unsigned(4 downto 0) := (others => '0');
@@ -60,7 +60,7 @@ begin
   -- Sequential Processes
   ------------------------------------------------------------------
   --! Sequential Logic Update & State Register Process
-  p_seq : process (clk, resetn)
+  p_seq : process(clk, resetn)
   begin
     if resetn = '0' then
       state                <= IDLE;
@@ -144,7 +144,7 @@ begin
   -- Combinatorial Processes
   ------------------------------------------------------------------
   --! Combinatorial logic for FSM state updates
-  p_cmb : process (state, tx_active, r_clk_counter, r_inactivity_counter, r_mcn_out)
+  p_cmb : process(state, tx_active, r_clk_counter, r_inactivity_counter, r_mcn_out)
   begin
     -- Default state assignment
     next_state <= state;
@@ -154,7 +154,7 @@ begin
         -- If a TX request comes in then go there
         if tx_active = '1' then
           next_state <= TX;
-          -- Otherwise if it's time for a NLP go there
+        -- Otherwise if it's time for a NLP go there
         elsif r_inactivity_counter = NLP_TIMEOUT then
           next_state <= NLP;
         end if;
@@ -189,13 +189,11 @@ begin
   ------------------------------------------------------------------
   -- Direct State Outputs
   ------------------------------------------------------------------
-  with state select
-    driver_en <=
+  with state select driver_en <=
     '1' when TX | NLP,
     '0' when others;
 
-  with state select
-    tx_out <=
+  with state select tx_out <=
     r_mcn_out when TX,
     r_nlp_out when NLP,
     r_tp_idl_out when TP_IDL,

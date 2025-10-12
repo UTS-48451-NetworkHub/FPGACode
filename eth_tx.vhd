@@ -3,18 +3,18 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 entity eth_tx is
-  port (
+  port(
     -- Mandatory (AXI-S Bus)
-    clk    : in std_logic; -- 100 MHz
-    resetn : in std_logic;
+    clk    : in  std_logic;             -- 100 MHz
+    resetn : in  std_logic;
     -- Outputs
-    tx    : out std_logic;
-    tx_en : out std_logic;
+    tx     : out std_logic;
+    tx_en  : out std_logic;
     -- Inputs (AXI-S Bus)
-    tvalid : in std_logic;
+    tvalid : in  std_logic;
     tready : out std_logic;
-    tlast  : in std_logic;
-    tdata  : in std_logic_vector(7 downto 0)
+    tlast  : in  std_logic;
+    tdata  : in  std_logic_vector(7 downto 0)
   );
 end eth_tx;
 
@@ -42,8 +42,7 @@ architecture arch of eth_tx is
 begin
 
   c_phy : entity work.tx_phy(arch)
-    port map
-    (
+    port map(
       clk       => clk,
       resetn    => resetn,
       tx_active => r_tx_active,
@@ -54,8 +53,7 @@ begin
     );
 
   c_ram : entity work.ram_eth_packet(SYN)
-    port map
-    (
+    port map(
       data      => tdata,
       rdaddress => r_rd_addr,
       clock     => clk,
@@ -69,8 +67,7 @@ begin
       WIDTH     => 8,
       BIT_DELAY => 10
     )
-    port map
-    (
+    port map(
       clk        => clk,
       resetn     => resetn,
       byte_in    => r_rd_data,
@@ -81,8 +78,7 @@ begin
     );
 
   c_fsm_pt : entity work.tx_fsm_pt(arch)
-    port map
-    (
+    port map(
       clk          => clk,
       resetn       => resetn,
       tx_active    => r_tx_active,
@@ -95,8 +91,7 @@ begin
     );
 
   c_fsm_axi : entity work.tx_fsm_axi(arch)
-    port map
-    (
+    port map(
       clk          => clk,
       resetn       => resetn,
       packet_ready => r_packet_ready,

@@ -215,7 +215,7 @@ begin
       act      => ETH0_LED_YEL
     );
 
-    c_eth1 : entity work.eth_port(arch)
+  c_eth1 : entity work.eth_port(arch)
     port map(
       clk      => clk_100,
       resetn   => resetn,

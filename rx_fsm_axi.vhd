@@ -3,48 +3,46 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 entity rx_fsm_axi is
-  port (
+  port(
     --mandatory
-    clk_in : in std_logic;
-    resetn : in std_logic;
-
+    clk_in       : in  std_logic;
+    resetn       : in  std_logic;
     --control
-    AXI_en       : in std_logic;
-    tready       : in std_logic;
-    packet_valid : in std_logic;
-    size_in      : in std_logic_vector(15 downto 0);
+    AXI_en       : in  std_logic;
+    tready       : in  std_logic;
+    packet_valid : in  std_logic;
+    size_in      : in  std_logic_vector(15 downto 0);
     tvalid       : out std_logic := '0';
     tlast        : out std_logic := '0';
     packet_ready : out std_logic := '0';
-
     --data
-    addr_in : in std_logic_vector(10 downto 0)
+    addr_in      : in  std_logic_vector(10 downto 0)
   );
 
 end rx_fsm_axi;
 
 architecture Behavioral of rx_fsm_axi is
 
-  type AXI_state is(
-
-  AXI_IDLE, --! awaiting packet
-  AXI_SIZE, --! pr packet is valid -> packet size is received
-  AXI_DATA, --! Data transmission
-  AXI_LAST, --! Last byte of data transmission
-  AXI_WAIT --! wait for tready to be set high
+  type AXI_state is (
+    AXI_IDLE,                           --! awaiting packet
+    AXI_SIZE,                           --! pr packet is valid -> packet size is received
+    AXI_DATA,                           --! Data transmission
+    AXI_LAST,                           --! Last byte of data transmission
+    AXI_WAIT                            --! wait for tready to be set high
 
   );
 
   signal current_state, next_state : AXI_state;
 
-  signal size_buf  : std_logic_vector(10 downto 0) := (others => '0');
+  signal size_buf : std_logic_vector(10 downto 0) := (others => '0');
 
 begin
 
-  process (clk_in, resetn)
+  process(clk_in, resetn)
   begin
     if resetn = '0' then
       current_state <= AXI_IDLE;
+      size_buf      <= (others => '0');
     elsif rising_edge(clk_in) then
 
       --! Change states
@@ -61,15 +59,14 @@ begin
     end if;
   end process;
 
-  AXI_fsm : process (packet_valid, tready, AXI_en, addr_in)
+  AXI_fsm : process(packet_valid, tready, AXI_en, addr_in, current_state, size_buf)
   begin
-
     --! Default Assignment
     next_state <= current_state;
 
     case current_state is
 
-      when AXI_IDLE => 
+      when AXI_IDLE =>
         if packet_valid = '1' then
           next_state <= AXI_SIZE;
         end if;
@@ -90,27 +87,24 @@ begin
         end if;
 
       when AXI_WAIT =>
-      if tready = '1' then
-        next_state <= AXI_IDLE;
-      end if;
+        if tready = '1' then
+          next_state <= AXI_IDLE;
+        end if;
 
     end case;
   end process;
 
   --! direct state outputs
 
-  with current_state select
-    packet_ready <=
+  with current_state select packet_ready <=
     '1' when AXI_IDLE,
     '0' when others;
 
-  with current_state select
-    tlast <=
+  with current_state select tlast <=
     '1' when AXI_LAST,
     '0' when others;
 
-  with current_state select
-    tvalid <=
+  with current_state select tvalid <=
     '1' when AXI_DATA,
     '1' when AXI_LAST,
     '0' when others;

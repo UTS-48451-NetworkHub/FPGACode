@@ -8,11 +8,11 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 
 entity rx_fcs_crc is
-  port (
-    crc_en : in std_logic; -- Enable signal: update CRC when '1'
-    clk    : in std_logic; -- System clock
-    rst    : in std_logic; -- Active-high reset, initializes CRC
-    data   : in std_logic_vector(7 downto 0); -- 8-bit data input
+  port(
+    crc_en : in  std_logic;             -- Enable signal: update CRC when '1'
+    clk    : in  std_logic;             -- System clock
+    rst    : in  std_logic;             -- Active-high reset, initializes CRC
+    data   : in  std_logic_vector(7 downto 0); -- 8-bit data input
     crcOut : out std_logic_vector(31 downto 0) -- Current CRC value
   );
 end entity rx_fcs_crc;
@@ -60,7 +60,7 @@ begin
   crc_out_signal(31) <= crc_in_signal(1) xor crc_in_signal(7) xor data(1) xor data(7);
 
   -- Sequential process for state update
-  process (clk, rst)
+  process(clk, rst)
   begin
     if (rst = '0') then
       -- Initialize CRC state to all '1's (standard CRC init value)

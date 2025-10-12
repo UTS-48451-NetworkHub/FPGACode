@@ -3,21 +3,21 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 entity reset_ctrl is
-  port (
-    clk     : in  std_logic;
-    btn_n   : in  std_logic;   -- active-low pushbutton
-    resetn  : out std_logic    -- clean, active-low reset
+  port(
+    clk    : in  std_logic;
+    btn_n  : in  std_logic;             -- active-low pushbutton
+    resetn : out std_logic              -- clean, active-low reset
   );
 end entity;
 
 architecture rtl of reset_ctrl is
 
-  signal btn_sync1   : std_logic := '1';  -- First FF sync
-  signal btn_sync2   : std_logic := '1';  -- Second FF Sync
-  signal btn  : std_logic := '1'; -- debounced level
-  signal last_btn : std_logic := '1';
-  signal cnt         : unsigned(15 downto 0) := (others => '0');
-  signal r_resetn    : std_logic := '0';
+  signal btn_sync1 : std_logic             := '1'; -- First FF sync
+  signal btn_sync2 : std_logic             := '1'; -- Second FF Sync
+  signal btn       : std_logic             := '1'; -- debounced level
+  signal last_btn  : std_logic             := '1';
+  signal cnt       : unsigned(15 downto 0) := (others => '0');
+  signal r_resetn  : std_logic             := '0';
 
 begin
 

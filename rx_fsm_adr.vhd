@@ -16,26 +16,25 @@ use ieee.numeric_std.all;
 -- at the start of counting (first valid='1').
 -- ============================================================================
 entity rx_fsm_adr is
-  port (
-    clock : in std_logic;
-    reset : in std_logic;
+  port(
+    clock     : in  std_logic;
+    reset     : in  std_logic;
+    valid     : in  std_logic;          -- byte strobe
+    tready    : in  std_logic;          -- Transmit Ready Flag
+    tlast     : in  std_logic;          -- Transmit Final Flag
+    fcs_valid : in  std_logic;          -- Valid FCS Check
+    size      : in  std_logic_vector(15 downto 0); -- payload length (bytes)
 
-    valid     : in std_logic; -- byte strobe
-    tready    : in std_logic; -- Transmit Ready Flag
-    tlast     : in std_logic; -- Transmit Final Flag
-    fcs_valid : in std_logic; -- Valid FCS Check
-    size      : in std_logic_vector(15 downto 0); -- payload length (bytes)
+    axi_en    : out std_logic;          -- axi4 bus enable flag
+    crc_en    : out std_logic;          -- CRC enable generation variable
+    begin_fcs : out std_logic;          -- Flag to begin generation of the comparison FCS CRC
 
-    axi_en    : out std_logic; -- axi4 bus enable flag
-    crc_en    : out std_logic; -- CRC enable generation variable
-    begin_fcs : out std_logic; -- Flag to begin generation of the comparison FCS CRC
-
-    addr : out std_logic_vector(10 downto 0) -- address output
+    addr      : out std_logic_vector(10 downto 0) -- address output
   );
 end entity;
 
 architecture Behavioral of rx_fsm_adr is
-  type state_t is (IDLE, CRC, AXI);
+  type   state_t           is (IDLE, CRC, AXI);
   signal state, next_state : state_t := IDLE;
 
   signal addr_reg : unsigned(10 downto 0) := (others => '0');
@@ -50,7 +49,7 @@ begin
   ---------------------------------------------------------------------------
   -- Clock Based Code
   ---------------------------------------------------------------------------
-  process (clock, reset)
+  process(clock)
   begin
     if rising_edge(clock) then
       if reset = '0' then
@@ -59,17 +58,17 @@ begin
         size_lat  <= (others => '0');
         begin_fcs <= '0';
         cnt       <= "00";
-        fcs_reg <= '0';
+        fcs_reg   <= '0';
 
       else
         state <= next_state;
       end if;
 
       if state = IDLE then
-        addr_reg  <= ADDR_BASE; -- first address is 10
+        addr_reg  <= ADDR_BASE;         -- first address is 10
         begin_fcs <= '0';
         if valid = '1' then
-          size_lat <= unsigned(size); --! grab payload size
+          size_lat <= unsigned(size);   --! grab payload size
         end if;
       end if;
 
@@ -107,7 +106,7 @@ begin
   ---------------------------------------------------------------------------
   -- State Machine :D 
   ---------------------------------------------------------------------------
-  process (state, valid, tlast, fcs_valid, cnt)
+  process(state, valid, tlast, fcs_valid, cnt, fcs_reg, tready)
   begin
     next_state <= state;
 
@@ -122,8 +121,8 @@ begin
           --if tready = '1' then
           --fcs_reg <= '0';
           next_state <= AXI;
-          --end if;
-        elsif cnt = "10" then --! CRC FAIL
+        --end if;
+        elsif cnt = "10" then           --! CRC FAIL
           next_state <= IDLE;
         end if;
 
@@ -140,13 +139,11 @@ begin
   ---------------------------------------------------------------------------
   addr <= std_logic_vector(addr_reg);
 
-  with next_state select
-    crc_en <=
+  with next_state select crc_en <=
     '1' when CRC,
     '0' when others;
 
-  with next_state select
-    axi_en <=
+  with next_state select axi_en <=
     '1' when AXI,
     '0' when others;
 

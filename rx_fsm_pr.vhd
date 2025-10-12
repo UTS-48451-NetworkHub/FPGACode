@@ -3,36 +3,34 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 entity rx_fsm_pr is
-  port (
+  port(
     --mandatory
-    clk_in : in std_logic;
-    resetn : in std_logic;
-
+    clk_in       : in  std_logic;
+    resetn       : in  std_logic;
     --control
-    byte_valid   : in std_logic;
-    packet_ready : in std_logic;
-    RX_timeout   : in std_logic;
+    byte_valid   : in  std_logic;
+    packet_ready : in  std_logic;
+    RX_timeout   : in  std_logic;
     wr_en        : out std_logic := '0';
     packet_valid : out std_logic;
-
     --data
-    data_in  : in std_logic_vector(7 downto 0);
-    addr_out : out std_logic_vector(10 downto 0);
-    data_out : out std_logic_vector(7 downto 0);
-    size_out : out std_logic_vector(15 downto 0)
+    data_in      : in  std_logic_vector(7 downto 0);
+    addr_out     : out std_logic_vector(10 downto 0);
+    data_out     : out std_logic_vector(7 downto 0);
+    size_out     : out std_logic_vector(15 downto 0)
   );
 end rx_fsm_pr;
 
 architecture Behavioral of rx_fsm_pr is
 
   --! Packet receiving FSM states
-  type RX_state is(
-  RX_PREAMBLE, --! detecting preamble of data stream
-  RX_SFD, --! detecting SFD of data stream
-  RX_DATA,
-  RX_SIZE, --! reading packet data
-  RX_END, --! detect end of data stream
-  RX_ERROR --! Error in the RX bitstream
+  type RX_state is (
+    RX_PREAMBLE,                        --! detecting preamble of data stream
+    RX_SFD,                             --! detecting SFD of data stream
+    RX_DATA,
+    RX_SIZE,                            --! reading packet data
+    RX_END,                             --! detect end of data stream
+    RX_ERROR                            --! Error in the RX bitstream
   );
   signal current_state, next_state : RX_state;
 
@@ -46,7 +44,7 @@ architecture Behavioral of rx_fsm_pr is
   signal cnt_addr : unsigned(10 downto 0)        := (others => '0'); --! counter for RAM address
   --0-1 -> byte length  2-9 -> preamble+SFD(NOT INCLUDED)  10+ -> PAYLOAD
 
-  signal cnt_size : unsigned(15 downto 0) := (others => '0'); --! counter for paylaod size (NO. of bytes)
+  signal   cnt_size : unsigned(15 downto 0)         := (others => '0'); --! counter for paylaod size (NO. of bytes)
   --upper -> 0 MSB
   --lower -> 1 LSB
   constant preamble : std_logic_vector(55 downto 0) := x"AAAAAAAAAAAAAA"; --!preamble constant
@@ -54,7 +52,7 @@ architecture Behavioral of rx_fsm_pr is
 
 begin
 
-  process (clk_in, resetn)
+  process(clk_in, resetn)
     variable data_reg : std_logic_vector(55 downto 0) := (others => '0'); --! register to detect preamble
   begin
     if resetn = '0' then
@@ -66,6 +64,8 @@ begin
       SIZE_lower      <= '0';
       SIZE_upper      <= '0';
       packet_hand     <= '0';
+      data_buf        <= (others => '0');
+      data_reg        := (others => '0');
 
     elsif rising_edge(clk_in) then
       --! Change states
@@ -82,11 +82,11 @@ begin
       --! preamble detected -> signal/register reset
       if current_state = RX_PREAMBLE and next_state = RX_SFD then
         preamble_detect <= '0';
-        data_reg := (others => '0');
+        data_reg        := (others => '0');
       end if;
 
       --! detecing SFD
-      if current_state = RX_SFD then --funny -> fix to current_state?
+      if current_state = RX_SFD then    --funny -> fix to current_state?
         if data_in = SFD then
           SFD_detect <= '1';
         end if;
@@ -143,14 +143,13 @@ begin
       if current_state = RX_END and next_state = RX_PREAMBLE then
         --packet_valid <= '0';
         packet_hand <= '0';
-        cnt_size   <= to_unsigned(0, cnt_size'length);
+        cnt_size    <= to_unsigned(0, cnt_size'length);
       end if;
     end if;
   end process;
 
-  main_fsm : process (current_state, preamble_detect, SFD_detect, RX_timeout, packet_hand, SIZE_lower)
+  main_fsm : process(current_state, preamble_detect, SFD_detect, RX_timeout, packet_hand, SIZE_lower)
   begin
-
     -- ! Default Assignment
     next_state <= current_state;
 
@@ -180,9 +179,8 @@ begin
         if packet_hand = '1' then
           next_state <= RX_PREAMBLE;
         end if;
-  
+
       when RX_ERROR =>
-        
 
     end case;
   end process;
@@ -192,21 +190,17 @@ begin
   addr_out <= std_logic_vector(cnt_addr);
   size_out <= std_logic_vector(cnt_size);
 
-
-  with current_state select
-    wr_en <=
+  with current_state select wr_en <=
     '1' when RX_DATA,
     '1' when RX_SIZE,
     '0' when others;
 
-  with current_state select
-    data_out <=
+  with current_state select data_out <=
     data_buf when RX_DATA,
     data_buf when RX_SIZE,
     (others => '0') when others;
 
-  with current_state select
-    packet_valid <=
+  with current_state select packet_valid <=
     '1' when RX_END,
     '0' when others;
 
