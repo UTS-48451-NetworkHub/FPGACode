@@ -24,11 +24,23 @@
 					"strict" : false
 				},
 				{
+					"name" : "ETH1_TX",
+					"strict" : false
+				},
+				{
 					"name" : "KEY4",
 					"strict" : false
 				},
 				{
 					"name" : "RESET",
+					"strict" : false
+				},
+				{
+					"name" : "ETH1_RX",
+					"strict" : false
+				},
+				{
+					"name" : "ETH0_RX",
 					"strict" : false
 				}
 			]

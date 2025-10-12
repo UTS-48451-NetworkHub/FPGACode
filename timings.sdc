@@ -21,7 +21,7 @@ set_output_delay -clock c_pll|altpll_component|auto_generated|pll1|clk[0] -max 2
 set_output_delay -clock c_pll|altpll_component|auto_generated|pll1|clk[0] -min 24.5 [get_ports ETH*_TX_EN]
 set_output_delay -clock c_pll|altpll_component|auto_generated|pll1|clk[0] -max 25.5 [get_ports ETH*_TX_EN]
 
-# Setup multicycle paths
+# Setup TX multicycle paths
 set_multicycle_path -from c_pll|altpll_component|auto_generated|pll1|clk[0] -to [get_ports ETH*_TX] -setup 10
 # Hold path: reduce hold checks (usually set to setup-1)
 set_multicycle_path -from c_pll|altpll_component|auto_generated|pll1|clk[0] -to [get_ports ETH*_TX] -hold 9
@@ -32,3 +32,8 @@ set_multicycle_path -from c_pll|altpll_component|auto_generated|pll1|clk[0] -to 
 
 # LEDs
 set_false_path -to [get_ports LED*]
+
+# Setup RX multicycle paths
+set_multicycle_path -from [get_ports ETH*_RX] -to c_pll|altpll_component|auto_generated|pll1|clk[0] -setup 10
+set_multicycle_path -from [get_ports ETH*_RX] -to c_pll|altpll_component|auto_generated|pll1|clk[0] -hold 9
+
