@@ -60,7 +60,7 @@ begin
         begin_fcs <= '0';
         cnt       <= "00";
         --val_reg   <= '0';
-    
+
       else
         state <= next_state;
       end if;
@@ -85,17 +85,21 @@ begin
         elsif addr_reg < (ADDR_BASE + resize(size_lat, addr_reg'length) - 1) and cnt = "00" then
           addr_reg <= addr_reg + 1;
         else
-          addr_reg <= ADDR_BASE;
+          addr_reg <= to_unsigned(0, addr_reg'length); --! Set address to 0 to read size if crc ok
           cnt      <= cnt + 1;
         end if;
       end if;
 
       if state = CRC and next_state = AXI then
-        addr_reg  <= to_unsigned(11, addr_reg'length);
+        addr_reg <= to_unsigned(1, addr_reg'length); --! address second byte
       end if;
 
       if state = AXI and tlast = '0' then
-        addr_reg <= addr_reg + 1;
+        if addr_reg = to_unsigned(1, addr_reg'length) then
+          addr_reg <= ADDR_BASE;
+        else
+          addr_reg <= addr_reg + 1;
+        end if;
       end if;
 
       if state = CRC and (next_state = IDLE or next_state = AXI) then
@@ -105,7 +109,7 @@ begin
       end if;
 
       if (state = CRC or state = AXI) and next_state = IDLE then
-        addr_reg  <= ADDR_BASE;
+        addr_reg <= ADDR_BASE;
       end if;
     end if;
   end process;
@@ -121,7 +125,7 @@ begin
       when IDLE =>
         if (valid = '1' or val_reg = '1') and tready = '1' then
           next_state <= CRC;
-          val_reg <= '0';
+          val_reg    <= '0';
         elsif valid = '1' then
           val_reg <= '1';
         end if;
