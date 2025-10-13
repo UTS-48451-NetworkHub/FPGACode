@@ -15,7 +15,7 @@ use ieee.numeric_std.all;
 -- 'size' is the payload length in bytes for the current frame and is latched
 -- at the start of counting (first valid='1').
 -- ============================================================================
-entity address_reader is
+entity rx_fsm_adr is
   port (
     clock : in std_logic;
     reset : in std_logic;
@@ -34,7 +34,7 @@ entity address_reader is
   );
 end entity;
 
-architecture Behavioral of address_reader is
+architecture Behavioral of rx_fsm_adr is
   type state_t is (IDLE, CRC, AXI);
   signal state, next_state : state_t := IDLE;
 
