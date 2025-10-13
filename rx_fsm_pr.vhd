@@ -47,8 +47,8 @@ architecture Behavioral of rx_fsm_pr is
   signal   cnt_size : unsigned(15 downto 0)         := (others => '0'); --! counter for paylaod size (NO. of bytes)
   --upper -> 0 MSB
   --lower -> 1 LSB
-  constant preamble : std_logic_vector(55 downto 0) := x"AAAAAAAAAAAAAA"; --!preamble constant
-  constant SFD      : std_logic_vector(7 downto 0)  := x"AB"; --!SFD constant
+  constant preamble : std_logic_vector(55 downto 0) := x"55555555555555"; --!preamble constant
+  constant SFD      : std_logic_vector(7 downto 0)  := x"D5"; --!SFD constant
 
 begin
 

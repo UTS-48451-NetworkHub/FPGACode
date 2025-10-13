@@ -42,7 +42,7 @@ begin
 
       --! bit is valid -> grab bit and shift buffer
       if bit_valid = '1' then
-        byte_buf <= byte_buf(6 downto 0) & bit_in;
+        byte_buf <= bit_in & byte_buf(7 downto 1);
         cnt      <= cnt + 1;
       end if;
 
