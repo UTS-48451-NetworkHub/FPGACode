@@ -58,7 +58,7 @@ begin
       if final then
         -- Accumulate 4 FCS bytes into crc_existing
         if crc_existing(7 downto 0) = x"00" then
-          if finalcount = 0 then
+          if finalcount = '0' then
             crc_reg <= crc_next;
             finalcount <= '1';
           end if;
