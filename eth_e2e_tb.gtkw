@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
-[*] Mon Oct 13 02:17:43 2025
+[*] Mon Oct 13 02:23:00 2025
 [*]
 [dumpfile] "/home/mac/Code/FPGACode/eth_e2e_tb.ghw"
 [dumpfile_mtime] "Mon Oct 13 02:16:54 2025"
 [dumpfile_size] 4297062
 [savefile] "/home/mac/Code/FPGACode/eth_e2e_tb.gtkw"
-[timestart] 0
+[timestart] 972866900000
 [size] 1920 1011
 [pos] -51 -51
-*0.000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-26.000000 973105100000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.eth_e2e_tb.
 [sst_width] 221
@@ -31,7 +31,9 @@ top.eth_e2e_tb.tx_tlast
 -RX
 @28
 top.eth_e2e_tb.rx_tvalid
+@29
 top.eth_e2e_tb.rx_tlast
+@28
 top.eth_e2e_tb.rx_tready
 @22
 #{top.eth_e2e_tb.rx_tdata[7:0]} top.eth_e2e_tb.rx_tdata[7] top.eth_e2e_tb.rx_tdata[6] top.eth_e2e_tb.rx_tdata[5] top.eth_e2e_tb.rx_tdata[4] top.eth_e2e_tb.rx_tdata[3] top.eth_e2e_tb.rx_tdata[2] top.eth_e2e_tb.rx_tdata[1] top.eth_e2e_tb.rx_tdata[0]
