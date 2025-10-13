@@ -63,16 +63,13 @@ begin
           crc_existing(23 downto 16) <= data;
         elsif crc_existing(31 downto 24) = x"00" then
           crc_existing(31 downto 24) <= data;
-
         end if;
 
         -- FCS valid if computed CRC xor 0xFFFFFFFF == 0
         if crc_reg = crc_existing and enable = '1' then
           fcs_reg <= '1';
-          final <= false;
         else
           fcs_reg <= '0';
-          final <= false;
         end if;
       end if;
     end if;
