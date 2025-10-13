@@ -80,7 +80,7 @@ begin
         end if;
 
       when AXI_DATA =>
-        if addr_in = std_logic_vector(unsigned(size_buf) + to_unsigned(10, size_buf'length) - 2) then
+        if addr_in = std_logic_vector((unsigned(size_buf) + to_unsigned(10, size_buf'length)) - 9) then
           next_state <= AXI_LAST;
         end if;
 
