@@ -32,44 +32,7 @@ architecture behav of eth_e2e_tb is
     
     -- Test control
     signal test_complete : boolean := false;
-    
-    -- Component declarations
-    component eth_tx_tb_driver is
-        port (
-            clk : in std_logic;
-            resetn : in std_logic;
-            enable : in std_logic;
-            tvalid : out std_logic;
-            tready : in std_logic;
-            tlast : out std_logic;
-            tdata : out std_logic_vector(7 downto 0)
-        );
-    end component;
-    
-    component eth_tx is
-        port(
-            clk : in std_logic;
-            resetn : in std_logic;
-            tx : out std_logic;
-            tx_en : out std_logic;
-            tvalid : in std_logic;
-            tready : out std_logic;
-            tlast : in std_logic;
-            tdata : in std_logic_vector(7 downto 0)
-        );
-    end component;
-    
-    component eth_rx is
-        port(
-            clk_in : in std_logic;
-            resetn : in std_logic;
-            manchester_in : in std_logic;
-            tready : in std_logic;
-            tvalid : out std_logic;
-            tlast : out std_logic;
-            tdata : out std_logic_vector(7 downto 0)
-        );
-    end component;
+
     
 begin
     -- Clock generation
@@ -109,7 +72,7 @@ begin
     end process;
     
     -- Instantiate components
-    driver_inst: eth_tx_tb_driver
+    driver_inst: entity work.eth_tx_tb_driver
         port map (
             clk => clk,
             resetn => resetn,
@@ -120,7 +83,7 @@ begin
             tdata => tx_tdata
         );
     
-    eth_tx_inst: eth_tx
+    eth_tx_inst: entity work.eth_tx
         port map (
             clk => clk,
             resetn => resetn,
@@ -132,7 +95,7 @@ begin
             tdata => tx_tdata
         );
     
-    eth_rx_inst: eth_rx
+    eth_rx_inst: entity work.eth_rx
         port map (
             clk_in => clk,
             resetn => resetn,
