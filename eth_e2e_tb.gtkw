@@ -1,23 +1,24 @@
 [*]
-[*] GTKWave Analyzer v3.3.118 (w)1999-2023 BSI
-[*] Mon Oct 13 11:38:24 2025
+[*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
+[*] Mon Oct 13 22:23:33 2025
 [*]
-[dumpfile] "G:\FPGA_Projects\Ethernet_Switch\FPGACode\eth_e2e_tb_idle_high.ghw"
-[dumpfile_mtime] "Mon Oct 13 10:56:13 2025"
-[dumpfile_size] 3714493
-[savefile] "G:\FPGA_Projects\Ethernet_Switch\FPGACode\eth_e2e_tb.gtkw"
-[timestart] 0
-[size] 2560 1377
-[pos] -347 -347
-*-35.000000 61266000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[dumpfile] "/home/mac/Code/FPGACode/eth_e2e_tb.ghw"
+[dumpfile_mtime] "Mon Oct 13 22:11:40 2025"
+[dumpfile_size] 3655393
+[savefile] "/home/mac/Code/FPGACode/eth_e2e_tb.gtkw"
+[timestart] 62331100000
+[size] 1920 1011
+[pos] -51 -51
+*-26.000000 62619300000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.eth_e2e_tb.
 [treeopen] top.eth_e2e_tb.eth_rx_inst.
-[treeopen] top.eth_e2e_tb.eth_rx_inst.decoder.
+[treeopen] top.eth_e2e_tb.eth_rx_inst.crc.
+[treeopen] top.eth_e2e_tb.eth_rx_inst.crc.crc_core.
 [sst_width] 221
-[signals_width] 260
+[signals_width] 293
 [sst_expanded] 1
-[sst_vpaned_height] 916
+[sst_vpaned_height] 713
 @28
 top.eth_e2e_tb.clk
 top.eth_e2e_tb.resetn
@@ -69,7 +70,9 @@ top.eth_e2e_tb.eth_tx_out_rp
 -RX Inner Workings
 @28
 top.eth_e2e_tb.eth_rx_inst.packet_ready
+@29
 top.eth_e2e_tb.eth_rx_inst.packet_valid
+@28
 top.eth_e2e_tb.eth_rx_inst.axi_en
 top.eth_e2e_tb.eth_rx_inst.fcs_begin
 top.eth_e2e_tb.eth_rx_inst.fcs_ok
@@ -77,5 +80,10 @@ top.eth_e2e_tb.eth_rx_inst.crc_en
 top.eth_e2e_tb.eth_rx_inst.wr_en
 top.eth_e2e_tb.eth_rx_inst.byte_valid
 top.eth_e2e_tb.eth_rx_inst.bit_valid
+@200
+-CRC Inner Workings
+@22
+#{top.eth_e2e_tb.eth_rx_inst.crc.crc_reg[31:0]} top.eth_e2e_tb.eth_rx_inst.crc.crc_reg[31] top.eth_e2e_tb.eth_rx_inst.crc.crc_reg[30] top.eth_e2e_tb.eth_rx_inst.crc.crc_reg[29] top.eth_e2e_tb.eth_rx_inst.crc.crc_reg[28] top.eth_e2e_tb.eth_rx_inst.crc.crc_reg[27] top.eth_e2e_tb.eth_rx_inst.crc.crc_reg[26] top.eth_e2e_tb.eth_rx_inst.crc.crc_reg[25] top.eth_e2e_tb.eth_rx_inst.crc.crc_reg[24] top.eth_e2e_tb.eth_rx_inst.crc.crc_reg[23] top.eth_e2e_tb.eth_rx_inst.crc.crc_reg[22] top.eth_e2e_tb.eth_rx_inst.crc.crc_reg[21] top.eth_e2e_tb.eth_rx_inst.crc.crc_reg[20] top.eth_e2e_tb.eth_rx_inst.crc.crc_reg[19] top.eth_e2e_tb.eth_rx_inst.crc.crc_reg[18] top.eth_e2e_tb.eth_rx_inst.crc.crc_reg[17] top.eth_e2e_tb.eth_rx_inst.crc.crc_reg[16] top.eth_e2e_tb.eth_rx_inst.crc.crc_reg[15] top.eth_e2e_tb.eth_rx_inst.crc.crc_reg[14] top.eth_e2e_tb.eth_rx_inst.crc.crc_reg[13] top.eth_e2e_tb.eth_rx_inst.crc.crc_reg[12] top.eth_e2e_tb.eth_rx_inst.crc.crc_reg[11] top.eth_e2e_tb.eth_rx_inst.crc.crc_reg[10] top.eth_e2e_tb.eth_rx_inst.crc.crc_reg[9] top.eth_e2e_tb.eth_rx_inst.crc.crc_reg[8] top.eth_e2e_tb.eth_rx_inst.crc.crc_reg[7] top.eth_e2e_tb.eth_rx_inst.crc.crc_reg[6] top.eth_e2e_tb.eth_rx_inst.crc.crc_reg[5] top.eth_e2e_tb.eth_rx_inst.crc.crc_reg[4] top.eth_e2e_tb.eth_rx_inst.crc.crc_reg[3] top.eth_e2e_tb.eth_rx_inst.crc.crc_reg[2] top.eth_e2e_tb.eth_rx_inst.crc.crc_reg[1] top.eth_e2e_tb.eth_rx_inst.crc.crc_reg[0]
+#{top.eth_e2e_tb.eth_rx_inst.crc.crc_existing[31:0]} top.eth_e2e_tb.eth_rx_inst.crc.crc_existing[31] top.eth_e2e_tb.eth_rx_inst.crc.crc_existing[30] top.eth_e2e_tb.eth_rx_inst.crc.crc_existing[29] top.eth_e2e_tb.eth_rx_inst.crc.crc_existing[28] top.eth_e2e_tb.eth_rx_inst.crc.crc_existing[27] top.eth_e2e_tb.eth_rx_inst.crc.crc_existing[26] top.eth_e2e_tb.eth_rx_inst.crc.crc_existing[25] top.eth_e2e_tb.eth_rx_inst.crc.crc_existing[24] top.eth_e2e_tb.eth_rx_inst.crc.crc_existing[23] top.eth_e2e_tb.eth_rx_inst.crc.crc_existing[22] top.eth_e2e_tb.eth_rx_inst.crc.crc_existing[21] top.eth_e2e_tb.eth_rx_inst.crc.crc_existing[20] top.eth_e2e_tb.eth_rx_inst.crc.crc_existing[19] top.eth_e2e_tb.eth_rx_inst.crc.crc_existing[18] top.eth_e2e_tb.eth_rx_inst.crc.crc_existing[17] top.eth_e2e_tb.eth_rx_inst.crc.crc_existing[16] top.eth_e2e_tb.eth_rx_inst.crc.crc_existing[15] top.eth_e2e_tb.eth_rx_inst.crc.crc_existing[14] top.eth_e2e_tb.eth_rx_inst.crc.crc_existing[13] top.eth_e2e_tb.eth_rx_inst.crc.crc_existing[12] top.eth_e2e_tb.eth_rx_inst.crc.crc_existing[11] top.eth_e2e_tb.eth_rx_inst.crc.crc_existing[10] top.eth_e2e_tb.eth_rx_inst.crc.crc_existing[9] top.eth_e2e_tb.eth_rx_inst.crc.crc_existing[8] top.eth_e2e_tb.eth_rx_inst.crc.crc_existing[7] top.eth_e2e_tb.eth_rx_inst.crc.crc_existing[6] top.eth_e2e_tb.eth_rx_inst.crc.crc_existing[5] top.eth_e2e_tb.eth_rx_inst.crc.crc_existing[4] top.eth_e2e_tb.eth_rx_inst.crc.crc_existing[3] top.eth_e2e_tb.eth_rx_inst.crc.crc_existing[2] top.eth_e2e_tb.eth_rx_inst.crc.crc_existing[1] top.eth_e2e_tb.eth_rx_inst.crc.crc_existing[0]
 [pattern_trace] 1
 [pattern_trace] 0
