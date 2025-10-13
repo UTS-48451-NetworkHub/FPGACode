@@ -22,6 +22,7 @@ architecture behav of eth_e2e_tb is
     
     -- Ethernet physical layer signals
     signal eth_tx_out : std_logic;
+    signal eth_tx_out_rp : std_logic;
     signal eth_tx_en : std_logic;
     
     -- AXI-S signals from eth_rx
@@ -35,6 +36,8 @@ architecture behav of eth_e2e_tb is
 
     
 begin
+    eth_tx_out_rp <= not eth_tx_out;
+
     -- Clock generation
     clk_proc: process
     begin
@@ -99,7 +102,7 @@ begin
         port map (
             clk_in => clk,
             resetn => resetn,
-            manchester_in => eth_tx_out,
+            manchester_in => eth_tx_out_rp,
             tready => rx_tready,
             tvalid => rx_tvalid,
             tlast => rx_tlast,

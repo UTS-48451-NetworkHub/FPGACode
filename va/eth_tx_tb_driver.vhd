@@ -111,6 +111,9 @@ architecture rtl of eth_tx_tb_driver is
   signal rom_addr : natural range 0 to frame_bytes - 1;
   signal tx_active : std_logic;
   signal tx_done : std_logic;
+  
+  -- Delayed handshake for address increment
+  signal handshake_d : std_logic;
     
 begin
 
@@ -152,7 +155,11 @@ begin
         tx_active <= '0';
         rom_addr <= 0;
         tx_done <= '0';
+        handshake_d <= '0';
       else
+        -- Delay the handshake by one cycle
+        handshake_d <= tx_active and tready;
+        
         -- Start transmission on enable rising edge or timer trigger
         if (enable_rising = '1' or tx_trigger = '1') and tx_active = '0' then
           tx_active <= '1';
@@ -160,8 +167,8 @@ begin
           tx_done <= '0';
         end if;
         
-        -- Advance through ROM when data is accepted
-        if tx_active = '1' and tready = '1' then
+        -- Advance through ROM one cycle after handshake
+        if handshake_d = '1' then
           if rom_addr = frame_bytes - 1 then
             -- Transmission complete
             tx_active <= '0';
