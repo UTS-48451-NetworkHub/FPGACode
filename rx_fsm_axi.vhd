@@ -61,7 +61,7 @@ begin
     end if;
   end process;
 
-  AXI_fsm : process (packet_valid, tready, AXI_en, addr_in)
+  AXI_fsm : process (packet_valid, tready, AXI_en, addr_in, current_state, size_buf)
   begin
 
     --! Default Assignment

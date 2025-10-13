@@ -59,7 +59,6 @@ begin
         size_lat  <= (others => '0');
         begin_fcs <= '0';
         cnt       <= "00";
-        --val_reg   <= '0';
 
       else
         state <= next_state;
@@ -117,7 +116,7 @@ begin
   ---------------------------------------------------------------------------
   -- State Machine :D 
   ---------------------------------------------------------------------------
-  process (state, valid, tlast, fcs_valid, cnt, tready)
+  process (state, valid, tlast, fcs_valid, cnt, tready, val_reg)
   begin
     next_state <= state;
 
@@ -128,9 +127,12 @@ begin
           val_reg    <= '0';
         elsif valid = '1' then
           val_reg <= '1';
+        else
+        val_reg <= '0';
         end if;
 
       when CRC =>
+        val_reg <= '0';
         if fcs_valid = '1' then --! CRC PASS
           next_state <= AXI;
         elsif cnt = "10" then --! CRC FAIL
@@ -138,6 +140,7 @@ begin
         end if;
 
       when AXI =>
+        val_reg <= '0';
         if tlast = '1' then
           next_state <= IDLE;
         end if;
