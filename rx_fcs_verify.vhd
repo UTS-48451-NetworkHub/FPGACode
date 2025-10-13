@@ -49,6 +49,7 @@ begin
       end if;
 
       if begin_fcs = '1' and final = false then
+        crc_reg <= crc_next;
         final   <= true;
       end if;
 
