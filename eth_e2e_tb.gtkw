@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.118 (w)1999-2023 BSI
-[*] Mon Oct 13 11:33:02 2025
+[*] Mon Oct 13 11:38:24 2025
 [*]
 [dumpfile] "G:\FPGA_Projects\Ethernet_Switch\FPGACode\eth_e2e_tb_idle_high.ghw"
 [dumpfile_mtime] "Mon Oct 13 10:56:13 2025"
 [dumpfile_size] 3714493
 [savefile] "G:\FPGA_Projects\Ethernet_Switch\FPGACode\eth_e2e_tb.gtkw"
-[timestart] 56190000000
+[timestart] 0
 [size] 2560 1377
-[pos] -295 -295
-*-30.000000 61870000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[pos] -347 -347
+*-35.000000 61266000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.eth_e2e_tb.
 [treeopen] top.eth_e2e_tb.eth_rx_inst.
@@ -56,10 +56,8 @@ top.eth_e2e_tb.rx_tready
 @28
 top.eth_e2e_tb.eth_tx_out
 top.eth_e2e_tb.eth_tx_out_rp
-@23
+@22
 #{top.eth_e2e_tb.eth_rx_inst.decoder.data_buf[7:0]} top.eth_e2e_tb.eth_rx_inst.decoder.data_buf[7] top.eth_e2e_tb.eth_rx_inst.decoder.data_buf[6] top.eth_e2e_tb.eth_rx_inst.decoder.data_buf[5] top.eth_e2e_tb.eth_rx_inst.decoder.data_buf[4] top.eth_e2e_tb.eth_rx_inst.decoder.data_buf[3] top.eth_e2e_tb.eth_rx_inst.decoder.data_buf[2] top.eth_e2e_tb.eth_rx_inst.decoder.data_buf[1] top.eth_e2e_tb.eth_rx_inst.decoder.data_buf[0]
-@28
-top.eth_e2e_tb.eth_tx_en
 @200
 -TX Inner Workings
 @24
