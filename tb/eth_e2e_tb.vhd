@@ -102,7 +102,7 @@ begin
         port map (
             clk_in => clk,
             resetn => resetn,
-            manchester_in => eth_tx_out_rp,
+            manchester_in => eth_tx_out,
             tready => rx_tready,
             tvalid => rx_tvalid,
             tlast => rx_tlast,

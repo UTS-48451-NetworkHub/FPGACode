@@ -18,7 +18,8 @@ if not exist "%WAVE_FILE%" (
 )
 
 REM Check if GTKWave is already running
-tasklist /fi "imagename eq gtkwave.exe" 2>nul | find /i "gtkwave.exe" >nul
+tasklist /fi "imagename eq gtkwave.exe" 2>nul
+REM | find /i "gtkwave.exe" >nul
 if %errorlevel%==0 (
     echo GTKWave is already running. Bringing to foreground...
     
