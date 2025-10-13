@@ -2,3 +2,4 @@ altera/
 *.o
 *.exe
 *.vhd.bak
+*.cf
