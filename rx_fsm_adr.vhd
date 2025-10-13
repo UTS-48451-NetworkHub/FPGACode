@@ -146,7 +146,7 @@ begin
   ---------------------------------------------------------------------------
   addr <= std_logic_vector(addr_reg);
 
-  with next_state select
+  with state select
     crc_en <=
     '1' when CRC,
     '0' when others;
