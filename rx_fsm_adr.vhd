@@ -68,7 +68,7 @@ begin
       if state = IDLE then
         begin_fcs <= '0';
         if valid = '1' then
-          size_lat <= unsigned(size); --! grab payload size
+          size_lat <= unsigned(size) - 7; --! grab payload size
         end if;
       end if;
 

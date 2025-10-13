@@ -102,7 +102,7 @@ begin
         data_buf <= data_in;
         if cnt_addr = to_unsigned(0, cnt_addr'length) then
           cnt_addr <= to_unsigned(10, cnt_addr'length);
-          cnt_size <= to_unsigned(1, cnt_size'length);
+          cnt_size <= to_unsigned(8, cnt_size'length);
         else
           cnt_addr <= cnt_addr + 1;
           cnt_size <= cnt_size + 1;
