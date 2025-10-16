@@ -14,7 +14,7 @@ entity rx_decoder is
 end rx_decoder;
 
 architecture Behavioral of rx_decoder is
-  signal data_buf        : std_logic_vector(7 downto 0); --!Register to hold incoming edges for clock recovery
+  signal data_buf        : std_logic_vector(55 downto 0); --!Register to hold incoming edges for clock recovery
   signal manchester_prev : std_logic := '0'; --!Prev input to detect edge.
   signal timeout         : std_logic := '0'; --!timeout to reset logic
   signal midcapture      : std_logic := '0';
@@ -48,16 +48,16 @@ begin
         midcapture      <= '0';
 
         -- ! Logic to detect preamble
-      elsif (data_buf /= x"AA") then
+      elsif (data_buf /= x"AAAAAAAAAAAAAA") then
         -- ! Clock cycles bewteen rising and falling edges is recorded
-        if (data_buf /= x"00") then
+        if (data_buf /= x"00000000000000") then
           new_mid := new_mid + 1;
         end if;
         --! clock cycles for mid-bit recorded, data shifted into preamble register
         if (manchester_prev /= manchester_in) then
           data_out  <= manchester_in;
           bit_valid <= '1';
-          data_buf  <= data_buf(6 downto 0) & manchester_in;
+          data_buf  <= data_buf(54 downto 0) & manchester_in;
           mid_loc := new_mid;
           new_mid := (others => '0');
         else
@@ -86,7 +86,7 @@ begin
     if rising_edge(clk_in) then
 
       --! Timeout logic
-      if data_buf /= x"00" then
+      if data_buf /= x"00000000000000" then
         if timeout = '1' then
           timeout <= '0';
         else
