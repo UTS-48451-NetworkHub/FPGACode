@@ -46,6 +46,7 @@ begin
   begin
     if resetn = '0' then
       current_state <= AXI_IDLE;
+      size_buf <= (others => '0');
     elsif rising_edge(clk_in) then
 
       --! Change states
