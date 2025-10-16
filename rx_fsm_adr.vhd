@@ -29,6 +29,7 @@ entity rx_fsm_adr is
     axi_en    : out std_logic; -- axi4 bus enable flag
     crc_en    : out std_logic; -- CRC enable generation variable
     begin_fcs : out std_logic; -- Flag to begin generation of the comparison FCS CRC
+    fcs_fail  : out std_logic; --! fcs fail
 
     addr : out std_logic_vector(10 downto 0) -- address output
   );
@@ -66,6 +67,7 @@ begin
 
       if state = IDLE then
         begin_fcs <= '0';
+        fcs_fail  <= '0';
         if valid = '1' then
           size_lat <= unsigned(size) - 7; --! grab payload size
         end if;
@@ -110,6 +112,10 @@ begin
       if (state = CRC or state = AXI) and next_state = IDLE then
         addr_reg <= ADDR_BASE;
       end if;
+
+      if state = CRC and next_state = IDLE then
+        fcs_fail <= '1';
+      end if;
     end if;
   end process;
 
@@ -128,7 +134,7 @@ begin
         elsif valid = '1' then
           val_reg <= '1';
         else
-        val_reg <= '0';
+          val_reg <= '0';
         end if;
 
       when CRC =>
@@ -141,7 +147,7 @@ begin
 
       when AXI =>
         val_reg <= '0';
-        if tlast = '1' then
+        if tlast = '1'then
           next_state <= IDLE;
         end if;
 

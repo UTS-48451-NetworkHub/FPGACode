@@ -13,6 +13,7 @@ entity rx_fsm_AXI is
     tready       : in std_logic;
     packet_valid : in std_logic;
     size_in      : in std_logic_vector(15 downto 0);
+    fcs_fail     : in std_logic;
     tvalid       : out std_logic := '0';
     tlast        : out std_logic := '0';
     packet_ready : out std_logic := '0';
@@ -37,7 +38,7 @@ architecture Behavioral of rx_fsm_axi is
 
   signal current_state, next_state : AXI_state;
 
-  signal size_buf  : std_logic_vector(10 downto 0) := (others => '0');
+  signal size_buf : std_logic_vector(10 downto 0) := (others => '0');
 
 begin
 
@@ -69,7 +70,7 @@ begin
 
     case current_state is
 
-      when AXI_IDLE => 
+      when AXI_IDLE =>
         if packet_valid = '1' then
           next_state <= AXI_SIZE;
         end if;
@@ -77,6 +78,8 @@ begin
       when AXI_SIZE =>
         if AXI_en = '1' then
           next_state <= AXI_DATA;
+        elsif fcs_fail = '1' then
+          next_state <= AXI_WAIT;
         end if;
 
       when AXI_DATA =>
@@ -90,9 +93,9 @@ begin
         end if;
 
       when AXI_WAIT =>
-      if tready = '1' then
-        next_state <= AXI_IDLE;
-      end if;
+        if tready = '1' then
+          next_state <= AXI_IDLE;
+        end if;
 
     end case;
   end process;
@@ -108,7 +111,7 @@ begin
     tlast <=
     '1' when AXI_LAST,
     '0' when others;
-    
-    tvalid <= AXI_en;
+
+  tvalid <= AXI_en;
 
 end Behavioral;
