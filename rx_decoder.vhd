@@ -18,6 +18,15 @@ architecture Behavioral of rx_decoder is
   signal manchester_prev : std_logic := '0'; --!Prev input to detect edge.
   signal timeout         : std_logic := '0'; --!timeout to reset logic
   signal midcapture      : std_logic := '0';
+  
+  attribute keep : boolean;
+  attribute keep of midcapture : signal is true;
+  attribute preserve : boolean;
+  attribute preserve of midcapture : signal is true;
+  attribute mark_debug : string;
+  attribute mark_debug of midcapture : signal is "true";
+  attribute noprune : boolean;
+  attribute noprune of midcapture : signal is true;
 
 begin
   process (clk_in)

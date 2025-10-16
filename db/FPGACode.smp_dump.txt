@@ -23,7 +23,7 @@ state.IDLE 0 0 0
 state.CRC 0 1 1 
 state.AXI 1 0 1 
 
-State Machine - |ethernet_switch|eth_port:c_eth1|eth_rx:c_rx|rx_fsm_axi:axi_FSM|current_state
+State Machine - |ethernet_switch|eth_port:c_eth1|eth_rx:c_rx|rx_fsm_AXI:axi_FSM|current_state
 Name current_state.AXI_WAIT current_state.AXI_LAST current_state.AXI_DATA current_state.AXI_SIZE current_state.AXI_IDLE 
 current_state.AXI_IDLE 0 0 0 0 0 
 current_state.AXI_SIZE 0 0 0 1 1 
@@ -84,7 +84,7 @@ state.IDLE 0 0 0
 state.CRC 0 1 1 
 state.AXI 1 0 1 
 
-State Machine - |ethernet_switch|eth_port:c_eth0|eth_rx:c_rx|rx_fsm_axi:axi_FSM|current_state
+State Machine - |ethernet_switch|eth_port:c_eth0|eth_rx:c_rx|rx_fsm_AXI:axi_FSM|current_state
 Name current_state.AXI_WAIT current_state.AXI_LAST current_state.AXI_DATA current_state.AXI_SIZE current_state.AXI_IDLE 
 current_state.AXI_IDLE 0 0 0 0 0 
 current_state.AXI_SIZE 0 0 0 1 1 

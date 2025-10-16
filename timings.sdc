@@ -23,7 +23,6 @@ set_output_delay -clock c_pll|altpll_component|auto_generated|pll1|clk[0] -max 2
 
 # Setup TX multicycle paths
 set_multicycle_path -from c_pll|altpll_component|auto_generated|pll1|clk[0] -to [get_ports ETH*_TX] -setup 10
-# Hold path: reduce hold checks (usually set to setup-1)
 set_multicycle_path -from c_pll|altpll_component|auto_generated|pll1|clk[0] -to [get_ports ETH*_TX] -hold 9
 
 # Same for the TX enable pin if appropriate

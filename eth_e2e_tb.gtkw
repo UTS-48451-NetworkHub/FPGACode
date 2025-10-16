@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.118 (w)1999-2023 BSI
-[*] Thu Oct 16 09:17:14 2025
+[*] Thu Oct 16 09:27:18 2025
 [*]
 [dumpfile] "G:\FPGA_Projects\Ethernet_Switch\FPGACode\eth_e2e_tb.ghw"
-[dumpfile_mtime] "Thu Oct 16 09:13:56 2025"
-[dumpfile_size] 3660681
+[dumpfile_mtime] "Thu Oct 16 09:26:49 2025"
+[dumpfile_size] 3660685
 [savefile] "G:\FPGA_Projects\Ethernet_Switch\FPGACode\eth_e2e_tb.gtkw"
 [timestart] 0
 [size] 2560 1377
-[pos] -139 -139
-*-29.000000 867000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[pos] -1 -1
+*-33.000000 1735000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.eth_e2e_tb.
 [treeopen] top.eth_e2e_tb.eth_rx_inst.
@@ -67,9 +67,8 @@ top.eth_e2e_tb.eth_tx_out
 #{top.eth_e2e_tb.eth_tx_inst.c_piso_sr.r_byte[7:0]} top.eth_e2e_tb.eth_tx_inst.c_piso_sr.r_byte[7] top.eth_e2e_tb.eth_tx_inst.c_piso_sr.r_byte[6] top.eth_e2e_tb.eth_tx_inst.c_piso_sr.r_byte[5] top.eth_e2e_tb.eth_tx_inst.c_piso_sr.r_byte[4] top.eth_e2e_tb.eth_tx_inst.c_piso_sr.r_byte[3] top.eth_e2e_tb.eth_tx_inst.c_piso_sr.r_byte[2] top.eth_e2e_tb.eth_tx_inst.c_piso_sr.r_byte[1] top.eth_e2e_tb.eth_tx_inst.c_piso_sr.r_byte[0]
 @200
 -RX Inner Workings
-@29
-top.eth_e2e_tb.eth_rx_inst.decoder.midcapture
 @28
+top.eth_e2e_tb.eth_rx_inst.decoder.midcapture
 top.eth_e2e_tb.eth_rx_inst.packet_ready
 top.eth_e2e_tb.eth_rx_inst.packet_valid
 top.eth_e2e_tb.eth_rx_inst.axi_en
