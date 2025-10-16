@@ -51,7 +51,7 @@ begin
       current_state <= next_state;
 
       if current_state = AXI_IDLE and next_state = AXI_SIZE then
-        size_buf <= size_in(10 downto 0); --! receive size of packet
+        size_buf <= std_logic_vector(unsigned(size_in(10 downto 0)) + 1); --! receive size of packet
       end if;
 
       if current_state = AXI_DATA and next_state = AXI_WAIT then
