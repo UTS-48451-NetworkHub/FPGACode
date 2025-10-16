@@ -1,15 +1,15 @@
 [*]
-[*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
-[*] Mon Oct 13 22:23:33 2025
+[*] GTKWave Analyzer v3.3.118 (w)1999-2023 BSI
+[*] Thu Oct 16 09:17:14 2025
 [*]
-[dumpfile] "/home/mac/Code/FPGACode/eth_e2e_tb.ghw"
-[dumpfile_mtime] "Mon Oct 13 22:11:40 2025"
-[dumpfile_size] 3655393
-[savefile] "/home/mac/Code/FPGACode/eth_e2e_tb.gtkw"
-[timestart] 62331100000
-[size] 1920 1011
-[pos] -51 -51
-*-26.000000 62619300000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[dumpfile] "G:\FPGA_Projects\Ethernet_Switch\FPGACode\eth_e2e_tb.ghw"
+[dumpfile_mtime] "Thu Oct 16 09:13:56 2025"
+[dumpfile_size] 3660681
+[savefile] "G:\FPGA_Projects\Ethernet_Switch\FPGACode\eth_e2e_tb.gtkw"
+[timestart] 0
+[size] 2560 1377
+[pos] -139 -139
+*-29.000000 867000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.eth_e2e_tb.
 [treeopen] top.eth_e2e_tb.eth_rx_inst.
@@ -56,7 +56,6 @@ top.eth_e2e_tb.rx_tready
 -ETH
 @28
 top.eth_e2e_tb.eth_tx_out
-top.eth_e2e_tb.eth_tx_out_rp
 @22
 #{top.eth_e2e_tb.eth_rx_inst.decoder.data_buf[7:0]} top.eth_e2e_tb.eth_rx_inst.decoder.data_buf[7] top.eth_e2e_tb.eth_rx_inst.decoder.data_buf[6] top.eth_e2e_tb.eth_rx_inst.decoder.data_buf[5] top.eth_e2e_tb.eth_rx_inst.decoder.data_buf[4] top.eth_e2e_tb.eth_rx_inst.decoder.data_buf[3] top.eth_e2e_tb.eth_rx_inst.decoder.data_buf[2] top.eth_e2e_tb.eth_rx_inst.decoder.data_buf[1] top.eth_e2e_tb.eth_rx_inst.decoder.data_buf[0]
 @200
@@ -68,11 +67,11 @@ top.eth_e2e_tb.eth_tx_out_rp
 #{top.eth_e2e_tb.eth_tx_inst.c_piso_sr.r_byte[7:0]} top.eth_e2e_tb.eth_tx_inst.c_piso_sr.r_byte[7] top.eth_e2e_tb.eth_tx_inst.c_piso_sr.r_byte[6] top.eth_e2e_tb.eth_tx_inst.c_piso_sr.r_byte[5] top.eth_e2e_tb.eth_tx_inst.c_piso_sr.r_byte[4] top.eth_e2e_tb.eth_tx_inst.c_piso_sr.r_byte[3] top.eth_e2e_tb.eth_tx_inst.c_piso_sr.r_byte[2] top.eth_e2e_tb.eth_tx_inst.c_piso_sr.r_byte[1] top.eth_e2e_tb.eth_tx_inst.c_piso_sr.r_byte[0]
 @200
 -RX Inner Workings
+@29
+top.eth_e2e_tb.eth_rx_inst.decoder.midcapture
 @28
 top.eth_e2e_tb.eth_rx_inst.packet_ready
-@29
 top.eth_e2e_tb.eth_rx_inst.packet_valid
-@28
 top.eth_e2e_tb.eth_rx_inst.axi_en
 top.eth_e2e_tb.eth_rx_inst.fcs_begin
 top.eth_e2e_tb.eth_rx_inst.fcs_ok
