@@ -1,10 +1,10 @@
 [*]
 [*] GTKWave Analyzer v3.3.118 (w)1999-2023 BSI
-[*] Thu Oct 16 09:27:18 2025
+[*] Thu Oct 16 12:19:04 2025
 [*]
 [dumpfile] "G:\FPGA_Projects\Ethernet_Switch\FPGACode\eth_e2e_tb.ghw"
-[dumpfile_mtime] "Thu Oct 16 09:26:49 2025"
-[dumpfile_size] 3660685
+[dumpfile_mtime] "Thu Oct 16 12:17:34 2025"
+[dumpfile_size] 3697722
 [savefile] "G:\FPGA_Projects\Ethernet_Switch\FPGACode\eth_e2e_tb.gtkw"
 [timestart] 0
 [size] 2560 1377
