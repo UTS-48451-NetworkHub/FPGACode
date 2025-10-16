@@ -57,7 +57,7 @@ begin
         --! Logic to decode data after preamble
       else
         --! clock cycles up to mid-bit counted
-        midcapture <= '0';
+        midcapture <= '1';
         mid_count := mid_count + 1;
         if (mid_count = mid_loc) then
           --! Data output at mid-bit
