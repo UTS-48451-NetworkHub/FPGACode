@@ -77,7 +77,7 @@ begin
     if rising_edge(clk_in) then
 
       --! Timeout logic
-      if data_buf /= x"00" then
+      if data_buf /= x"00000000000000" then
         if timeout = '1' then
           timeout <= '0';
         else
