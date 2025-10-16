@@ -88,7 +88,7 @@ begin
           if manchester_prev /= manchester_in then
             timeout_count := (others => '0');
           else
-            if timeout_count = 50 then
+            if timeout_count = 30 then
               timeout <= '1';
               timeout_count := (others => '0');
             else
