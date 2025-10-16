@@ -1,5 +1,5 @@
 Assembler report for FPGACode
-Thu Oct 16 22:06:38 2025
+Fri Oct 17 00:47:14 2025
 Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
 
 
@@ -39,7 +39,7 @@ on the Quartus Prime software download page.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Thu Oct 16 22:06:38 2025 ;
+; Assembler Status      ; Successful - Fri Oct 17 00:47:14 2025 ;
 ; Revision Name         ; FPGACode                              ;
 ; Top-level Entity Name ; ethernet_switch                       ;
 ; Family                ; Cyclone IV E                          ;
@@ -78,8 +78,8 @@ on the Quartus Prime software download page.
 +----------------+------------------------------------------------------------------------------+
 ; Option         ; Setting                                                                      ;
 +----------------+------------------------------------------------------------------------------+
-; JTAG usercode  ; 0x0022B1D2                                                                   ;
-; Checksum       ; 0x0022B1D2                                                                   ;
+; JTAG usercode  ; 0x002251D8                                                                   ;
+; Checksum       ; 0x002251D8                                                                   ;
 +----------------+------------------------------------------------------------------------------+
 
 
@@ -89,14 +89,14 @@ on the Quartus Prime software download page.
 Info: *******************************************************************
 Info: Running Quartus Prime Assembler
     Info: Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
-    Info: Processing started: Thu Oct 16 22:06:37 2025
+    Info: Processing started: Fri Oct 17 00:47:13 2025
 Info: Command: quartus_asm --read_settings_files=off --write_settings_files=off FPGACode -c FPGACode
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (115031): Writing out detailed assembly data for power analysis
 Info (115030): Assembler is generating device programming files
 Info: Quartus Prime Assembler was successful. 0 errors, 1 warning
     Info: Peak virtual memory: 4712 megabytes
-    Info: Processing ended: Thu Oct 16 22:06:38 2025
+    Info: Processing ended: Fri Oct 17 00:47:14 2025
     Info: Elapsed time: 00:00:01
     Info: Total CPU time (on all processors): 00:00:01
 

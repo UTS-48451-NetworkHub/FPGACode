@@ -20,6 +20,15 @@ architecture Behavioral of rx_decoder is
   signal midcapture      : std_logic := '0';
   signal midcntsig      : std_logic_vector(3 downto 0) := (others => '0');
 
+  attribute keep : boolean;
+  attribute keep of midcapture : signal is true;
+  attribute preserve : boolean;
+  attribute preserve of midcapture : signal is true;
+  attribute mark_debug : string;
+  attribute mark_debug of midcapture : signal is "true";
+  attribute noprune : boolean;
+  attribute noprune of midcapture : signal is true;
+
 begin
   process (clk_in)
     variable new_mid   : unsigned(3 downto 0) := (others => '0'); --!location of mid-bit transitions during clock recovery

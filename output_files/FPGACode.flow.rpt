@@ -1,5 +1,5 @@
 Flow report for FPGACode
-Thu Oct 16 22:06:43 2025
+Fri Oct 17 00:47:18 2025
 Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
 
 
@@ -41,17 +41,17 @@ on the Quartus Prime software download page.
 +--------------------------------------------------------------------------------------+
 ; Flow Summary                                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Flow Status                        ; Successful - Thu Oct 16 22:06:43 2025           ;
+; Flow Status                        ; Successful - Fri Oct 17 00:47:18 2025           ;
 ; Quartus Prime Version              ; 24.1std.0 Build 1077 03/04/2025 SC Lite Edition ;
 ; Revision Name                      ; FPGACode                                        ;
 ; Top-level Entity Name              ; ethernet_switch                                 ;
 ; Family                             ; Cyclone IV E                                    ;
 ; Device                             ; EP4CE6E22C8                                     ;
 ; Timing Models                      ; Final                                           ;
-; Total logic elements               ; 2,906 / 6,272 ( 46 % )                          ;
-;     Total combinational functions  ; 2,575 / 6,272 ( 41 % )                          ;
-;     Dedicated logic registers      ; 1,800 / 6,272 ( 29 % )                          ;
-; Total registers                    ; 1800                                            ;
+; Total logic elements               ; 2,912 / 6,272 ( 46 % )                          ;
+;     Total combinational functions  ; 2,576 / 6,272 ( 41 % )                          ;
+;     Dedicated logic registers      ; 1,796 / 6,272 ( 29 % )                          ;
+; Total registers                    ; 1796                                            ;
 ; Total pins                         ; 37 / 92 ( 40 % )                                ;
 ; Total virtual pins                 ; 0                                               ;
 ; Total memory bits                  ; 241,664 / 276,480 ( 87 % )                      ;
@@ -65,7 +65,7 @@ on the Quartus Prime software download page.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 10/16/2025 22:05:58 ;
+; Start date & time ; 10/17/2025 00:46:34 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; FPGACode            ;
 +-------------------+---------------------+
@@ -76,7 +76,7 @@ on the Quartus Prime software download page.
 +-------------------------------------+---------------------------------------------------------------------------------------------------+---------------+-----------------+-----------------------------------+
 ; Assignment Name                     ; Value                                                                                             ; Default Value ; Entity Name     ; Section Id                        ;
 +-------------------------------------+---------------------------------------------------------------------------------------------------+---------------+-----------------+-----------------------------------+
-; COMPILER_SIGNATURE_ID               ; 99248646537555.176061275812820                                                                    ; --            ; --              ; --                                ;
+; COMPILER_SIGNATURE_ID               ; 99248646537555.176062239420872                                                                    ; --            ; --              ; --                                ;
 ; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                                                                               ; --            ; --              ; eda_board_design_timing           ;
 ; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                                                                               ; --            ; --              ; eda_board_design_boundary_scan    ;
 ; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                                                                               ; --            ; --              ; eda_board_design_signal_integrity ;
@@ -134,12 +134,12 @@ on the Quartus Prime software download page.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:27     ; 1.0                     ; 4941 MB             ; 00:00:49                           ;
-; Fitter               ; 00:00:09     ; 1.5                     ; 6565 MB             ; 00:00:19                           ;
+; Analysis & Synthesis ; 00:00:26     ; 1.0                     ; 4935 MB             ; 00:00:46                           ;
+; Fitter               ; 00:00:09     ; 1.5                     ; 6562 MB             ; 00:00:21                           ;
 ; Assembler            ; 00:00:01     ; 1.0                     ; 4712 MB             ; 00:00:01                           ;
-; Timing Analyzer      ; 00:00:01     ; 1.6                     ; 4956 MB             ; 00:00:02                           ;
-; EDA Netlist Writer   ; 00:00:02     ; 1.0                     ; 4671 MB             ; 00:00:01                           ;
-; Total                ; 00:00:40     ; --                      ; --                  ; 00:01:12                           ;
+; Timing Analyzer      ; 00:00:02     ; 1.6                     ; 4953 MB             ; 00:00:02                           ;
+; EDA Netlist Writer   ; 00:00:01     ; 1.0                     ; 4671 MB             ; 00:00:01                           ;
+; Total                ; 00:00:39     ; --                      ; --                  ; 00:01:11                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
