@@ -60,6 +60,7 @@ begin
         midcapture <= '1';
         if (mid_count < mid_loc/2 + 1) then
         mid_count := mid_count + 1;
+        bit_valid <= '0';
         elsif (manchester_prev /= manchester_in) then
           --! Data output at mid-bit
           data_out  <= manchester_in;
