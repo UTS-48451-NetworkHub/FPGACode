@@ -1,4 +1,5 @@
 altera/
+db/
 *.o
 *.exe
 *.vhd.bak
