@@ -1,13 +1,13 @@
 <sld_project_info>
   <project>
-    <hash md5_digest_80b="db9d85ac93330a93590c"/>
+    <hash md5_digest_80b="4ae73e6147f54ee6c4ae"/>
   </project>
   <file_info>
     <file device="EP4CE6E22C8" path="FPGACode.sof" usercode="0xFFFFFFFF"/>
   </file_info>
   <hub_info hub_ir_width="10" ir_width="10" node_addr_width="1" node_count="1"/>
   <node_info>
-    <node hpath="sld_signaltap:auto_signaltap_0" instance_id="0" mfg_id="110" node_id="0" sld_node_info="0x30006E00" version="6">
+    <node hpath="sld_signaltap:the_instance" instance_id="0" mfg_id="110" node_id="0" sld_node_info="0x30006E00" version="6">
       <parameters>
         <parameter name="lpm_type" type="string" value="sld_signaltap"/>
         <parameter name="sld_node_info" type="unknown" value="805334528"/>
@@ -57,7 +57,7 @@
         <parameter name="sld_state_flow_use_generated" type="unknown" value="0"/>
         <parameter name="sld_current_resource_width" type="unknown" value="1"/>
         <parameter name="sld_attribute_mem_mode" type="unknown" value="OFF"/>
-        <parameter name="sld_storage_qualifier_bits" type="unknown" value="18"/>
+        <parameter name="sld_storage_qualifier_bits" type="unknown" value="35"/>
         <parameter name="SLD_STORAGE_QUALIFIER_GAP_RECORD" type="dec" value="0"/>
         <parameter name="SLD_STORAGE_QUALIFIER_MODE" type="string" value="OFF"/>
         <parameter name="SLD_STORAGE_QUALIFIER_ENABLE_ADVANCED_CONDITION" type="dec" value="0"/>

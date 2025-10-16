@@ -66,7 +66,13 @@ begin
         enable <= '1';
         
         -- Run test
-        wait for 1000 us;
+        wait for 200 us;
+        
+        enable <= '0';
+        wait for 10 us;
+        enable <= '1';
+
+        wait for 200 us;
         
         -- End simulation
         test_complete <= true;
