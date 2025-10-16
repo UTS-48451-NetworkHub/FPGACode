@@ -60,6 +60,7 @@ begin
         size_lat  <= (others => '0');
         begin_fcs <= '0';
         cnt       <= "00";
+        fcs_fail  <= '0';
 
       else
         state <= next_state;
