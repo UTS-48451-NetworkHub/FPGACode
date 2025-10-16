@@ -1,5 +1,5 @@
 Flow report for FPGACode
-Thu Oct 16 22:06:43 2025
+Fri Oct 17 01:29:03 2025
 Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
 
 
@@ -41,17 +41,17 @@ on the Quartus Prime software download page.
 +--------------------------------------------------------------------------------------+
 ; Flow Summary                                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Flow Status                        ; Successful - Thu Oct 16 22:06:43 2025           ;
+; Flow Status                        ; Successful - Fri Oct 17 01:29:03 2025           ;
 ; Quartus Prime Version              ; 24.1std.0 Build 1077 03/04/2025 SC Lite Edition ;
 ; Revision Name                      ; FPGACode                                        ;
 ; Top-level Entity Name              ; ethernet_switch                                 ;
 ; Family                             ; Cyclone IV E                                    ;
 ; Device                             ; EP4CE6E22C8                                     ;
 ; Timing Models                      ; Final                                           ;
-; Total logic elements               ; 2,906 / 6,272 ( 46 % )                          ;
-;     Total combinational functions  ; 2,575 / 6,272 ( 41 % )                          ;
-;     Dedicated logic registers      ; 1,800 / 6,272 ( 29 % )                          ;
-; Total registers                    ; 1800                                            ;
+; Total logic elements               ; 2,916 / 6,272 ( 46 % )                          ;
+;     Total combinational functions  ; 2,576 / 6,272 ( 41 % )                          ;
+;     Dedicated logic registers      ; 1,798 / 6,272 ( 29 % )                          ;
+; Total registers                    ; 1798                                            ;
 ; Total pins                         ; 37 / 92 ( 40 % )                                ;
 ; Total virtual pins                 ; 0                                               ;
 ; Total memory bits                  ; 241,664 / 276,480 ( 87 % )                      ;
@@ -65,7 +65,7 @@ on the Quartus Prime software download page.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 10/16/2025 22:05:58 ;
+; Start date & time ; 10/17/2025 01:28:20 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; FPGACode            ;
 +-------------------+---------------------+
@@ -76,7 +76,7 @@ on the Quartus Prime software download page.
 +-------------------------------------+---------------------------------------------------------------------------------------------------+---------------+-----------------+-----------------------------------+
 ; Assignment Name                     ; Value                                                                                             ; Default Value ; Entity Name     ; Section Id                        ;
 +-------------------------------------+---------------------------------------------------------------------------------------------------+---------------+-----------------+-----------------------------------+
-; COMPILER_SIGNATURE_ID               ; 99248646537555.176061275812820                                                                    ; --            ; --              ; --                                ;
+; COMPILER_SIGNATURE_ID               ; 99248646537555.176062489905484                                                                    ; --            ; --              ; --                                ;
 ; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                                                                               ; --            ; --              ; eda_board_design_timing           ;
 ; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                                                                               ; --            ; --              ; eda_board_design_boundary_scan    ;
 ; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                                                                               ; --            ; --              ; eda_board_design_signal_integrity ;
@@ -97,33 +97,33 @@ on the Quartus Prime software download page.
 ; POWER_PRESET_COOLING_SOLUTION       ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW                                                             ; --            ; --              ; --                                ;
 ; PROJECT_OUTPUT_DIRECTORY            ; output_files                                                                                      ; --            ; --              ; --                                ;
 ; SLD_FILE                            ; db/stp1_auto_stripped.stp                                                                         ; --            ; --              ; --                                ;
-; SLD_NODE_CREATOR_ID                 ; 110                                                                                               ; --            ; --              ; auto_signaltap_0                  ;
-; SLD_NODE_ENTITY_NAME                ; sld_signaltap                                                                                     ; --            ; --              ; auto_signaltap_0                  ;
-; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_RAM_BLOCK_TYPE=AUTO                                                                           ; --            ; --              ; auto_signaltap_0                  ;
-; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_NODE_INFO=805334528                                                                           ; --            ; --              ; auto_signaltap_0                  ;
-; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_POWER_UP_TRIGGER=0                                                                            ; --            ; --              ; auto_signaltap_0                  ;
-; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_STORAGE_QUALIFIER_INVERSION_MASK_LENGTH=0                                                     ; --            ; --              ; auto_signaltap_0                  ;
-; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_SEGMENT_SIZE=8192                                                                             ; --            ; --              ; auto_signaltap_0                  ;
-; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_ATTRIBUTE_MEM_MODE=OFF                                                                        ; --            ; --              ; auto_signaltap_0                  ;
-; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_STATE_FLOW_USE_GENERATED=0                                                                    ; --            ; --              ; auto_signaltap_0                  ;
-; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_STATE_BITS=11                                                                                 ; --            ; --              ; auto_signaltap_0                  ;
-; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_BUFFER_FULL_STOP=1                                                                            ; --            ; --              ; auto_signaltap_0                  ;
-; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_CURRENT_RESOURCE_WIDTH=1                                                                      ; --            ; --              ; auto_signaltap_0                  ;
-; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_INCREMENTAL_ROUTING=1                                                                         ; --            ; --              ; auto_signaltap_0                  ;
-; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_TRIGGER_LEVEL=1                                                                               ; --            ; --              ; auto_signaltap_0                  ;
-; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_SAMPLE_DEPTH=8192                                                                             ; --            ; --              ; auto_signaltap_0                  ;
-; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_TRIGGER_IN_ENABLED=1                                                                          ; --            ; --              ; auto_signaltap_0                  ;
-; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_TRIGGER_PIPELINE=0                                                                            ; --            ; --              ; auto_signaltap_0                  ;
-; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_RAM_PIPELINE=0                                                                                ; --            ; --              ; auto_signaltap_0                  ;
-; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_COUNTER_PIPELINE=0                                                                            ; --            ; --              ; auto_signaltap_0                  ;
-; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_ADVANCED_TRIGGER_ENTITY=basic,1,                                                              ; --            ; --              ; auto_signaltap_0                  ;
-; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_TRIGGER_LEVEL_PIPELINE=1                                                                      ; --            ; --              ; auto_signaltap_0                  ;
-; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_ENABLE_ADVANCED_TRIGGER=0                                                                     ; --            ; --              ; auto_signaltap_0                  ;
-; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_DATA_BITS=17                                                                                  ; --            ; --              ; auto_signaltap_0                  ;
-; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_TRIGGER_BITS=17                                                                               ; --            ; --              ; auto_signaltap_0                  ;
-; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_STORAGE_QUALIFIER_BITS=18                                                                     ; --            ; --              ; auto_signaltap_0                  ;
-; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_INVERSION_MASK=000000000000000000000000000000000000000000000000000000000000000000000000000000 ; --            ; --              ; auto_signaltap_0                  ;
-; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_INVERSION_MASK_LENGTH=78                                                                      ; --            ; --              ; auto_signaltap_0                  ;
+; SLD_NODE_CREATOR_ID                 ; 110                                                                                               ; --            ; --              ; the_instance                      ;
+; SLD_NODE_ENTITY_NAME                ; sld_signaltap                                                                                     ; --            ; --              ; the_instance                      ;
+; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_RAM_BLOCK_TYPE=AUTO                                                                           ; --            ; --              ; the_instance                      ;
+; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_NODE_INFO=805334528                                                                           ; --            ; --              ; the_instance                      ;
+; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_POWER_UP_TRIGGER=0                                                                            ; --            ; --              ; the_instance                      ;
+; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_STORAGE_QUALIFIER_INVERSION_MASK_LENGTH=0                                                     ; --            ; --              ; the_instance                      ;
+; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_SEGMENT_SIZE=8192                                                                             ; --            ; --              ; the_instance                      ;
+; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_ATTRIBUTE_MEM_MODE=OFF                                                                        ; --            ; --              ; the_instance                      ;
+; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_STATE_FLOW_USE_GENERATED=0                                                                    ; --            ; --              ; the_instance                      ;
+; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_STATE_BITS=11                                                                                 ; --            ; --              ; the_instance                      ;
+; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_BUFFER_FULL_STOP=1                                                                            ; --            ; --              ; the_instance                      ;
+; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_CURRENT_RESOURCE_WIDTH=1                                                                      ; --            ; --              ; the_instance                      ;
+; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_INCREMENTAL_ROUTING=1                                                                         ; --            ; --              ; the_instance                      ;
+; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_TRIGGER_LEVEL=1                                                                               ; --            ; --              ; the_instance                      ;
+; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_SAMPLE_DEPTH=8192                                                                             ; --            ; --              ; the_instance                      ;
+; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_TRIGGER_IN_ENABLED=1                                                                          ; --            ; --              ; the_instance                      ;
+; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_TRIGGER_PIPELINE=0                                                                            ; --            ; --              ; the_instance                      ;
+; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_RAM_PIPELINE=0                                                                                ; --            ; --              ; the_instance                      ;
+; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_COUNTER_PIPELINE=0                                                                            ; --            ; --              ; the_instance                      ;
+; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_ADVANCED_TRIGGER_ENTITY=basic,1,                                                              ; --            ; --              ; the_instance                      ;
+; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_TRIGGER_LEVEL_PIPELINE=1                                                                      ; --            ; --              ; the_instance                      ;
+; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_ENABLE_ADVANCED_TRIGGER=0                                                                     ; --            ; --              ; the_instance                      ;
+; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_DATA_BITS=17                                                                                  ; --            ; --              ; the_instance                      ;
+; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_TRIGGER_BITS=17                                                                               ; --            ; --              ; the_instance                      ;
+; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_STORAGE_QUALIFIER_BITS=35                                                                     ; --            ; --              ; the_instance                      ;
+; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_INVERSION_MASK=000000000000000000000000000000000000000000000000000000000000000000000000000000 ; --            ; --              ; the_instance                      ;
+; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_INVERSION_MASK_LENGTH=78                                                                      ; --            ; --              ; the_instance                      ;
 ; TOP_LEVEL_ENTITY                    ; ethernet_switch                                                                                   ; FPGACode      ; --              ; --                                ;
 ; USE_SIGNALTAP_FILE                  ; stp1.stp                                                                                          ; --            ; --              ; --                                ;
 +-------------------------------------+---------------------------------------------------------------------------------------------------+---------------+-----------------+-----------------------------------+
@@ -134,12 +134,12 @@ on the Quartus Prime software download page.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:27     ; 1.0                     ; 4941 MB             ; 00:00:49                           ;
-; Fitter               ; 00:00:09     ; 1.5                     ; 6565 MB             ; 00:00:19                           ;
+; Analysis & Synthesis ; 00:00:26     ; 1.0                     ; 4932 MB             ; 00:00:45                           ;
+; Fitter               ; 00:00:09     ; 1.5                     ; 6577 MB             ; 00:00:19                           ;
 ; Assembler            ; 00:00:01     ; 1.0                     ; 4712 MB             ; 00:00:01                           ;
-; Timing Analyzer      ; 00:00:01     ; 1.6                     ; 4956 MB             ; 00:00:02                           ;
+; Timing Analyzer      ; 00:00:02     ; 1.6                     ; 4976 MB             ; 00:00:02                           ;
 ; EDA Netlist Writer   ; 00:00:02     ; 1.0                     ; 4671 MB             ; 00:00:01                           ;
-; Total                ; 00:00:40     ; --                      ; --                  ; 00:01:12                           ;
+; Total                ; 00:00:40     ; --                      ; --                  ; 00:01:08                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
