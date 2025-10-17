@@ -40,6 +40,9 @@ architecture Behavioral of rx_fsm_axi is
 
   signal size_buf : std_logic_vector(10 downto 0) := (others => '0');
 
+  signal counter_en : std_logic := '0';
+  signal counter : unsigned (12 downto 0) := (others => '0');
+
 begin
 
   process (clk_in, resetn)
@@ -48,9 +51,18 @@ begin
       current_state <= AXI_IDLE;
       size_buf <= (others => '0');
     elsif rising_edge(clk_in) then
-
-      --! Change states
-      current_state <= next_state;
+      --! Count
+      if counter_en = '1' then
+        if (counter = 8191) then
+          counter <= (others => '0');
+          current_state <= AXI_IDLE;
+        else
+          counter <= counter + 1;
+          current_state <= next_state;
+        end if;
+      else 
+        current_state <= next_state;
+      end if;      
 
       if current_state = AXI_IDLE and next_state = AXI_SIZE then
         size_buf <= std_logic_vector(unsigned(size_in(10 downto 0)) + 1); --! receive size of packet
@@ -58,6 +70,12 @@ begin
 
       if current_state = AXI_DATA and next_state = AXI_WAIT then
         size_buf <= (others => '0');
+      end if;
+
+      if current_state /= AXI_IDLE then
+        counter_en <= '1';
+      else
+        counter_en <= '0';
       end if;
 
     end if;

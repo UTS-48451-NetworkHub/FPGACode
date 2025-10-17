@@ -130,7 +130,6 @@ begin
       clock     => clk_in,
       reset     => resetn,
       valid     => packet_valid,
-      tready    => tready,
       tlast     => tlastsig,
       fcs_valid => fcs_ok,
       size      => size_out,

@@ -1,23 +1,19 @@
 [*]
 [*] GTKWave Analyzer v3.3.118 (w)1999-2023 BSI
-[*] Thu Oct 16 14:33:58 2025
+[*] Fri Oct 17 02:45:59 2025
 [*]
 [dumpfile] "G:\FPGA_Projects\Ethernet_Switch\FPGACode\eth_e2e_tb.ghw"
-[dumpfile_mtime] "Thu Oct 16 14:33:45 2025"
-[dumpfile_size] 1629564
+[dumpfile_mtime] "Fri Oct 17 02:44:33 2025"
+[dumpfile_size] 1640661
 [savefile] "G:\FPGA_Projects\Ethernet_Switch\FPGACode\eth_e2e_tb.gtkw"
-[timestart] 20900000000
+[timestart] 61998000000
 [size] 2560 1377
-[pos] -1 -1
-*-35.000000 322000000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[pos] -321 -321
+*-28.000000 63805000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.eth_e2e_tb.
 [treeopen] top.eth_e2e_tb.eth_rx_inst.
-[treeopen] top.eth_e2e_tb.eth_rx_inst.crc.
 [treeopen] top.eth_e2e_tb.eth_rx_inst.crc.crc_core.
-[treeopen] top.eth_e2e_tb.eth_rx_inst.decoder.
-[treeopen] top.eth_e2e_tb.eth_rx_inst.pr_fsm.
-[treeopen] top.eth_e2e_tb.eth_rx_inst.sipo.
 [sst_width] 221
 [signals_width] 293
 [sst_expanded] 1
@@ -70,9 +66,8 @@ top.eth_e2e_tb.eth_tx_out
 #{top.eth_e2e_tb.eth_tx_inst.c_piso_sr.r_byte[7:0]} top.eth_e2e_tb.eth_tx_inst.c_piso_sr.r_byte[7] top.eth_e2e_tb.eth_tx_inst.c_piso_sr.r_byte[6] top.eth_e2e_tb.eth_tx_inst.c_piso_sr.r_byte[5] top.eth_e2e_tb.eth_tx_inst.c_piso_sr.r_byte[4] top.eth_e2e_tb.eth_tx_inst.c_piso_sr.r_byte[3] top.eth_e2e_tb.eth_tx_inst.c_piso_sr.r_byte[2] top.eth_e2e_tb.eth_tx_inst.c_piso_sr.r_byte[1] top.eth_e2e_tb.eth_tx_inst.c_piso_sr.r_byte[0]
 @200
 -RX Inner Workings
-@29
-top.eth_e2e_tb.eth_rx_inst.decoder.midcapture
 @28
+top.eth_e2e_tb.eth_rx_inst.decoder.midcapture
 top.eth_e2e_tb.eth_rx_inst.packet_ready
 top.eth_e2e_tb.eth_rx_inst.packet_valid
 top.eth_e2e_tb.eth_rx_inst.axi_en
@@ -101,5 +96,9 @@ top.eth_e2e_tb.eth_rx_inst.sipo.current_state
 top.eth_e2e_tb.eth_rx_inst.sipo.rx_timeout
 top.eth_e2e_tb.eth_rx_inst.sipo.bit_in
 top.eth_e2e_tb.eth_rx_inst.sipo.bit_valid
+@200
+-RX AXI Stuff
+@420
+top.eth_e2e_tb.eth_rx_inst.axi_fsm.current_state
 [pattern_trace] 1
 [pattern_trace] 0
