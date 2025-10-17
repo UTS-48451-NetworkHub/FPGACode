@@ -15,31 +15,40 @@ end rx_decoder;
 
 architecture Behavioral of rx_decoder is
   signal data_buf        : std_logic_vector(55 downto 0); --!Register to hold incoming edges for clock recovery
-  signal manchester_prev : std_logic := '0'; --!Prev input to detect edge.
-  signal timeout         : std_logic := '0'; --!timeout to reset logic
-  signal midcapture      : std_logic := '0';
-  signal midcntsig      : std_logic_vector(3 downto 0) := (others => '0');
+  signal manchester_prev : std_logic                    := '0'; --!Prev input to detect edge.
+  signal timeout         : std_logic                    := '0'; --!timeout to reset logic
+  signal midcapture      : std_logic                    := '0';
+  signal midcntsig       : std_logic_vector(3 downto 0) := (others => '0');
 
-  attribute keep : boolean;
-  attribute keep of midcapture : signal is true;
-  attribute preserve : boolean;
-  attribute preserve of midcapture : signal is true;
-  attribute mark_debug : string;
+  attribute keep                     : boolean;
+  attribute keep of midcapture       : signal is true;
+  attribute preserve                 : boolean;
+  attribute preserve of midcapture   : signal is true;
+  attribute mark_debug               : string;
   attribute mark_debug of midcapture : signal is "true";
-  attribute noprune : boolean;
-  attribute noprune of midcapture : signal is true;
+  attribute noprune                  : boolean;
+  attribute noprune of midcapture    : signal is true;
 
 begin
-  process (clk_in)
+  process (clk_in, resetn)
     variable new_mid   : unsigned(3 downto 0) := (others => '0'); --!location of mid-bit transitions during clock recovery
     variable mid_count : unsigned(3 downto 0) := (others => '0'); --!counter to time mid-bit transitions following clock recovery
     variable mid_loc   : unsigned(3 downto 0) := (others => '0'); --!Location of the mid-bit transitions following clock recovery
   begin
-    if rising_edge(clk_in) then
+    if resetn = '0' then
+      new_mid := (others   => '0');
+      mid_loc := (others   => '0');
+      data_buf <= (others  => '0');
+      mid_count := (others => '0');
+      data_out        <= '0';
+      manchester_prev <= '0';
+      midcapture      <= '0';
+
+    elsif rising_edge(clk_in) then
       manchester_prev <= manchester_in; --!current manchester input
 
       --! Timeout logic for no transmissions
-      if (timeout = '1' or resetn = '0') then
+      if (timeout = '1') then
         new_mid := (others   => '0');
         mid_loc := (others   => '0');
         data_buf <= (others  => '0');
@@ -69,9 +78,9 @@ begin
         --! clock cycles up to mid-bit counted
         midcapture <= '1';
         if (mid_count < mid_loc/2 + 1) then
-        mid_count := mid_count + 1;
-        midcntsig <= std_logic_vector(mid_count);
-        bit_valid <= '0';
+          mid_count := mid_count + 1;
+          midcntsig <= std_logic_vector(mid_count);
+          bit_valid <= '0';
         elsif (manchester_prev /= manchester_in) then
           --! Data output at mid-bit
           data_out  <= manchester_in;
