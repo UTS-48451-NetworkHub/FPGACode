@@ -29,8 +29,8 @@ architecture behav of eth_e2e_tb is
     signal rx_tvalid : std_logic;
     signal rx_tlast : std_logic;
     signal rx_tdata : std_logic_vector(7 downto 0);
-    signal rx_tready : std_logic := '1'; -- Always ready to receive
-    
+    signal rx_tready : std_logic;
+
     -- Test control
     signal test_complete : boolean := false;
 
@@ -114,5 +114,27 @@ begin
             tlast => rx_tlast,
             tdata => rx_tdata
         );
+
+  c_interconnect : entity work.axi4s_interconnect
+    port map(
+      clk          => clk,
+      resetn       => resetn,
+      PA_RX_tdata  => rx_tdata,
+      PA_RX_tvalid => rx_tvalid,
+      PA_RX_tlast  => rx_tlast,
+      PA_RX_tready => rx_tready,
+      PB_RX_tdata => (others => '0'),
+      PB_RX_tvalid => '0',
+      PB_RX_tlast => '0',
+      PC_RX_tdata => (others => '0'),
+      PC_RX_tvalid => '0',
+      PC_RX_tlast => '0',
+      PD_RX_tdata => (others => '0'),
+      PD_RX_tvalid => '0',
+      PD_RX_tlast => '0',
+      PE_RX_tdata => (others => '0'),
+      PE_RX_tvalid => '0',
+      PE_RX_tlast => '0'
+    );
 
 end architecture;
