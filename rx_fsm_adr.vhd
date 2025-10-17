@@ -21,7 +21,6 @@ entity rx_fsm_adr is
     reset : in std_logic;
 
     valid     : in std_logic; -- byte strobe
-    tready    : in std_logic; -- Transmit Ready Flag
     tlast     : in std_logic; -- Transmit Final Flag
     fcs_valid : in std_logic; -- Valid FCS Check
     size      : in std_logic_vector(15 downto 0); -- payload length (bytes)
@@ -53,7 +52,6 @@ begin
   ---------------------------------------------------------------------------
   process (clock, reset)
   begin
-    if rising_edge(clock) then
       if reset = '0' then
         state     <= IDLE;
         addr_reg  <= ADDR_BASE;
@@ -62,10 +60,9 @@ begin
         cnt       <= "00";
         fcs_fail  <= '0';
 
-      else
+    elsif rising_edge(clock) then
         state <= next_state;
-      end if;
-
+        
       if state = IDLE then
         begin_fcs <= '0';
         fcs_fail  <= '0';
@@ -123,13 +120,13 @@ begin
   ---------------------------------------------------------------------------
   -- State Machine :D 
   ---------------------------------------------------------------------------
-  process (state, valid, tlast, fcs_valid, cnt, tready, val_reg)
+  process (state, valid, tlast, fcs_valid, cnt, val_reg)
   begin
     next_state <= state;
 
     case state is
       when IDLE =>
-        if (valid = '1' or val_reg = '1') and tready = '1' then
+        if (valid = '1' or val_reg = '1') then
           next_state <= CRC;
           val_reg    <= '0';
         elsif valid = '1' then
