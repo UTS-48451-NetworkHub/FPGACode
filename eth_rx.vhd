@@ -16,37 +16,47 @@ end eth_rx;
 
 architecture arch of eth_rx is
 
-  signal data_bit     : std_logic                     := '0';
-  signal bit_valid    : std_logic                     := '0';
-  signal RX_timeout   : std_logic                     := '0';
-  signal byte_out     : std_logic_vector(7 downto 0)  := (others => '0');
-  signal byte_valid   : std_logic                     := '0';
-  signal data_out     : std_logic_vector(7 downto 0)  := (others => '0');
-  signal addr_out     : std_logic_vector(10 downto 0) := (others => '0');
-  signal wr_en        : std_logic                     := '0';
-  signal read_addr    : std_logic_vector(10 downto 0) := (others => '0');
-  signal crc_en       : std_logic                     := '0';
-  signal fcs_ok       : std_logic                     := '0';
-  signal fcs_begin    : std_logic                     := '0';
-  signal AXI_en       : std_logic                     := '0';
-  signal packet_valid : std_logic                     := '0';
-  signal packet_ready : std_logic                     := '0';
-  signal size_out     : std_logic_vector(15 downto 0) := (others => '0');
-  signal tdatasig     : std_logic_vector(7 downto 0)  := (others => '0');
-  signal tlastsig     : std_logic                     := '0';
-  signal fcs_fail     : std_logic                     := '0';
+  signal data_bit       : std_logic                     := '0';
+  signal bit_valid      : std_logic                     := '0';
+  signal RX_timeout     : std_logic                     := '0';
+  signal byte_out       : std_logic_vector(7 downto 0)  := (others => '0');
+  signal byte_valid     : std_logic                     := '0';
+  signal data_out       : std_logic_vector(7 downto 0)  := (others => '0');
+  signal addr_out       : std_logic_vector(10 downto 0) := (others => '0');
+  signal wr_en          : std_logic                     := '0';
+  signal read_addr      : std_logic_vector(10 downto 0) := (others => '0');
+  signal crc_en         : std_logic                     := '0';
+  signal fcs_ok         : std_logic                     := '0';
+  signal fcs_begin      : std_logic                     := '0';
+  signal AXI_en         : std_logic                     := '0';
+  signal packet_valid   : std_logic                     := '0';
+  signal packet_ready   : std_logic                     := '0';
+  signal size_out       : std_logic_vector(15 downto 0) := (others => '0');
+  signal tdatasig       : std_logic_vector(7 downto 0)  := (others => '0');
+  signal tlastsig       : std_logic                     := '0';
+  signal fcs_fail       : std_logic                     := '0';
+  signal manchestersync : std_logic                     := '0';
 begin
 
-  decoder : entity work.rx_decoder(Behavioral)
+  f22 : entity work.rx_2ff(Behavioral)
     port map
     (
-      clk_in        => clk_in,
-      manchester_in => manchester_in,
-      resetn        => resetn,
-      data_out      => data_bit,
-      RX_timeout    => RX_timeout,
-      bit_valid     => bit_valid
+      clk_in         => clk_in,
+      manchester_in  => manchester_in,
+      resetn         => resetn,
+      manchester_out => manchestersync
     );
+
+    decoder : entity work.rx_decoder(Behavioral)
+      port map
+      (
+        clk_in        => clk_in,
+        manchester_in => manchestersync,
+        resetn        => resetn,
+        data_out      => data_bit,
+        RX_timeout    => RX_timeout,
+        bit_valid     => bit_valid
+      );
 
   sipo : entity work.sr_sipo(Behavioral)
     port map
