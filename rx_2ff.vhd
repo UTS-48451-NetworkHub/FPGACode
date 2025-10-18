@@ -12,18 +12,21 @@ entity rx_2ff is
 end rx_2ff;
 
 architecture Behavioral of rx_2ff is
-  signal sync : std_logic := '0';
+  signal sync  : std_logic := '0';
+  signal sync2 : std_logic := '0';
 
 begin
   process (clk_in, resetn)
   begin
     if resetn = '0' then
-      manchester_out <= '0';
-      sync           <= '0';
+      sync  <= '0';
+      sync2 <= '0';
     elsif rising_edge(clk_in) then
-      sync           <= manchester_in;
-      manchester_out <= sync;
+      sync  <= manchester_in;
+      sync2 <= sync;
     end if;
   end process;
-end Behavioral;
 
+  manchester_out <= (not sync2);
+
+end Behavioral;
