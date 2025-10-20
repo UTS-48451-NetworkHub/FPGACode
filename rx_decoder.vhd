@@ -93,11 +93,15 @@ begin
     end if;
   end process;
 
-  process (clk_in)
+  process (clk_in, resetn)
     variable timeout_count : unsigned(6 downto 0) := (others => '0');
   begin
-    if rising_edge(clk_in) then
+    if resetn = '0' then
+      timeout <= '0';
+      timeout_count := (others => '0');
+      RX_timeout <= '0';
 
+    elsif rising_edge(clk_in) then
       --! Timeout logic
       if data_buf /= x"00000000000000" then
         if timeout = '1' then
