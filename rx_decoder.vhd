@@ -77,7 +77,7 @@ begin
       else
         --! clock cycles up to mid-bit counted
         midcapture <= '1';
-        if (mid_count < mid_loc/2 + 1) then
+        if (mid_count < mid_loc/2 + 2) then
           mid_count := mid_count + 1;
           midcntsig <= std_logic_vector(mid_count);
           bit_valid <= '0';
