@@ -79,7 +79,6 @@ begin
         midcapture <= '1';
         if (mid_count < (mid_loc srl 1) + 2) then
           mid_count := mid_count + 1;
-          new_mid := new_mid + 1;
           midcntsig <= std_logic_vector(mid_count);
           bit_valid <= '0';
         elsif (manchester_prev /= manchester_in) then
@@ -87,8 +86,6 @@ begin
           data_out  <= manchester_in;
           bit_valid <= '1';
           mid_count := (others => '0');
-          mid_loc := new_mid;
-          new_mid := (others => '0');
         else
           bit_valid <= '0';
         end if;
