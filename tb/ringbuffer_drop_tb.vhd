@@ -67,7 +67,6 @@ begin
       s_axis_tdata  => s_tdata,
       s_axis_tvalid => s_tvalid,
       s_axis_tlast  => s_tlast,
-      s_axis_tready => s_tready,
       m_axis_tdata  => m_tdata,
       m_axis_tvalid => m_tvalid,
       m_axis_tlast  => m_tlast,

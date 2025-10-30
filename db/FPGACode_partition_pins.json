@@ -28,11 +28,11 @@
 					"strict" : false
 				},
 				{
-					"name" : "ETH0_RX",
+					"name" : "ETH1_RX",
 					"strict" : false
 				},
 				{
-					"name" : "ETH1_RX",
+					"name" : "ETH0_RX",
 					"strict" : false
 				},
 				{

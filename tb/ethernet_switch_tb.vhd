@@ -24,7 +24,40 @@ architecture sim of ethernet_switch_tb is
     -- Clock period (adjust as needed)
     constant CLK_PERIOD : time := 20 ns; -- 50 MHz clock
 
+    -- 100 MHZ Clock
+    signal clk : std_logic := '0'; -- 100 MHz Clock sync with Main Clock
+    signal resetn : std_logic := '0'; -- reset test signal
+    signal enable : std_logic := '0'; -- enalbe test signal
+
+    signal test_tvalid : std_logic := '0';
+    signal test_tready : std_logic := '0';
+    signal test_tlast : std_logic := '0';
+    signal test_tdata : std_logic_vector(7 downto 0) := (others => '0');
+
 begin
+    -- Test Units
+    driver_inst: entity work.eth_tx_tb_driver
+        port map (
+            clk => clk,
+            resetn => resetn,
+            enable => enable,
+            tvalid => test_tvalid,
+            tready => test_tready,
+            tlast => test_tlast,
+            tdata => test_tdata
+        );
+    
+    eth_tx_inst: entity work.eth_tx
+        port map (
+            clk => clk,
+            resetn => resetn,
+            tx => ETH_RX(0),
+            tx_en => '0',
+            tvalid => test_tvalid,
+            tready => test_tready,
+            tlast => test_tlast,
+            tdata => test_tdata
+        );
 
     -------------------------------------------------------------------
     -- Instantiate the DUT
