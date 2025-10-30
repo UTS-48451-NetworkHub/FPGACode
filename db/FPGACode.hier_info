@@ -940,12 +940,12 @@ tdata[7] <= ram_eth_packet:c_ram.q[7]
 
 
 |ethernet_switch|eth_port:c_eth0|eth_rx:c_rx|rx_2ff:f22
+clk_in => sync2.CLK
 clk_in => sync.CLK
-clk_in => manchester_out~reg0.CLK
 manchester_in => sync.DATAIN
+resetn => sync2.ACLR
 resetn => sync.ACLR
-resetn => manchester_out~reg0.ACLR
-manchester_out <= manchester_out~reg0.DB_MAX_OUTPUT_PORT_TYPE
+manchester_out <= sync2.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |ethernet_switch|eth_port:c_eth0|eth_rx:c_rx|rx_decoder:decoder
@@ -1103,6 +1103,14 @@ resetn => new_mid[0].ACLR
 resetn => new_mid[1].ACLR
 resetn => new_mid[2].ACLR
 resetn => new_mid[3].ACLR
+resetn => timeout.ACLR
+resetn => timeout_count[0].ACLR
+resetn => timeout_count[1].ACLR
+resetn => timeout_count[2].ACLR
+resetn => timeout_count[3].ACLR
+resetn => timeout_count[4].ACLR
+resetn => timeout_count[5].ACLR
+resetn => timeout_count[6].ACLR
 resetn => bit_valid~reg0.ENA
 data_out <= data_out~reg0.DB_MAX_OUTPUT_PORT_TYPE
 RX_timeout <= timeout.DB_MAX_OUTPUT_PORT_TYPE
@@ -3099,12 +3107,12 @@ tdata[7] <= ram_eth_packet:c_ram.q[7]
 
 
 |ethernet_switch|eth_port:c_eth1|eth_rx:c_rx|rx_2ff:f22
+clk_in => sync2.CLK
 clk_in => sync.CLK
-clk_in => manchester_out~reg0.CLK
 manchester_in => sync.DATAIN
+resetn => sync2.ACLR
 resetn => sync.ACLR
-resetn => manchester_out~reg0.ACLR
-manchester_out <= manchester_out~reg0.DB_MAX_OUTPUT_PORT_TYPE
+manchester_out <= sync2.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |ethernet_switch|eth_port:c_eth1|eth_rx:c_rx|rx_decoder:decoder
@@ -3262,6 +3270,14 @@ resetn => new_mid[0].ACLR
 resetn => new_mid[1].ACLR
 resetn => new_mid[2].ACLR
 resetn => new_mid[3].ACLR
+resetn => timeout.ACLR
+resetn => timeout_count[0].ACLR
+resetn => timeout_count[1].ACLR
+resetn => timeout_count[2].ACLR
+resetn => timeout_count[3].ACLR
+resetn => timeout_count[4].ACLR
+resetn => timeout_count[5].ACLR
+resetn => timeout_count[6].ACLR
 resetn => bit_valid~reg0.ENA
 data_out <= data_out~reg0.DB_MAX_OUTPUT_PORT_TYPE
 RX_timeout <= timeout.DB_MAX_OUTPUT_PORT_TYPE

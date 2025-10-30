@@ -77,7 +77,7 @@ begin
       else
         --! clock cycles up to mid-bit counted
         midcapture <= '1';
-        if (mid_count < mid_loc/2 + 2) then
+        if (mid_count < (mid_loc srl 1) + 2) then
           mid_count := mid_count + 1;
           midcntsig <= std_logic_vector(mid_count);
           bit_valid <= '0';
@@ -99,7 +99,6 @@ begin
     if resetn = '0' then
       timeout <= '0';
       timeout_count := (others => '0');
-      RX_timeout <= '0';
 
     elsif rising_edge(clk_in) then
       --! Timeout logic
