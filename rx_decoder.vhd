@@ -99,7 +99,6 @@ begin
     if resetn = '0' then
       timeout <= '0';
       timeout_count := (others => '0');
-      RX_timeout <= '0';
 
     elsif rising_edge(clk_in) then
       --! Timeout logic
