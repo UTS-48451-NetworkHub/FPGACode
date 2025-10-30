@@ -22,7 +22,7 @@ architecture sim of ethernet_switch_tb is
     signal ETH_LED_YEL : std_logic_vector(4 downto 0);
 
     -- Clock period (adjust as needed)
-    constant CLK_PERIOD : time := 20 ns; -- 50 MHz clock
+    constant CLK_PERIOD : time := 10 ns; -- 50 MHz clock
 
     -- 100 MHZ Clock
     signal clk : std_logic := '0'; -- 100 MHz Clock sync with Main Clock
@@ -126,13 +126,13 @@ begin
         wait for 200 ns;
 
         RESET <= '1';
-        wait for 200 ns;
-
-        KEY4 <= '1';
         wait for 10 us;
-        KEY4 <= '0';
-        wait for 10 us;
-        KEY4 <= '1';
+        for i in 0 to 9000 loop
+            enable <= '1';
+            wait for 800 ns;
+            enable <= '0';
+            wait for 9.6 us;
+        end loop;
 
         -- Let the system run for a while
         wait for 100 us;
