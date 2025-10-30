@@ -207,7 +207,7 @@ begin
       rx_last  => r_eth0_rx_last,
       rx_data  => r_eth0_rx_data,
       -- Downstream Data Port
-      rx       => not ETH0_RX,
+      rx       => ETH0_RX,
       tx       => ETH0_TX,
       tx_en    => r_eth0_tx_en,
       -- LEDs
@@ -230,7 +230,7 @@ begin
       rx_last  => r_eth1_rx_last,
       rx_data  => r_eth1_rx_data,
       -- Downstream Data Port
-      rx       => not ETH1_RX,
+      rx       => ETH1_RX,
       tx       => ETH1_TX,
       tx_en    => r_eth1_tx_en,
       -- LEDs
