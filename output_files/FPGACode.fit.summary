@@ -1,14 +1,14 @@
-Fitter Status : Successful - Thu Oct 30 22:04:52 2025
+Fitter Status : Successful - Mon Nov  3 22:18:05 2025
 Quartus Prime Version : 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
 Revision Name : FPGACode
 Top-level Entity Name : ethernet_switch
 Family : Cyclone IV E
 Device : EP4CE6E22C8
 Timing Models : Final
-Total logic elements : 3,151 / 6,272 ( 50 % )
-    Total combinational functions : 2,598 / 6,272 ( 41 % )
-    Dedicated logic registers : 2,035 / 6,272 ( 32 % )
-Total registers : 2035
+Total logic elements : 3,264 / 6,272 ( 52 % )
+    Total combinational functions : 2,635 / 6,272 ( 42 % )
+    Dedicated logic registers : 2,122 / 6,272 ( 34 % )
+Total registers : 2122
 Total pins : 37 / 92 ( 40 % )
 Total virtual pins : 0
 Total memory bits : 178,176 / 276,480 ( 64 % )

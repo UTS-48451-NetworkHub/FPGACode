@@ -17,6 +17,18 @@ active_port.PORT_C 0 0 1 0 0 1
 active_port.PORT_D 0 1 0 0 0 1 
 active_port.PORT_E 1 0 0 0 0 1 
 
+State Machine - |ethernet_switch|ringbuffer:c_eth1_rb|wr_state
+Name wr_state.DROP wr_state.ACCEPT wr_state.IDLE 
+wr_state.IDLE 0 0 0 
+wr_state.ACCEPT 0 1 1 
+wr_state.DROP 1 0 1 
+
+State Machine - |ethernet_switch|ringbuffer:c_eth0_rb|wr_state
+Name wr_state.DROP wr_state.ACCEPT wr_state.IDLE 
+wr_state.IDLE 0 0 0 
+wr_state.ACCEPT 0 1 1 
+wr_state.DROP 1 0 1 
+
 State Machine - |ethernet_switch|eth_port:c_eth1|eth_rx:c_rx|rx_fsm_adr:addr_reader|state
 Name state.AXI state.CRC state.IDLE 
 state.IDLE 0 0 0 
