@@ -74,19 +74,14 @@ begin
   b_dout <= b_dout_reg;
 end architecture;
 
--- ===============================================================
--- AXI-Stream Ring Buffer (Always-ready input, Drop-on-overflow)
---   * Drop recovery flushes stale RAM output after rollback
---   * Output latency = 1 cycle (sync read)
--- ===============================================================
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 entity ringbuffer is
   generic(
-    DATA_WIDTH  : positive := 8;
-    DEPTH_BYTES : positive := 2048
+    DATA_WIDTH  : positive := 8;     -- must be 8
+    DEPTH_BYTES : positive := 2048   -- max bytes per packet
   );
   port(
     clk           : in  std_logic;
@@ -107,188 +102,194 @@ entity ringbuffer is
 end entity;
 
 architecture rtl of ringbuffer is
-  function ceil_log2(n : natural) return natural is
-    variable v : natural := 1;
-    variable r : natural := 0;
-  begin
-    while v < n loop
-      v := v * 2;
-      r := r + 1;
-    end loop;
-    return r;
-  end function;
+  ------------------------------------------------------------------
+  -- constants
+  ------------------------------------------------------------------
+  constant DEPTH_WORDS : positive := DEPTH_BYTES;  -- 1 byte per word
 
-  function max_nat(a, b : natural) return natural is
-  begin
-    if a >= b then return a; else return b; end if;
-  end function;
+  ------------------------------------------------------------------
+  -- packet capture buffer (scratch)
+  -- each entry: bit 8 = TLAST, bits 7..0 = data
+  --  -> Ask Quartus to implement this in block RAM (M9K), not flip-flops
+  ------------------------------------------------------------------
+  type pkt_buf_t is array (0 to DEPTH_WORDS-1) of std_logic_vector(8 downto 0);
+  signal pkt_buf : pkt_buf_t := (others => (others => '0'));
 
-  function to_sl(b : boolean) return std_logic is
-  begin
-    if b then return '1'; else return '0'; end if;
-  end function;
+  -- synthesis hint for Intel/Quartus
+  attribute ramstyle : string;
+  attribute ramstyle of pkt_buf : signal is "M9K";
 
-  --------------------------------------------------------------------
-  constant BITS_TOTAL   : natural  := DEPTH_BYTES * 8;
-  constant DEPTH_WORDS  : positive := BITS_TOTAL / DATA_WIDTH;
-  constant AW           : natural  := ceil_log2(DEPTH_WORDS);
-  constant AW_ADDR      : natural  := max_nat(AW, 1);
-  constant OCCW         : natural  := max_nat(AW, 1);
-  --------------------------------------------------------------------
-  signal a_en, a_we, b_en : std_logic := '0';
-  signal a_addr, b_addr   : unsigned(AW_ADDR - 1 downto 0) := (others => '0');
-  signal a_din, b_dout    : std_logic_vector(DATA_WIDTH downto 0) := (others => '0');
-  --------------------------------------------------------------------
-  signal wr_ptr, rd_ptr   : unsigned(AW_ADDR - 1 downto 0) := (others => '0');
-  signal occ_words        : unsigned(OCCW downto 0) := (others => '0');
-  signal pkt_count        : unsigned(15 downto 0)   := (others => '0');
-  signal sop_ptr          : unsigned(AW_ADDR - 1 downto 0) := (others => '0');
-  signal sop_occ          : unsigned(OCCW downto 0) := (others => '0');
-  signal in_packet, dropping : std_logic := '0';
-  signal s_handshake, empty_words, have_packet : std_logic;
-  signal m_axis_tvalid_i : std_logic := '0';
-  signal out_ready_phase : std_logic := '0';
-  signal flush_read : std_logic := '0';  -- <---- NEW
-  --------------------------------------------------------------------
-  type rb_state_t is (RB_IDLE, RB_PREFETCH, RB_STREAM);
-  signal rb_state : rb_state_t := RB_IDLE;
+  signal cap_len       : integer range 0 to DEPTH_WORDS := 0;  -- words currently stored
+  signal cap_overflow  : std_logic := '0';                     -- true if packet too long or dropped
+  signal capturing     : std_logic := '0';                     -- currently capturing packet
+
+  -- stored packet (fully captured and accepted)
+  signal stored_len    : integer range 0 to DEPTH_WORDS := 0;
+  signal buffer_valid  : std_logic := '0';                     -- we have a packet to send
+
+  ------------------------------------------------------------------
+  -- output side
+  ------------------------------------------------------------------
+  type out_state_t is (OUT_IDLE, OUT_STREAM);
+  signal out_state     : out_state_t := OUT_IDLE;
+
+  signal rd_index      : integer range 0 to DEPTH_WORDS := 0;
+
+  signal out_data      : std_logic_vector(7 downto 0) := (others => '0');
+  signal out_last_bit  : std_logic := '0';
+  signal out_valid     : std_logic := '0';
+
+  signal handshake     : std_logic := '0';
 begin
-  s_axis_tready <= '1';
-  s_handshake   <= s_axis_tvalid and rst_n;
+  ------------------------------------------------------------------
+  -- sanity check
+  ------------------------------------------------------------------
+  assert DATA_WIDTH = 8
+    report "ringbuffer: DATA_WIDTH must be 8 for this implementation."
+    severity failure;
 
-  ram_inst : entity work.ram_2048x9_cascade
-    generic map (ADDR_WIDTH => AW_ADDR)
-    port map (
-      clk    => clk,
-      a_en   => a_en,
-      a_we   => a_we,
-      a_addr => a_addr,
-      a_din  => a_din,
-      b_en   => b_en,
-      b_addr => b_addr,
-      b_dout => b_dout
-    );
+  ------------------------------------------------------------------
+  -- AXIS wiring
+  ------------------------------------------------------------------
+  s_axis_tready <= '1';               -- always-ready for this test
 
-  a_en   <= '1';
-  a_we   <= s_axis_tvalid and (not dropping)
-            and to_sl(occ_words < to_unsigned(DEPTH_WORDS, occ_words'length));
-  a_addr <= wr_ptr;
-  a_din  <= s_axis_tlast & s_axis_tdata;
-  b_en   <= '1';
-  b_addr <= rd_ptr;
+  m_axis_tdata  <= out_data;
+  m_axis_tlast  <= out_last_bit;
+  m_axis_tvalid <= out_valid;
 
-  empty_words <= to_sl(occ_words = 0);
-  have_packet <= to_sl(pkt_count /= 0);
+  handshake <= out_valid and m_axis_tready;
 
-  m_axis_tdata <= b_dout(DATA_WIDTH-1 downto 0);
-  m_axis_tlast <= b_dout(DATA_WIDTH);
-
+  ------------------------------------------------------------------
+  -- Main process: capture + output
+  ------------------------------------------------------------------
   process(clk)
-    variable occ_next       : unsigned(occ_words'range);
-    variable pkt_count_next : unsigned(pkt_count'range);
   begin
     if rising_edge(clk) then
       if rst_n = '0' then
-        wr_ptr <= (others => '0');
-        rd_ptr <= (others => '0');
-        occ_words <= (others => '0');
-        pkt_count <= (others => '0');
-        sop_ptr <= (others => '0');
-        sop_occ <= (others => '0');
-        in_packet <= '0';
-        dropping <= '0';
-        flush_read <= '0';
-        out_ready_phase <= '0';
-        m_axis_tvalid_i <= '0';
-        rb_state <= RB_IDLE;
+        -- capture state
+        capturing    <= '0';
+        cap_len      <= 0;
+        cap_overflow <= '0';
+
+        -- stored packet
+        stored_len   <= 0;
+        buffer_valid <= '0';
+
+        -- output state
+        out_state    <= OUT_IDLE;
+        rd_index     <= 0;
+        out_data     <= (others => '0');
+        out_last_bit <= '0';
+        out_valid    <= '0';
+
       else
-        occ_next := occ_words;
-        pkt_count_next := pkt_count;
-        out_ready_phase <= '1';
+        --------------------------------------------------------------
+        -- INPUT: packet capture into pkt_buf
+        --------------------------------------------------------------
+        if s_axis_tvalid = '1' then
 
-        -- WRITE path
-        if s_handshake = '1' then
-          if (in_packet = '0') and (dropping = '0') then
-            sop_ptr <= wr_ptr;
-            sop_occ <= occ_words;
-            in_packet <= '1';
-          end if;
+          -- Start-of-packet (SOP): capturing was previously 0
+          if (capturing = '0') and (cap_overflow = '0') then
+            capturing    <= '1';
+            cap_overflow <= '0';
 
-          if dropping = '0' then
-            if occ_words < to_unsigned(DEPTH_WORDS, occ_words'length) then
-              wr_ptr   <= wr_ptr + 1;
-              occ_next := occ_next + 1;
-              if s_axis_tlast = '1' then
-                in_packet <= '0';
-                pkt_count_next := pkt_count_next + 1;
-              end if;
+            if buffer_valid = '1' then
+              -- already holding a packet -> drop this whole one
+              cap_overflow <= '1';
+              cap_len      <= 0;
             else
+              -- normal SOP: store FIRST word at index 0
+              pkt_buf(0) <= s_axis_tlast & s_axis_tdata;
+              cap_len    <= 1;
+
               if s_axis_tlast = '1' then
-                in_packet <= '0';
+                -- single-beat packet completes immediately
+                capturing    <= '0';
+                buffer_valid <= '1';
+                stored_len   <= 1;
+              end if;
+            end if;
+
+          elsif capturing = '1' then
+            -- Middle/end of packet
+            if cap_overflow = '1' then
+              -- Dropping this packet: just wait for TLAST to end it.
+              if s_axis_tlast = '1' then
+                capturing    <= '0';
+                cap_overflow <= '0';
+              end if;
+
+            else
+              -- Normal capture path (subsequent beats)
+              if cap_len < DEPTH_WORDS then
+                pkt_buf(cap_len) <= s_axis_tlast & s_axis_tdata;
+
+                if s_axis_tlast = '1' then
+                  -- packet finished successfully
+                  capturing    <= '0';
+                  buffer_valid <= '1';
+                  stored_len   <= cap_len + 1;  -- include this beat
+                else
+                  cap_len <= cap_len + 1;
+                end if;
               else
-                dropping <= '1';
+                -- overflow capture buffer -> drop remainder of this packet
+                cap_overflow <= '1';
+                if s_axis_tlast = '1' then
+                  capturing    <= '0';
+                  cap_overflow <= '0';
+                end if;
               end if;
-            end if;
-          else
-            if s_axis_tlast = '1' then
-              wr_ptr    <= sop_ptr;
-              occ_next  := sop_occ;
-              in_packet <= '0';
-              dropping  <= '0';
-              flush_read <= '1';  -- FLUSH after rollback
-            end if;
-          end if;
-        end if;
+            end if;  -- cap_overflow
+          end if;    -- capturing / SOP
 
-        -- READ FSM
-        case rb_state is
-          when RB_IDLE =>
-            m_axis_tvalid_i <= '0';
-            if (have_packet = '1') and (empty_words = '0') and (out_ready_phase = '1') then
-              rb_state <= RB_PREFETCH;
+        end if;      -- s_axis_tvalid
+
+        --------------------------------------------------------------
+        -- OUTPUT: simple FSM; data advances on each handshake
+        --------------------------------------------------------------
+        case out_state is
+          ------------------------------------------------------------
+          when OUT_IDLE =>
+            out_valid <= '0';
+
+            if (buffer_valid = '1') and (stored_len > 0) then
+              -- start streaming this stored packet
+              out_state    <= OUT_STREAM;
+              rd_index     <= 0;
+              out_data     <= pkt_buf(0)(7 downto 0);
+              out_last_bit <= pkt_buf(0)(8);
+              out_valid    <= '1';
             end if;
 
-          when RB_PREFETCH =>
-            m_axis_tvalid_i <= '0';
-            rb_state <= RB_STREAM;
-
-          when RB_STREAM =>
-            if (have_packet = '1') and (empty_words = '0') and (out_ready_phase = '1') then
-              m_axis_tvalid_i <= '1';
+          ------------------------------------------------------------
+          when OUT_STREAM =>
+            -- remain valid while packet present
+            if (buffer_valid = '1') and (stored_len > 0) then
+              out_valid <= '1';
             else
-              m_axis_tvalid_i <= '0';
+              out_valid <= '0';
+            end if;
+
+            if handshake = '1' then
+              if rd_index = stored_len - 1 then
+                -- last word just consumed
+                buffer_valid <= '0';
+                out_valid    <= '0';
+                out_state    <= OUT_IDLE;
+                rd_index     <= 0;
+                out_last_bit <= '0';
+              else
+                -- advance to next word
+                rd_index     <= rd_index + 1;
+                out_data     <= pkt_buf(rd_index + 1)(7 downto 0);
+                out_last_bit <= pkt_buf(rd_index + 1)(8);
+              end if;
             end if;
         end case;
 
-        -- Consume on handshake
-        if (m_axis_tvalid_i = '1') and (m_axis_tready = '1') then
-          if occ_next > 0 then
-            rd_ptr   <= rd_ptr + 1;
-            occ_next := occ_next - 1;
-          end if;
-
-          if (b_dout(DATA_WIDTH) = '1') and (pkt_count_next > 0) then
-            pkt_count_next := pkt_count_next - 1;
-            rb_state <= RB_IDLE;
-          end if;
-
-          if (occ_next = 0) and (b_dout(DATA_WIDTH) = '0') then
-            rb_state <= RB_IDLE;
-          end if;
-        end if;
-
-        -- Handle flush
-        if flush_read = '1' then
-          m_axis_tvalid_i <= '0';
-          rb_state <= RB_IDLE;
-          flush_read <= '0';
-        end if;
-
-        occ_words <= occ_next;
-        pkt_count <= pkt_count_next;
-      end if;
-    end if;
+      end if; -- rst_n
+    end if;   -- rising_edge
   end process;
 
-  m_axis_tvalid <= m_axis_tvalid_i;
 end architecture;
