@@ -17,6 +17,189 @@ active_port.PORT_C 0 0 1 0 0 1
 active_port.PORT_D 0 1 0 0 0 1 
 active_port.PORT_E 1 0 0 0 0 1 
 
+State Machine - |ethernet_switch|eth_port:c_eth4|eth_rx:c_rx|rx_fsm_adr:addr_reader|state
+Name state.AXI state.CRC state.IDLE 
+state.IDLE 0 0 0 
+state.CRC 0 1 1 
+state.AXI 1 0 1 
+
+State Machine - |ethernet_switch|eth_port:c_eth4|eth_rx:c_rx|rx_fsm_AXI:axi_FSM|current_state
+Name current_state.AXI_WAIT current_state.AXI_LAST current_state.AXI_DATA current_state.AXI_SIZE current_state.AXI_IDLE 
+current_state.AXI_IDLE 0 0 0 0 0 
+current_state.AXI_SIZE 0 0 0 1 1 
+current_state.AXI_DATA 0 0 1 0 1 
+current_state.AXI_LAST 0 1 0 0 1 
+current_state.AXI_WAIT 1 0 0 0 1 
+
+State Machine - |ethernet_switch|eth_port:c_eth4|eth_rx:c_rx|rx_fsm_pr:pr_FSM|current_state
+Name current_state.RX_ERROR current_state.RX_END current_state.RX_SIZE current_state.RX_DATA current_state.RX_SFD current_state.RX_PREAMBLE 
+current_state.RX_PREAMBLE 0 0 0 0 0 0 
+current_state.RX_SFD 0 0 0 0 1 1 
+current_state.RX_DATA 0 0 0 1 0 1 
+current_state.RX_SIZE 0 0 1 0 0 1 
+current_state.RX_END 0 1 0 0 0 1 
+current_state.RX_ERROR 1 0 0 0 0 1 
+
+State Machine - |ethernet_switch|eth_port:c_eth4|eth_rx:c_rx|sr_sipo:sipo|current_state
+Name current_state.SIPO_TIMEOUT current_state.SIPO_END current_state.SIPO_DATA 
+current_state.SIPO_DATA 0 0 0 
+current_state.SIPO_END 0 1 1 
+current_state.SIPO_TIMEOUT 1 0 1 
+
+State Machine - |ethernet_switch|eth_port:c_eth4|eth_tx:c_tx|tx_fsm_axi:c_fsm_axi|state
+Name state.LAST state.RECEIVING state.READY state.IDLE 
+state.IDLE 0 0 0 0 
+state.READY 0 0 1 1 
+state.RECEIVING 0 1 0 1 
+state.LAST 1 0 0 1 
+
+State Machine - |ethernet_switch|eth_port:c_eth4|eth_tx:c_tx|tx_fsm_pt:c_fsm_pt|state
+Name state.IFG state.TX_LAST state.TX_WAIT state.TX_FIRST state.TX_LOAD state.LOAD_LENGTH_LOWER state.LOAD_LENGTH_UPPER state.IDLE 
+state.IDLE 0 0 0 0 0 0 0 0 
+state.LOAD_LENGTH_UPPER 0 0 0 0 0 0 1 1 
+state.LOAD_LENGTH_LOWER 0 0 0 0 0 1 0 1 
+state.TX_LOAD 0 0 0 0 1 0 0 1 
+state.TX_FIRST 0 0 0 1 0 0 0 1 
+state.TX_WAIT 0 0 1 0 0 0 0 1 
+state.TX_LAST 0 1 0 0 0 0 0 1 
+state.IFG 1 0 0 0 0 0 0 1 
+
+State Machine - |ethernet_switch|eth_port:c_eth4|eth_tx:c_tx|sr_piso:c_piso_sr|state
+Name state.TX_BYTE_READY state.TX state.IDLE 
+state.IDLE 0 0 0 
+state.TX 0 1 1 
+state.TX_BYTE_READY 1 0 1 
+
+State Machine - |ethernet_switch|eth_port:c_eth4|eth_tx:c_tx|tx_phy:c_phy|state
+Name state.TP_IDL state.TP_IDL_WAIT state.NLP state.TX state.IDLE 
+state.IDLE 0 0 0 0 0 
+state.TX 0 0 0 1 1 
+state.NLP 0 0 1 0 1 
+state.TP_IDL_WAIT 0 1 0 0 1 
+state.TP_IDL 1 0 0 0 1 
+
+State Machine - |ethernet_switch|eth_port:c_eth3|eth_rx:c_rx|rx_fsm_adr:addr_reader|state
+Name state.AXI state.CRC state.IDLE 
+state.IDLE 0 0 0 
+state.CRC 0 1 1 
+state.AXI 1 0 1 
+
+State Machine - |ethernet_switch|eth_port:c_eth3|eth_rx:c_rx|rx_fsm_AXI:axi_FSM|current_state
+Name current_state.AXI_WAIT current_state.AXI_LAST current_state.AXI_DATA current_state.AXI_SIZE current_state.AXI_IDLE 
+current_state.AXI_IDLE 0 0 0 0 0 
+current_state.AXI_SIZE 0 0 0 1 1 
+current_state.AXI_DATA 0 0 1 0 1 
+current_state.AXI_LAST 0 1 0 0 1 
+current_state.AXI_WAIT 1 0 0 0 1 
+
+State Machine - |ethernet_switch|eth_port:c_eth3|eth_rx:c_rx|rx_fsm_pr:pr_FSM|current_state
+Name current_state.RX_ERROR current_state.RX_END current_state.RX_SIZE current_state.RX_DATA current_state.RX_SFD current_state.RX_PREAMBLE 
+current_state.RX_PREAMBLE 0 0 0 0 0 0 
+current_state.RX_SFD 0 0 0 0 1 1 
+current_state.RX_DATA 0 0 0 1 0 1 
+current_state.RX_SIZE 0 0 1 0 0 1 
+current_state.RX_END 0 1 0 0 0 1 
+current_state.RX_ERROR 1 0 0 0 0 1 
+
+State Machine - |ethernet_switch|eth_port:c_eth3|eth_rx:c_rx|sr_sipo:sipo|current_state
+Name current_state.SIPO_TIMEOUT current_state.SIPO_END current_state.SIPO_DATA 
+current_state.SIPO_DATA 0 0 0 
+current_state.SIPO_END 0 1 1 
+current_state.SIPO_TIMEOUT 1 0 1 
+
+State Machine - |ethernet_switch|eth_port:c_eth3|eth_tx:c_tx|tx_fsm_axi:c_fsm_axi|state
+Name state.LAST state.RECEIVING state.READY state.IDLE 
+state.IDLE 0 0 0 0 
+state.READY 0 0 1 1 
+state.RECEIVING 0 1 0 1 
+state.LAST 1 0 0 1 
+
+State Machine - |ethernet_switch|eth_port:c_eth3|eth_tx:c_tx|tx_fsm_pt:c_fsm_pt|state
+Name state.IFG state.TX_LAST state.TX_WAIT state.TX_FIRST state.TX_LOAD state.LOAD_LENGTH_LOWER state.LOAD_LENGTH_UPPER state.IDLE 
+state.IDLE 0 0 0 0 0 0 0 0 
+state.LOAD_LENGTH_UPPER 0 0 0 0 0 0 1 1 
+state.LOAD_LENGTH_LOWER 0 0 0 0 0 1 0 1 
+state.TX_LOAD 0 0 0 0 1 0 0 1 
+state.TX_FIRST 0 0 0 1 0 0 0 1 
+state.TX_WAIT 0 0 1 0 0 0 0 1 
+state.TX_LAST 0 1 0 0 0 0 0 1 
+state.IFG 1 0 0 0 0 0 0 1 
+
+State Machine - |ethernet_switch|eth_port:c_eth3|eth_tx:c_tx|sr_piso:c_piso_sr|state
+Name state.TX_BYTE_READY state.TX state.IDLE 
+state.IDLE 0 0 0 
+state.TX 0 1 1 
+state.TX_BYTE_READY 1 0 1 
+
+State Machine - |ethernet_switch|eth_port:c_eth3|eth_tx:c_tx|tx_phy:c_phy|state
+Name state.TP_IDL state.TP_IDL_WAIT state.NLP state.TX state.IDLE 
+state.IDLE 0 0 0 0 0 
+state.TX 0 0 0 1 1 
+state.NLP 0 0 1 0 1 
+state.TP_IDL_WAIT 0 1 0 0 1 
+state.TP_IDL 1 0 0 0 1 
+
+State Machine - |ethernet_switch|eth_port:c_eth2|eth_rx:c_rx|rx_fsm_adr:addr_reader|state
+Name state.AXI state.CRC state.IDLE 
+state.IDLE 0 0 0 
+state.CRC 0 1 1 
+state.AXI 1 0 1 
+
+State Machine - |ethernet_switch|eth_port:c_eth2|eth_rx:c_rx|rx_fsm_AXI:axi_FSM|current_state
+Name current_state.AXI_WAIT current_state.AXI_LAST current_state.AXI_DATA current_state.AXI_SIZE current_state.AXI_IDLE 
+current_state.AXI_IDLE 0 0 0 0 0 
+current_state.AXI_SIZE 0 0 0 1 1 
+current_state.AXI_DATA 0 0 1 0 1 
+current_state.AXI_LAST 0 1 0 0 1 
+current_state.AXI_WAIT 1 0 0 0 1 
+
+State Machine - |ethernet_switch|eth_port:c_eth2|eth_rx:c_rx|rx_fsm_pr:pr_FSM|current_state
+Name current_state.RX_ERROR current_state.RX_END current_state.RX_SIZE current_state.RX_DATA current_state.RX_SFD current_state.RX_PREAMBLE 
+current_state.RX_PREAMBLE 0 0 0 0 0 0 
+current_state.RX_SFD 0 0 0 0 1 1 
+current_state.RX_DATA 0 0 0 1 0 1 
+current_state.RX_SIZE 0 0 1 0 0 1 
+current_state.RX_END 0 1 0 0 0 1 
+current_state.RX_ERROR 1 0 0 0 0 1 
+
+State Machine - |ethernet_switch|eth_port:c_eth2|eth_rx:c_rx|sr_sipo:sipo|current_state
+Name current_state.SIPO_TIMEOUT current_state.SIPO_END current_state.SIPO_DATA 
+current_state.SIPO_DATA 0 0 0 
+current_state.SIPO_END 0 1 1 
+current_state.SIPO_TIMEOUT 1 0 1 
+
+State Machine - |ethernet_switch|eth_port:c_eth2|eth_tx:c_tx|tx_fsm_axi:c_fsm_axi|state
+Name state.LAST state.RECEIVING state.READY state.IDLE 
+state.IDLE 0 0 0 0 
+state.READY 0 0 1 1 
+state.RECEIVING 0 1 0 1 
+state.LAST 1 0 0 1 
+
+State Machine - |ethernet_switch|eth_port:c_eth2|eth_tx:c_tx|tx_fsm_pt:c_fsm_pt|state
+Name state.IFG state.TX_LAST state.TX_WAIT state.TX_FIRST state.TX_LOAD state.LOAD_LENGTH_LOWER state.LOAD_LENGTH_UPPER state.IDLE 
+state.IDLE 0 0 0 0 0 0 0 0 
+state.LOAD_LENGTH_UPPER 0 0 0 0 0 0 1 1 
+state.LOAD_LENGTH_LOWER 0 0 0 0 0 1 0 1 
+state.TX_LOAD 0 0 0 0 1 0 0 1 
+state.TX_FIRST 0 0 0 1 0 0 0 1 
+state.TX_WAIT 0 0 1 0 0 0 0 1 
+state.TX_LAST 0 1 0 0 0 0 0 1 
+state.IFG 1 0 0 0 0 0 0 1 
+
+State Machine - |ethernet_switch|eth_port:c_eth2|eth_tx:c_tx|sr_piso:c_piso_sr|state
+Name state.TX_BYTE_READY state.TX state.IDLE 
+state.IDLE 0 0 0 
+state.TX 0 1 1 
+state.TX_BYTE_READY 1 0 1 
+
+State Machine - |ethernet_switch|eth_port:c_eth2|eth_tx:c_tx|tx_phy:c_phy|state
+Name state.TP_IDL state.TP_IDL_WAIT state.NLP state.TX state.IDLE 
+state.IDLE 0 0 0 0 0 
+state.TX 0 0 0 1 1 
+state.NLP 0 0 1 0 1 
+state.TP_IDL_WAIT 0 1 0 0 1 
+state.TP_IDL 1 0 0 0 1 
+
 State Machine - |ethernet_switch|eth_port:c_eth1|eth_rx:c_rx|rx_fsm_adr:addr_reader|state
 Name state.AXI state.CRC state.IDLE 
 state.IDLE 0 0 0 

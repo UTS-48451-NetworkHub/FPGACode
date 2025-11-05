@@ -238,6 +238,75 @@ begin
       act      => ETH1_LED_YEL
     );
 
+  c_eth2 : entity work.eth_port(arch)
+    port map(
+      clk      => clk_100,
+      resetn   => resetn,
+      -- Upstream Data Port - TX AXI-S
+      tx_valid => r_eth2_tx_valid,
+      tx_ready => r_eth2_tx_ready,
+      tx_last  => r_eth2_tx_last,
+      tx_data  => r_eth2_tx_data,
+      -- Upstream Data Port - RX AXI-S
+      rx_valid => r_eth2_rx_valid,
+      rx_ready => r_eth2_rx_ready,
+      rx_last  => r_eth2_rx_last,
+      rx_data  => r_eth2_rx_data,
+      -- Downstream Data Port
+      rx       => ETH2_RX,
+      tx       => ETH2_TX,
+      tx_en    => r_eth2_tx_en,
+      -- LEDs
+      link     => ETH2_LED_GRN,
+      act      => ETH2_LED_YEL
+    );
+
+  c_eth3 : entity work.eth_port(arch)
+    port map(
+      clk      => clk_100,
+      resetn   => resetn,
+      -- Upstream Data Port - TX AXI-S
+      tx_valid => r_eth3_tx_valid,
+      tx_ready => r_eth3_tx_ready,
+      tx_last  => r_eth3_tx_last,
+      tx_data  => r_eth3_tx_data,
+      -- Upstream Data Port - RX AXI-S
+      rx_valid => r_eth3_rx_valid,
+      rx_ready => r_eth3_rx_ready,
+      rx_last  => r_eth3_rx_last,
+      rx_data  => r_eth3_rx_data,
+      -- Downstream Data Port
+      rx       => ETH3_RX,
+      tx       => ETH3_TX,
+      tx_en    => r_eth3_tx_en,
+      -- LEDs
+      link     => ETH3_LED_GRN,
+      act      => ETH3_LED_YEL
+    );
+
+  c_eth4 : entity work.eth_port(arch)
+    port map(
+      clk      => clk_100,
+      resetn   => resetn,
+      -- Upstream Data Port - TX AXI-S
+      tx_valid => r_eth4_tx_valid,
+      tx_ready => r_eth4_tx_ready,
+      tx_last  => r_eth4_tx_last,
+      tx_data  => r_eth4_tx_data,
+      -- Upstream Data Port - RX AXI-S
+      rx_valid => r_eth4_rx_valid,
+      rx_ready => r_eth4_rx_ready,
+      rx_last  => r_eth4_rx_last,
+      rx_data  => r_eth4_rx_data,
+      -- Downstream Data Port
+      rx       => ETH4_RX,
+      tx       => ETH4_TX,
+      tx_en    => r_eth4_tx_en,
+      -- LEDs
+      link     => ETH4_LED_GRN,
+      act      => ETH4_LED_YEL
+    );
+
   ------------------------------------------------------------------------
   -- Ethernet Ringbuffers
   ------------------------------------------------------------------------
@@ -273,6 +342,57 @@ begin
       m_axis_tvalid => r_eth1_tx_valid,
       m_axis_tlast  => r_eth1_tx_last,
       m_axis_tready => r_eth1_tx_ready
+    );
+
+  c_eth2_rb : entity work.ringbuffer
+    generic map(
+      DATA_WIDTH  => 8,
+      DEPTH_BYTES => 2048
+    )
+    port map(
+      clk           => clk_100,
+      rst_n         => resetn,
+      s_axis_tdata  => r_eth2_rb_data,
+      s_axis_tvalid => r_eth2_rb_valid,
+      s_axis_tlast  => r_eth2_rb_last,
+      m_axis_tdata  => r_eth2_tx_data,
+      m_axis_tvalid => r_eth2_tx_valid,
+      m_axis_tlast  => r_eth2_tx_last,
+      m_axis_tready => r_eth2_tx_ready
+    );
+
+  c_eth3_rb : entity work.ringbuffer
+    generic map(
+      DATA_WIDTH  => 8,
+      DEPTH_BYTES => 2048
+    )
+    port map(
+      clk           => clk_100,
+      rst_n         => resetn,
+      s_axis_tdata  => r_eth3_rb_data,
+      s_axis_tvalid => r_eth3_rb_valid,
+      s_axis_tlast  => r_eth3_rb_last,
+      m_axis_tdata  => r_eth3_tx_data,
+      m_axis_tvalid => r_eth3_tx_valid,
+      m_axis_tlast  => r_eth3_tx_last,
+      m_axis_tready => r_eth3_tx_ready
+    );
+
+  c_eth4_rb : entity work.ringbuffer
+    generic map(
+      DATA_WIDTH  => 8,
+      DEPTH_BYTES => 2048
+    )
+    port map(
+      clk           => clk_100,
+      rst_n         => resetn,
+      s_axis_tdata  => r_eth4_rb_data,
+      s_axis_tvalid => r_eth4_rb_valid,
+      s_axis_tlast  => r_eth4_rb_last,
+      m_axis_tdata  => r_eth4_tx_data,
+      m_axis_tvalid => r_eth4_tx_valid,
+      m_axis_tlast  => r_eth4_tx_last,
+      m_axis_tready => r_eth4_tx_ready
     );
 
   ------------------------------------------------------------------------
@@ -328,9 +448,9 @@ begin
   ETH3_TX_EN <= '1';
   ETH4_TX_EN <= '1';
 
-  LED1 <= not r_eth0_tx_valid;
-  LED2 <= not r_eth0_tx_ready;
-  LED3 <= not r_eth0_tx_last;
+  LED1 <= not '1';
+  LED2 <= not '1';
+  LED3 <= not r_clk_lock;
   LED4 <= not r_enable;
 
 end architecture arch;
