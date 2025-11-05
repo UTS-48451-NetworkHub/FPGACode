@@ -1,47 +1,40 @@
 -- ===============================================================
 -- 9-bit Dual-Port RAM (up to 2048x9 using 2x M9Ks)
 --   * Synchronous write
---   * Synchronous read with 1-cycle latency
---   * Registered bank select to align mux with returned data
+--   * Synchronous read (1-cycle latency)
 -- ===============================================================
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 entity ram_2048x9_cascade is
-  generic(
-    ADDR_WIDTH : natural := 11          -- effective address width (min 1)
+  generic (
+    ADDR_WIDTH : natural := 11   -- effective address width (1..11)
   );
-  port(
-    clk    : in  std_logic;
+  port (
+    clk     : in  std_logic;
+
     -- Port A (write)
-    a_en   : in  std_logic;
-    a_we   : in  std_logic;
-    a_addr : in  unsigned(ADDR_WIDTH - 1 downto 0);
-    a_din  : in  std_logic_vector(8 downto 0);
+    a_en    : in  std_logic;
+    a_we    : in  std_logic;
+    a_addr  : in  unsigned(ADDR_WIDTH-1 downto 0);
+    a_din   : in  std_logic_vector(8 downto 0);
+
     -- Port B (read)
-    b_en   : in  std_logic;
-    b_addr : in  unsigned(ADDR_WIDTH - 1 downto 0);
-    b_dout : out std_logic_vector(8 downto 0)
+    b_en    : in  std_logic;
+    b_addr  : in  unsigned(ADDR_WIDTH-1 downto 0);
+    b_dout  : out std_logic_vector(8 downto 0)
   );
 end entity;
 
 architecture rtl of ram_2048x9_cascade is
-  -- Two banks of 1024 x 9
-  type   ram_t      is array (0 to 1023) of std_logic_vector(8 downto 0);
+  -- Two 1K x 9 banks
+  type ram_t is array (0 to 1023) of std_logic_vector(8 downto 0);
   signal ram0, ram1 : ram_t := (others => (others => '0'));
 
-  -- Address split
-  signal sub_a, sub_b : unsigned(9 downto 0); -- lower 10 bits (0..1023)
-  signal sel_a, sel_b : std_logic;      -- high bit (bank select)
-  signal sel_b_r      : std_logic := '0'; -- registered for alignment
-
-  signal dout_reg0, dout_reg1 : std_logic_vector(8 downto 0) := (others => '0');
+  signal sel_a, sel_b : std_logic;
+  signal b_dout_reg   : std_logic_vector(8 downto 0) := (others => '0');
 begin
-  -- derive bank select and lower address safely for small ADDR_WIDTH
-  sub_a <= resize(a_addr, 10);
-  sub_b <= resize(b_addr, 10);
-
   gen_hi : if ADDR_WIDTH >= 11 generate
     sel_a <= std_logic(a_addr(10));
     sel_b <= std_logic(b_addr(10));
@@ -53,56 +46,55 @@ begin
   end generate;
 
   process(clk)
+    variable idx_a, idx_b : integer;
   begin
     if rising_edge(clk) then
       -- WRITE
       if a_en = '1' and a_we = '1' then
+        idx_a := to_integer(resize(a_addr, 10)) mod 1024;
         if sel_a = '0' then
-          ram0(to_integer(sub_a)) <= a_din;
+          ram0(idx_a) <= a_din;
         else
-          ram1(to_integer(sub_a)) <= a_din;
+          ram1(idx_a) <= a_din;
         end if;
       end if;
 
-      -- READ (1-cycle)
+      -- READ
       if b_en = '1' then
-        dout_reg0 <= ram0(to_integer(sub_b));
-        dout_reg1 <= ram1(to_integer(sub_b));
+        idx_b := to_integer(resize(b_addr, 10)) mod 1024;
+        if sel_b = '0' then
+          b_dout_reg <= ram0(idx_b);
+        else
+          b_dout_reg <= ram1(idx_b);
+        end if;
       end if;
-
-      -- align mux select with registered data
-      sel_b_r <= sel_b;
     end if;
   end process;
 
-  -- use registered bank select to choose the registered data
-  b_dout <= dout_reg0 when sel_b_r = '0' else dout_reg1;
+  b_dout <= b_dout_reg;
 end architecture;
 
--- ===============================================================
--- AXI-Stream Ring Buffer (Always-ready input, Drop-on-overflow)
---   * Total output latency = 1 cycle
---   * Data/last are combinational from RAM output
---   * Only tvalid is registered; rd_ptr advances on handshake
---   * Hardened against bounds issues (safe widths & comparisons)
--- ===============================================================
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 entity ringbuffer is
-  generic (
-    DATA_WIDTH  : positive := 8;
-    DEPTH_BYTES : positive := 8
+  generic(
+    DATA_WIDTH  : positive := 8;     -- must be 8
+    DEPTH_BYTES : positive := 2048   -- max bytes per packet
   );
-  port (
+  port(
     clk           : in  std_logic;
     rst_n         : in  std_logic;
-    s_axis_tdata  : in  std_logic_vector(DATA_WIDTH-1 downto 0);
+
+    -- AXI-Stream input (slave)
+    s_axis_tdata  : in  std_logic_vector(DATA_WIDTH - 1 downto 0);
     s_axis_tvalid : in  std_logic;
     s_axis_tlast  : in  std_logic;
     s_axis_tready : out std_logic;
-    m_axis_tdata  : out std_logic_vector(DATA_WIDTH-1 downto 0);
+
+    -- AXI-Stream output (master)
+    m_axis_tdata  : out std_logic_vector(DATA_WIDTH - 1 downto 0);
     m_axis_tvalid : out std_logic;
     m_axis_tlast  : out std_logic;
     m_axis_tready : in  std_logic
@@ -110,172 +102,194 @@ entity ringbuffer is
 end entity;
 
 architecture rtl of ringbuffer is
+  ------------------------------------------------------------------
+  -- constants
+  ------------------------------------------------------------------
+  constant DEPTH_WORDS : positive := DEPTH_BYTES;  -- 1 byte per word
 
-  constant RAM_WORD_WIDTH : positive := DATA_WIDTH + 1; -- include TLAST bit
-  type ram_t is array (0 to DEPTH_BYTES - 1) of std_logic_vector(RAM_WORD_WIDTH-1 downto 0);
-  signal ram : ram_t := (others => (others => '0'));
+  ------------------------------------------------------------------
+  -- packet capture buffer (scratch)
+  -- each entry: bit 8 = TLAST, bits 7..0 = data
+  --  -> Ask Quartus to implement this in block RAM (M9K), not flip-flops
+  ------------------------------------------------------------------
+  type pkt_buf_t is array (0 to DEPTH_WORDS-1) of std_logic_vector(8 downto 0);
+  signal pkt_buf : pkt_buf_t := (others => (others => '0'));
 
-  signal wr_ptr  : integer range 0 to DEPTH_BYTES - 1 := 0;
-  signal rd_ptr  : integer range 0 to DEPTH_BYTES - 1 := 0;
-  signal level   : integer range 0 to DEPTH_BYTES     := 0;
+  -- synthesis hint for Intel/Quartus
+  attribute ramstyle : string;
+  attribute ramstyle of pkt_buf : signal is "M9K";
 
-  type wr_state_t is (IDLE, ACCEPT, DROP);
-  signal wr_state : wr_state_t := IDLE;
+  signal cap_len       : integer range 0 to DEPTH_WORDS := 0;  -- words currently stored
+  signal cap_overflow  : std_logic := '0';                     -- true if packet too long or dropped
+  signal capturing     : std_logic := '0';                     -- currently capturing packet
 
-  signal sop_ptr   : integer range 0 to DEPTH_BYTES - 1 := 0;
-  signal sop_level : integer range 0 to DEPTH_BYTES     := 0;
+  -- stored packet (fully captured and accepted)
+  signal stored_len    : integer range 0 to DEPTH_WORDS := 0;
+  signal buffer_valid  : std_logic := '0';                     -- we have a packet to send
 
-  signal s_axis_tready_i : std_logic;
-  signal ram_q        : std_logic_vector(RAM_WORD_WIDTH-1 downto 0) := (others => '0');
-  signal m_tvalid_reg : std_logic := '0';
-  signal m_tvalid_pre : std_logic;
-  signal m_read       : std_logic;
+  ------------------------------------------------------------------
+  -- output side
+  ------------------------------------------------------------------
+  type out_state_t is (OUT_IDLE, OUT_STREAM);
+  signal out_state     : out_state_t := OUT_IDLE;
 
+  signal rd_index      : integer range 0 to DEPTH_WORDS := 0;
+
+  signal out_data      : std_logic_vector(7 downto 0) := (others => '0');
+  signal out_last_bit  : std_logic := '0';
+  signal out_valid     : std_logic := '0';
+
+  signal handshake     : std_logic := '0';
 begin
-  --------------------------------------------------------------------------
-  -- AXI Stream outputs
-  --------------------------------------------------------------------------
-  m_axis_tdata  <= ram_q(DATA_WIDTH-1 downto 0);
-  m_axis_tlast  <= ram_q(RAM_WORD_WIDTH-1);
-  m_axis_tvalid <= m_tvalid_reg;
+  ------------------------------------------------------------------
+  -- sanity check
+  ------------------------------------------------------------------
+  assert DATA_WIDTH = 8
+    report "ringbuffer: DATA_WIDTH must be 8 for this implementation."
+    severity failure;
 
-  m_tvalid_pre  <= '1' when level > 0 else '0';
-  m_read        <= m_tvalid_reg and m_axis_tready;
+  ------------------------------------------------------------------
+  -- AXIS wiring
+  ------------------------------------------------------------------
+  s_axis_tready <= '1';               -- always-ready for this test
 
-  s_axis_tready_i <= '1' when (wr_state = IDLE   and level < DEPTH_BYTES) or
-                             (wr_state = ACCEPT and level < DEPTH_BYTES) or
-                             (wr_state = DROP)
-                     else '0';
-  s_axis_tready <= s_axis_tready_i;
+  m_axis_tdata  <= out_data;
+  m_axis_tlast  <= out_last_bit;
+  m_axis_tvalid <= out_valid;
 
-  --------------------------------------------------------------------------
-  -- MAIN PROCESS
-  --------------------------------------------------------------------------
-  process(clk, rst_n)
-    variable do_write : boolean;
-    variable waddr    : integer range 0 to DEPTH_BYTES - 1;
-    variable wdata    : std_logic_vector(RAM_WORD_WIDTH-1 downto 0);
-    variable next_rd  : integer range 0 to DEPTH_BYTES - 1;
+  handshake <= out_valid and m_axis_tready;
+
+  ------------------------------------------------------------------
+  -- Main process: capture + output
+  ------------------------------------------------------------------
+  process(clk)
   begin
-    if rst_n = '0' then
-      wr_ptr       <= 0;
-      rd_ptr       <= 0;
-      level        <= 0;
-      sop_ptr      <= 0;
-      sop_level    <= 0;
-      wr_state     <= IDLE;
-      ram_q        <= (others => '0');
-      m_tvalid_reg <= '0';
+    if rising_edge(clk) then
+      if rst_n = '0' then
+        -- capture state
+        capturing    <= '0';
+        cap_len      <= 0;
+        cap_overflow <= '0';
 
-    elsif rising_edge(clk) then
-      ----------------------------------------------------------------------
-      -- defaults
-      ----------------------------------------------------------------------
-      do_write := false;
-      waddr    := wr_ptr;
-      wdata    := (others => '0');
-      next_rd  := (rd_ptr + 1) mod DEPTH_BYTES;
+        -- stored packet
+        stored_len   <= 0;
+        buffer_valid <= '0';
 
-      ----------------------------------------------------------------------
-      -- WRITE SIDE FSM
-      ----------------------------------------------------------------------
-      case wr_state is
-        when IDLE =>
-          if s_axis_tvalid = '1' then
-            if level = DEPTH_BYTES then
-              wr_state <= DROP;
+        -- output state
+        out_state    <= OUT_IDLE;
+        rd_index     <= 0;
+        out_data     <= (others => '0');
+        out_last_bit <= '0';
+        out_valid    <= '0';
+
+      else
+        --------------------------------------------------------------
+        -- INPUT: packet capture into pkt_buf
+        --------------------------------------------------------------
+        if s_axis_tvalid = '1' then
+
+          -- Start-of-packet (SOP): capturing was previously 0
+          if (capturing = '0') and (cap_overflow = '0') then
+            capturing    <= '1';
+            cap_overflow <= '0';
+
+            if buffer_valid = '1' then
+              -- already holding a packet -> drop this whole one
+              cap_overflow <= '1';
+              cap_len      <= 0;
             else
-              sop_ptr   <= wr_ptr;
-              sop_level <= level;
-              do_write := true;
-              waddr := wr_ptr;
-              wdata := s_axis_tlast & s_axis_tdata;
-              wr_ptr <= (wr_ptr + 1) mod DEPTH_BYTES;
-              if m_read = '0' then
-                level <= level + 1;
-              end if;
-              if s_axis_tlast = '0' then
-                wr_state <= ACCEPT;
-              else
-                wr_state <= IDLE;
+              -- normal SOP: store FIRST word at index 0
+              pkt_buf(0) <= s_axis_tlast & s_axis_tdata;
+              cap_len    <= 1;
+
+              if s_axis_tlast = '1' then
+                -- single-beat packet completes immediately
+                capturing    <= '0';
+                buffer_valid <= '1';
+                stored_len   <= 1;
               end if;
             end if;
-          end if;
 
-        when ACCEPT =>
-          if s_axis_tvalid = '1' then
-            if level = DEPTH_BYTES then
-              wr_state <= DROP;
-              wr_ptr   <= sop_ptr;
-              if m_read = '1' then
-                if sop_level > 0 then
-                  level <= sop_level - 1;
+          elsif capturing = '1' then
+            -- Middle/end of packet
+            if cap_overflow = '1' then
+              -- Dropping this packet: just wait for TLAST to end it.
+              if s_axis_tlast = '1' then
+                capturing    <= '0';
+                cap_overflow <= '0';
+              end if;
+
+            else
+              -- Normal capture path (subsequent beats)
+              if cap_len < DEPTH_WORDS then
+                pkt_buf(cap_len) <= s_axis_tlast & s_axis_tdata;
+
+                if s_axis_tlast = '1' then
+                  -- packet finished successfully
+                  capturing    <= '0';
+                  buffer_valid <= '1';
+                  stored_len   <= cap_len + 1;  -- include this beat
                 else
-                  level <= 0;
+                  cap_len <= cap_len + 1;
                 end if;
               else
-                level <= sop_level;
+                -- overflow capture buffer -> drop remainder of this packet
+                cap_overflow <= '1';
+                if s_axis_tlast = '1' then
+                  capturing    <= '0';
+                  cap_overflow <= '0';
+                end if;
               end if;
+            end if;  -- cap_overflow
+          end if;    -- capturing / SOP
+
+        end if;      -- s_axis_tvalid
+
+        --------------------------------------------------------------
+        -- OUTPUT: simple FSM; data advances on each handshake
+        --------------------------------------------------------------
+        case out_state is
+          ------------------------------------------------------------
+          when OUT_IDLE =>
+            out_valid <= '0';
+
+            if (buffer_valid = '1') and (stored_len > 0) then
+              -- start streaming this stored packet
+              out_state    <= OUT_STREAM;
+              rd_index     <= 0;
+              out_data     <= pkt_buf(0)(7 downto 0);
+              out_last_bit <= pkt_buf(0)(8);
+              out_valid    <= '1';
+            end if;
+
+          ------------------------------------------------------------
+          when OUT_STREAM =>
+            -- remain valid while packet present
+            if (buffer_valid = '1') and (stored_len > 0) then
+              out_valid <= '1';
             else
-              do_write := true;
-              waddr := wr_ptr;
-              wdata := s_axis_tlast & s_axis_tdata;
-              wr_ptr <= (wr_ptr + 1) mod DEPTH_BYTES;
-              if m_read = '0' then
-                level <= level + 1;
-              end if;
-              if s_axis_tlast = '1' then
-                wr_state <= IDLE;
+              out_valid <= '0';
+            end if;
+
+            if handshake = '1' then
+              if rd_index = stored_len - 1 then
+                -- last word just consumed
+                buffer_valid <= '0';
+                out_valid    <= '0';
+                out_state    <= OUT_IDLE;
+                rd_index     <= 0;
+                out_last_bit <= '0';
+              else
+                -- advance to next word
+                rd_index     <= rd_index + 1;
+                out_data     <= pkt_buf(rd_index + 1)(7 downto 0);
+                out_last_bit <= pkt_buf(rd_index + 1)(8);
               end if;
             end if;
-          end if;
+        end case;
 
-        when DROP =>
-          if s_axis_tvalid = '1' and s_axis_tlast = '1' then
-            wr_state <= IDLE;
-          end if;
-      end case;
-
-      ----------------------------------------------------------------------
-      -- WRITE-FIRST RAM model (simulation accurate, hardware identical)
-      ----------------------------------------------------------------------
-      if do_write then
-        ram(waddr) <= wdata;
-      end if;
-
-      -- emulate synchronous BRAM read timing (write-first)
-      if do_write and (waddr = rd_ptr) then
-        ram_q <= wdata;                     -- immediate forward (write-first)
-      else
-        ram_q <= ram(rd_ptr);               -- normal registered read
-      end if;
-
-      ----------------------------------------------------------------------
-      -- READ SIDE
-      ----------------------------------------------------------------------
-      if m_read = '1' then
-        if level > 0 then
-          level <= level - 1;
-        else
-          level <= 0;
-        end if;
-        rd_ptr <= next_rd;
-      end if;
-
-      m_tvalid_reg <= m_tvalid_pre;
-
-      ----------------------------------------------------------------------
-      -- Defensive clamps
-      ----------------------------------------------------------------------
-      if wr_ptr < 0 then wr_ptr <= 0;
-      elsif wr_ptr > DEPTH_BYTES - 1 then wr_ptr <= DEPTH_BYTES - 1; end if;
-
-      if rd_ptr < 0 then rd_ptr <= 0;
-      elsif rd_ptr > DEPTH_BYTES - 1 then rd_ptr <= DEPTH_BYTES - 1; end if;
-
-      if level < 0 then level <= 0;
-      elsif level > DEPTH_BYTES then level <= DEPTH_BYTES; end if;
-    end if;
+      end if; -- rst_n
+    end if;   -- rising_edge
   end process;
 
 end architecture;
