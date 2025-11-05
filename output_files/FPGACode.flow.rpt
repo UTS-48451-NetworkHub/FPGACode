@@ -1,5 +1,5 @@
 Flow report for FPGACode
-Mon Nov  3 22:18:13 2025
+Wed Nov  5 20:22:47 2025
 Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
 
 
@@ -41,20 +41,20 @@ on the Quartus Prime software download page.
 +--------------------------------------------------------------------------------------+
 ; Flow Summary                                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Flow Status                        ; Successful - Mon Nov  3 22:18:13 2025           ;
+; Flow Status                        ; Successful - Wed Nov  5 20:22:47 2025           ;
 ; Quartus Prime Version              ; 24.1std.0 Build 1077 03/04/2025 SC Lite Edition ;
 ; Revision Name                      ; FPGACode                                        ;
 ; Top-level Entity Name              ; ethernet_switch                                 ;
 ; Family                             ; Cyclone IV E                                    ;
 ; Device                             ; EP4CE6E22C8                                     ;
 ; Timing Models                      ; Final                                           ;
-; Total logic elements               ; 3,264 / 6,272 ( 52 % )                          ;
-;     Total combinational functions  ; 2,635 / 6,272 ( 42 % )                          ;
-;     Dedicated logic registers      ; 2,122 / 6,272 ( 34 % )                          ;
-; Total registers                    ; 2122                                            ;
+; Total logic elements               ; 2,265 / 6,272 ( 36 % )                          ;
+;     Total combinational functions  ; 2,089 / 6,272 ( 33 % )                          ;
+;     Dedicated logic registers      ; 1,314 / 6,272 ( 21 % )                          ;
+; Total registers                    ; 1314                                            ;
 ; Total pins                         ; 37 / 92 ( 40 % )                                ;
 ; Total virtual pins                 ; 0                                               ;
-; Total memory bits                  ; 178,176 / 276,480 ( 64 % )                      ;
+; Total memory bits                  ; 102,400 / 276,480 ( 37 % )                      ;
 ; Embedded Multiplier 9-bit elements ; 0 / 30 ( 0 % )                                  ;
 ; Total PLLs                         ; 1 / 2 ( 50 % )                                  ;
 +------------------------------------+-------------------------------------------------+
@@ -65,68 +65,41 @@ on the Quartus Prime software download page.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 11/03/2025 22:17:23 ;
+; Start date & time ; 11/05/2025 20:22:17 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; FPGACode            ;
 +-------------------+---------------------+
 
 
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Flow Non-Default Global Settings                                                                                                                                                                                                                                        ;
-+-------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+-----------------+-----------------------------------+
-; Assignment Name                     ; Value                                                                                                                                                       ; Default Value ; Entity Name     ; Section Id                        ;
-+-------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+-----------------+-----------------------------------+
-; COMPILER_SIGNATURE_ID               ; 190211758899539.176216864317684                                                                                                                             ; --            ; --              ; --                                ;
-; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                                                                                                                                         ; --            ; --              ; eda_board_design_timing           ;
-; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                                                                                                                                         ; --            ; --              ; eda_board_design_boundary_scan    ;
-; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                                                                                                                                         ; --            ; --              ; eda_board_design_signal_integrity ;
-; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                                                                                                                                         ; --            ; --              ; eda_board_design_symbol           ;
-; EDA_OUTPUT_DATA_FORMAT              ; Vhdl                                                                                                                                                        ; --            ; --              ; eda_simulation                    ;
-; EDA_SIMULATION_TOOL                 ; Questa Intel FPGA (VHDL)                                                                                                                                    ; <None>        ; --              ; --                                ;
-; EDA_TIME_SCALE                      ; 1 ps                                                                                                                                                        ; --            ; --              ; eda_simulation                    ;
-; ENABLE_SIGNALTAP                    ; On                                                                                                                                                          ; --            ; --              ; --                                ;
-; IOBANK_VCCIO                        ; 3.3V                                                                                                                                                        ; --            ; --              ; 5                                 ;
-; MAX_CORE_JUNCTION_TEMP              ; 85                                                                                                                                                          ; --            ; --              ; --                                ;
-; MIN_CORE_JUNCTION_TEMP              ; 0                                                                                                                                                           ; --            ; --              ; --                                ;
-; MISC_FILE                           ; pll_main.ppf                                                                                                                                                ; --            ; --              ; --                                ;
-; NOMINAL_CORE_SUPPLY_VOLTAGE         ; 1.2V                                                                                                                                                        ; --            ; --              ; --                                ;
-; PARTITION_COLOR                     ; -- (Not supported for targeted family)                                                                                                                      ; --            ; ethernet_switch ; Top                               ;
-; PARTITION_FITTER_PRESERVATION_LEVEL ; -- (Not supported for targeted family)                                                                                                                      ; --            ; ethernet_switch ; Top                               ;
-; PARTITION_NETLIST_TYPE              ; -- (Not supported for targeted family)                                                                                                                      ; --            ; ethernet_switch ; Top                               ;
-; POWER_BOARD_THERMAL_MODEL           ; None (CONSERVATIVE)                                                                                                                                         ; --            ; --              ; --                                ;
-; POWER_PRESET_COOLING_SOLUTION       ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW                                                                                                                       ; --            ; --              ; --                                ;
-; PROJECT_OUTPUT_DIRECTORY            ; output_files                                                                                                                                                ; --            ; --              ; --                                ;
-; SLD_FILE                            ; db/stla_auto_stripped.stp                                                                                                                                   ; --            ; --              ; --                                ;
-; SLD_NODE_CREATOR_ID                 ; 110                                                                                                                                                         ; --            ; --              ; ringbuffer                        ;
-; SLD_NODE_ENTITY_NAME                ; sld_signaltap                                                                                                                                               ; --            ; --              ; ringbuffer                        ;
-; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_RAM_BLOCK_TYPE=AUTO                                                                                                                                     ; --            ; --              ; ringbuffer                        ;
-; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_NODE_INFO=805334530                                                                                                                                     ; --            ; --              ; ringbuffer                        ;
-; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_POWER_UP_TRIGGER=0                                                                                                                                      ; --            ; --              ; ringbuffer                        ;
-; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_STORAGE_QUALIFIER_INVERSION_MASK_LENGTH=0                                                                                                               ; --            ; --              ; ringbuffer                        ;
-; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_ATTRIBUTE_MEM_MODE=OFF                                                                                                                                  ; --            ; --              ; ringbuffer                        ;
-; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_STATE_FLOW_USE_GENERATED=0                                                                                                                              ; --            ; --              ; ringbuffer                        ;
-; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_STATE_BITS=11                                                                                                                                           ; --            ; --              ; ringbuffer                        ;
-; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_BUFFER_FULL_STOP=1                                                                                                                                      ; --            ; --              ; ringbuffer                        ;
-; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_CURRENT_RESOURCE_WIDTH=1                                                                                                                                ; --            ; --              ; ringbuffer                        ;
-; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_INCREMENTAL_ROUTING=1                                                                                                                                   ; --            ; --              ; ringbuffer                        ;
-; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_TRIGGER_LEVEL=1                                                                                                                                         ; --            ; --              ; ringbuffer                        ;
-; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_TRIGGER_IN_ENABLED=1                                                                                                                                    ; --            ; --              ; ringbuffer                        ;
-; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_TRIGGER_PIPELINE=0                                                                                                                                      ; --            ; --              ; ringbuffer                        ;
-; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_RAM_PIPELINE=0                                                                                                                                          ; --            ; --              ; ringbuffer                        ;
-; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_COUNTER_PIPELINE=0                                                                                                                                      ; --            ; --              ; ringbuffer                        ;
-; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_ADVANCED_TRIGGER_ENTITY=basic,1,                                                                                                                        ; --            ; --              ; ringbuffer                        ;
-; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_TRIGGER_LEVEL_PIPELINE=1                                                                                                                                ; --            ; --              ; ringbuffer                        ;
-; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_ENABLE_ADVANCED_TRIGGER=0                                                                                                                               ; --            ; --              ; ringbuffer                        ;
-; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_DATA_BITS=37                                                                                                                                            ; --            ; --              ; ringbuffer                        ;
-; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_TRIGGER_BITS=37                                                                                                                                         ; --            ; --              ; ringbuffer                        ;
-; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_STORAGE_QUALIFIER_BITS=37                                                                                                                               ; --            ; --              ; ringbuffer                        ;
-; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_INVERSION_MASK=0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 ; --            ; --              ; ringbuffer                        ;
-; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_INVERSION_MASK_LENGTH=136                                                                                                                               ; --            ; --              ; ringbuffer                        ;
-; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_SEGMENT_SIZE=2048                                                                                                                                       ; --            ; --              ; ringbuffer                        ;
-; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_SAMPLE_DEPTH=2048                                                                                                                                       ; --            ; --              ; ringbuffer                        ;
-; TOP_LEVEL_ENTITY                    ; ethernet_switch                                                                                                                                             ; FPGACode      ; --              ; --                                ;
-; USE_SIGNALTAP_FILE                  ; stla.stp                                                                                                                                                    ; --            ; --              ; --                                ;
-+-------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+-----------------+-----------------------------------+
++----------------------------------------------------------------------------------------------------------------------------------------------------+
+; Flow Non-Default Global Settings                                                                                                                   ;
++-------------------------------------+----------------------------------------+---------------+-----------------+-----------------------------------+
+; Assignment Name                     ; Value                                  ; Default Value ; Entity Name     ; Section Id                        ;
++-------------------------------------+----------------------------------------+---------------+-----------------+-----------------------------------+
+; COMPILER_SIGNATURE_ID               ; 53648978755923.176233453709644         ; --            ; --              ; --                                ;
+; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                    ; --            ; --              ; eda_board_design_timing           ;
+; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                    ; --            ; --              ; eda_board_design_boundary_scan    ;
+; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                    ; --            ; --              ; eda_board_design_signal_integrity ;
+; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                    ; --            ; --              ; eda_board_design_symbol           ;
+; EDA_OUTPUT_DATA_FORMAT              ; Vhdl                                   ; --            ; --              ; eda_simulation                    ;
+; EDA_SIMULATION_TOOL                 ; Questa Intel FPGA (VHDL)               ; <None>        ; --              ; --                                ;
+; EDA_TIME_SCALE                      ; 1 ps                                   ; --            ; --              ; eda_simulation                    ;
+; ENABLE_SIGNALTAP                    ; On                                     ; --            ; --              ; --                                ;
+; IOBANK_VCCIO                        ; 3.3V                                   ; --            ; --              ; 5                                 ;
+; MAX_CORE_JUNCTION_TEMP              ; 85                                     ; --            ; --              ; --                                ;
+; MIN_CORE_JUNCTION_TEMP              ; 0                                      ; --            ; --              ; --                                ;
+; MISC_FILE                           ; pll_main.ppf                           ; --            ; --              ; --                                ;
+; NOMINAL_CORE_SUPPLY_VOLTAGE         ; 1.2V                                   ; --            ; --              ; --                                ;
+; PARTITION_COLOR                     ; -- (Not supported for targeted family) ; --            ; ethernet_switch ; Top                               ;
+; PARTITION_FITTER_PRESERVATION_LEVEL ; -- (Not supported for targeted family) ; --            ; ethernet_switch ; Top                               ;
+; PARTITION_NETLIST_TYPE              ; -- (Not supported for targeted family) ; --            ; ethernet_switch ; Top                               ;
+; POWER_BOARD_THERMAL_MODEL           ; None (CONSERVATIVE)                    ; --            ; --              ; --                                ;
+; POWER_PRESET_COOLING_SOLUTION       ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW  ; --            ; --              ; --                                ;
+; PROJECT_OUTPUT_DIRECTORY            ; output_files                           ; --            ; --              ; --                                ;
+; SLD_FILE                            ; db/stla_auto_stripped.stp              ; --            ; --              ; --                                ;
+; TOP_LEVEL_ENTITY                    ; ethernet_switch                        ; FPGACode      ; --              ; --                                ;
+; USE_SIGNALTAP_FILE                  ; stla.stp                               ; --            ; --              ; --                                ;
++-------------------------------------+----------------------------------------+---------------+-----------------+-----------------------------------+
 
 
 +--------------------------------------------------------------------------------------------------------------------------+
@@ -134,12 +107,12 @@ on the Quartus Prime software download page.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:32     ; 1.0                     ; 4939 MB             ; 00:00:51                           ;
-; Fitter               ; 00:00:09     ; 1.5                     ; 6561 MB             ; 00:00:19                           ;
-; Assembler            ; 00:00:02     ; 1.0                     ; 4697 MB             ; 00:00:01                           ;
-; Timing Analyzer      ; 00:00:02     ; 1.6                     ; 4969 MB             ; 00:00:02                           ;
-; EDA Netlist Writer   ; 00:00:02     ; 1.0                     ; 4671 MB             ; 00:00:01                           ;
-; Total                ; 00:00:47     ; --                      ; --                  ; 00:01:14                           ;
+; Analysis & Synthesis ; 00:00:15     ; 1.0                     ; 4909 MB             ; 00:00:33                           ;
+; Fitter               ; 00:00:08     ; 1.4                     ; 6551 MB             ; 00:00:15                           ;
+; Assembler            ; 00:00:01     ; 1.0                     ; 4709 MB             ; 00:00:01                           ;
+; Timing Analyzer      ; 00:00:01     ; 1.5                     ; 4942 MB             ; 00:00:02                           ;
+; EDA Netlist Writer   ; 00:00:01     ; 1.0                     ; 4656 MB             ; 00:00:00                           ;
+; Total                ; 00:00:26     ; --                      ; --                  ; 00:00:51                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

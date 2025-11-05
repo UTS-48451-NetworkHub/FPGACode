@@ -74,6 +74,9 @@ begin
   b_dout <= b_dout_reg;
 end architecture;
 
+-- ===============================================================
+-- Ring Buffer with Dual-Port Block RAM
+-- ===============================================================
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
@@ -106,26 +109,30 @@ architecture rtl of ringbuffer is
   -- constants
   ------------------------------------------------------------------
   constant DEPTH_WORDS : positive := DEPTH_BYTES;  -- 1 byte per word
+  constant ADDR_WIDTH  : positive := 11;           -- for 2048 words
 
   ------------------------------------------------------------------
-  -- packet capture buffer (scratch)
-  -- each entry: bit 8 = TLAST, bits 7..0 = data
-  --  -> Ask Quartus to implement this in block RAM (M9K), not flip-flops
+  -- Dual-port RAM signals
   ------------------------------------------------------------------
-  type pkt_buf_t is array (0 to DEPTH_WORDS-1) of std_logic_vector(8 downto 0);
-  signal pkt_buf : pkt_buf_t := (others => (others => '0'));
+  signal ram_a_en   : std_logic := '0';
+  signal ram_a_we   : std_logic := '0';
+  signal ram_a_addr : unsigned(ADDR_WIDTH-1 downto 0) := (others => '0');
+  signal ram_a_din  : std_logic_vector(8 downto 0) := (others => '0');
 
-  -- synthesis hint for Intel/Quartus
-  attribute ramstyle : string;
-  attribute ramstyle of pkt_buf : signal is "M9K";
+  signal ram_b_en   : std_logic := '0';
+  signal ram_b_addr : unsigned(ADDR_WIDTH-1 downto 0) := (others => '0');
+  signal ram_b_dout : std_logic_vector(8 downto 0);
 
-  signal cap_len       : integer range 0 to DEPTH_WORDS := 0;  -- words currently stored
-  signal cap_overflow  : std_logic := '0';                     -- true if packet too long or dropped
-  signal capturing     : std_logic := '0';                     -- currently capturing packet
+  ------------------------------------------------------------------
+  -- Capture state
+  ------------------------------------------------------------------
+  signal cap_len       : integer range 0 to DEPTH_WORDS := 0;
+  signal cap_overflow  : std_logic := '0';
+  signal capturing     : std_logic := '0';
 
   -- stored packet (fully captured and accepted)
   signal stored_len    : integer range 0 to DEPTH_WORDS := 0;
-  signal buffer_valid  : std_logic := '0';                     -- we have a packet to send
+  signal buffer_valid  : std_logic := '0';
 
   ------------------------------------------------------------------
   -- output side
@@ -134,12 +141,14 @@ architecture rtl of ringbuffer is
   signal out_state     : out_state_t := OUT_IDLE;
 
   signal rd_index      : integer range 0 to DEPTH_WORDS := 0;
+  signal rd_index_next : integer range 0 to DEPTH_WORDS := 0;
 
-  signal out_data      : std_logic_vector(7 downto 0) := (others => '0');
-  signal out_last_bit  : std_logic := '0';
-  signal out_valid     : std_logic := '0';
+  -- Pipeline registers to match RAM latency
+  signal out_valid_pipe : std_logic := '0';
+  signal out_last_pipe  : std_logic := '0';
 
   signal handshake     : std_logic := '0';
+
 begin
   ------------------------------------------------------------------
   -- sanity check
@@ -149,18 +158,36 @@ begin
     severity failure;
 
   ------------------------------------------------------------------
-  -- AXIS wiring
+  -- Instantiate dual-port RAM
   ------------------------------------------------------------------
-  s_axis_tready <= '1';               -- always-ready for this test
-
-  m_axis_tdata  <= out_data;
-  m_axis_tlast  <= out_last_bit;
-  m_axis_tvalid <= out_valid;
-
-  handshake <= out_valid and m_axis_tready;
+  u_ram : entity work.ram_2048x9_cascade
+    generic map (
+      ADDR_WIDTH => ADDR_WIDTH
+    )
+    port map (
+      clk    => clk,
+      a_en   => ram_a_en,
+      a_we   => ram_a_we,
+      a_addr => ram_a_addr,
+      a_din  => ram_a_din,
+      b_en   => ram_b_en,
+      b_addr => ram_b_addr,
+      b_dout => ram_b_dout
+    );
 
   ------------------------------------------------------------------
-  -- Main process: capture + output
+  -- AXIS wiring - data comes directly from RAM output (synchronized)
+  ------------------------------------------------------------------
+  s_axis_tready <= '1';  -- always-ready for this test
+
+  m_axis_tdata  <= ram_b_dout(7 downto 0);
+  m_axis_tlast  <= ram_b_dout(8);
+  m_axis_tvalid <= out_valid_pipe;
+
+  handshake <= out_valid_pipe and m_axis_tready;
+
+  ------------------------------------------------------------------
+  -- Main process: capture + output control
   ------------------------------------------------------------------
   process(clk)
   begin
@@ -176,15 +203,28 @@ begin
         buffer_valid <= '0';
 
         -- output state
-        out_state    <= OUT_IDLE;
-        rd_index     <= 0;
-        out_data     <= (others => '0');
-        out_last_bit <= '0';
-        out_valid    <= '0';
+        out_state      <= OUT_IDLE;
+        rd_index       <= 0;
+        rd_index_next  <= 0;
+        out_valid_pipe <= '0';
+        out_last_pipe  <= '0';
+
+        -- RAM signals
+        ram_a_en     <= '0';
+        ram_a_we     <= '0';
+        ram_a_addr   <= (others => '0');
+        ram_a_din    <= (others => '0');
+        ram_b_en     <= '0';
+        ram_b_addr   <= (others => '0');
 
       else
+        -- Default: disable RAM operations unless explicitly enabled
+        ram_a_en <= '0';
+        ram_a_we <= '0';
+        ram_b_en <= '0';
+
         --------------------------------------------------------------
-        -- INPUT: packet capture into pkt_buf
+        -- INPUT: packet capture into RAM (port A)
         --------------------------------------------------------------
         if s_axis_tvalid = '1' then
 
@@ -199,7 +239,10 @@ begin
               cap_len      <= 0;
             else
               -- normal SOP: store FIRST word at index 0
-              pkt_buf(0) <= s_axis_tlast & s_axis_tdata;
+              ram_a_en   <= '1';
+              ram_a_we   <= '1';
+              ram_a_addr <= to_unsigned(0, ADDR_WIDTH);
+              ram_a_din  <= s_axis_tlast & s_axis_tdata;
               cap_len    <= 1;
 
               if s_axis_tlast = '1' then
@@ -222,7 +265,10 @@ begin
             else
               -- Normal capture path (subsequent beats)
               if cap_len < DEPTH_WORDS then
-                pkt_buf(cap_len) <= s_axis_tlast & s_axis_tdata;
+                ram_a_en   <= '1';
+                ram_a_we   <= '1';
+                ram_a_addr <= to_unsigned(cap_len, ADDR_WIDTH);
+                ram_a_din  <= s_axis_tlast & s_axis_tdata;
 
                 if s_axis_tlast = '1' then
                   -- packet finished successfully
@@ -246,45 +292,67 @@ begin
         end if;      -- s_axis_tvalid
 
         --------------------------------------------------------------
-        -- OUTPUT: simple FSM; data advances on each handshake
+        -- OUTPUT: FSM with proper timing for RAM latency
         --------------------------------------------------------------
         case out_state is
           ------------------------------------------------------------
           when OUT_IDLE =>
-            out_valid <= '0';
+            out_valid_pipe <= '0';
+            rd_index       <= 0;
 
             if (buffer_valid = '1') and (stored_len > 0) then
-              -- start streaming this stored packet
-              out_state    <= OUT_STREAM;
-              rd_index     <= 0;
-              out_data     <= pkt_buf(0)(7 downto 0);
-              out_last_bit <= pkt_buf(0)(8);
-              out_valid    <= '1';
+              -- Start streaming: issue read for first word
+              out_state  <= OUT_STREAM;
+              rd_index   <= 0;
+              ram_b_en   <= '1';
+              ram_b_addr <= to_unsigned(0, ADDR_WIDTH);
+              
+              -- Valid will be asserted next cycle when data arrives
+              out_valid_pipe <= '1';
+              
+              -- Prepare next address
+              if stored_len > 1 then
+                rd_index_next <= 1;
+              else
+                rd_index_next <= 0;
+              end if;
             end if;
 
           ------------------------------------------------------------
           when OUT_STREAM =>
-            -- remain valid while packet present
-            if (buffer_valid = '1') and (stored_len > 0) then
-              out_valid <= '1';
-            else
-              out_valid <= '0';
-            end if;
-
+            -- Data from ram_b_dout is valid this cycle (from previous cycle's read)
+            -- out_valid_pipe controls when data is valid on output
+            
             if handshake = '1' then
               if rd_index = stored_len - 1 then
-                -- last word just consumed
-                buffer_valid <= '0';
-                out_valid    <= '0';
-                out_state    <= OUT_IDLE;
-                rd_index     <= 0;
-                out_last_bit <= '0';
+                -- Last word consumed
+                buffer_valid   <= '0';
+                out_valid_pipe <= '0';
+                out_state      <= OUT_IDLE;
+                rd_index       <= 0;
+                rd_index_next  <= 0;
               else
-                -- advance to next word
-                rd_index     <= rd_index + 1;
-                out_data     <= pkt_buf(rd_index + 1)(7 downto 0);
-                out_last_bit <= pkt_buf(rd_index + 1)(8);
+                -- Move to next word: issue read for NEXT address
+                rd_index  <= rd_index + 1;
+                ram_b_en  <= '1';
+                ram_b_addr <= to_unsigned(rd_index + 1, ADDR_WIDTH);
+                
+                -- Valid remains high (data will arrive next cycle)
+                out_valid_pipe <= '1';
+                
+                -- Prepare following address
+                if rd_index + 2 < stored_len then
+                  rd_index_next <= rd_index + 2;
+                else
+                  rd_index_next <= rd_index + 1;
+                end if;
               end if;
+            elsif out_valid_pipe = '1' and m_axis_tready = '0' then
+              -- Backpressure: keep current data valid, don't issue new reads
+              out_valid_pipe <= '1';
+            else
+              -- No handshake yet, wait
+              out_valid_pipe <= '1';
             end if;
         end case;
 
