@@ -1,117 +1,120 @@
 v 4
-file . "tb\ethernet_switch_tb.vhd" "766865be9c0f8a3218af4550e4ba77b6a275425c" "20251105092051.811":
-  entity ethernet_switch_tb at 1( 0) + 0 on 6143;
-  architecture sim of ethernet_switch_tb at 8( 138) + 0 on 6144;
-file . "tb/eth_e2e_tb.vhd" "d1a3ddec7e9fc223c0296cdf82caa68f4862b18c" "20251017052035.296":
-  entity eth_e2e_tb at 1( 0) + 0 on 5283;
-  architecture behav of eth_e2e_tb at 8( 111) + 0 on 5284;
-file . "eth_rx.vhd" "3ffb9dbad2655e22f07add1162600881c6ebdc82" "20251105092051.195":
-  entity eth_rx at 1( 0) + 0 on 6121;
-  architecture arch of eth_rx at 17( 389) + 0 on 6122;
-file . "rx_fsm_adr.vhd" "428a9ec4569cd782156f3f45d0ad2149cc09a19d" "20251105092051.124":
-  entity rx_fsm_adr at 1( 0) + 0 on 6119;
-  architecture behavioral of rx_fsm_adr at 37( 1469) + 0 on 6120;
-file . "rx_fcs_crc.vhd" "9f18886bb63e61d8e56fce66f61cf3961407b607" "20251105092050.768":
-  entity rx_fcs_crc at 7( 323) + 0 on 6107;
-  architecture behavioral of rx_fcs_crc at 20( 746) + 0 on 6108;
-file . "rx_fsm_pr.vhd" "cfe530b11677514b14d0ec4096d4956c62db124f" "20251105092050.958":
-  entity rx_fsm_pr at 1( 0) + 0 on 6113;
-  architecture behavioral of rx_fsm_pr at 24( 641) + 0 on 6114;
-file . "rx_decoder.vhd" "7c73888d441967f8bc36bd9c97aea4d4c4a6b196" "20251105092050.863":
-  entity rx_decoder at 1( 0) + 0 on 6109;
-  architecture behavioral of rx_decoder at 16( 364) + 0 on 6110;
-file . "ram_tx_driver.vhd" "de70b8af265baa7b0a3b5cec77221c316764e5ae" "20251009100544.977":
-  entity ram_tx_driver at 37( 1513) + 0 on 3273;
-  architecture syn of ram_tx_driver at 55( 1883) + 0 on 3274;
-file . "pll_main.vhd" "98f834281470b7631f5a7630b187bfdc040bcf9d" "20251105092051.244":
-  entity pll_main at 37( 1495) + 0 on 6123;
-  architecture syn of pll_main at 54( 1762) + 0 on 6124;
-file . "eth_port.vhd" "dd67a2ca77c3d389c5feae75caab19de582704a7" "20251105092051.705":
-  entity eth_port at 1( 0) + 0 on 6139;
-  architecture arch of eth_port at 30( 803) + 0 on 6140;
-file . "ringbuffer_interconnect_tb.vhd" "ce5bfe83973d5a263e575cfadefe57f633e20e4d" "20251004070856.753":
-  entity ringbuffer_interconnect_tb at 1( 0) + 0 on 2113;
-  architecture sim of ringbuffer_interconnect_tb at 9( 172) + 0 on 2114;
-file . "interconnect_tb.vhd" "7c250243ab7ccc0065f0917d44bf7912aa20e35c" "20250930023832.542":
-  entity interconnect_tb at 1( 0) + 0 on 2045;
-  architecture sim of interconnect_tb at 8( 118) + 0 on 2046;
-file . "interconnect.vhd" "e7963894f8f9496b4bb4485e50e2908cdc5c77f1" "20250930023832.538":
-  entity interconnect at 1( 0) + 0 on 2043;
-  architecture arch of interconnect at 63( 2034) + 0 on 2044;
-file . "eth_tx.vhd" "2266a3357b59582e91c670f24e0cdd5dd6916820" "20251105092051.664":
-  entity eth_tx at 1( 0) + 0 on 6137;
-  architecture arch of eth_tx at 21( 468) + 0 on 6138;
-file . "tx_fsm_axi_tb.vhd" "ee2ade213b5f4a7637ea7cbdd5428cb326ded63f" "20250914095540.794":
-  entity tx_fsm_axi_tb at 1( 0) + 0 on 889;
-  architecture sim of tx_fsm_axi_tb at 8( 114) + 0 on 890;
-file . "tx_fsm_pt_tb.vhd" "f3f02472992a1ae3cd1021255c595a21ddc5c2d9" "20250925160350.568":
-  entity tx_fsm_pt_tb at 1( 0) + 0 on 1961;
-  architecture sim of tx_fsm_pt_tb at 8( 119) + 0 on 1962;
-file . "sr_piso_tb.vhd" "ebf21b6adedf3ce619cf7b96a63ec1d2a4350052" "20250915235157.156":
-  entity sr_piso_tb at 11( 231) + 0 on 1431;
-  architecture sim of sr_piso_tb at 18( 335) + 0 on 1432;
-file . "sr_piso.vhd" "998a4a5f3edc529e7971f0b112eeffeca82d80f7" "20251105092051.482":
-  entity sr_piso at 1( 0) + 0 on 6131;
-  architecture rtl of sr_piso at 32( 1360) + 0 on 6132;
-file . "tx_phy.vhd" "45c517171f3649f976dc463d7dbf15995b293b27" "20251105092051.421":
-  entity tx_phy at 1( 0) + 0 on 6129;
-  architecture arch of tx_phy at 23( 962) + 0 on 6130;
-file . "tx_phy_tb.vhd" "c31dce66658c95526a1a6838b1d0e2789860cfa3" "20250925080207.010":
-  entity tx_phy_tb at 1( 0) + 0 on 1603;
-  architecture sim of tx_phy_tb at 8( 120) + 0 on 1604;
-file . "tx_fsm_pt.vhd" "9582a269e9328e5f358737bf23ff5eb70556b0ea" "20251105092051.545":
-  entity tx_fsm_pt at 1( 0) + 0 on 6133;
-  architecture arch of tx_fsm_pt at 22( 915) + 0 on 6134;
-file . "tx_fsm_axi.vhd" "e2f083784a625b433d57dee4a214979cf76528d8" "20251105092051.614":
-  entity tx_fsm_axi at 1( 0) + 0 on 6135;
-  architecture arch of tx_fsm_axi at 35( 1329) + 0 on 6136;
-file . "ram_eth_packet.vhd" "fed679e48a48ccb930a2e385484fce89e5a45c03" "20251105092050.710":
-  entity ram_eth_packet at 37( 1514) + 0 on 6105;
-  architecture syn of ram_eth_packet at 56( 1947) + 0 on 6106;
-file . "eth_tx_tb.vhd" "cea94fffdd9d582b79ce8e2eab9cc25b6af296bf" "20250926110812.880":
-  entity eth_tx_tb at 1( 0) + 0 on 2025;
-  architecture sim of eth_tx_tb at 8( 110) + 0 on 2026;
-file . "reset_ctrl_tb.vhd" "e06d0c4caea003cadbf443b39f6356be58088fe5" "20250925055630.170":
-  entity reset_ctrl_tb at 1( 0) + 0 on 1491;
-  architecture sim of reset_ctrl_tb at 8( 114) + 0 on 1492;
-file . "axi4s_interconnect.vhd" "30305df94b519d35252c3aeb6f9ca1f31c1df296" "20251105092050.544":
-  entity axi4s_interconnect at 1( 0) + 0 on 6101;
-  architecture arch of axi4s_interconnect at 68( 2283) + 0 on 6102;
-file . "axi4s_interconnect_tb.vhd" "b5df56a3fd700a40a2229223c4b1d1e9a49d4600" "20251003125100.647":
-  entity axi4s_interconnect_tb at 1( 0) + 0 on 2081;
-  architecture sim of axi4s_interconnect_tb at 9( 162) + 0 on 2082;
+file . "nlp_receiver.vhd" "c3502b4ec7b8d405593a22d450b04c4bc05be6c3" "20251106102557.148":
+  entity nlp_receiver at 1( 0) + 0 on 6145;
+  architecture behavioral of nlp_receiver at 14( 277) + 0 on 6146;
+file . "tb\reset_ctrl_stub.vhd" "f233ae4520cfc59426340c43adebc3d091358372" "20251105092050.518":
+  entity reset_ctrl at 1( 0) + 0 on 6099;
+  architecture rtl of reset_ctrl at 13( 273) + 0 on 6100;
+file . "tb\altclkctrl_stub.vhd" "460f468bbe01a542096230b8345749f872957be5" "20251105092050.491":
+  entity altclkctrl at 1( 0) + 0 on 6097;
+  architecture rtl of altclkctrl at 12( 194) + 0 on 6098;
+file . "rx_2ff.vhd" "ca3421b25854c575b5182850866c9247dbf409ad" "20251105092050.679":
+  entity rx_2ff at 1( 0) + 0 on 6103;
+  architecture behavioral of rx_2ff at 14( 274) + 0 on 6104;
+file . "va/eth_tx_tb_driver.vhd" "6d40721d330f351720a4f914d52522b349dce78d" "20251017052035.247":
+  entity eth_tx_tb_driver at 1( 0) + 0 on 5281;
+  architecture rtl of eth_tx_tb_driver at 18( 420) + 0 on 5282;
+file . "rx_fcs_verify.vhd" "451ab85b37b905a6b16b552f1b31667c7bd70337" "20251105092051.079":
+  entity rx_fcs_verify at 7( 215) + 0 on 6117;
+  architecture rtl of rx_fcs_verify at 21( 527) + 0 on 6118;
+file . "rx_fsm_axi.vhd" "2cfda4f69b7803bc5196d358f3aec7527eae1730" "20251105092051.033":
+  entity rx_fsm_axi at 1( 0) + 0 on 6115;
+  architecture behavioral of rx_fsm_axi at 27( 601) + 0 on 6116;
+file . "sr_sipo.vhd" "c08f29b467a558fd24c7eee1db68e73e5d258716" "20251105092050.913":
+  entity sr_sipo at 1( 0) + 0 on 6111;
+  architecture behavioral of sr_sipo at 17( 373) + 0 on 6112;
+file . "eth_tx_ram_driver.vhd" "5b37cadbba488fb7feebcea4e202fbfccdf5a718" "20251009100545.508":
+  entity eth_tx_ram_driver at 1( 0) + 0 on 3285;
+  architecture rtl of eth_tx_ram_driver at 19( 438) + 0 on 3286;
+file . "eth_tx_icmp_driver.vhd" "73edeaee5e8ccb2aa855e937f17704a92dff4e85" "20251008095746.881":
+  entity eth_tx_icmp_driver at 1( 0) + 0 on 3033;
+  architecture rtl of eth_tx_icmp_driver at 21( 511) + 0 on 3034;
+file . "ethernet_switch.vhd" "bda50661500f9f55ee07e5e883c343ed1ba9be96" "20251105092051.738":
+  entity ethernet_switch at 1( 0) + 0 on 6141;
+  architecture arch of ethernet_switch at 55( 2138) + 0 on 6142;
 file . "ringbuffer.vhd" "94522fd183a61db2e184242b86edeb5368a46503" "20251105092051.305":
   entity ram_2048x9_cascade at 6( 258) + 0 on 6125;
   architecture rtl of ram_2048x9_cascade at 30( 851) + 0 on 6126;
   entity ringbuffer at 80( 2253) + 0 on 6127;
   architecture rtl of ringbuffer at 107( 3005) + 0 on 6128;
-file . "ethernet_switch.vhd" "bda50661500f9f55ee07e5e883c343ed1ba9be96" "20251105092051.738":
-  entity ethernet_switch at 1( 0) + 0 on 6141;
-  architecture arch of ethernet_switch at 55( 2138) + 0 on 6142;
-file . "eth_tx_icmp_driver.vhd" "73edeaee5e8ccb2aa855e937f17704a92dff4e85" "20251008095746.881":
-  entity eth_tx_icmp_driver at 1( 0) + 0 on 3033;
-  architecture rtl of eth_tx_icmp_driver at 21( 511) + 0 on 3034;
-file . "eth_tx_ram_driver.vhd" "5b37cadbba488fb7feebcea4e202fbfccdf5a718" "20251009100545.508":
-  entity eth_tx_ram_driver at 1( 0) + 0 on 3285;
-  architecture rtl of eth_tx_ram_driver at 19( 438) + 0 on 3286;
-file . "sr_sipo.vhd" "c08f29b467a558fd24c7eee1db68e73e5d258716" "20251105092050.913":
-  entity sr_sipo at 1( 0) + 0 on 6111;
-  architecture behavioral of sr_sipo at 17( 373) + 0 on 6112;
-file . "rx_fsm_axi.vhd" "2cfda4f69b7803bc5196d358f3aec7527eae1730" "20251105092051.033":
-  entity rx_fsm_axi at 1( 0) + 0 on 6115;
-  architecture behavioral of rx_fsm_axi at 27( 601) + 0 on 6116;
-file . "rx_fcs_verify.vhd" "451ab85b37b905a6b16b552f1b31667c7bd70337" "20251105092051.079":
-  entity rx_fcs_verify at 7( 215) + 0 on 6117;
-  architecture rtl of rx_fcs_verify at 21( 527) + 0 on 6118;
-file . "va/eth_tx_tb_driver.vhd" "6d40721d330f351720a4f914d52522b349dce78d" "20251017052035.247":
-  entity eth_tx_tb_driver at 1( 0) + 0 on 5281;
-  architecture rtl of eth_tx_tb_driver at 18( 420) + 0 on 5282;
-file . "rx_2ff.vhd" "ca3421b25854c575b5182850866c9247dbf409ad" "20251105092050.679":
-  entity rx_2ff at 1( 0) + 0 on 6103;
-  architecture behavioral of rx_2ff at 14( 274) + 0 on 6104;
-file . "tb\altclkctrl_stub.vhd" "460f468bbe01a542096230b8345749f872957be5" "20251105092050.491":
-  entity altclkctrl at 1( 0) + 0 on 6097;
-  architecture rtl of altclkctrl at 12( 194) + 0 on 6098;
-file . "tb\reset_ctrl_stub.vhd" "f233ae4520cfc59426340c43adebc3d091358372" "20251105092050.518":
-  entity reset_ctrl at 1( 0) + 0 on 6099;
-  architecture rtl of reset_ctrl at 13( 273) + 0 on 6100;
+file . "axi4s_interconnect_tb.vhd" "b5df56a3fd700a40a2229223c4b1d1e9a49d4600" "20251003125100.647":
+  entity axi4s_interconnect_tb at 1( 0) + 0 on 2081;
+  architecture sim of axi4s_interconnect_tb at 9( 162) + 0 on 2082;
+file . "axi4s_interconnect.vhd" "30305df94b519d35252c3aeb6f9ca1f31c1df296" "20251105092050.544":
+  entity axi4s_interconnect at 1( 0) + 0 on 6101;
+  architecture arch of axi4s_interconnect at 68( 2283) + 0 on 6102;
+file . "reset_ctrl_tb.vhd" "e06d0c4caea003cadbf443b39f6356be58088fe5" "20250925055630.170":
+  entity reset_ctrl_tb at 1( 0) + 0 on 1491;
+  architecture sim of reset_ctrl_tb at 8( 114) + 0 on 1492;
+file . "eth_tx_tb.vhd" "cea94fffdd9d582b79ce8e2eab9cc25b6af296bf" "20250926110812.880":
+  entity eth_tx_tb at 1( 0) + 0 on 2025;
+  architecture sim of eth_tx_tb at 8( 110) + 0 on 2026;
+file . "ram_eth_packet.vhd" "fed679e48a48ccb930a2e385484fce89e5a45c03" "20251105092050.710":
+  entity ram_eth_packet at 37( 1514) + 0 on 6105;
+  architecture syn of ram_eth_packet at 56( 1947) + 0 on 6106;
+file . "tx_fsm_axi.vhd" "e2f083784a625b433d57dee4a214979cf76528d8" "20251105092051.614":
+  entity tx_fsm_axi at 1( 0) + 0 on 6135;
+  architecture arch of tx_fsm_axi at 35( 1329) + 0 on 6136;
+file . "tx_fsm_pt.vhd" "9582a269e9328e5f358737bf23ff5eb70556b0ea" "20251105092051.545":
+  entity tx_fsm_pt at 1( 0) + 0 on 6133;
+  architecture arch of tx_fsm_pt at 22( 915) + 0 on 6134;
+file . "tx_phy_tb.vhd" "c31dce66658c95526a1a6838b1d0e2789860cfa3" "20250925080207.010":
+  entity tx_phy_tb at 1( 0) + 0 on 1603;
+  architecture sim of tx_phy_tb at 8( 120) + 0 on 1604;
+file . "tx_phy.vhd" "45c517171f3649f976dc463d7dbf15995b293b27" "20251105092051.421":
+  entity tx_phy at 1( 0) + 0 on 6129;
+  architecture arch of tx_phy at 23( 962) + 0 on 6130;
+file . "sr_piso.vhd" "998a4a5f3edc529e7971f0b112eeffeca82d80f7" "20251105092051.482":
+  entity sr_piso at 1( 0) + 0 on 6131;
+  architecture rtl of sr_piso at 32( 1360) + 0 on 6132;
+file . "sr_piso_tb.vhd" "ebf21b6adedf3ce619cf7b96a63ec1d2a4350052" "20250915235157.156":
+  entity sr_piso_tb at 11( 231) + 0 on 1431;
+  architecture sim of sr_piso_tb at 18( 335) + 0 on 1432;
+file . "tx_fsm_pt_tb.vhd" "f3f02472992a1ae3cd1021255c595a21ddc5c2d9" "20250925160350.568":
+  entity tx_fsm_pt_tb at 1( 0) + 0 on 1961;
+  architecture sim of tx_fsm_pt_tb at 8( 119) + 0 on 1962;
+file . "tx_fsm_axi_tb.vhd" "ee2ade213b5f4a7637ea7cbdd5428cb326ded63f" "20250914095540.794":
+  entity tx_fsm_axi_tb at 1( 0) + 0 on 889;
+  architecture sim of tx_fsm_axi_tb at 8( 114) + 0 on 890;
+file . "eth_tx.vhd" "2266a3357b59582e91c670f24e0cdd5dd6916820" "20251105092051.664":
+  entity eth_tx at 1( 0) + 0 on 6137;
+  architecture arch of eth_tx at 21( 468) + 0 on 6138;
+file . "interconnect.vhd" "e7963894f8f9496b4bb4485e50e2908cdc5c77f1" "20250930023832.538":
+  entity interconnect at 1( 0) + 0 on 2043;
+  architecture arch of interconnect at 63( 2034) + 0 on 2044;
+file . "interconnect_tb.vhd" "7c250243ab7ccc0065f0917d44bf7912aa20e35c" "20250930023832.542":
+  entity interconnect_tb at 1( 0) + 0 on 2045;
+  architecture sim of interconnect_tb at 8( 118) + 0 on 2046;
+file . "ringbuffer_interconnect_tb.vhd" "ce5bfe83973d5a263e575cfadefe57f633e20e4d" "20251004070856.753":
+  entity ringbuffer_interconnect_tb at 1( 0) + 0 on 2113;
+  architecture sim of ringbuffer_interconnect_tb at 9( 172) + 0 on 2114;
+file . "eth_port.vhd" "dd67a2ca77c3d389c5feae75caab19de582704a7" "20251105092051.705":
+  entity eth_port at 1( 0) + 0 on 6139;
+  architecture arch of eth_port at 30( 803) + 0 on 6140;
+file . "pll_main.vhd" "98f834281470b7631f5a7630b187bfdc040bcf9d" "20251105092051.244":
+  entity pll_main at 37( 1495) + 0 on 6123;
+  architecture syn of pll_main at 54( 1762) + 0 on 6124;
+file . "ram_tx_driver.vhd" "de70b8af265baa7b0a3b5cec77221c316764e5ae" "20251009100544.977":
+  entity ram_tx_driver at 37( 1513) + 0 on 3273;
+  architecture syn of ram_tx_driver at 55( 1883) + 0 on 3274;
+file . "rx_decoder.vhd" "7c73888d441967f8bc36bd9c97aea4d4c4a6b196" "20251105092050.863":
+  entity rx_decoder at 1( 0) + 0 on 6109;
+  architecture behavioral of rx_decoder at 16( 364) + 0 on 6110;
+file . "rx_fsm_pr.vhd" "cfe530b11677514b14d0ec4096d4956c62db124f" "20251105092050.958":
+  entity rx_fsm_pr at 1( 0) + 0 on 6113;
+  architecture behavioral of rx_fsm_pr at 24( 641) + 0 on 6114;
+file . "rx_fcs_crc.vhd" "9f18886bb63e61d8e56fce66f61cf3961407b607" "20251105092050.768":
+  entity rx_fcs_crc at 7( 323) + 0 on 6107;
+  architecture behavioral of rx_fcs_crc at 20( 746) + 0 on 6108;
+file . "rx_fsm_adr.vhd" "428a9ec4569cd782156f3f45d0ad2149cc09a19d" "20251105092051.124":
+  entity rx_fsm_adr at 1( 0) + 0 on 6119;
+  architecture behavioral of rx_fsm_adr at 37( 1469) + 0 on 6120;
+file . "eth_rx.vhd" "3ffb9dbad2655e22f07add1162600881c6ebdc82" "20251105092051.195":
+  entity eth_rx at 1( 0) + 0 on 6121;
+  architecture arch of eth_rx at 17( 389) + 0 on 6122;
+file . "tb/eth_e2e_tb.vhd" "d1a3ddec7e9fc223c0296cdf82caa68f4862b18c" "20251017052035.296":
+  entity eth_e2e_tb at 1( 0) + 0 on 5283;
+  architecture behav of eth_e2e_tb at 8( 111) + 0 on 5284;
+file . "tb\ethernet_switch_tb.vhd" "766865be9c0f8a3218af4550e4ba77b6a275425c" "20251105092051.811":
+  entity ethernet_switch_tb at 1( 0) + 0 on 6143;
+  architecture sim of ethernet_switch_tb at 8( 138) + 0 on 6144;
