@@ -135,13 +135,11 @@ begin
 
       --! packet handsahke between pr and AXI fsm
       if (current_state = RX_END or next_state = RX_END) and packet_ready = '1' then
-        --packet_valid <= '1';
         packet_hand <= '1';
       end if;
 
       --! reset signals for next packet
       if current_state = RX_END and next_state = RX_PREAMBLE then
-        --packet_valid <= '0';
         packet_hand <= '0';
         cnt_size    <= to_unsigned(0, cnt_size'length);
       end if;
