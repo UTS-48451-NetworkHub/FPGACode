@@ -86,7 +86,7 @@ begin
       end if;
 
       --! detecing SFD
-      if current_state = RX_SFD then    --funny -> fix to current_state?
+      if current_state = RX_SFD then 
         if data_in = SFD then
           SFD_detect <= '1';
         end if;

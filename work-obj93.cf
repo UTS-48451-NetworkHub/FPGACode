@@ -1,7 +1,7 @@
 v 4
-file . "nlp_receiver.vhd" "c3502b4ec7b8d405593a22d450b04c4bc05be6c3" "20251106102557.148":
-  entity nlp_receiver at 1( 0) + 0 on 6145;
-  architecture behavioral of nlp_receiver at 14( 277) + 0 on 6146;
+file . "tb_NLP_receiver.vhd" "d47fb9038ff535c3e5c106d94ca9abb878d55228" "20251108123248.192":
+  entity tb_nlp_receiver at 1( 0) + 0 on 6165;
+  architecture sim of tb_nlp_receiver at 8( 116) + 0 on 6166;
 file . "tb\reset_ctrl_stub.vhd" "f233ae4520cfc59426340c43adebc3d091358372" "20251105092050.518":
   entity reset_ctrl at 1( 0) + 0 on 6099;
   architecture rtl of reset_ctrl at 13( 273) + 0 on 6100;
@@ -118,3 +118,6 @@ file . "tb/eth_e2e_tb.vhd" "d1a3ddec7e9fc223c0296cdf82caa68f4862b18c" "202510170
 file . "tb\ethernet_switch_tb.vhd" "766865be9c0f8a3218af4550e4ba77b6a275425c" "20251105092051.811":
   entity ethernet_switch_tb at 1( 0) + 0 on 6143;
   architecture sim of ethernet_switch_tb at 8( 138) + 0 on 6144;
+file . "nlp_receiver.vhd" "b4f3965c1e0f8e00096d6d0499daf37721022c9d" "20251108123244.434":
+  entity nlp_receiver at 1( 0) + 0 on 6163;
+  architecture behavioral of nlp_receiver at 14( 282) + 0 on 6164;
