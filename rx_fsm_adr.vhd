@@ -17,32 +17,36 @@ use ieee.numeric_std.all;
 -- ============================================================================
 entity rx_fsm_adr is
   port (
-    clock : in std_logic;
-    reset : in std_logic;
+    clock : in std_logic; --! 100MHz clock
+    reset : in std_logic; --! Active low reset
 
-    valid     : in std_logic; -- byte strobe
-    tlast     : in std_logic; -- Transmit Final Flag
-    fcs_valid : in std_logic; -- Valid FCS Check
-    size      : in std_logic_vector(15 downto 0); -- payload length (bytes)
+    valid     : in std_logic; --! byte strobe
+    tlast     : in std_logic; --! Transmit Final Flag
+    fcs_valid : in std_logic; --! Valid FCS Check
+    size      : in std_logic_vector(15 downto 0); --! payload length (bytes)
 
-    axi_en    : out std_logic; -- axi4 bus enable flag
-    crc_en    : out std_logic; -- CRC enable generation variable
-    begin_fcs : out std_logic; -- Flag to begin generation of the comparison FCS CRC
+    axi_en    : out std_logic; --! axi4 bus enable flag
+    crc_en    : out std_logic; --! CRC enable generation variable
+    begin_fcs : out std_logic; --! Flag to begin generation of the comparison FCS CRC
     fcs_fail  : out std_logic; --! fcs fail
 
-    addr : out std_logic_vector(10 downto 0) -- address output
+    addr : out std_logic_vector(10 downto 0) --! address output
   );
 end entity;
 
 architecture Behavioral of rx_fsm_adr is
-  type state_t is (IDLE, CRC, AXI);
+  type state_t is (
+    IDLE, --! IDLE and awaiting packet
+    CRC, --! Reading addresses for CRC
+    AXI  --! reading addresses for AXI Transmitter
+    );
   signal state, next_state : state_t := IDLE;
 
-  signal addr_reg : unsigned(10 downto 0) := to_unsigned(10, addr'length);
-  signal size_lat : unsigned(15 downto 0) := (others => '0');
+  signal addr_reg : unsigned(10 downto 0) := to_unsigned(10, addr'length); --! address register
+  signal size_lat : unsigned(15 downto 0) := (others => '0'); --! packet size
   signal cnt      : unsigned(1 downto 0)  := "00"; --! counter for CRC failure detection
   signal val_reg  : std_logic             := '0'; --! register to hold valid
-
+     --! Starting base for address
   constant ADDR_BASE : unsigned(10 downto 0) := to_unsigned(10, 11);
 begin
   --addr <= std_logic_vector(addr_reg);
@@ -50,19 +54,19 @@ begin
   ---------------------------------------------------------------------------
   -- Clock Based Code
   ---------------------------------------------------------------------------
-  process (clock, reset)
+  sequential : process (clock, reset)
   begin
-      if reset = '0' then
-        state     <= IDLE;
-        addr_reg  <= ADDR_BASE;
-        size_lat  <= (others => '0');
-        begin_fcs <= '0';
-        cnt       <= "00";
-        fcs_fail  <= '0';
+    if reset = '0' then
+      state     <= IDLE;
+      addr_reg  <= ADDR_BASE;
+      size_lat  <= (others => '0');
+      begin_fcs <= '0';
+      cnt       <= "00";
+      fcs_fail  <= '0';
 
     elsif rising_edge(clock) then
-        state <= next_state;
-        
+      state <= next_state;
+
       if state = IDLE then
         begin_fcs <= '0';
         fcs_fail  <= '0';
@@ -72,9 +76,10 @@ begin
       end if;
 
       if state = IDLE and next_state = CRC then
-        addr_reg <= to_unsigned(11, addr_reg'length);
+        addr_reg <= to_unsigned(11, addr_reg'length); --! move to next address
       end if;
 
+      --! read addresses for CRC and count for fcs fail/pass
       if state = CRC then
         if addr_reg < (ADDR_BASE + resize(size_lat, addr_reg'length) - 6) and cnt = "00" then --  -2 cycles -4 for crc bytes
           addr_reg <= addr_reg + 1;
@@ -93,9 +98,10 @@ begin
         addr_reg <= to_unsigned(1, addr_reg'length); --! address second byte
       end if;
 
+      --! cycle addresses for AXI transmitter
       if state = AXI and tlast = '0' then
         if addr_reg = to_unsigned(1, addr_reg'length) then
-          addr_reg <= ADDR_BASE;
+          addr_reg <= ADDR_BASE; 
         else
           addr_reg <= addr_reg + 1;
         end if;
@@ -118,9 +124,9 @@ begin
   end process;
 
   ---------------------------------------------------------------------------
-  -- State Machine :D 
+  -- State Machine
   ---------------------------------------------------------------------------
-  process (state, valid, tlast, fcs_valid, cnt, val_reg)
+  FSM : process (state, valid, tlast, fcs_valid, cnt, val_reg)
   begin
     next_state <= state;
 

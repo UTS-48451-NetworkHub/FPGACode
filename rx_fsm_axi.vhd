@@ -5,21 +5,21 @@ use ieee.numeric_std.all;
 entity rx_fsm_AXI is
   port (
     --mandatory
-    clk_in : in std_logic;
-    resetn : in std_logic;
+    clk_in : in std_logic; --!100MHz clock
+    resetn : in std_logic; --! active low reset
 
     --control
-    AXI_en       : in std_logic;
-    tready       : in std_logic;
-    packet_valid : in std_logic;
-    size_in      : in std_logic_vector(15 downto 0);
-    fcs_fail     : in std_logic;
-    tvalid       : out std_logic := '0';
-    tlast        : out std_logic := '0';
-    packet_ready : out std_logic := '0';
+    AXI_en       : in std_logic; --! enable AXI transmitter
+    tready       : in std_logic; --! interconnect ready to receive packet
+    packet_valid : in std_logic; --! packet is valid and can be read
+    size_in      : in std_logic_vector(15 downto 0); --! size of packet
+    fcs_fail     : in std_logic; --! fcs fail
+    tvalid       : out std_logic := '0'; --!transmitting data is valid
+    tlast        : out std_logic := '0'; --! last packet being transmitted
+    packet_ready : out std_logic := '0'; --! packet is ready to be received by AXI transmitter
 
     --data
-    addr_in : in std_logic_vector(10 downto 0)
+    addr_in : in std_logic_vector(10 downto 0) --! Address read by Address reader
   );
 
 end rx_fsm_AXI;
@@ -38,20 +38,23 @@ architecture Behavioral of rx_fsm_axi is
 
   signal current_state, next_state : AXI_state;
 
-  signal size_buf : std_logic_vector(10 downto 0) := (others => '0');
+  signal size_buf : std_logic_vector(10 downto 0) := (others => '0'); --! buffer to hold packet size
 
-  signal counter_en : std_logic := '0';
-  signal counter : unsigned (12 downto 0) := (others => '0');
+  signal counter_en : std_logic := '0'; --! timeout counter enable
+  --! counter for timeout
+  signal counter : unsigned (12 downto 0) := (others => '0');  
+  
 
 begin
 
-  process (clk_in, resetn)
+  sequential : process (clk_in, resetn)
   begin
     if resetn = '0' then
       current_state <= AXI_IDLE;
       size_buf <= (others => '0');
     elsif rising_edge(clk_in) then
-      --! Count
+
+      --! timeout logic for fcs fail
       if counter_en = '1' then
         if (counter = 8191) then
           counter <= (others => '0');
@@ -69,7 +72,7 @@ begin
       end if;
 
       if current_state = AXI_DATA and next_state = AXI_WAIT then
-        size_buf <= (others => '0');
+        size_buf <= (others => '0'); --! reset size
       end if;
 
       if current_state /= AXI_IDLE then
@@ -123,14 +126,14 @@ begin
 
   with current_state select
     packet_ready <=
-    '1' when AXI_IDLE,
+    '1' when AXI_IDLE, --! ready to receive when transmission complete
     '0' when others;
 
   with current_state select
-    tlast <=
-    '1' when AXI_LAST,
+    tlast <= 
+    '1' when AXI_LAST, --! when last packet tlast set high
     '0' when others;
 
-  tvalid <= AXI_en;
+  tvalid <= AXI_en; --! tvalid set directly from active AXI transmission
 
 end Behavioral;
