@@ -10,7 +10,8 @@ entity eth_rx is
     tready        : in std_logic;
     tvalid        : out std_logic;
     tlast         : out std_logic;
-    tdata         : out std_logic_vector(7 downto 0)
+    tdata         : out std_logic_vector(7 downto 0);
+    link_active   : out std_logic
   );
 end eth_rx;
 
@@ -47,28 +48,37 @@ begin
       manchester_out => manchestersync
     );
 
-    decoder : entity work.rx_decoder(Behavioral)
-      port map
-      (
-        clk_in        => clk_in,
-        manchester_in => manchestersync,
-        resetn        => resetn,
-        data_out      => data_bit,
-        RX_timeout    => RX_timeout,
-        bit_valid     => bit_valid
-      );
-
-  sipo : entity work.sr_sipo(Behavioral)
+  decoder : entity work.rx_decoder(Behavioral)
     port map
     (
-      clk_in     => clk_in,
-      resetn     => resetn,
-      bit_in     => data_bit,
-      bit_valid  => bit_valid,
-      RX_timeout => RX_timeout,
-      byte_out   => byte_out,
-      byte_valid => byte_valid
+      clk_in        => clk_in,
+      manchester_in => manchestersync,
+      resetn        => resetn,
+      data_out      => data_bit,
+      RX_timeout    => RX_timeout,
+      bit_valid     => bit_valid
     );
+
+  nlp : entity work.nlp_receiver(Behavioral)
+    port map
+    (
+      clk_in        => clk_in,
+      manchester_in => manchester_in,
+      resetn        => resetn,
+      link_active   => link_active
+    );
+
+    sipo : entity work.sr_sipo(Behavioral)
+      port map
+      (
+        clk_in     => clk_in,
+        resetn     => resetn,
+        bit_in     => data_bit,
+        bit_valid  => bit_valid,
+        RX_timeout => RX_timeout,
+        byte_out   => byte_out,
+        byte_valid => byte_valid
+      );
 
   pr_FSM : entity work.rx_fsm_pr(Behavioral)
     port map
