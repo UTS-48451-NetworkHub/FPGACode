@@ -4,19 +4,21 @@ use IEEE.numeric_std.all;
 
 entity rx_2ff is
   port (
-    clk_in         : in std_logic;
-    manchester_in  : in std_logic;
-    resetn         : in std_logic;
-    manchester_out : out std_logic := '0'
+    clk_in         : in std_logic; --! 100MHz clock
+    manchester_in  : in std_logic; --! Manchester input
+    resetn         : in std_logic; --! active low reset
+    manchester_out : out std_logic := '0' --! inverted Synchronised manchester output
   );
 end rx_2ff;
 
 architecture Behavioral of rx_2ff is
-  signal sync  : std_logic := '0';
-  signal sync2 : std_logic := '0';
+  --! hold inital signal
+  signal sync  : std_logic := '0'; 
+  --! synchronsied signal
+  signal sync2 : std_logic := '0'; 
 
 begin
-  process (clk_in, resetn)
+  FF2 : process (clk_in, resetn)
   begin
     if resetn = '0' then
       sync  <= '0';
@@ -27,6 +29,6 @@ begin
     end if;
   end process;
 
-  manchester_out <= (not sync2);
+  manchester_out <= (not sync2); --! invert synchronised signal
 
 end Behavioral;
