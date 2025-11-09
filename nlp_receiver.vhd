@@ -7,7 +7,7 @@ entity NLP_receiver is
     resetn        : in std_logic;        --! active low reset
     clk_in        : in std_logic;        --! 100MHz clock
     manchester_in : in std_logic;        --! manchester signal
-    link_active   : out std_logic := '0' --! port link is active
+    link_active   : out std_logic := '1' --! port link is active (active low)
   );
 end NLP_receiver;
 
@@ -34,9 +34,9 @@ begin
       end if;
       --! If 16ms passes without edge - link is inactive
       if NLP_count > gap_length + 1000 then
-        link_active <= '0';
-      else
         link_active <= '1';
+      else
+        link_active <= '0';
       end if;
     end if;
   end process;
