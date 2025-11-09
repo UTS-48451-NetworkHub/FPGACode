@@ -4,22 +4,22 @@ use IEEE.numeric_std.all;
 
 entity sr_sipo is
   port(
-    clk_in     : in  std_logic;
-    resetn     : in  std_logic;
-    bit_in     : in  std_logic;
-    bit_valid  : in  std_logic;
-    RX_timeout : in  std_logic;
-    byte_out   : out std_logic_vector(7 downto 0);
-    byte_valid : out std_logic
+    clk_in     : in  std_logic;                    --! 100MHz clock
+    resetn     : in  std_logic;                    --! active low reset signal
+    bit_in     : in  std_logic;                    --! Decoded bitstream
+    bit_valid  : in  std_logic;                    --! Bit is valid and can be taken
+    RX_timeout : in  std_logic;                    --! Packet receiving end
+    byte_out   : out std_logic_vector(7 downto 0); --! Byte output
+    byte_valid : out std_logic                     --! Byte is valid and can be taken by PR
   );
 end sr_sipo;
 
 architecture Behavioral of sr_sipo is
 
   type SIPO_STATE is (
-    SIPO_DATA,
-    SIPO_END,
-    SIPO_TIMEOUT
+    SIPO_DATA,   --! Data being put into register
+    SIPO_END,    --! Register full ready to output
+    SIPO_TIMEOUT --! Packet end
   );
 
   signal current_state, next_state : SIPO_STATE;
@@ -28,7 +28,7 @@ architecture Behavioral of sr_sipo is
   signal cnt      : unsigned(3 downto 0)         := (others => '0'); --! counter for number of valid bits in byte
 
 begin
-  process(clk_in, resetn)
+  sipo : process(clk_in, resetn)
   begin
     if resetn = '0' then
       byte_buf      <= (others => '0');

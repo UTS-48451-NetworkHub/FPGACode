@@ -5,19 +5,19 @@ use ieee.numeric_std.all;
 entity rx_fsm_pr is
   port(
     --mandatory
-    clk_in       : in  std_logic;
-    resetn       : in  std_logic;
+    clk_in       : in  std_logic; --! 100MHz clock
+    resetn       : in  std_logic; --! active low 
     --control
-    byte_valid   : in  std_logic;
-    packet_ready : in  std_logic;
-    RX_timeout   : in  std_logic;
-    wr_en        : out std_logic := '0';
-    packet_valid : out std_logic;
+    byte_valid   : in  std_logic; --! byte valid from sipo
+    packet_ready : in  std_logic; --! packet ready to receive
+    RX_timeout   : in  std_logic; --! end of packet
+    wr_en        : out std_logic := '0'; --! writing enabled for RAM
+    packet_valid : out std_logic; --! packet is valid and can be read from RAM
     --data
-    data_in      : in  std_logic_vector(7 downto 0);
-    addr_out     : out std_logic_vector(10 downto 0);
-    data_out     : out std_logic_vector(7 downto 0);
-    size_out     : out std_logic_vector(15 downto 0)
+    data_in      : in  std_logic_vector(7 downto 0); --! data input
+    addr_out     : out std_logic_vector(10 downto 0); --! address output
+    data_out     : out std_logic_vector(7 downto 0); --! data output
+    size_out     : out std_logic_vector(15 downto 0) --! Packet size
   );
 end rx_fsm_pr;
 
@@ -27,10 +27,10 @@ architecture Behavioral of rx_fsm_pr is
   type RX_state is (
     RX_PREAMBLE,                        --! detecting preamble of data stream
     RX_SFD,                             --! detecting SFD of data stream
-    RX_DATA,
+    RX_DATA,                            --! Packet data being read
     RX_SIZE,                            --! reading packet data
-    RX_END,                             --! detect end of data stream
-    RX_ERROR                            --! Error in the RX bitstream
+    RX_END                              --! detect end of data stream
+
   );
   signal current_state, next_state : RX_state;
 
@@ -177,8 +177,6 @@ begin
         if packet_hand = '1' then
           next_state <= RX_PREAMBLE;
         end if;
-
-      when RX_ERROR =>
 
     end case;
   end process;

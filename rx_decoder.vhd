@@ -19,7 +19,7 @@ architecture Behavioral of rx_decoder is
   signal timeout         : std_logic                    := '0'; --!timeout to reset logic
 
 begin
-  process (clk_in, resetn)
+  decode : process (clk_in, resetn)
     variable new_mid   : unsigned(3 downto 0) := (others => '0'); --!location of mid-bit transitions during clock recovery
     variable mid_count : unsigned(3 downto 0) := (others => '0'); --!counter to time mid-bit transitions following clock recovery
     variable mid_loc   : unsigned(3 downto 0) := (others => '0'); --!Location of the mid-bit transitions following clock recovery
@@ -79,7 +79,7 @@ begin
     end if;
   end process;
 
-  process (clk_in, resetn)
+  rxtimeout : process (clk_in, resetn)
     variable timeout_count : unsigned(6 downto 0) := (others => '0');
   begin
     if resetn = '0' then
