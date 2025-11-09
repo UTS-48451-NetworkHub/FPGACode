@@ -1,25 +1,27 @@
--- CRC polynomial coefficients: x^32 + x^26 + x^23 + x^22 + x^16 + x^12 + x^11 + x^10 + x^8 + x^7 + x^5 + x^4 + x^2 + x + 1
---                              0xEDB88320 (hex) 0x4C11DB7
--- CRC width:                   32 bits
--- CRC shift direction:         right (little endian)
--- Input word width:            8 bits
-
 library IEEE;
 use IEEE.std_logic_1164.all;
 
+--! @title CRC Generation through Polynomial
+--! CRC polynomial coefficients: x^32 + x^26 + x^23 + x^22 + x^16 + x^12 + x^11 + x^10 + x^8 + x^7 + x^5 + x^4 + x^2 + x + 1
+--! In hex = 0x4C11DB7. 
+--! CRC width: 32 bits.
+--! CRC shift direction: right (little endian).
+--! Input word width: 8 bits.
+
 entity rx_fcs_crc is
   port (
-    crc_en : in std_logic; -- Enable signal: update CRC when '1'
-    clk    : in std_logic; -- System clock
-    rst    : in std_logic; -- Active-high reset, initializes CRC
-    data   : in std_logic_vector(7 downto 0); -- 8-bit data input
-    crcOut : out std_logic_vector(31 downto 0) -- Current CRC value
+    clk : in std_logic; --! System clock
+    rst : in std_logic; --! Active low reset
+
+    crc_en : in std_logic; --! Generation enable signal: update CRC when '1'
+    data   : in std_logic_vector(7 downto 0); --! 8-bit data input
+    crcOut : out std_logic_vector(31 downto 0) --! Current CRC value
   );
 end entity rx_fcs_crc;
 
 architecture Behavioral of rx_fcs_crc is
-  signal crc_in_signal  : std_logic_vector(31 downto 0) := x"FFFFFFFF"; -- Current CRC state
-  signal crc_out_signal : std_logic_vector(31 downto 0); -- Next CRC state (combinational)
+  signal crc_in_signal  : std_logic_vector(31 downto 0) := x"FFFFFFFF"; --! Current CRC state (Updated on Clock Cycle)
+  signal crc_out_signal : std_logic_vector(31 downto 0); --! Next CRC state (combinational)
 begin
   -- Output assignment (registered CRC state is exposed)
   crcOut <= crc_in_signal xor x"FFFFFFFF";
@@ -59,7 +61,7 @@ begin
   crc_out_signal(30) <= crc_in_signal(0) xor crc_in_signal(1) xor crc_in_signal(6) xor crc_in_signal(7) xor data(0) xor data(1) xor data(6) xor data(7);
   crc_out_signal(31) <= crc_in_signal(1) xor crc_in_signal(7) xor data(1) xor data(7);
 
-  -- Sequential process for state update
+  --! Sequential process for state update
   process (clk, rst)
   begin
     if (rst = '0') then
