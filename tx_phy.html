@@ -1,0 +1,1377 @@
+
+<style>
+.hljs {
+  color: #383a42;
+  background: #fafafa;
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: #a0a1a7;
+  font-style: italic;
+}
+
+.hljs-doctag,
+.hljs-keyword,
+.hljs-formula {
+  color: #a626a4;
+}
+
+.hljs-section,
+.hljs-name,
+.hljs-selector-tag,
+.hljs-deletion,
+.hljs-subst {
+  color: #e45649;
+}
+
+.hljs-literal {
+  color: #0184bb;
+}
+
+.hljs-string,
+.hljs-regexp,
+.hljs-addition,
+.hljs-attribute,
+.hljs-meta .hljs-string {
+  color: #50a14f;
+}
+
+.hljs-attr,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-type,
+.hljs-selector-class,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-number {
+  color: #986801;
+}
+
+.hljs-symbol,
+.hljs-bullet,
+.hljs-link,
+.hljs-meta,
+.hljs-selector-id,
+.hljs-title {
+  color: #4078f2;
+}
+
+.hljs-built_in,
+.hljs-title.class_,
+.hljs-class .hljs-title {
+  color: #c18401;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+.hljs-link {
+  text-decoration: underline;
+}
+
+.markdown-body .octicon {
+  display: inline-block;
+  fill: currentColor;
+  vertical-align: text-bottom;
+}
+
+#descriptions{
+  margin-left:5.5%;
+  margin-right:3%;
+}
+
+.markdown-body .anchor {
+  float: left;
+  line-height: 1;
+  margin-left: -20px;
+  padding-right: 4px;
+}
+
+.markdown-body .anchor:focus {
+  outline: none;
+}
+
+.markdown-body h1 .octicon-link,
+.markdown-body h2 .octicon-link,
+.markdown-body h3 .octicon-link,
+.markdown-body h4 .octicon-link,
+.markdown-body h5 .octicon-link,
+.markdown-body h6 .octicon-link {
+  color: #1b1f23;
+  vertical-align: middle;
+  visibility: hidden;
+}
+
+.markdown-body h1:hover .anchor,
+.markdown-body h2:hover .anchor,
+.markdown-body h3:hover .anchor,
+.markdown-body h4:hover .anchor,
+.markdown-body h5:hover .anchor,
+.markdown-body h6:hover .anchor {
+  text-decoration: none;
+}
+
+.markdown-body h1:hover .anchor .octicon-link,
+.markdown-body h2:hover .anchor .octicon-link,
+.markdown-body h3:hover .anchor .octicon-link,
+.markdown-body h4:hover .anchor .octicon-link,
+.markdown-body h5:hover .anchor .octicon-link,
+.markdown-body h6:hover .anchor .octicon-link {
+  visibility: visible;
+}
+
+.markdown-body h1:hover .anchor .octicon-link:before,
+.markdown-body h2:hover .anchor .octicon-link:before,
+.markdown-body h3:hover .anchor .octicon-link:before,
+.markdown-body h4:hover .anchor .octicon-link:before,
+.markdown-body h5:hover .anchor .octicon-link:before,
+.markdown-body h6:hover .anchor .octicon-link:before {
+  width: 16px;
+  height: 16px;
+  content: ' ';
+  display: inline-block;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' version='1.1' width='16' height='16' aria-hidden='true'%3E%3Cpath fill-rule='evenodd' d='M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z'%3E%3C/path%3E%3C/svg%3E");
+}.markdown-body {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  line-height: 1.5;
+  color: #24292e;
+  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;
+  font-size: 16px;
+  line-height: 1.5;
+  word-wrap: break-word;
+}
+
+.markdown-body details {
+  display: block;
+}
+
+.markdown-body summary {
+  display: list-item;
+}
+
+.markdown-body a {
+  background-color: initial;
+}
+
+.markdown-body a:active,
+.markdown-body a:hover {
+  outline-width: 0;
+}
+
+.markdown-body strong {
+  font-weight: inherit;
+  font-weight: bolder;
+}
+
+.markdown-body h1 {
+  font-size: 2em;
+  margin: .67em 0;
+}
+
+.markdown-body img {
+  border-style: none;
+}
+
+.markdown-body code,
+.markdown-body kbd,
+.markdown-body pre {
+  font-family: monospace,monospace;
+  font-size: 1em;
+}
+
+.markdown-body hr {
+  box-sizing: initial;
+  height: 0;
+  overflow: visible;
+}
+
+.markdown-body input {
+  font: inherit;
+  margin: 0;
+}
+
+.markdown-body input {
+  overflow: visible;
+}
+
+.markdown-body [type=checkbox] {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+.markdown-body * {
+  box-sizing: border-box;
+}
+
+.markdown-body input {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.markdown-body a {
+  color: #0366d6;
+  text-decoration: none;
+}
+
+.markdown-body a:hover {
+  text-decoration: underline;
+}
+
+.markdown-body strong {
+  font-weight: 600;
+}
+
+.markdown-body hr {
+  height: 0;
+  margin: 15px 0;
+  overflow: hidden;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #dfe2e5;
+}
+
+.markdown-body hr:after,
+.markdown-body hr:before {
+  display: table;
+  content: "";
+}
+
+.markdown-body hr:after {
+  clear: both;
+}
+
+.markdown-body table {
+  width:100%;
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+.markdown-body td,
+.markdown-body th {
+  padding: 0;
+}
+
+.markdown-body th {
+    background-color: #ffd78c;
+}
+
+.markdown-body details summary {
+  cursor: pointer;
+}
+
+.markdown-body kbd {
+  display: inline-block;
+  padding: 3px 5px;
+  font: 11px SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace;
+  line-height: 10px;
+  color: #444d56;
+  vertical-align: middle;
+  background-color: #fafbfc;
+  border: 1px solid #d1d5da;
+  border-radius: 3px;
+  box-shadow: inset 0 -1px 0 #d1d5da;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.markdown-body h1 {
+  font-size: 32px;
+}
+
+.markdown-body h1,
+.markdown-body h2 {
+  font-weight: 600;
+}
+
+.markdown-body h2 {
+  font-size: 24px;
+}
+
+.markdown-body h3 {
+  font-size: 20px;
+}
+
+.markdown-body h3,
+.markdown-body h4 {
+  font-weight: 600;
+}
+
+.markdown-body h4 {
+  font-size: 16px;
+}
+
+.markdown-body h5 {
+  font-size: 14px;
+}
+
+.markdown-body h5,
+.markdown-body h6 {
+  font-weight: 600;
+}
+
+.markdown-body h6 {
+  font-size: 12px;
+}
+
+.markdown-body p {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.markdown-body blockquote {
+  margin: 0;
+}
+
+.markdown-body ol,
+.markdown-body ul {
+  padding-left: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.markdown-body ol ol,
+.markdown-body ul ol {
+  list-style-type: lower-roman;
+}
+
+.markdown-body ol ol ol,
+.markdown-body ol ul ol,
+.markdown-body ul ol ol,
+.markdown-body ul ul ol {
+  list-style-type: lower-alpha;
+}
+
+.markdown-body dd {
+  margin-left: 0;
+}
+
+.markdown-body code,
+.markdown-body pre {
+  font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace;
+  font-size: 12px;
+}
+
+.markdown-body pre {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.markdown-body input::-webkit-inner-spin-button,
+.markdown-body input::-webkit-outer-spin-button {
+  margin: 0;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.markdown-body :checked+.radio-label {
+  position: relative;
+  z-index: 1;
+  border-color: #0366d6;
+}
+
+.markdown-body .border {
+  border: 1px solid #e1e4e8!important;
+}
+
+.markdown-body .border-0 {
+  border: 0!important;
+}
+
+.markdown-body .border-bottom {
+  border-bottom: 1px solid #e1e4e8!important;
+}
+
+.markdown-body .rounded-1 {
+  border-radius: 3px!important;
+}
+
+.markdown-body .bg-white {
+  background-color: #fff!important;
+}
+
+.markdown-body .bg-gray-light {
+  background-color: #fafbfc!important;
+}
+
+.markdown-body .text-gray-light {
+  color: #6a737d!important;
+}
+
+.markdown-body .mb-0 {
+  margin-bottom: 0!important;
+}
+
+.markdown-body .my-2 {
+  margin-top: 8px!important;
+  margin-bottom: 8px!important;
+}
+
+.markdown-body .pl-0 {
+  padding-left: 0!important;
+}
+
+.markdown-body .py-0 {
+  padding-top: 0!important;
+  padding-bottom: 0!important;
+}
+
+.markdown-body .pl-1 {
+  padding-left: 4px!important;
+}
+
+.markdown-body .pl-2 {
+  padding-left: 8px!important;
+}
+
+.markdown-body .py-2 {
+  padding-top: 8px!important;
+  padding-bottom: 8px!important;
+}
+
+.markdown-body .pl-3,
+.markdown-body .px-3 {
+  padding-left: 16px!important;
+}
+
+.markdown-body .px-3 {
+  padding-right: 16px!important;
+}
+
+.markdown-body .pl-4 {
+  padding-left: 24px!important;
+}
+
+.markdown-body .pl-5 {
+  padding-left: 32px!important;
+}
+
+.markdown-body .pl-6 {
+  padding-left: 40px!important;
+}
+
+.markdown-body .f6 {
+  font-size: 12px!important;
+}
+
+.markdown-body .lh-condensed {
+  line-height: 1.25!important;
+}
+
+.markdown-body .text-bold {
+  font-weight: 600!important;
+}
+
+.markdown-body .pl-c {
+  color: #6a737d;
+}
+
+.markdown-body .pl-c1,
+.markdown-body .pl-s .pl-v {
+  color: #005cc5;
+}
+
+.markdown-body .pl-e,
+.markdown-body .pl-en {
+  color: #6f42c1;
+}
+
+.markdown-body .pl-s .pl-s1,
+.markdown-body .pl-smi {
+  color: #24292e;
+}
+
+.markdown-body .pl-ent {
+  color: #22863a;
+}
+
+.markdown-body .pl-k {
+  color: #d73a49;
+}
+
+.markdown-body .pl-pds,
+.markdown-body .pl-s,
+.markdown-body .pl-s .pl-pse .pl-s1,
+.markdown-body .pl-sr,
+.markdown-body .pl-sr .pl-cce,
+.markdown-body .pl-sr .pl-sra,
+.markdown-body .pl-sr .pl-sre {
+  color: #032f62;
+}
+
+.markdown-body .pl-smw,
+.markdown-body .pl-v {
+  color: #e36209;
+}
+
+.markdown-body .pl-bu {
+  color: #b31d28;
+}
+
+.markdown-body .pl-ii {
+  color: #fafbfc;
+  background-color: #b31d28;
+}
+
+.markdown-body .pl-c2 {
+  color: #fafbfc;
+  background-color: #d73a49;
+}
+
+.markdown-body .pl-c2:before {
+  content: "^M";
+}
+
+.markdown-body .pl-sr .pl-cce {
+  font-weight: 700;
+  color: #22863a;
+}
+
+.markdown-body .pl-ml {
+  color: #735c0f;
+}
+
+.markdown-body .pl-mh,
+.markdown-body .pl-mh .pl-en,
+.markdown-body .pl-ms {
+  font-weight: 700;
+  color: #005cc5;
+}
+
+.markdown-body .pl-mi {
+  font-style: italic;
+  color: #24292e;
+}
+
+.markdown-body .pl-mb {
+  font-weight: 700;
+  color: #24292e;
+}
+
+.markdown-body .pl-md {
+  color: #b31d28;
+  background-color: #ffeef0;
+}
+
+.markdown-body .pl-mi1 {
+  color: #22863a;
+  background-color: #f0fff4;
+}
+
+.markdown-body .pl-mc {
+  color: #e36209;
+  background-color: #ffebda;
+}
+
+.markdown-body .pl-mi2 {
+  color: #f6f8fa;
+  background-color: #005cc5;
+}
+
+.markdown-body .pl-mdr {
+  font-weight: 700;
+  color: #6f42c1;
+}
+
+.markdown-body .pl-ba {
+  color: #586069;
+}
+
+.markdown-body .pl-sg {
+  color: #959da5;
+}
+
+.markdown-body .pl-corl {
+  text-decoration: underline;
+  color: #032f62;
+}
+
+.markdown-body .mb-0 {
+  margin-bottom: 0!important;
+}
+
+.markdown-body .my-2 {
+  margin-bottom: 8px!important;
+}
+
+.markdown-body .my-2 {
+  margin-top: 8px!important;
+}
+
+.markdown-body .pl-0 {
+  padding-left: 0!important;
+}
+
+.markdown-body .py-0 {
+  padding-top: 0!important;
+  padding-bottom: 0!important;
+}
+
+.markdown-body .pl-1 {
+  padding-left: 4px!important;
+}
+
+.markdown-body .pl-2 {
+  padding-left: 8px!important;
+}
+
+.markdown-body .py-2 {
+  padding-top: 8px!important;
+  padding-bottom: 8px!important;
+}
+
+.markdown-body .pl-3 {
+  padding-left: 16px!important;
+}
+
+.markdown-body .pl-4 {
+  padding-left: 24px!important;
+}
+
+.markdown-body .pl-5 {
+  padding-left: 32px!important;
+}
+
+.markdown-body .pl-6 {
+  padding-left: 40px!important;
+}
+
+.markdown-body .pl-7 {
+  padding-left: 48px!important;
+}
+
+.markdown-body .pl-8 {
+  padding-left: 64px!important;
+}
+
+.markdown-body .pl-9 {
+  padding-left: 80px!important;
+}
+
+.markdown-body .pl-10 {
+  padding-left: 96px!important;
+}
+
+.markdown-body .pl-11 {
+  padding-left: 112px!important;
+}
+
+.markdown-body .pl-12 {
+  padding-left: 128px!important;
+}
+
+.markdown-body hr {
+  border-bottom-color: #eee;
+}
+
+.markdown-body kbd {
+  display: inline-block;
+  padding: 3px 5px;
+  font: 11px SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace;
+  line-height: 10px;
+  color: #444d56;
+  vertical-align: middle;
+  background-color: #fafbfc;
+  border: 1px solid #d1d5da;
+  border-radius: 3px;
+  box-shadow: inset 0 -1px 0 #d1d5da;
+}
+
+.markdown-body:after,
+.markdown-body:before {
+  display: table;
+  content: "";
+}
+
+.markdown-body:after {
+  clear: both;
+}
+
+.markdown-body>:first-child {
+  margin-top: 0!important;
+}
+
+.markdown-body>:last-child {
+  margin-bottom: 0!important;
+}
+
+.markdown-body a:not([href]) {
+  color: inherit;
+  text-decoration: none;
+}
+
+.markdown-body blockquote,
+.markdown-body details,
+.markdown-body dl,
+.markdown-body ol,
+.markdown-body p,
+.markdown-body pre,
+.markdown-body table,
+.markdown-body ul {
+  width:100%;
+
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+.markdown-body hr {
+  height: .25em;
+  padding: 0;
+  margin: 24px 0;
+  background-color: #e1e4e8;
+  border: 0;
+}
+
+.markdown-body blockquote {
+  padding: 0 1em;
+  color: #6a737d;
+  border-left: .25em solid #dfe2e5;
+}
+
+.markdown-body blockquote>:first-child {
+  margin-top: 0;
+}
+
+.markdown-body blockquote>:last-child {
+  margin-bottom: 0;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  margin-top: 24px;
+  margin-bottom: 16px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.markdown-body h1 {
+  font-size: 2em;
+}
+
+.markdown-body h1,
+.markdown-body h2 {
+  padding-bottom: .3em;
+  border-bottom: 1px solid #eaecef;
+}
+
+.markdown-body h2 {
+  font-size: 1.5em;
+}
+
+.markdown-body h3 {
+  font-size: 1.25em;
+}
+
+.markdown-body h4 {
+  font-size: 1em;
+}
+
+.markdown-body h5 {
+  font-size: .875em;
+}
+
+.markdown-body h6 {
+  font-size: .85em;
+  color: #6a737d;
+}
+
+.markdown-body ol,
+.markdown-body ul {
+  padding-left: 2em;
+}
+
+.markdown-body ol ol,
+.markdown-body ol ul,
+.markdown-body ul ol,
+.markdown-body ul ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.markdown-body li {
+  word-wrap: break-all;
+}
+
+.markdown-body li>p {
+  margin-top: 16px;
+}
+
+.markdown-body li+li {
+  margin-top: .25em;
+}
+
+.markdown-body dl {
+  padding: 0;
+}
+
+.markdown-body dl dt {
+  padding: 0;
+  margin-top: 16px;
+  font-size: 1em;
+  font-style: italic;
+  font-weight: 600;
+}
+
+.markdown-body dl dd {
+  padding: 0 16px;
+  margin-bottom: 16px;
+}
+
+.markdown-body table {
+  width: 100%;
+}
+
+.markdown-body table th {
+  font-weight: 600;
+}
+
+.markdown-body table td,
+.markdown-body table th {
+  padding: 6px 13px;
+  border: 1px solid #dfe2e5;
+}
+
+.markdown-body table tr {
+  background-color: #fff;
+  border-top: 1px solid #c6cbd1;
+}
+
+.markdown-body table tr:nth-child(2n) {
+  background-color: #f6f8fa;
+}
+
+.markdown-body img {
+  max-width: 100%;
+  box-sizing: initial;
+  background-color: #fff;
+}
+
+.markdown-body img[align=right] {
+  padding-left: 20px;
+}
+
+.markdown-body img[align=left] {
+  padding-right: 20px;
+}
+
+.markdown-body code {
+  padding: .2em .4em;
+  margin: 0;
+  font-size: 85%;
+  background-color: rgba(27,31,35,.05);
+  border-radius: 3px;
+}
+
+.markdown-body pre {
+  word-wrap: normal;
+}
+
+.markdown-body pre>code {
+  padding: 0;
+  margin: 0;
+  font-size: 100%;
+  word-break: normal;
+  white-space: pre;
+  background: transparent;
+  border: 0;
+}
+
+.markdown-body .highlight {
+  margin-bottom: 16px;
+}
+
+.markdown-body .highlight pre {
+  margin-bottom: 0;
+  word-break: normal;
+}
+
+.markdown-body .highlight pre,
+.markdown-body pre {
+  padding: 16px;
+  overflow: auto;
+  font-size: 85%;
+  line-height: 1.45;
+  background-color: #f6f8fa;
+  border-radius: 3px;
+}
+
+.markdown-body pre code {
+  display: inline;
+  max-width: auto;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  line-height: inherit;
+  word-wrap: normal;
+  background-color: initial;
+  border: 0;
+}
+
+.markdown-body .commit-tease-sha {
+  display: inline-block;
+  font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace;
+  font-size: 90%;
+  color: #444d56;
+}
+
+.markdown-body .full-commit .btn-outline:not(:disabled):hover {
+  color: #005cc5;
+  border-color: #005cc5;
+}
+
+.markdown-body .blob-wrapper {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.markdown-body .blob-wrapper-embedded {
+  max-height: 240px;
+  overflow-y: auto;
+}
+
+.markdown-body .blob-num {
+  width: 1%;
+  min-width: 50px;
+  padding-right: 10px;
+  padding-left: 10px;
+  font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace;
+  font-size: 12px;
+  line-height: 20px;
+  color: rgba(27,31,35,.3);
+  text-align: right;
+  white-space: nowrap;
+  vertical-align: top;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.markdown-body .blob-num:hover {
+  color: rgba(27,31,35,.6);
+}
+
+.markdown-body .blob-num:before {
+  content: attr(data-line-number);
+}
+
+.markdown-body .blob-code {
+  position: relative;
+  padding-right: 10px;
+  padding-left: 10px;
+  line-height: 20px;
+  vertical-align: top;
+}
+
+.markdown-body .blob-code-inner {
+  overflow: visible;
+  font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace;
+  font-size: 12px;
+  color: #24292e;
+  word-wrap: normal;
+  white-space: pre;
+}
+
+.markdown-body .pl-token.active,
+.markdown-body .pl-token:hover {
+  cursor: pointer;
+  background: #ffea7f;
+}
+
+.markdown-body .tab-size[data-tab-size="1"] {
+  -moz-tab-size: 1;
+  tab-size: 1;
+}
+
+.markdown-body .tab-size[data-tab-size="2"] {
+  -moz-tab-size: 2;
+  tab-size: 2;
+}
+
+.markdown-body .tab-size[data-tab-size="3"] {
+  -moz-tab-size: 3;
+  tab-size: 3;
+}
+
+.markdown-body .tab-size[data-tab-size="4"] {
+  -moz-tab-size: 4;
+  tab-size: 4;
+}
+
+.markdown-body .tab-size[data-tab-size="5"] {
+  -moz-tab-size: 5;
+  tab-size: 5;
+}
+
+.markdown-body .tab-size[data-tab-size="6"] {
+  -moz-tab-size: 6;
+  tab-size: 6;
+}
+
+.markdown-body .tab-size[data-tab-size="7"] {
+  -moz-tab-size: 7;
+  tab-size: 7;
+}
+
+.markdown-body .tab-size[data-tab-size="8"] {
+  -moz-tab-size: 8;
+  tab-size: 8;
+}
+
+.markdown-body .tab-size[data-tab-size="9"] {
+  -moz-tab-size: 9;
+  tab-size: 9;
+}
+
+.markdown-body .tab-size[data-tab-size="10"] {
+  -moz-tab-size: 10;
+  tab-size: 10;
+}
+
+.markdown-body .tab-size[data-tab-size="11"] {
+  -moz-tab-size: 11;
+  tab-size: 11;
+}
+
+.markdown-body .tab-size[data-tab-size="12"] {
+  -moz-tab-size: 12;
+  tab-size: 12;
+}
+
+.markdown-body .task-list-item {
+  list-style-type: none;
+}
+
+.markdown-body .task-list-item+.task-list-item {
+  margin-top: 3px;
+}
+
+.markdown-body .task-list-item input {
+  margin: 0 .2em .25em -1.6em;
+  vertical-align: middle;
+}
+.markdown-body .description {
+  margin: 0 .2em .25em -1.6em;
+  vertical-align: middle;
+}
+
+</style>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
+    <title>TerosHDL</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 45px;
+    }
+  </style>
+  </head>
+  <body>
+  <article class="markdown-body">
+
+<div id="teroshdl" class='templateTerosHDL'>
+<h1 id="entity-tx_phy">Entity: tx_phy</h1><ul>
+<li><strong>File</strong>: tx_phy.vhd</li>
+</ul><h2 id="diagram">Diagram</h2><svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" viewBox="0 0 545 130"><svg id="SvgjsSvg1002" width="2" height="0" focusable="false" style="overflow:hidden;top:-100%;left:-100%;position:absolute;opacity:0"><polyline id="SvgjsPolyline1003" points="135,0 150,0"></polyline><path id="SvgjsPath1004" d="M0 0 "></path></svg><rect id="SvgjsRect1006" width="260" height="110" fill="black" x="150" y="15"></rect><rect id="SvgjsRect1007" width="256" height="105" fill="#fdfd96" x="152" y="17"></rect><text id="SvgjsText1008" font-family="Helvetica" x="130" y="9.3015625" font-size="20" text-anchor="end" family="Helvetica" size="20" anchor="end" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan id="SvgjsTspan1009" dy="26" x="130" svgjs:data="{&quot;newLined&quot;:true}">   std_logic </tspan></text><text id="SvgjsText1010" font-family="Helvetica" x="165" y="9.3015625" font-size="20" text-anchor="start" family="Helvetica" size="20" anchor="start" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan id="SvgjsTspan1011" dy="26" x="165" svgjs:data="{&quot;newLined&quot;:true}">   clk </tspan></text><line id="SvgjsLine1012" x1="135" y1="30" x2="150" y2="30" stroke-linecap="rec" stroke="black" stroke-width="5"></line><text id="SvgjsText1013" font-family="Helvetica" x="130" y="29.3015625" font-size="20" text-anchor="end" family="Helvetica" size="20" anchor="end" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan id="SvgjsTspan1014" dy="26" x="130" svgjs:data="{&quot;newLined&quot;:true}">   std_logic </tspan></text><text id="SvgjsText1015" font-family="Helvetica" x="165" y="29.3015625" font-size="20" text-anchor="start" family="Helvetica" size="20" anchor="start" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan id="SvgjsTspan1016" dy="26" x="165" svgjs:data="{&quot;newLined&quot;:true}">   resetn </tspan></text><line id="SvgjsLine1017" x1="135" y1="50" x2="150" y2="50" stroke-linecap="rec" stroke="black" stroke-width="5"></line><text id="SvgjsText1018" font-family="Helvetica" x="130" y="49.3015625" font-size="20" text-anchor="end" family="Helvetica" size="20" anchor="end" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan id="SvgjsTspan1019" dy="26" x="130" svgjs:data="{&quot;newLined&quot;:true}">   std_logic </tspan></text><text id="SvgjsText1020" font-family="Helvetica" x="165" y="49.3015625" font-size="20" text-anchor="start" family="Helvetica" size="20" anchor="start" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan id="SvgjsTspan1021" dy="26" x="165" svgjs:data="{&quot;newLined&quot;:true}">   tx_active </tspan></text><line id="SvgjsLine1022" x1="135" y1="70" x2="150" y2="70" stroke-linecap="rec" stroke="black" stroke-width="5"></line><text id="SvgjsText1023" font-family="Helvetica" x="130" y="69.3015625" font-size="20" text-anchor="end" family="Helvetica" size="20" anchor="end" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan id="SvgjsTspan1024" dy="26" x="130" svgjs:data="{&quot;newLined&quot;:true}">   std_logic </tspan></text><text id="SvgjsText1025" font-family="Helvetica" x="165" y="69.3015625" font-size="20" text-anchor="start" family="Helvetica" size="20" anchor="start" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan id="SvgjsTspan1026" dy="26" x="165" svgjs:data="{&quot;newLined&quot;:true}">   bit_valid </tspan></text><line id="SvgjsLine1027" x1="135" y1="90" x2="150" y2="90" stroke-linecap="rec" stroke="black" stroke-width="5"></line><text id="SvgjsText1028" font-family="Helvetica" x="130" y="89.3015625" font-size="20" text-anchor="end" family="Helvetica" size="20" anchor="end" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan id="SvgjsTspan1029" dy="26" x="130" svgjs:data="{&quot;newLined&quot;:true}">   std_logic </tspan></text><text id="SvgjsText1030" font-family="Helvetica" x="165" y="89.3015625" font-size="20" text-anchor="start" family="Helvetica" size="20" anchor="start" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan id="SvgjsTspan1031" dy="26" x="165" svgjs:data="{&quot;newLined&quot;:true}">   bit_in </tspan></text><line id="SvgjsLine1032" x1="135" y1="110" x2="150" y2="110" stroke-linecap="rec" stroke="black" stroke-width="5"></line><text id="SvgjsText1033" font-family="Helvetica" x="430" y="9.3015625" font-size="20" text-anchor="start" family="Helvetica" size="20" anchor="start" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan id="SvgjsTspan1034" dy="26" x="430" svgjs:data="{&quot;newLined&quot;:true}">   std_logic </tspan></text><text id="SvgjsText1035" font-family="Helvetica" x="395" y="9.3015625" font-size="20" text-anchor="end" family="Helvetica" size="20" anchor="end" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan id="SvgjsTspan1036" dy="26" x="395" svgjs:data="{&quot;newLined&quot;:true}">   driver_en </tspan></text><line id="SvgjsLine1037" x1="410" y1="30" x2="425" y2="30" stroke-linecap="rec" stroke="black" stroke-width="5"></line><text id="SvgjsText1038" font-family="Helvetica" x="430" y="29.3015625" font-size="20" text-anchor="start" family="Helvetica" size="20" anchor="start" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan id="SvgjsTspan1039" dy="26" x="430" svgjs:data="{&quot;newLined&quot;:true}">   std_logic </tspan></text><text id="SvgjsText1040" font-family="Helvetica" x="395" y="29.3015625" font-size="20" text-anchor="end" family="Helvetica" size="20" anchor="end" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan id="SvgjsTspan1041" dy="26" x="395" svgjs:data="{&quot;newLined&quot;:true}">   tx_out </tspan></text><line id="SvgjsLine1042" x1="410" y1="50" x2="425" y2="50" stroke-linecap="rec" stroke="black" stroke-width="5"></line></svg>
+<h2 id="description">Description</h2><p>The TX PHY is responsible for encoding transmitted data into manchester encoding and  generating NLP pulses when the link has been active for 1.6ms. It contains a FSM that  is used to control the internal logic. Input to output latency is 1 CLK.</p><h2 id="ports">Ports</h2>
+<table>
+<thead>
+<tr>
+<th id="port_name">Port name</th>
+<th id="direction">Direction</th>
+<th id="type">Type</th>
+<th id="description">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>clk</td>
+<td>in</td>
+<td>std_logic</td>
+<td>100 MHz Clock</td>
+</tr>
+<tr>
+<td>resetn</td>
+<td>in</td>
+<td>std_logic</td>
+<td>Low active reset</td>
+</tr>
+<tr>
+<td>tx_active</td>
+<td>in</td>
+<td>std_logic</td>
+<td>Packet transmission is active</td>
+</tr>
+<tr>
+<td>bit_valid</td>
+<td>in</td>
+<td>std_logic</td>
+<td>Input bit is valid for this clock cycle</td>
+</tr>
+<tr>
+<td>driver_en</td>
+<td>out</td>
+<td>std_logic</td>
+<td>Output driver is enabled</td>
+</tr>
+<tr>
+<td>bit_in</td>
+<td>in</td>
+<td>std_logic</td>
+<td>Input bit to encode</td>
+</tr>
+<tr>
+<td>tx_out</td>
+<td>out</td>
+<td>std_logic</td>
+<td>Output Manchester / NLP data</td>
+</tr>
+</tbody>
+</table><h2 id="signals">Signals</h2>
+<table>
+<thead>
+<tr>
+<th id="name">Name</th>
+<th id="type">Type</th>
+<th id="description">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>state</td>
+<td>state_t</td>
+<td>FSM State Variables</td>
+</tr>
+<tr>
+<td>next_state</td>
+<td>state_t</td>
+<td>FSM State Variables</td>
+</tr>
+<tr>
+<td>r_mcn_out</td>
+<td>std_logic</td>
+<td>Internal manchester encoder output</td>
+</tr>
+<tr>
+<td>r_mcn_bit_in</td>
+<td>std_logic</td>
+<td>Internal register for bit_in</td>
+</tr>
+<tr>
+<td>r_mcn_phase</td>
+<td>std_logic</td>
+<td>Phase used to generate manchester encoding</td>
+</tr>
+<tr>
+<td>r_nlp_out</td>
+<td>std_logic</td>
+<td>Internal NLP generator output</td>
+</tr>
+<tr>
+<td>r_inactivity_counter</td>
+<td>unsigned(20 downto 0)</td>
+<td>Idle inactivity counter (for NLP)</td>
+</tr>
+<tr>
+<td>r_clk_counter</td>
+<td>unsigned(4 downto 0)</td>
+<td>Clock Enable Counter for NLP and TP_IDL</td>
+</tr>
+<tr>
+<td>r_tp_idl_out</td>
+<td>std_logic</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="constants">Constants</h2>
+<table>
+<thead>
+<tr>
+<th id="name">Name</th>
+<th id="type">Type</th>
+<th id="value">Value</th>
+<th id="description">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NLP_TIMEOUT</td>
+<td>unsigned(20 downto 0)</td>
+<td>to_unsigned(1_600_000,<br><span style="padding-left:20px"> 21)</td>
+<td>802.3i specification NLP timeout</td>
+</tr>
+</tbody>
+</table>
+<h2 id="enums">Enums</h2>
+<h3 id="state_t"><em>state_t</em></h3>
+<p>PHY FSM states</p>
+<table>
+<thead>
+<tr>
+<th id="name">Name</th>
+<th id="description">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IDLE</td>
+<td>Nothing is happening here…</td>
+</tr>
+<tr>
+<td>TX</td>
+<td>Manchester encoding (TX Data) in progress</td>
+</tr>
+<tr>
+<td>NLP</td>
+<td>Line is idle and NLP is being sent out</td>
+</tr>
+<tr>
+<td>TP_IDL_WAIT</td>
+<td>Waiting for end of current bit time before going to TP_IDL</td>
+</tr>
+<tr>
+<td>TP_IDL</td>
+<td>Sending End of Packet Signal</td>
+</tr>
+</tbody>
+</table><h2 id="processes">Processes</h2><ul>
+<li>p_seq: ( clk, resetn )</li>
+</ul><div id="descriptions"><p><strong>Description</strong><br />
+  Sequential Logic Update &amp; State Register Process</p></div><ul>
+<li>p_cmb: ( state, tx_active, r_clk_counter, r_inactivity_counter, r_mcn_out )</li>
+</ul><div id="descriptions"><p><strong>Description</strong><br />
+  Combinatorial logic for FSM state updates</p></div><h2 id="statemachines">State machines</h2><div><ul>
+<li>Combinatorial logic for FSM state updates</li>
+</ul><div id="state_machine"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: state transitions Pages: 1 -->
+<svg width="660pt" height="352pt"
+ viewBox="0.00 0.00 660.00 352.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 348)">
+<title>state transitions</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-348 656,-348 656,4 -4,4"/>
+<g id="clust1" class="cluster state regular">
+<title>cluster_next_state</title>
+<path fill="none" stroke="#000000" stroke-width="2" d="M20,-8C20,-8 632,-8 632,-8 638,-8 644,-14 644,-20 644,-20 644,-324 644,-324 644,-330 638,-336 632,-336 632,-336 20,-336 20,-336 14,-336 8,-330 8,-324 8,-324 8,-20 8,-20 8,-14 14,-8 20,-8"/>
+<text text-anchor="start" x="298.8208" y="-317.2" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#000000">next_state</text>
+</g>
+<!-- next_state -->
+<!-- IDLE -->
+<g id="node2" class="node state regular">
+<title>IDLE</title>
+<polygon fill="#ffffff" fill-opacity="0.003922" stroke="transparent" stroke-width="2" points="181,-298 125,-298 125,-262 181,-262 181,-298"/>
+<text text-anchor="start" x="139.6644" y="-276.2" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#000000">IDLE</text>
+<path fill="none" stroke="#000000" stroke-width="2" d="M137.3333,-263C137.3333,-263 168.6667,-263 168.6667,-263 174.3333,-263 180,-268.6667 180,-274.3333 180,-274.3333 180,-285.6667 180,-285.6667 180,-291.3333 174.3333,-297 168.6667,-297 168.6667,-297 137.3333,-297 137.3333,-297 131.6667,-297 126,-291.3333 126,-285.6667 126,-285.6667 126,-274.3333 126,-274.3333 126,-268.6667 131.6667,-263 137.3333,-263"/>
+</g>
+<!-- TX -->
+<g id="node3" class="node state regular">
+<title>TX</title>
+<polygon fill="#ffffff" fill-opacity="0.003922" stroke="transparent" stroke-width="2" points="72,-216 16,-216 16,-180 72,-180 72,-216"/>
+<text text-anchor="start" x="36.3332" y="-194.2" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#000000">TX</text>
+<path fill="none" stroke="#000000" stroke-width="2" d="M28.3333,-181C28.3333,-181 59.6667,-181 59.6667,-181 65.3333,-181 71,-186.6667 71,-192.3333 71,-192.3333 71,-203.6667 71,-203.6667 71,-209.3333 65.3333,-215 59.6667,-215 59.6667,-215 28.3333,-215 28.3333,-215 22.6667,-215 17,-209.3333 17,-203.6667 17,-203.6667 17,-192.3333 17,-192.3333 17,-186.6667 22.6667,-181 28.3333,-181"/>
+</g>
+<!-- IDLE&#45;&gt;TX -->
+<g id="edge1" class="edge transition">
+<title>IDLE&#45;&gt;TX</title>
+<path fill="none" stroke="#000000" d="M124.8351,-277.2469C102.6687,-273.5731 72.6414,-265.0001 54.835,-245 50.3039,-239.9107 47.5586,-233.3079 45.9216,-226.668"/>
+<polygon fill="#000000" stroke="#000000" points="49.3035,-225.6805 44.1642,-216.4156 42.4041,-226.8632 49.3035,-225.6805"/>
+<text text-anchor="start" x="54" y="-236" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">tx_active = &#39;1&#39; &#160;&#160;</text>
+</g>
+<!-- NLP -->
+<g id="node6" class="node state regular">
+<title>NLP</title>
+<polygon fill="#ffffff" fill-opacity="0.003922" stroke="transparent" stroke-width="2" points="355,-216 299,-216 299,-180 355,-180 355,-216"/>
+<text text-anchor="start" x="315.3318" y="-194.2" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#000000">NLP</text>
+<path fill="none" stroke="#000000" stroke-width="2" d="M311.3333,-181C311.3333,-181 342.6667,-181 342.6667,-181 348.3333,-181 354,-186.6667 354,-192.3333 354,-192.3333 354,-203.6667 354,-203.6667 354,-209.3333 348.3333,-215 342.6667,-215 342.6667,-215 311.3333,-215 311.3333,-215 305.6667,-215 300,-209.3333 300,-203.6667 300,-203.6667 300,-192.3333 300,-192.3333 300,-186.6667 305.6667,-181 311.3333,-181"/>
+</g>
+<!-- IDLE&#45;&gt;NLP -->
+<g id="edge2" class="edge transition">
+<title>IDLE&#45;&gt;NLP</title>
+<path fill="none" stroke="#000000" d="M163.9624,-261.9594C170.8784,-252.0292 180.6642,-240.2792 192.143,-233 208.1098,-222.8748 254.8646,-212.0641 288.8514,-205.1808"/>
+<polygon fill="#000000" stroke="#000000" points="289.815,-208.5578 298.941,-203.1758 288.4506,-201.6921 289.815,-208.5578"/>
+<text text-anchor="start" x="192" y="-236" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">r_inactivity_counter = NLP_TIMEOUT &#160;&#160;</text>
+</g>
+<!-- TP_IDL_WAIT -->
+<g id="node4" class="node state regular">
+<title>TP_IDL_WAIT</title>
+<polygon fill="#ffffff" fill-opacity="0.003922" stroke="transparent" stroke-width="2" points="319.5,-134 220.5,-134 220.5,-98 319.5,-98 319.5,-134"/>
+<text text-anchor="start" x="231.8306" y="-112.2" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#000000">TP_IDL_WAIT</text>
+<path fill="none" stroke="#000000" stroke-width="2" d="M232.8333,-99C232.8333,-99 307.1667,-99 307.1667,-99 312.8333,-99 318.5,-104.6667 318.5,-110.3333 318.5,-110.3333 318.5,-121.6667 318.5,-121.6667 318.5,-127.3333 312.8333,-133 307.1667,-133 307.1667,-133 232.8333,-133 232.8333,-133 227.1667,-133 221.5,-127.3333 221.5,-121.6667 221.5,-121.6667 221.5,-110.3333 221.5,-110.3333 221.5,-104.6667 227.1667,-99 232.8333,-99"/>
+</g>
+<!-- TX&#45;&gt;TP_IDL_WAIT -->
+<g id="edge3" class="edge transition">
+<title>TX&#45;&gt;TP_IDL_WAIT</title>
+<path fill="none" stroke="#000000" d="M72.2048,-183.3656C92.1739,-173.3806 119.7817,-160.3257 144.994,-151 151.617,-148.5502 181.7173,-140.1101 210.7196,-132.1324"/>
+<polygon fill="#000000" stroke="#000000" points="211.7607,-135.4761 220.4775,-129.4539 209.9077,-128.7258 211.7607,-135.4761"/>
+<text text-anchor="start" x="144" y="-154" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">tx_active = &#39;0&#39; and r_mcn_out = &#39;1&#39; &#160;&#160;</text>
+</g>
+<!-- TP_IDL -->
+<g id="node5" class="node state regular">
+<title>TP_IDL</title>
+<polygon fill="#ffffff" fill-opacity="0.003922" stroke="transparent" stroke-width="2" points="114,-52 52,-52 52,-16 114,-16 114,-52"/>
+<text text-anchor="start" x="62.6636" y="-30.2" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#000000">TP_IDL</text>
+<path fill="none" stroke="#000000" stroke-width="2" d="M64.3333,-17C64.3333,-17 101.6667,-17 101.6667,-17 107.3333,-17 113,-22.6667 113,-28.3333 113,-28.3333 113,-39.6667 113,-39.6667 113,-45.3333 107.3333,-51 101.6667,-51 101.6667,-51 64.3333,-51 64.3333,-51 58.6667,-51 53,-45.3333 53,-39.6667 53,-39.6667 53,-28.3333 53,-28.3333 53,-22.6667 58.6667,-17 64.3333,-17"/>
+</g>
+<!-- TX&#45;&gt;TP_IDL -->
+<g id="edge4" class="edge transition">
+<title>TX&#45;&gt;TP_IDL</title>
+<path fill="none" stroke="#000000" d="M40.1661,-179.7146C38.9902,-172.651 38,-164.4816 38,-157 38,-157 38,-157 38,-75 38,-68.4803 40.6129,-62.722 44.5795,-57.7367"/>
+<polygon fill="#000000" stroke="#000000" points="47.1694,-60.0961 51.746,-50.5407 42.2095,-55.1565 47.1694,-60.0961"/>
+<text text-anchor="start" x="38" y="-113" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">tx_active = &#39;0&#39; and r_mcn_out = &#39;0&#39; &#160;&#160;</text>
+</g>
+<!-- TP_IDL_WAIT&#45;&gt;TP_IDL -->
+<g id="edge5" class="edge transition">
+<title>TP_IDL_WAIT&#45;&gt;TP_IDL</title>
+<path fill="none" stroke="#000000" d="M220.3749,-102.0779C214.5384,-100.6158 208.6511,-99.2203 203,-98 157.4587,-88.1659 135.2682,-110.9249 99.558,-81 93.7228,-76.1102 89.9428,-69.0284 87.4945,-61.8394"/>
+<polygon fill="#000000" stroke="#000000" points="90.8731,-60.9253 84.9134,-52.1656 84.1097,-62.7299 90.8731,-60.9253"/>
+<text text-anchor="start" x="99" y="-72" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">r_clk_counter = to_unsigned(4, r_clk_counter&#39;length) &#160;&#160;</text>
+</g>
+<!-- TP_IDL&#45;&gt;IDLE -->
+<g id="edge6" class="edge transition">
+<title>TP_IDL&#45;&gt;IDLE</title>
+<path fill="none" stroke="#000000" d="M114.0869,-35.938C179.625,-40.3407 327.1826,-52.0456 342,-69 371.4394,-102.6853 341.0555,-135.2062 306,-163 253.3488,-204.7446 217.147,-183.2354 172,-233 167.0732,-238.4307 163.3408,-245.3045 160.5473,-252.1069"/>
+<polygon fill="#000000" stroke="#000000" points="157.1374,-251.251 157.0964,-261.8458 163.7354,-253.5891 157.1374,-251.251"/>
+<text text-anchor="start" x="320" y="-154" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">r_clk_counter = to_unsigned(24, r_clk_counter&#39;length) &#160;&#160;</text>
+</g>
+<!-- NLP&#45;&gt;IDLE -->
+<g id="edge7" class="edge transition">
+<title>NLP&#45;&gt;IDLE</title>
+<path fill="none" stroke="#000000" d="M355.1073,-213.713C367.7407,-222.7663 378.007,-234.4161 369,-245 357.6193,-258.3733 249.9999,-270.6866 191.0973,-276.4949"/>
+<polygon fill="#000000" stroke="#000000" points="190.6613,-273.0207 181.0458,-277.4696 191.3369,-279.988 190.6613,-273.0207"/>
+<text text-anchor="start" x="372" y="-236" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">r_clk_counter = to_unsigned(9, r_clk_counter&#39;length) &#160;&#160;</text>
+</g>
+</g>
+</svg>
+</div></div>
+        <br><br><br><br><br><br>
+    </article class="markdown-body">
+    </body>
+    
