@@ -10,11 +10,15 @@ use IEEE.std_logic_1164.all;
 
 entity rx_fcs_crc is
   port (
+    -- Mandatory Signals
     clk : in std_logic; --! System clock
     rst : in std_logic; --! Active low reset
 
+    -- Byte/word input side (handshake)
     crc_en : in std_logic; --! Generation enable signal: update CRC when '1'
     data   : in std_logic_vector(7 downto 0); --! 8-bit data input
+
+    -- Serial output side
     crcOut : out std_logic_vector(31 downto 0) --! Current CRC value
   );
 end entity rx_fcs_crc;

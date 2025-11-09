@@ -1,35 +1,40 @@
--- Ethernet FCS (CRC-32) checker
--- Polynomial: 0x04C11DB7 (reflected form 0xEDB88320)
--- Initial value: 0xFFFFFFFF
--- Final XOR: 0xFFFFFFFF
--- Valid FCS check: computed CRC (after final XOR) == received CRC
+--! @title Ethernet FCS (CRC-32) checker
+--! Polynomial: 0x04C11DB7 (reflected form 0xEDB88320)
+--! Initial value: 0xFFFFFFFF
+--! Final XOR: 0xFFFFFFFF
+--! Valid FCS check: computed CRC (after final XOR) == received CRC
 
 library IEEE;
 use IEEE.std_logic_1164.all;
 
 entity rx_fcs_verify is
   port(
-    clk       : in  std_logic;
-    rst       : in  std_logic;
-    data      : in  std_logic_vector(7 downto 0);
-    enable    : in  std_logic;
-    begin_fcs : in  std_logic;
-    fcs_valid : out std_logic
+    -- Mandatory Signals
+    clk       : in  std_logic; --! System Clock
+    rst       : in  std_logic; --! Active Low Reset
+
+    -- Byte/word input side (handshake)
+    data      : in  std_logic_vector(7 downto 0); --! 8-bit data input
+    enable    : in  std_logic; --! Enable Pin to send data through to CRC generation
+    begin_fcs : in  std_logic; --! Enable to end generation and send through comparison CRC Bytes
+    
+    -- Serial output side
+    fcs_valid : out std_logic --! Output bit to Say Valid CRC in Packet
   );
 end entity;
 
-architecture rtl of rx_fcs_verify is
-  signal crc_reg      : std_logic_vector(31 downto 0) := (others => '1'); -- init 0xFFFFFFFF
-  signal crc_next     : std_logic_vector(31 downto 0) := (others => '0');
-  signal crc_existing : std_logic_vector(31 downto 0) := (others => '0');
-  signal fcs_reg      : std_logic                     := '0';
-  signal final        : boolean                       := false;
-  signal finalcount   : std_logic                     := '0';
-  signal crc_reset    : std_logic                     := '0';
+architecture rtl of rx_fcs_verify isvs
+  signal crc_reg      : std_logic_vector(31 downto 0) := (others => '1'); --! CRC Register init 0x FFFFFFFF
+  signal crc_next     : std_logic_vector(31 downto 0) := (others => '0'); --! Next Generated CRC
+  signal crc_existing : std_logic_vector(31 downto 0) := (others => '0'); --! Previous CRC
+  signal fcs_reg      : std_logic                     := '0'; --! Valid FCS Register
+  signal final        : boolean                       := false; --! Register thats set by Begin FCS
+  signal finalcount   : std_logic                     := '0'; --! Count of the Final Four Bytes
+  signal crc_reset    : std_logic                     := '0'; --! Pin to Reset the CRC Generation
 
 begin
 
-  -- Instantiate your CRC-32 core
+  --! Instantiate your CRC-32 core
   crc_core : entity work.rx_fcs_crc
     port map(
       clk    => clk,
@@ -41,6 +46,7 @@ begin
 
     crc_reset <= rst and enable;
 
+  --! Sequential process for state update
   process(clk, rst, enable)
   begin
     if rst = '0' or enable = '0' then
