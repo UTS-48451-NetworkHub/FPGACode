@@ -165,7 +165,7 @@ begin
 
       when RX_DATA =>
         if RX_timeout = '1' then
-          next_state <= RX_size;
+          next_state <= RX_SIZE;
         end if;
 
       when RX_SIZE =>
