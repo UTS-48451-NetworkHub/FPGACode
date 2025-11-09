@@ -2,11 +2,7 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 
 --! @title CRC Generation through Polynomial
---! CRC polynomial coefficients: x^32 + x^26 + x^23 + x^22 + x^16 + x^12 + x^11 + x^10 + x^8 + x^7 + x^5 + x^4 + x^2 + x + 1
---! In hex = 0x4C11DB7. 
---! CRC width: 32 bits.
---! CRC shift direction: right (little endian).
---! Input word width: 8 bits.
+--! This file defines the CRC-32 generation core used for Ethernet Frame Check Sequence (FCS) computation. It implements the standard polynomial x^32 + x^26 + x^23 + x^22 + x^16 + x^12 + x^11 + x^10 + x^8 + x^7 + x^5 + x^4 + x^2 + x + 1 (corresponding to 0x04C11DB7) in a right-shifting, little-endian configuration. The entity rx_fcs_crc accepts 8-bit input data words and updates the 32-bit CRC value on each clock cycle when crc_en is asserted. The CRC register is initialised to 0xFFFFFFFF on reset and updates synchronously with clk, while the output crcOut presents the current CRC value after applying the final XOR with 0xFFFFFFFF. The architecture explicitly defines each XOR tap in the polynomial, providing full combinational logic for bit-wise CRC computation suitable for hardware implementation.
 
 entity rx_fcs_crc is
   port (
@@ -66,7 +62,7 @@ begin
   crc_out_signal(31) <= crc_in_signal(1) xor crc_in_signal(7) xor data(1) xor data(7);
 
   --! Sequential process for state update
-  process (clk, rst)
+  p_seq : process (clk, rst)
   begin
     if (rst = '0') then
       -- Initialize CRC state to all '1's (standard CRC init value)
