@@ -4,3 +4,4 @@ db/
 *.exe
 *.vhd.bak
 *.cf
+.DS_Store
